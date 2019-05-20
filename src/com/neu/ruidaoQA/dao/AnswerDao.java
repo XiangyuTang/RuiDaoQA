@@ -2,7 +2,8 @@ package com.neu.ruidaoQA.dao;
 
 public interface AnswerDao {
 	//fafafewa test
-	//���� test
+	//锟斤拷锟斤拷 test
 	//tangxiangyu
-	//酷酷酷酷酷
+	//閰烽叿閰烽叿閰�
+	//有时候会乱码
 }

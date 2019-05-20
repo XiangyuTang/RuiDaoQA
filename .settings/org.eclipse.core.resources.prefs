@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/com/neu/ruidaoQA/dao/AnswerDao.java=UTF-8
 encoding//src/com/neu/ruidaoQA/dao/UserDao.java=GBK
 encoding//src/com/neu/ruidaoQA/dbutil/BaseDao.java=GBK
+separateDerivedEncodings=true
