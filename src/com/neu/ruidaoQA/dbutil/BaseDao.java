@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class BaseDao {
 	private String driver="com.mysql.jdbc.Driver";
-	private String url="jdbc:mysql://localhost:3306/mysql";
+	private String url="jdbc:mysql://localhost:3306/wukong";
 	private String user="root";
 	private String pwd="5046513";
 	public static Connection con=null;
@@ -120,13 +120,13 @@ public class BaseDao {
 	}
 	
 	
-//	public static void main(String[] args) {
-//		BaseDao bb = new BaseDao();
-//		
-//		int i = bb.executeIUD("update userinfo set name=? ,password=? where id=?",
-//				new Object[]{"emm","111111",1});
-//		
-//		System.out.println(i);
-//	}
+	public static void main(String[] args) {
+		BaseDao bb = new BaseDao();
+		
+		int i = bb.executeIUD("update admin set admin_name=? ,adminPwd=? where id=1",
+				new Object[]{"emm","111111"});
+		
+		System.out.println(i);
+	}
 	
 }
