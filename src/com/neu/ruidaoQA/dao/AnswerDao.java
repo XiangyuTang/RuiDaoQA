@@ -1,7 +1,8 @@
 package com.neu.ruidaoQA.dao;
 
 public interface AnswerDao {
-	//fafafewa
-	//tangxiangyu test
-	//Áõ±ó test
+	//fafafewa test
+	//ï¿½ï¿½ï¿½ï¿½ test
+	//tangxiangyu
+	//é…·é…·é…·é…·é…·
 }
