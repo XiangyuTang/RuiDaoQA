@@ -123,7 +123,7 @@ public class BaseDao {
 	public static void main(String[] args) {
 		BaseDao bb = new BaseDao();
 		
-		int i = bb.executeIUD("update admin set admin_name=? ,adminPwd=? where id=1",
+		int i = bb.executeIUD("update admin set admin_name=? ,adminPwd=? where admin_id=1",
 				new Object[]{"emm","111111"});
 		
 		System.out.println(i);
