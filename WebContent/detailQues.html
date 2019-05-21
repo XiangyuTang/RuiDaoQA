@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="layui/css/layui.css">
 <link rel="stylesheet" href="css/global.css">
 <script src="layui/layui.js"></script>
-<script src="js/jquery.js"></script>
 <style type="text/css" rel="stylesheet">
 form {
 	margin: 0;
@@ -26,96 +25,45 @@ form {
 
 </head>
 <body>
-	<iframe  src="head.html" scrolling="no" width="100%" height="65px" onclick="#"></iframe>
+	<iframe src="head.html" scrolling="no" width="100%" height="65px" href="index.html"></iframe>
 	<div class="main layui-clear">
 		<div class="wrap">
 			<div class="content detail">
 				<div class="fly-panel detail-box">
 					<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
-						<!--<span class="fly-tip-stick">置顶帖</span><span class="jie-admin"> <a
-							href="">点击置顶</a> </span> <span
-							class="layui-btn layui-btn-mini jie-admin"> <a href="">取消置顶</a>
-						</span> <span class="jie-admin" type="del" style="margin-left: 20px;">
-							<a>删除该帖</a> </span> 
-						</span>-->
+					
 						<br>
 						<div class="fly-list-hint">
-							<i class="iconfont" title="回答">&#xe60c;</i> 2 
+							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"> 233</i>&nbsp;  
+							<i class="layui-icon layui-icon-dialogue" style="font-size: 20px; color: #1E9FFF; " title="回答"> 2</i>  
 						</div>
+					</div>
+					<div class="detail-body photos" style="margin-bottom: 20px;">
+						<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
+							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回味。</p>
+						<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
+							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回味。那么为什么要对核桃树进行放浆呢？</p>
 					</div>
 					<div class="detail-about">
 						<a class="jie-user" href=""> <img
 							src="images/uer.jpg" alt="头像"> <cite> 压缩
 								<em>2017-05-01发布</em> </cite> </a>
 						<div class="detail-hits" data-id="{{rows.id}}">
-							 <span class="layui-btn layui-btn-mini jie-admin"><a
-								href="#">已完帖，无法编辑</a> </span> <span
+							 	<span
 								class="layui-btn layui-btn-mini jie-admin" type="collect"
-								data-type="add"> <a id="collectPost">收藏</a> </span> <span
+								data-type="add"> <a id="collectPost">关注</a> 
+								</span> 
+								<span
 								class="layui-btn layui-btn-mini jie-admin  layui-btn-danger"
-								type="collect" data-type="add"> <a>取消收藏</a> </span>
+								type="collect" data-type="add"> <a>取消关注</a> 
+								</span>
 
 						</div>
 					</div>
-					<div class="detail-body photos" style="margin-bottom: 20px;">
-						<p>帖子内容</p>
-					</div>
-				</div>
-				<div class="fly-panel detail-box" style="padding-top: 0;">
-					<a name="comment"></a>
-					<ul class="jieda photos" id="jieda">
-						<li data-id="12" class="jieda-daan"><a
-							name="item-121212121212"></a>
-							<div class="detail-about detail-about-reply">
-								<a class="jie-user" href=""> <img
-									src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i>
-										<!-- <em>(楼主)</em>
-                  <em style="color:#5FB878">(管理员)</em> --> </cite> </a>
-								<div class="detail-hits">
-									<span>3分钟前</span>
-								</div>
-								<i class="iconfont icon-caina" title="最佳答案"></i>
-							</div>
-							<div class="detail-body jieda-body">
-								<p>么么哒</p>
-							</div>
-							<div class="jieda-reply">
-								<span class="jieda-zan zanok" type="zan"><i
-									class="iconfont icon-zan"></i><em>12</em>
-								</span> 
-								<!-- <div class="jieda-admin">
-                <span type="del">删除</span>
-                <span class="jieda-accept" type="accept">采纳</span>
-              </div> -->
-							</div></li>
-						<li data-id="13"><a name="item-121212121212"></a>
-							<div class="detail-about detail-about-reply">
-								<a class="jie-user" href=""> <img
-									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
-										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
-								<div class="detail-hits">
-									<span>刚刚</span>
-								</div>
-							</div>
-							<div class="detail-body jieda-body">
-								<p>蓝瘦</p>
-							</div>
-							<div class="jieda-reply">
-								<span class="jieda-zan" type="zan"><i
-									class="iconfont icon-zan"></i><em>0</em>
-								</span> 
-								<div class="jieda-admin">
-									<span type="del"><a href="#" class="layui-btn layui-btn-danger layui-btn-small">删除</a></span>
-									<span class="jieda-accept" type="accept">
-									<a href="#" class="layui-btn  layui-btn-small">采纳</a></span>
-								</div>
-							</div></li>
-
-						<!-- <li class="fly-none">没有任何回答</li> -->
-					</ul>
 					<span
-										id="toName">@ 压缩(楼主)</span>		
+					id="toName">@ 压缩(楼主)
+					</span>		
 					<div class="layui-form layui-form-pane">
 						<form action="">
 							<div class="layui-form-item layui-form-text">
@@ -130,6 +78,67 @@ form {
 							</div>
 						</form>
 					</div>
+				</div>
+				<div class="fly-panel detail-box" style="padding-top: 0;">
+					<a name="comment"></a>
+					<ul class="jieda photos" id="jieda">
+						<li data-id="12" class="jieda-daan"><a
+							name="item-121212121212"></a>
+							<div class="detail-about detail-about-reply">
+								<a class="jie-user" href=""> <img
+									src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i>
+										 </cite> </a>
+								<div class="detail-hits">
+									<span>3分钟前</span>
+								</div>
+								<i class="iconfont icon-caina" title="最佳答案"></i>
+							</div>
+							<div class="detail-body jieda-body">
+								<p>放浆时间应选择6月初左右，天气晴朗的中午为佳。这时的温度比较高，利于伤口愈合。如果在二十天以后，伤口还没有愈合，赶紧找塑料膜包扎，防止树枝脱营养死亡。</p>
+							</div>
+							<div class="jieda-reply">
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill" title="评论"></i><em>3</em>
+								</span>
+								<!--iconfont icon-zan-->
+							</div></li>
+						<li data-id="13"><a name="item-121212121212"></a>
+							<div class="detail-about detail-about-reply">
+								<a class="jie-user" href=""> <img
+									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
+										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
+								<div class="detail-hits">
+									<span>刚刚</span>
+								</div>
+							</div>
+							<div class="detail-body jieda-body">
+								<p>放浆的好处是核桃树被人为截断营养后，让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法利于早日开花和坐果率，避免生理落果。</p>
+							</div>
+							<div class="jieda-reply">
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill" title="评论"></i><em>3</em>
+								</span>
+								<div class="jieda-admin">
+									<span class="jieda-accept" type="accept">
+									<!--<a href="#" class="layui-btn  layui-btn-small">采纳</a></span>-->
+								</div>
+							</div></li>
+							
+						<!-- <li class="fly-none">没有任何回答</li> -->
+					</ul>
+					
 				</div>
 			</div>
 		</div>
@@ -209,7 +218,7 @@ form {
 		</div>
 	</div>
  <script type="text/javascript" charset="utf-8" src="js/kindeditor.js"></script>
-  <script type="text/javascript">
+ <script type="text/javascript">
     KE.show({
         id : 'L_content',
 		resizeMode : 1,
@@ -218,6 +227,14 @@ form {
         'removeformat', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
         'insertunorderedlist', 'emoticons', 'image', 'link']
     });
-  </script>
+ </script>
+ <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+ <script>
+ 	$(function(){
+ 		$('iframe').click(function(){
+ 			
+ 		})
+ 	})
+ </script>
 </body>
 </html>
