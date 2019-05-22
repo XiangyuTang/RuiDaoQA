@@ -323,6 +323,7 @@ form {
    	function addReply(){
    		var text = $("#L_content").val();
 		alert(text);
+		//后期加if条件判断text是否为空
    		var $newTr=$('<li data-id="12" class="jieda-daan"><a'+
 				' name="item-121212121212"></a>'+
 				'<div class="detail-about detail-about-reply">'+
@@ -350,11 +351,14 @@ form {
 			$('#jieda').append($newTr);
    	}
 	$(function(){
-		//addComment();
-		$('.jiada-reply').on('click','span[class="jieda-zan zanok"]',function(){
+		/*$('.jiada-reply').on('click','span[class="jieda-zan zanok"]',function(){
 			addReply();
+		})*/
+		$('#ans-btn').click(function(){
+			addReply();
+			
+			
 		})
-	
 	})
 </script>
 
@@ -439,38 +443,6 @@ form {
 	
 	$(function(){
 		
-		/*$("i[class='layui-icon layui-icon-praise']").toggle(//点赞按钮的特效部分
-			function(){
-				$(this).addClass("layui-anim layui-anim-scaleSpring");
-				var i = parseInt($(this).next().html());			
-				$(this).next().html(i+1);
-				var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
-				console.log(answer_id+1);//测试其是否是int型
-			},
-			function(){
-				$(this).removeClass("layui-anim layui-anim-scaleSpring");
-				var i = parseInt($(this).next().html());			
-				$(this).next().html(i-1);
-				var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
-				console.log(answer_id+1);//测试其是否是int型
-		});
-	
-		$("i[class='layui-icon layui-icon-tread']").toggle(//踩按钮的特效部分
-				function(){
-				$(this).addClass("layui-anim layui-anim-scaleSpring");
-				var i = parseInt($(this).next().html());			
-				$(this).next().html(i+1);
-				var answer_id = parseInt($(this).parent().prev().prev().val());
-				console.log(answer_id+1);
-				},
-				function(){
-				$(this).removeClass("layui-anim layui-anim-scaleSpring");
-				var i = parseInt($(this).next().html());		
-				$(this).next().html(i-1);
-				var answer_id = parseInt($(this).parent().prev().prev().val());
-				console.log(answer_id+1);
-				}
-			);*/
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").toggle(//关注按钮的特效部分
 				function(){
 					$(this).addClass("layui-btn-primary");
@@ -492,11 +464,8 @@ form {
 	
 				},
 				function(){
-				$(this).removeClass("layui-anim layui-anim-scaleSpring");
-				var i = parseInt($(this).next().html());		
-				$(this).next().html(i-1);
-				var answer_id = parseInt($(this).parent().prev().val());
-				console.log(answer_id+1);
+					$(this).removeClass("layui-anim layui-anim-scaleSpring");
+					$(this).parent().parent().next().slideUp(500);
 				}
 			);		
 				
