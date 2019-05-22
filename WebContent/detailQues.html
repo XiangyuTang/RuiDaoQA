@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,6 @@
 form {
 	margin: 0;
 }
-
 .editor {
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -35,7 +33,8 @@ form {
 					
 						<br>
 						<div class="fly-list-hint">
-							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏">233</i>&nbsp;  
+							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >233</i>&nbsp;  
+							
 							<i class="layui-icon layui-icon-dialogue" style="font-size: 20px; color: #1E9FFF; " title="回答"> 2</i>  
 						</div>
 					</div>
@@ -65,12 +64,15 @@ form {
 					id="toName">@ 压缩(楼主)
 					</span>		
 					<div class="layui-form layui-form-pane">
-						<form action="submitAnswer">
+						<form action="#" > <!--method="post"-->
+							<!--<textarea id="L_content" name="content"  placeholder="我要回答" 
+									class="layui-textarea fly-editor" style="height: 150px;" 
+									lay-verify="content" ></textarea>-->
 							<div class="layui-form-item layui-form-text">
 								<div class="layui-input-block">
-										<textarea id="L_content" name="content" required
-										lay-verify="required" placeholder="我要回答"
-										class="layui-textarea fly-editor" style="height: 150px;"></textarea>
+									<!--<input id="L_content"></input>-->
+									<textarea id="L_content" name="content"  placeholder="我要回答" 
+									class="layui-textarea fly-editor" style="height: 150px;" lay-verify="content" required lay-verify="required">gdfgd</textarea>
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -79,24 +81,34 @@ form {
 						</form>
 					</div>
 				</div>
+				
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
 					<ul class="jieda photos" id="jieda">
+						
+						
 						<li data-id="12" class="jieda-daan"><a
 							name="item-121212121212"></a>
-							<div class="detail-about detail-about-reply">
+							<div class="detail-about detail-about-reply" >
+								
+<!--此处设置了隐藏域，用于设置和获取User_id-->
+								<input type="hidden" name="user_id" value="4" />
 								<a class="jie-user" href=""> <img
 									src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i>
 										 </cite> </a>
+<!--关注的buttton按钮在此处-->
+								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
 								<div class="detail-hits">
 									<span>3分钟前</span>
 								</div>
-								<i class="iconfont icon-caina" title="最佳答案"></i>
 							</div>
 							<div class="detail-body jieda-body">
 								<p>放浆时间应选择6月初左右，天气晴朗的中午为佳。这时的温度比较高，利于伤口愈合。如果在二十天以后，伤口还没有愈合，赶紧找塑料膜包扎，防止树枝脱营养死亡。</p>
 							</div>
 							<div class="jieda-reply">
+
+<!--此处设置了隐藏域，用于设置和获取answer_id-->
+								<input type="hidden" name="answer_id" value="1"/>
 								<span class="jieda-zan zanok" type="zan">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
 								</span>
@@ -106,9 +118,12 @@ form {
 								<span class="jieda-zan zanok" type="zan"><i
 									class="layui-icon layui-icon-reply-fill" title="评论"></i><em>3</em>
 								</span>
-								<!--iconfont icon-zan-->
-							</div></li>
-						<li data-id="13"><a name="item-121212121212"></a>
+							</div>
+							
+<!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
+一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
+另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
+							<div style="display:none; background-color:#F0F0F0;" id="comment">
 							<div class="detail-about detail-about-reply">
 								<a class="jie-user" href=""> <img
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
@@ -121,6 +136,43 @@ form {
 								<p>放浆的好处是核桃树被人为截断营养后，让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法利于早日开花和坐果率，避免生理落果。</p>
 							</div>
 							<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill " title="评论"></i><em>3</em>
+								</span>
+							</div>	
+							</div>	
+						</li>
+						
+						
+						<li data-id="13"><a name="item-121212121212"></a>
+							<div class="detail-about detail-about-reply">
+																
+<!--此处设置了隐藏域，用于设置和获取User_id-->
+								<input type="hidden" name="user_id" value="3" />
+								<a class="jie-user" href=""> <img
+									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
+										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
+<!--关注的buttton按钮在此处-->
+								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>		
+								<div class="detail-hits">
+									<span>刚刚</span>
+								</div>
+							</div>
+							<div class="detail-body jieda-body">
+								<p>放浆的好处是核桃树被人为截断营养后，让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法利于早日开花和坐果率，避免生理落果。</p>
+							</div>
+							<div class="jieda-reply">
+				
+<!--此处设置了隐藏域，用于设置和获取answer_id-->
+
+								<input type="hidden" name="answer_id" value="2"/>
 								<span class="jieda-zan zanok" type="zan">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
 								</span>
@@ -134,7 +186,37 @@ form {
 									<span class="jieda-accept" type="accept">
 									<!--<a href="#" class="layui-btn  layui-btn-small">采纳</a></span>-->
 								</div>
-							</div></li>
+							</div>
+							
+<!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
+一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
+另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
+							<div style="display:none; background-color:#F0F0F0;" id="comment">
+							<div class="detail-about detail-about-reply">
+								<a class="jie-user" href=""> <img
+									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
+										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
+								<div class="detail-hits">
+									<span>刚刚</span>
+								</div>
+							</div>
+							<div class="detail-body jieda-body">
+								<p>放浆的好处是核桃树被人为截断营养后，让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法利于早日开花和坐果率，避免生理落果。</p>
+							</div>
+							<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill " title="评论"></i><em>3</em>
+								</span>
+							</div>	
+							</div>
+						</li>
 							
 						<!-- <li class="fly-none">没有任何回答</li> -->
 					</ul>
@@ -230,11 +312,148 @@ form {
  </script>
  <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
  <script>
- 	$(function(){
- 		$('iframe').click(function(){
- 			
- 		})
- 	})
- </script>
+ 	/*layui.use(['layer','layedit', 'form','jquery'],function(){
+        var form = layui.form,layer = layui.layer;
+        var $ = layui.$;
+        var layedit = layui.layedit;
+        var index = layedit.build('L_content'); //建立编辑器
+        form.verify({
+            content: function(value) {
+                return layedit.sync(index);
+            }
+        });
+    });*/
+	$(function(){		
+		$('.layui-btn').click(function(){
+		var text = $("#L_content").val();
+		alert(text);
+		
+	
+		var $newTr=$('<li data-id="12" class="jieda-daan"><a'+
+				' name="item-121212121212"></a>'+
+				'<div class="detail-about detail-about-reply">'+
+					'<a class="jie-user" href=""> <img'+
+						'src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i>'+
+							'</cite> </a>' +
+					'<div class="detail-hits">'+
+						'<span>3分钟前</span>'+
+					'</div>'+
+					'<i class="iconfont icon-caina" title="最佳答案"></i>'+
+				'</div>'+
+				'<div class="detail-body jieda-body">'+
+					'<p>'+ text +'</p>'+
+				'</div>'+
+				'<div class="jieda-reply">'+
+					'<span class="jieda-zan zanok" type="zan">'+
+						'<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>'+
+					'</span>'+
+					'<span class="jieda-zan zanok" type="zan"><i'+
+						' class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>'+
+					'</span>'+
+					'<span class="jieda-zan zanok" type="zan"><i'+
+						' class="layui-icon layui-icon-reply-fill" title="评论"></i><em>3</em>'+
+					'</span>'+
+				'</div></li>')
+			$('#jieda').append($newTr);
+		})
+		/*$('.del').click(function(){//只能静态删除
+			$('table').parents('tr').remove();
+		})*/
+		/*$('.del').live('click',function(){//可以动态删除
+			$(this).parents('tr').remove();
+		})*/
+	})
+</script>
+
 </body>
 </html>
+<<<<<<< HEAD
+
+<script>
+	
+	$(function(){
+		
+		//点赞按钮的特效部分
+		$("i[class='layui-icon layui-icon-praise']").toggle(//点赞按钮的特效部分
+			function(){
+			$(this).addClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());			
+			$(this).next().html(i+1);
+			var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+			console.log(answer_id+1);//测试其是否是int型
+			},
+			function(){
+			$(this).removeClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());		
+			$(this).next().html(i-1);
+			var answer_id = parseInt($(this).parent().prev().val());
+			console.log(answer_id+1);
+			}
+		);
+		
+		//踩按钮的特效部分
+		$("i[class='layui-icon layui-icon-tread']").toggle(//踩按钮的特效部分
+			function(){
+			$(this).addClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());			
+			$(this).next().html(i+1);
+			var answer_id = parseInt($(this).parent().prev().prev().val());
+			console.log(answer_id+1);
+			},
+			function(){
+			$(this).removeClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());		
+			$(this).next().html(i-1);
+			var answer_id = parseInt($(this).parent().prev().prev().val());
+			console.log(answer_id+1);
+			}
+		);
+		
+		//关注按钮的特效部分
+		$("[class='layui-btn layui-btn-radius layui-btn-sm']").toggle(//关注按钮的特效部分
+			function(){
+				$(this).addClass("layui-btn-primary");
+				var user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				console.log(user_id+1);//测试其是否是int型
+			},
+			function(){
+				$(this).removeClass("layui-btn-primary");
+				var user_id = parseInt($(this).prev().prev().val());
+				console.log(user_id-1);
+//				$(this).removeClass("layui-btn layui-btn-radius  layui-btn-primary layui-btn-sm");
+			}
+		)
+		
+		
+	})
+	
+	//收藏小星星图标变换
+	$(function(){
+		$('i[class="layui-icon layui-icon-star"]').click(function(){
+			var theclass=['layui-icon layui-icon-star','layui-icon layui-icon-star-fill'];
+			if($(this).attr('class')=='layui-icon layui-icon-star'){
+				var i = parseInt($(this).html());
+				$(this).html(i+1);
+				$(this).attr("class",theclass[1]);
+				
+			}
+			else{
+				var i = parseInt($(this).html());
+				$(this).html(i-1);
+				$(this).attr("class",theclass[0]);
+			}
+		})
+	})
+	
+	//弹出评论框特效
+	$("[class='layui-icon layui-icon-reply-fill']").toggle(
+		function(){
+				$(this).addClass("layui-anim layui-anim-scaleSpring");
+				$(this).parent().parent().next().slideDown(500);
+			},
+		function(){
+				$(this).removeClass("layui-anim layui-anim-scaleSpring");
+				$(this).parent().parent().next().slideUp(500);
+	})
+	
+</script>
