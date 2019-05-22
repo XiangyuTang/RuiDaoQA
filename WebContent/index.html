@@ -12,7 +12,9 @@
 		<link rel="stylesheet" href="css/global.css">
 		<script src="layui/layui.js"></script>
 		<style type="text/css" rel="stylesheet">
-		<style type="text/css" rel="stylesheet">
+		.change{
+			background-color: #58A571;
+		}
 		form {
 			margin: 0;
 		}
@@ -327,37 +329,33 @@
 				    <dl class="layui-nav-child">
 				      <dd><a href="">家居</a></dd>
 				      <dd><a href="">文化</a></dd>
-				      <dd class="layui-this"><a href="">健康</a></dd>
+				      <dd><a href="">健康</a></dd>
 				      <dd><a href="">游戏</a></dd>
 				    </dl>
 				  </li>
 				</ul>
 				
 				<script src="layui/layui.js" charset="utf-8"></script>
-				<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+				<!-- class="layui-this" 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 				<script>
 				layui.use('element', function(){
 				  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 				  
 				  //监听导航点击
 				  element.on('nav(demo)', function(elem){
-				    //console.log(elem)
+				    console.log(elem)
+				   
 				    layer.msg(elem.text());
+				    
 				  });
 				});
 				</script>
 			</div>
+			
 			<div class="wrap">
 				<div class="content detail">
-					<div class="fly-panel detail-box">
+										<div class="fly-panel box">
 						<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
-						<div class="fly-tip fly-detail-hint" data-id="">
-							<br>
-							<div class="fly-list-hint">
-								<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"> 233</i>&nbsp;  
-								<i class="layui-icon layui-icon-dialogue" style="font-size: 20px; color: #1E9FFF; " title="回答"> 2</i>  
-							</div>
-						</div>
 						<div class="detail-about">
 							<a class="jie-user" href=""> <img
 								src="images/uer.jpg" alt="头像"> <cite> 压缩
@@ -373,9 +371,211 @@
 									</span>
 							</div>
 						</div>
-						<div class="detail-body photos" style="margin-bottom: 20px;">
+						<div class="detail-body photos" style="margin-bottom: 0px;">
 							<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
-								小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回味。</p>
+							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回……</p>
+						</div>
+<!--						<br>
+						<div class="fly-tip fly-detail-hint" data-id="">
+							<div class="fly-list-hint">
+								<i class="layui-icon layui-icon-star" style="font-size: 20px; font-weight: 900; color: #009688; "; title="收藏"> 233</i>&nbsp;  
+								<i class="layui-icon layui-icon-dialogue" style="font-size: 20px; font-weight: 900; color: #009688; " title="回答"> 2</i>  
+							</div>
+						</div>-->
+						<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" style="font-size: 20px; color: #009688;" title="赞"></i><em style="font-size: 15px; color: #009688;">12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" style="font-size: 20px; color: #009688;" title="踩"></i><em style="font-size: 15px; color: #009688;">3</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill"  style="font-size: 20px; color: #009688;" title="评论"></i><em style="font-size: 15px; color: #009688;">5</em>
+								</span>
+								<div class="jieda-admin">
+									<span class="jieda-accept" type="accept">
+								</div>
+						</div>
+					</div>
+					
+					<div class="fly-panel box">
+						<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
+						<div class="detail-about">
+							<a class="jie-user" href=""> <img
+								src="images/uer.jpg" alt="头像"> <cite> 压缩
+									<em>2017-05-01发布</em> </cite> </a>
+							<div class="detail-hits" data-id="{{rows.id}}">
+								 	<span
+									class="layui-btn layui-btn-mini jie-admin" type="collect"
+									data-type="add"> <a id="collectPost">关注</a> 
+									</span> 
+									<span
+									class="layui-btn layui-btn-mini jie-admin  layui-btn-danger"
+									type="collect" data-type="add"> <a>取消关注</a> 
+									</span>
+							</div>
+						</div>
+						<div class="detail-body photos" style="margin-bottom: 0px;">
+							<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
+							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回……</p>
+						</div>
+<!--						<br>
+						<div class="fly-tip fly-detail-hint" data-id="">
+							<div class="fly-list-hint">
+								<i class="layui-icon layui-icon-star" style="font-size: 20px; font-weight: 900; color: #009688; "; title="收藏"> 233</i>&nbsp;  
+								<i class="layui-icon layui-icon-dialogue" style="font-size: 20px; font-weight: 900; color: #009688; " title="回答"> 2</i>  
+							</div>
+						</div>-->
+						<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" style="font-size: 20px; color: #009688;" title="赞"></i><em style="font-size: 15px; color: #009688;">12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" style="font-size: 20px; color: #009688;" title="踩"></i><em style="font-size: 15px; color: #009688;">3</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill"  style="font-size: 20px; color: #009688;" title="评论"></i><em style="font-size: 15px; color: #009688;">5</em>
+								</span>
+								<div class="jieda-admin">
+									<span class="jieda-accept" type="accept">
+								</div>
+						</div>
+					</div>
+					
+										<div class="fly-panel box">
+						<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
+						<div class="detail-about">
+							<a class="jie-user" href=""> <img
+								src="images/uer.jpg" alt="头像"> <cite> 压缩
+									<em>2017-05-01发布</em> </cite> </a>
+							<div class="detail-hits" data-id="{{rows.id}}">
+								 	<span
+									class="layui-btn layui-btn-mini jie-admin" type="collect"
+									data-type="add"> <a id="collectPost">关注</a> 
+									</span> 
+									<span
+									class="layui-btn layui-btn-mini jie-admin  layui-btn-danger"
+									type="collect" data-type="add"> <a>取消关注</a> 
+									</span>
+							</div>
+						</div>
+						<div class="detail-body photos" style="margin-bottom: 0px;">
+							<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
+							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回……</p>
+						</div>
+<!--						<br>
+						<div class="fly-tip fly-detail-hint" data-id="">
+							<div class="fly-list-hint">
+								<i class="layui-icon layui-icon-star" style="font-size: 20px; font-weight: 900; color: #009688; "; title="收藏"> 233</i>&nbsp;  
+								<i class="layui-icon layui-icon-dialogue" style="font-size: 20px; font-weight: 900; color: #009688; " title="回答"> 2</i>  
+							</div>
+						</div>-->
+						<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" style="font-size: 20px; color: #009688;" title="赞"></i><em style="font-size: 15px; color: #009688;">12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" style="font-size: 20px; color: #009688;" title="踩"></i><em style="font-size: 15px; color: #009688;">3</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill"  style="font-size: 20px; color: #009688;" title="评论"></i><em style="font-size: 15px; color: #009688;">5</em>
+								</span>
+								<div class="jieda-admin">
+									<span class="jieda-accept" type="accept">
+								</div>
+						</div>
+					</div>
+					
+										<div class="fly-panel box">
+						<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
+						<div class="detail-about">
+							<a class="jie-user" href=""> <img
+								src="images/uer.jpg" alt="头像"> <cite> 压缩
+									<em>2017-05-01发布</em> </cite> </a>
+							<div class="detail-hits" data-id="{{rows.id}}">
+								 	<span
+									class="layui-btn layui-btn-mini jie-admin" type="collect"
+									data-type="add"> <a id="collectPost">关注</a> 
+									</span> 
+									<span
+									class="layui-btn layui-btn-mini jie-admin  layui-btn-danger"
+									type="collect" data-type="add"> <a>取消关注</a> 
+									</span>
+							</div>
+						</div>
+						<div class="detail-body photos" style="margin-bottom: 0px;">
+							<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
+							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回……</p>
+						</div>
+<!--						<br>
+						<div class="fly-tip fly-detail-hint" data-id="">
+							<div class="fly-list-hint">
+								<i class="layui-icon layui-icon-star" style="font-size: 20px; font-weight: 900; color: #009688; "; title="收藏"> 233</i>&nbsp;  
+								<i class="layui-icon layui-icon-dialogue" style="font-size: 20px; font-weight: 900; color: #009688; " title="回答"> 2</i>  
+							</div>
+						</div>-->
+						<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" style="font-size: 20px; color: #009688;" title="赞"></i><em style="font-size: 15px; color: #009688;">12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" style="font-size: 20px; color: #009688;" title="踩"></i><em style="font-size: 15px; color: #009688;">3</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill"  style="font-size: 20px; color: #009688;" title="评论"></i><em style="font-size: 15px; color: #009688;">5</em>
+								</span>
+								<div class="jieda-admin">
+									<span class="jieda-accept" type="accept">
+								</div>
+						</div>
+					</div>
+					
+										<div class="fly-panel box">
+						<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
+						<div class="detail-about">
+							<a class="jie-user" href=""> <img
+								src="images/uer.jpg" alt="头像"> <cite> 压缩
+									<em>2017-05-01发布</em> </cite> </a>
+							<div class="detail-hits" data-id="{{rows.id}}">
+								 	<span
+									class="layui-btn layui-btn-mini jie-admin" type="collect"
+									data-type="add"> <a id="collectPost">关注</a> 
+									</span> 
+									<span
+									class="layui-btn layui-btn-mini jie-admin  layui-btn-danger"
+									type="collect" data-type="add"> <a>取消关注</a> 
+									</span>
+							</div>
+						</div>
+						<div class="detail-body photos" style="margin-bottom: 0px;">
+							<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
+							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回……</p>
+						</div>
+<!--						<br>
+						<div class="fly-tip fly-detail-hint" data-id="">
+							<div class="fly-list-hint">
+								<i class="layui-icon layui-icon-star" style="font-size: 20px; font-weight: 900; color: #009688; "; title="收藏"> 233</i>&nbsp;  
+								<i class="layui-icon layui-icon-dialogue" style="font-size: 20px; font-weight: 900; color: #009688; " title="回答"> 2</i>  
+							</div>
+						</div>-->
+						<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" style="font-size: 20px; color: #009688;" title="赞"></i><em style="font-size: 15px; color: #009688;">12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" style="font-size: 20px; color: #009688;" title="踩"></i><em style="font-size: 15px; color: #009688;">3</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill"  style="font-size: 20px; color: #009688;" title="评论"></i><em style="font-size: 15px; color: #009688;">5</em>
+								</span>
+								<div class="jieda-admin">
+									<span class="jieda-accept" type="accept">
+								</div>
 						</div>
 					</div>
 				</div>
@@ -456,3 +656,42 @@
 	</div>
 </body>
 </html>
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script>
+	
+	$(function(){
+		$("i[class='layui-icon layui-icon-praise']").toggle(//点赞按钮的特效部分
+			function(){
+			$(this).addClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());			
+			$(this).next().html(i+1);
+			var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+			console.log(answer_id+1);//测试其是否是int型
+			},
+			function(){
+			$(this).removeClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());		
+			$(this).next().html(i-1);
+			var answer_id = parseInt($(this).parent().prev().val());
+			console.log(answer_id+1);
+			}
+		);
+		$("i[class='layui-icon layui-icon-tread']").toggle(//踩按钮的特效部分
+			function(){
+			$(this).addClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());			
+			$(this).next().html(i+1);
+			var answer_id = parseInt($(this).parent().prev().prev().val());
+			console.log(answer_id+1);
+			},
+			function(){
+			$(this).removeClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());		
+			$(this).next().html(i-1);
+			var answer_id = parseInt($(this).parent().prev().prev().val());
+			console.log(answer_id+1);
+			}
+		);
+	})
+</script>

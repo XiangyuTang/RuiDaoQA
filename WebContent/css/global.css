@@ -1,5 +1,5 @@
 
-/* ¹«ÓÃ */
+/* ï¿½ï¿½ï¿½ï¿½ */
 html{overflow-x: hidden; overflow-y: auto; background-color: #eee; }
 body{line-height:24px;}
 i{font-style: normal;}
@@ -13,7 +13,7 @@ body input, body textarea{box-shadow:none;}
 body .layui-layer-prompt textarea.layui-layer-input{resize: both;}
 body .iconfont{-webkit-text-stroke-width: 0;}
 
-/* Í¼±ê */
+/* Í¼ï¿½ï¿½ */
 
 @font-face {font-family: "iconfont";
   src: url('iconfont.eot?t=1477416582'); /* IE9*/
@@ -73,7 +73,7 @@ body .iconfont{-webkit-text-stroke-width: 0;}
 .icon-top:before { content: "\e624"; }
 .icon-ui:before { content: "\e625"; }
 
-/* ¸¨Öú */
+/* ï¿½ï¿½ï¿½ï¿½ */
 pre{padding: 10px 15px; margin: 10px 0; font-size: 12px; border-left: 6px solid #009688;  background-color: #F2F2F2; font-family: Courier New; overflow: auto;}
 .fly-main{position:relative; width:1000px; margin:0 auto;}
 .fly-msg, .fly-error{padding:10px 15px; line-height:24px;}
@@ -90,13 +90,13 @@ pre{padding: 10px 15px; margin: 10px 0; font-size: 12px; border-left: 6px solid 
 html .fly-full{margin-top: 65px;}
 
 
-/* 404»òÌáÊ¾ */
+/* 404ï¿½ï¿½ï¿½ï¿½Ê¾ */
 .fly-none{min-height: 600px; text-align: center; padding-top:50px; color: #999;}
 .fly-none .iconfont{line-height: 300px; font-size: 300px; color: #393D49;}
 .fly-none .icon-tishilian{display: inline-block; margin: 30px 0 20px;}
 .fly-none p{margin-top: 50px; padding: 0 15px; font-size: 20px; color: #999; font-weight: 300;}
 
-/* Í·²¿ */
+/* Í·ï¿½ï¿½ */
 .header{position:fixed; z-index: 10000; left:0; top:0; width:100%; height:66px; background-color:#393D49;}
 .header .main{position:relative; margin:0 auto; min-height: 0;}
 .header .title{height: 65px;line-height: 65px;display: block;color: white;font-size: 17px;}
@@ -134,7 +134,7 @@ html .fly-full{margin-top: 65px;}
 .nav-message{position:absolute; top:0; left: -35px; height:20px; line-height:20px; padding:0 6px; background-color:#FF7200; color:#fff;}
 .nav-message:hover{color:#fff;}
 
-/* µ×²¿ */
+/* ï¿½×²ï¿½ */
 .footer {
   margin: 50px 0 0;
   padding: 30px 0 ;
@@ -146,7 +146,7 @@ html .fly-full{margin-top: 65px;}
 .footer a{padding:0 6px; font-weight: 300; color: #333;}
 .footer a:hover{color: #777;}
 
-/* ·ÖÒ³ */
+/* ï¿½ï¿½Ò³ */
 .laypage-main,
 .laypage-main *{display:inline-block; *display:inline; *zoom:1; vertical-align:top;}
 .laypage-main{margin: 20px 0; border: 1px solid #009E94; border-right: none; border-bottom: none; font-size: 0;}
@@ -154,7 +154,7 @@ html .fly-full{margin-top: 65px;}
 .laypage-main .laypage-curr{background-color:#009E94; color:#fff;}
 
 
-/* ¼òÒ×±à¼­Æ÷ */
+/* ï¿½ï¿½ï¿½×±à¼­ï¿½ï¿½ */
 .fly-edit{position:relative; display: block; top: 1px; left:0; padding:0 10px; border: 1px solid #e6e6e6; border-radius: 2px 2px 0 0; background-color: #FBFBFB;}
 .fly-edit span{cursor:pointer; padding:0 10px; line-height: 38px; color:#009E94;}
 .fly-edit span i{padding-right:6px; font-size: 18px;}
@@ -178,12 +178,12 @@ body .layui-edit-face  .layui-layer-content{padding:0; background-color:#fff; co
 
 .fly-tab-index{}
 
-/* Ãæ°å */
+/* ï¿½ï¿½ï¿½ */
 .fly-panel{background-color: #fff; border-radius: 2px;}
 .fly-panel[pad20]{padding: 20px;}
 .fly-panel-title{position: relative; height: 40px; line-height: 40px; padding: 0 15px; margin-bottom: 5px; background-color: #f8f8f8; color: #333; border-radius: 2px 2px 0 0; font-size: 14px;}
 
-/* ÓÒ²à - À×·æ°ñ */
+/* ï¿½Ò²ï¿½ - ï¿½×·ï¿½ï¿½ */
 .leifeng-rank{margin-bottom: 15px; padding-bottom: 15px;}
 .leifeng-rank dl{margin-left: 15px; font-size: 0;}
 .leifeng-rank dd{position: relative; width: 65px; height: 85px; margin: 10px 15px 0px 0; display:inline-block; *display:inline; *zoom:1; vertical-align:top; font-size:12px;}
@@ -193,18 +193,18 @@ body .layui-edit-face  .layui-layer-content{padding:0; background-color:#fff; co
 .leifeng-rank dd a i{position:absolute; bottom: -5px; left: 0; width: 100%; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-style: normal;}
 
 
-/* ÓÑÁ´ */
+/* ï¿½ï¿½ï¿½ï¿½ */
 .fly-link{line-height: 26px;}
 .fly-link dd{display: inline-block; vertical-align: top;}
 .fly-link a{padding-right: 15px;}
 .fly-link dl{padding: 5px 15px;}
 
-/* ËÑË÷ */
-.fly-search{position:relative; margin:-50px 10px 10px 140px; display:inline-block; *display:inline; *zoom:1; vertical-align:top;}
-.fly-search input{padding-right: 335px;}
+/* ï¿½ï¿½ï¿½ï¿½ */
+.fly-search{position:relative; margin:-50px 10px 10px 190px; display:inline-block; *display:inline; *zoom:1; vertical-align:top;}
+.fly-search input{padding-right: 270px;}
 .fly-search .icon-sousuo{position:absolute; right: 10px; top: 6px; color:#009688; font-weight:900; cursor:pointer;}
 
-/* ÓÃ»§ÖÐÐÄ */
+/* ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ */
 body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin: 20px auto;}
 .fly-user-main>.layui-nav{position: absolute; left: 0; top: 0; z-index: 1000; height: 100%; padding: 10px 0;}
 .fly-user-main>.layui-nav .layui-icon{position: relative; top: 2px; font-size: 20px; margin-right: 10px;}
@@ -223,7 +223,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .user-about p{line-height:30px;}
 .user-about p span{padding:0 5px; color:#999;}
 
-/* ¸öÈËÖ÷Ò³ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ */
 .fly-home{position: relative; padding: 30px 0 30px; text-align: center; background-color: #fff;}
 .fly-home img{width:120px; height:120px; border-radius:100%;}
 .fly-home h1{font-size:26px; line-height:30px; margin-top:10px;}
@@ -251,7 +251,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .home-jieda li p{color:#999;}
 .home-jieda li p span{padding-right:5px;}
 
-/* ÎÒµÄÏûÏ¢ */
+/* ï¿½Òµï¿½ï¿½ï¿½Ï¢ */
 #LAY-minemsg{min-height:420px;}
 .mine-msg li{position:relative; margin-bottom: 15px; padding: 10px 0 5px; line-height:24px; border-bottom:1px dotted #E9E9E9}
 .mine-msg li cite{padding: 0 5px; color: #4F99CF;}
@@ -262,7 +262,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .mine-msg li .layui-elem-quote p[download]{padding: 10px 0 5px;}
 
 
-/* ÉèÖÃ */
+/* ï¿½ï¿½ï¿½ï¿½ */
 .avatar-add{position:relative; width:373px; height:373px; background-color:#F2F2F5;}
 .avatar-add .upload-img{position:absolute; left:50%; top:35px; margin:0 0 0 -60px;}
 .avatar-add img{position:absolute; left:50%; top:50%; width:168px; height:168px; margin:-50px 0 0 -84px; border-radius:100%;}
@@ -275,6 +275,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .app-bind .app-havebind .icon-weibo{color:#E6162D}
 
 /* DetailÒ³ */
+.box{margin-bottom: 15px; padding: 20px; height: 300px;}
 .detail-box{margin-bottom: 15px; padding: 20px;}
 .detail h1{font-size: 24px; line-height: 30px; padding: 5px 0;}
 .detail-about{position:relative; margin-top:5px; line-height:20px; background-color: #F2F2F2; padding: 15px; color:#999;}
@@ -292,7 +293,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .detail-hits .layui-btn{border-radius: 0;}
 .detail-hits .layui-btn+.layui-btn{margin-left: 5px;}
 .detail-hits .jie-admin{margin-right: 1px;}
-.detail-body{margin: 20px 0 50px; min-height: 202px; line-height:26px; font-size:16px; word-wrap: break-word;}
+.detail-body{margin: 20px 0 50px; min-height: 50px; line-height:26px; font-size:16px; word-wrap: break-word;}
 .detail-body p{margin-bottom:15px;}
 .detail-body a{color:#4f99cf;}
 .detail-body img{max-width: 100%; cursor: crosshair;}
@@ -304,7 +305,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .detail-about-reply .detail-hits{left: 56px; bottom: 0;}
 .detail .page-title{ border: none; background-color: #f2f2f2;}
 
-/* Çó½â */
+/* ï¿½ï¿½ï¿½ */
 .jie-row li{position: relative; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dotted #E9E9E9; font-size: 0;}
 .jie-row li *{display:inline-block; *display:inline; *zoom:1; vertical-align:top; line-height: 24px; font-size:12px;}
 .jie-row li span{height: 24px; line-height: 24px; padding: 0 10px; margin-right: 10px; background-color: #DADADA; color:#fff; font-size:12px;}
@@ -347,13 +348,13 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .jie-form .jie-addexp li a{min-width:87px;}
 
 
-/* Çó½â¹ÜÀí */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 .jie-admin{cursor:pointer;}
 .detail-hits .jie-admin{color:#fff; padding:0 10px; }
 .detail-hits .jie-admin a{color:#fff;}
 .jieda-admin{position:absolute; right:0; top:0;}
 
-/* »Ø´ð */
+/* ï¿½Ø´ï¿½ */
 .jieda{margin-bottom: 30px;}
 .jieda li{position: relative; padding: 20px 0 10px; border-bottom:1px dotted #DFDFDF;}
 .jieda li:last-child{border-bottom: none;}
@@ -374,18 +375,18 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .jieda-reply span .icon-svgmoban53{position: relative; top: 1px;}
 
 
-/* ¹ã¸æ */
+/* ï¿½ï¿½ï¿½ */
 .fly-ad{position: relative; background-color: #f2f2f2; overflow:hidden;}
-.fly-ad:before{content: '¹ã¸æÎ»'; position: absolute; z-index: 0; top: 50%; left: 50%; left: 50%; margin: -10px 0 0 -25px; color: #aaa; font-size: 18px; font-weight: 300;}
+.fly-ad:before{content: 'ï¿½ï¿½ï¿½Î»'; position: absolute; z-index: 0; top: 50%; left: 50%; left: 50%; margin: -10px 0 0 -25px; color: #aaa; font-size: 18px; font-weight: 300;}
 .fly-ad div{position: relative; z-index: 1;}
 
-/* ÓÒÏÂ½Çbar */
+/* ï¿½ï¿½ï¿½Â½ï¿½bar */
 .fly-rbar{position: fixed; z-index:9999; right: 20px; bottom: 20px; width:50px;}
 .fly-rbar li{height: 50px; line-height: 50px; margin-bottom: 1px; text-align:center; cursor: pointer; font-size:26px; background-color: #009E94; color:#fff; border-radius: 2px;}
 .fly-rbar li:hover{opacity: 0.8;}
 .fly-rbar li.icon-top{display:none; font-size:40px;}
 
-/* Tip±êÇ© */
+/* Tipï¿½ï¿½Ç© */
 .fly-tip{position: relative;}
 .fly-tip span{display: inline-block; *display: inline; *zoom: 1; vertical-align: top;}
 .fly-tip span{height: 20px; line-height: 20px; padding: 0 5px; background-color: #999; color: #fff; font-size: 12px; border-radius: 0;}
@@ -393,7 +394,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .fly-tip .fly-tip-jing{background-color: #c00;}
 .fly-tip .fly-tip-jie{background-color: #8FCDA0;}
 
-/* ÐÂ°æÁÐ±í */
+/* ï¿½Â°ï¿½ï¿½Ð±ï¿½ */
 .fly-list{padding: 5px 0; background-color: #fff; border-radius: 2px;}
 .fly-list li:last-child{border-bottom: none;}
 
@@ -416,7 +417,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .fly-list-top{margin-bottom: 15px; }
 .fly-list-top .fly-list-li{}
 
-/* µ¥ÐÐÁÐ±í */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ */
 .fly-list-one{margin-bottom: 15px; padding: 0 0 10px;}
 .fly-list-one dd{margin: 0 15px; line-height: 26px; white-space: nowrap; overflow: hidden; list-style: decimal-leading-zero inside; *list-style-type: decimal inside; color: #009E94;}
 .fly-list-one dd a,
@@ -424,12 +425,12 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .fly-list-one dd a{max-width: 80%; margin-right: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px;}
 .fly-list-one dd span{font-size: 12px; color: #ccc;}
 
-/* ÐÂ°æDetail */
+/* ï¿½Â°ï¿½Detail */
 .fly-detail-hint{margin: 5px 0 15px;}
 .fly-detail-hint .layui-btn+.layui-btn{margin-left: 0;}
 
 
-/* °¸Àý */
+/* ï¿½ï¿½ï¿½ï¿½ */
 .fly-case-header{position: relative; height: 260px; text-align: center; background: #393D49;}
 .fly-case-year{position: absolute; top: 30px; width: 100%; line-height: 50px; font-size: 50px; text-align: center; color: #fff; font-weight: 300;}
 .fly-case-banner{position: absolute; left: 50%; top: 100px; width: 670px; margin-left: -335px;}
@@ -468,7 +469,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .layer-ext-case .layui-layer-title{border: none; background-color: #009688; color: #fff;}
 
 
-/* ÊÊÅä¶àÉè±¸ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ */
 @media screen and (max-width: 1024px) {
   .logo{left: 10px;}
   .main, .footer{width: auto; }
