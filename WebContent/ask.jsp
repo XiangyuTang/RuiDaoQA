@@ -1,11 +1,11 @@
 <html>
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <head>
 	<meta charset="utf-8">
 	<title>发表问题</title>
 	<link rel="stylesheet" type="text/css" href="./layui/css/layui.css" media="all">
-	<script src="./layui/layui.js" type="text/javascript"></script>
+	<script src="./layui/layui.js" charset="utf-8" type="text/javascript"></script>
 
 
 	<script>
@@ -23,7 +23,7 @@
 <body>
 
 
-	<form id="111" class="layui-form" style="width: 60%; margin: 0px auto;" action="askQuestion" method="POST">
+	<form class="layui-form" style="width: 60%; margin: 0px auto;" action="askQuestion" method="POST">
 		<div class="layui-form-item">
 			<label class="layui-form-label">添加标题</label>
 			<div class="layui-input-block">
@@ -57,12 +57,12 @@
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<input type="submit" class="layui-btn" style="width: 30%; float: left;"
+				<input type="submit" class="layui-btn" style="width: 30%; float: left;"  lay-submit  
 					value="立即提交" />
 				<button type="reset" class="layui-btn layui-btn-primary" style="width: 30%; float: right;">重置</button>
 			</div>
 		</div>
-<!--  lay-submit lay-filter="111" -->
+<!--  lay-submitc="111" -->
 	</form>
 
 	<script>
@@ -70,7 +70,7 @@
 		layui.use('form', function () {
 			var form = layui.form;
 
-			//监听提交
+		
 			form.on('submit(111)', function (data) {
 				layer.msg(JSON.stringify(data.field));
 				return false;
