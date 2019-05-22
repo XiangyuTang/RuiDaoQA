@@ -1,5 +1,8 @@
 package com.neu.ruidaoQA.dao;
 
-public interface QuestionDao {
+import com.neu.ruidaoQA.entity.Question;
 
+public interface QuestionDao {
+	public int addQuestion(Question q);
+	
 }
