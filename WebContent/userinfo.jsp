@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<%@ page  language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
 <html>
 
 <head>
-    <meta charset="UTF-8">
+
     <title>Insert title here</title>
-    <link rel="stylesheet" href="./layui/css/layui.css" media="all">
-    <script src="./layui/layui.js"></script>
+    <link rel="stylesheet" href="./layui/css/layui.css"  type="text/css" media="all">
+    <script src="./layui/layui.js" type="text/javascript"></script>
 
 
 
@@ -24,13 +25,13 @@
                 layer.open({
                     type: 2,
                     area: ['750px', '500px'],
-                    content: 'ask.html'//这里content是一个普通的String
+                    content: 'ask.jsp?user_id=id'//这里content是一个普通的String
                 });
             })
             flow_answer.load({
                 elem: '#answerlist',//指定列表容器
                 isAuto: true,
-
+                end:'牛逼啊',
                 done: function (page, next) { //执行下一页的回调
 
                     //模拟数据插入
@@ -69,7 +70,7 @@
             flow_question.load({
                 elem: '#questionlist',//指定列表容器
                 isAuto: true,
-
+                end:'牛逼啊',
                 done: function (page, next) { //执行下一页的回调
 
                     //模拟数据插入
@@ -103,6 +104,7 @@
             flow_collect.load({
                 elem: '#collectlist',//指定列表容器
                 isAuto: true,
+                end:'牛逼啊',
 
                 done: function (page, next) { //执行下一页的回调
 
