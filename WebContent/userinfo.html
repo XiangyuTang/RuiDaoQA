@@ -23,13 +23,13 @@
             $("#ask").on("click", function (e) {
                 layer.open({
                     type: 2,
-                    area: ['500px', '400px'],
+                    area: ['750px', '500px'],
                     content: 'ask.html'//这里content是一个普通的String
                 });
             })
             flow_answer.load({
                 elem: '#answerlist',//指定列表容器
-                isAuto: false,
+                isAuto: true,
 
                 done: function (page, next) { //执行下一页的回调
 
