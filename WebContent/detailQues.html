@@ -56,23 +56,16 @@ form {
 					<span
 					id="toName">@ 压缩(楼主)
 					</span>		
-					<div class="layui-form layui-form-pane">
-						<form action="#" > <!--method="post"-->
-							<!--<textarea id="L_content" name="content"  placeholder="我要回答" 
-									class="layui-textarea fly-editor" style="height: 150px;" 
-									lay-verify="content" ></textarea>-->
-							<div class="layui-form-item layui-form-text">
-								<div class="layui-input-block">
-									<!--<input id="L_content"></input>-->
-									<textarea id="L_content" name="content"  placeholder="我要回答" 
-									class="layui-textarea fly-editor" style="height: 150px;" lay-verify="content" required lay-verify="required">gdfgd</textarea>
-								</div>
-							</div>
+					
+						<!--<form action="#" method="post">-->
+							<textarea id="L_content" name="content"  placeholder="我要回答" 
+							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我要回答~~</textarea>
+							<br>
 							<div class="layui-form-item">
 								<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
 							</div>
-						</form>
-					</div>
+						<!--</form>-->
+				
 				</div>
 				
 				<div class="fly-panel detail-box" style="padding-top: 0;">
@@ -92,7 +85,7 @@ form {
 <!--关注的buttton按钮在此处-->
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
 								<div class="detail-hits">
-									<span>3分钟前</span>
+									<span>2019年 5月 22日 星期三 0:33</span>
 								</div>
 							</div>
 							<div class="detail-body jieda-body">
@@ -126,7 +119,7 @@ form {
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
 								<div class="detail-hits">
-									<span>刚刚</span>
+									<span>2019年 5月 21日 星期二 0:33</span>
 								</div>
 							</div>
 							<div class="detail-body jieda-body">
@@ -159,7 +152,7 @@ form {
 <!--关注的buttton按钮在此处-->
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>		
 								<div class="detail-hits">
-									<span>刚刚</span>
+									<span>2019年 5月 21日 星期二 0:33</span>
 								</div>
 							</div>
 							<div class="detail-body jieda-body">
@@ -194,7 +187,7 @@ form {
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
 								<div class="detail-hits">
-									<span>刚刚</span>
+									<span>2019年 5月 23日 星期四 0:33</span>
 								</div>
 							</div>
 							<div class="detail-body jieda-body">
@@ -297,7 +290,7 @@ form {
 		</div>
 	</div>
  <script type="text/javascript" charset="utf-8" src="js/kindeditor.js"></script>
- <script type="text/javascript">
+ <!--<script type="text/javascript">
     KE.show({
         id : 'L_content',
 		resizeMode : 1,
@@ -306,32 +299,60 @@ form {
         'removeformat', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
         'insertunorderedlist', 'emoticons', 'image', 'link']
     });
- </script>
+ </script>-->
  <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+
+ <script>
+ 	//获取当前时间
+	function getTime() {
+    var myDate = new Date;
+    var year = myDate.getFullYear(); //获取当前年
+    var mon = myDate.getMonth() + 1; //获取当前月
+    var date = myDate.getDate(); //获取当前日
+    var h = myDate.getHours();//获取当前小时数(0-23)
+    var m = myDate.getMinutes();//获取当前分钟数(0-59)
+    var s = myDate.getSeconds();//获取当前秒
+    var week = myDate.getDay();
+    var weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    //console.log(year, mon, date, weeks[week])
+    var str = year + "年  " + mon + "月  " + date + "日  " + weeks[week]+" "+h+":"+m;
+    //$("#time").html(year + "年" + mon + "月" + date + "日" + weeks[week]+" "+h+":"+m);
+    return str;
+}
+ </script>
 <script>
- 	/*layui.use(['layer','layedit', 'form','jquery'],function(){
-        var form = layui.form,layer = layui.layer;
-        var $ = layui.$;
-        var layedit = layui.layedit;
-        var index = layedit.build('L_content'); //建立编辑器
-        form.verify({
-            content: function(value) {
-                return layedit.sync(index);
-            }
-        });
-    });*/
-   	function addReply(){
-   		var text = $("#L_content").val();
-		alert(text);
-		//后期加if条件判断text是否为空
+	
+  	var index;
+   	var text;
+   	var layedit;
+   	layui.use('layedit', function(){
+  		layedit = layui.layedit;
+ 		index = layedit.build('L_content'); //建立编辑器
+ 		layedit.sync(index);
+ 		text = layedit.getContent(index);
+	});
+   	function addReply(text){
+   		var str_time = getTime();
+   		text = $('textarea[id="L_content"]').val();
+		//alert(text);
+		if(text=='')
+		{
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+	  			,form = layui.form;
+	  			layer.msg('回答不能为空！');
+			});
+			return;
+		}
+		
    		var $newTr=$('<li data-id="12" class="jieda-daan"><a'+
 				' name="item-121212121212"></a>'+
 				'<div class="detail-about detail-about-reply">'+
-					'<a class="jie-user" href=""> <img'+
+					'<a class="jie-user" href=""> <img '+
 						'src="images/uer.jpg" alt=""> <cite> <i>我</i>'+
 							'</cite> </a>' +
 					'<div class="detail-hits">'+
-						'<span>3分钟前</span>'+
+						'<span id="time">'+str_time+'</span>'+
 					'</div>'+
 				'</div>'+
 				'<div class="detail-body jieda-body">'+
@@ -348,16 +369,26 @@ form {
 						' class="layui-icon layui-icon-reply-fill" title="评论"></i><em>0</em>'+
 					'</span>'+
 				'</div></li>')
-			$('#jieda').append($newTr);
+			$('#jieda').prepend($newTr);
+			//清空文本框内容
+			text = $('textarea[id="L_content"]').val("");
+			//弹出回答成功提示窗口
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+	  			,form = layui.form;
+	  			layer.msg('回答成功！');
+			});
+			//清空富文本框textarea
+			$('textarea[id="L_content"]').html("");
    	}
+   	
+	
+	//点击提交回答按钮触发
 	$(function(){
-		/*$('.jiada-reply').on('click','span[class="jieda-zan zanok"]',function(){
-			addReply();
-		})*/
+		 //富文本编辑器自定义工具栏
 		$('#ans-btn').click(function(){
-			addReply();
-			
-			
+			layedit.sync(index);//将富文本编辑器的内容同步到textarea
+			addReply(text);
 		})
 	})
 </script>
@@ -365,48 +396,51 @@ form {
 </body>
 </html>
 
-
 <script>
-	
-
 	$(function(){
 		
 		//点赞按钮的特效部分
-		$("i[class='layui-icon layui-icon-praise']").toggle(//点赞按钮的特效部分
-			function(){
-			$(this).addClass("layui-anim layui-anim-scaleSpring");
-			var i = parseInt($(this).next().html());			
-			$(this).next().html(i+1);
-			var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
-			console.log(answer_id+1);//测试其是否是int型
-			},
-			function(){
-			$(this).removeClass("layui-anim layui-anim-scaleSpring");
-			var i = parseInt($(this).next().html());		
-			$(this).next().html(i-1);
-			var answer_id = parseInt($(this).parent().prev().val());
-			console.log(answer_id+1);
-			}
-		);
-		
+		$("i[class='layui-icon layui-icon-praise']").live('click',function(){
+			$(this).toggle(//点赞按钮的特效部分
+				function(){
+				$(this).addClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());			
+				$(this).next().html(i+1);
+				var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+				console.log(answer_id+1);//测试其是否是int型
+				},
+				function(){
+				$(this).removeClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());		
+				$(this).next().html(i-1);
+				var answer_id = parseInt($(this).parent().prev().val());
+				console.log(answer_id+1);
+				}
+			);
+			//先触发click，不然第一次失效
+       		$(this).trigger("click");
+		});
 		//踩按钮的特效部分
-		$("i[class='layui-icon layui-icon-tread']").toggle(//踩按钮的特效部分
-			function(){
-			$(this).addClass("layui-anim layui-anim-scaleSpring");
-			var i = parseInt($(this).next().html());			
-			$(this).next().html(i+1);
-			var answer_id = parseInt($(this).parent().prev().prev().val());
-			console.log(answer_id+1);
-			},
-			function(){
-			$(this).removeClass("layui-anim layui-anim-scaleSpring");
-			var i = parseInt($(this).next().html());		
-			$(this).next().html(i-1);
-			var answer_id = parseInt($(this).parent().prev().prev().val());
-			console.log(answer_id+1);
-			}
-		);
-		
+		$("i[class='layui-icon layui-icon-tread']").live('click',function(){
+			$(this).toggle(//踩按钮的特效部分
+				function(){
+				$(this).addClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());			
+				$(this).next().html(i+1);
+				var answer_id = parseInt($(this).parent().prev().prev().val());
+				console.log(answer_id+1);
+				},
+				function(){
+				$(this).removeClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());		
+				$(this).next().html(i-1);
+				var answer_id = parseInt($(this).parent().prev().prev().val());
+				console.log(answer_id+1);
+				}
+			);
+			//先触发click，不然第一次失效
+       		$(this).trigger("click");
+		});
 	})
 	
 
@@ -470,10 +504,7 @@ form {
 			);		
 				
 	});
-	/*$(function(){
-		$(this).removeClass("layui-anim layui-anim-scaleSpring");
-		$(this).parent().parent().next().slideUp(500);
-	})*/
+
 		
 </script>
 
