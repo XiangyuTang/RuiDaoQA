@@ -29,6 +29,7 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 	}
 
 	
+	
 	public static void main(String[] args) {//测试类
 		Question q=new Question(1,1,1,"cas",1,1,null);
 		System.out.print("dasds");
