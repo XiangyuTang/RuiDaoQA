@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+    <script src="./layui/layui.js"></script>
+
+
+    <script>
+
+        layui.use(['layer', 'form', 'element'], function () {
+            var layer = layui.layer
+                , form = layui.form
+                , element = layui.element
+            $ = layui.$
+            layer.msg('hello');
+            $("#ask").on("click", function (e) {
+                layer.open({
+                type: 2,
+                area: ['500px', '400px'],
+                content: 'ask.html'//这里content是一个普通的String
+            });
+            })
+
+
+           
+
+            //……
+            //你的代码都应该写在这里面
+        });</script>
+</head>
+
+
+<body>
+    <ul class="layui-nav layui-bg-blue">
+        <li class="layui-nav-item">
+            <a href="#">控制台<span class="layui-badge">9</span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a id="ask" href="#">提问<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="#"><img src="./images/SZYQ76@%7J6C7(S$5L0{@XL.png" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="#">修改信息</a></dd>
+                <dd><a href="#">安全管理</a></dd>
+                <dd><a href="#">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+
+
+    <div clsss="layui-row">
+
+        <div class="layui-col-md3 layui-col-md-offset1"
+            style="padding: 30px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
+            <!--这个地方用来显示用户的个人头像，个人介绍，关注，粉丝，以及分享界面-->
+            <div clsss="layui-row">
+                <div class="layui-col-md12">
+                    <div class="layui-card"
+                        style="padding: 30px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
+
+                        <div class="layui-card-body">
+                            <img src='./images/SZYQ76@%7J6C7(S$5L0{@XL.png'><br>
+                            <i class="layui-icon layui-icon-username" style="height: 20px;"></i> <span>liubin</span><br>
+                            <i class="layui-icon layui-icon-list" style="height: 20px;"></i> <span>我很懒</span><br>
+                            <a class="layui-icon layui-icon-edit" style="height: 20px; " href="#">编辑个人信息</a>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="layui-col-md12"><br><br><br></div>
+                <div class="layui-col-md4">
+
+                    <div class="layui-card" style="padding: 30px;background-color: #F2F2F2; display: inline-block;
+                        vertical-align: middle;">
+                        <div class="layui-card-body">
+
+                            关注<br>
+                            <i id="follow" name="follow">34</i> </div>
+                    </div>
+
+                </div>
+
+                <div class="layui-col-md4 layui-col-md-offset4">
+
+                    <div class="layui-card" style="padding: 30px;background-color: #F2F2F2; display: inline-block;
+                        vertical-align: middle;">
+                        <div class="layui-card-body">粉丝<br>
+                            <i id="fan" name="fan">34</i></div>
+                    </div>
+                </div>
+                <div class="layui-col-md12"><br><br><br></div>
+                <div class="layui-col-md12">
+                    <i class="layui-icon layui-icon-share"
+                        style="height: 20px;cursor: pointer;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        class="layui-icon layui-icon-login-wechat"
+                        style="height: 20px;cursor: pointer;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        class="layui-icon layui-icon-login-qq" style="height: 20px;cursor: pointer;"></a>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="layui-col-md4 layui-col-md-offset1" style="width: 30%">
+            <!--这个地方用来显示回答提问收藏等可以切换的界面-->
+            <div class="layui-tab layui-tab-brief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">动态</li>
+                    <li>回答</li>
+                    <li>提问</li>
+                    <li>收藏</li>
+                    <li>草稿</li>
+                </ul>
+                <div class="layui-tab-content" lay-filter="test1">
+                    <div class="layui-tab-item layui-show">不开发 </div>
+                    <div class="layui-tab-item">回答的内容，正在开发中 </div>
+                    <div class="layui-tab-item">提问的内容，正在开发中</div>
+                    <div class="layui-tab-item">收藏的内容，正在开发中</div>
+                    <div class="layui-tab-item">不开发</div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>
