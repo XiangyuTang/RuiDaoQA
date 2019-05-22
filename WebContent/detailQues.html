@@ -100,12 +100,11 @@ form {
 							</div>
 							<div class="jieda-reply">
 
-<<<<<<< HEAD
+
 <!--此处设置了隐藏域，用于设置和获取answer_id-->
 
-=======
 <!--此处设置了隐藏域，用于设置和获取answer_id-->
->>>>>>> branch 'master' of https://github.com/XiangyuTang/RuiDaoQA.git
+
 								<input type="hidden" name="answer_id" value="1"/>
 								<span class="jieda-zan zanok" type="zan">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
@@ -404,22 +403,6 @@ form {
 			}
 		);
 		
-		//关注按钮的特效部分
-		$("[class='layui-btn layui-btn-radius layui-btn-sm']").toggle(//关注按钮的特效部分
-			function(){
-				$(this).addClass("layui-btn-primary");
-				var user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
-				console.log(user_id+1);//测试其是否是int型
-			},
-			function(){
-				$(this).removeClass("layui-btn-primary");
-				var user_id = parseInt($(this).prev().prev().val());
-				console.log(user_id-1);
-//				$(this).removeClass("layui-btn layui-btn-radius  layui-btn-primary layui-btn-sm");
-			}
-		)
-		
-		
 	})
 	
 
@@ -440,7 +423,7 @@ form {
 			}
 		})
 	})
-<<<<<<< HEAD
+
 	//分享链接图标
 	$(function(){
 		$('i[class="layui-icon layui-icon-share"]').click(function(){
@@ -455,68 +438,73 @@ form {
 <script>
 	
 	$(function(){
-		$("i[class='layui-icon layui-icon-praise']").toggle(//点赞按钮的特效部分
-			function(){
-			$(this).addClass("layui-anim layui-anim-scaleSpring");
-			var i = parseInt($(this).next().html());			
-			$(this).next().html(i+1);
-			var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
-			console.log(answer_id+1);//测试其是否是int型
-
-	
-	//弹出评论框特效
-	$("[class='layui-icon layui-icon-reply-fill']").toggle(
-		function(){
-				$(this).addClass("layui-anim layui-anim-scaleSpring");
-				$(this).parent().parent().next().slideDown(500);
-
-			},
-
-			function(){
-			$(this).removeClass("layui-anim layui-anim-scaleSpring");
-			var i = parseInt($(this).next().html());		
-			$(this).next().html(i-1);
-			var answer_id = parseInt($(this).parent().prev().val());
-			console.log(answer_id+1);
-			}
-		);
-		$("i[class='layui-icon layui-icon-tread']").toggle(//踩按钮的特效部分
-			function(){
-			$(this).addClass("layui-anim layui-anim-scaleSpring");
-			var i = parseInt($(this).next().html());			
-			$(this).next().html(i+1);
-			var answer_id = parseInt($(this).parent().prev().prev().val());
-			console.log(answer_id+1);
-			},
-			function(){
-			$(this).removeClass("layui-anim layui-anim-scaleSpring");
-			var i = parseInt($(this).next().html());		
-			$(this).next().html(i-1);
-			var answer_id = parseInt($(this).parent().prev().prev().val());
-			console.log(answer_id+1);
-			}
-		);
-		$("[class='layui-btn layui-btn-radius layui-btn-sm']").toggle(//关注按钮的特效部分
-			function(){
-				$(this).addClass("layui-btn-primary");
-				$(this).html("已关注");
-				var user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
-				console.log(user_id+1);//测试其是否是int型
-			},
-			function(){
-				$(this).removeClass("layui-btn-primary");
-				$(this).html("关注");
-				var user_id = parseInt($(this).prev().prev().val());
-				console.log(user_id-1);
-			}
-		)
 		
-
-		function(){
+		/*$("i[class='layui-icon layui-icon-praise']").toggle(//点赞按钮的特效部分
+			function(){
+				$(this).addClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());			
+				$(this).next().html(i+1);
+				var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+				console.log(answer_id+1);//测试其是否是int型
+			},
+			function(){
 				$(this).removeClass("layui-anim layui-anim-scaleSpring");
-				$(this).parent().parent().next().slideUp(500);
-
-	})
+				var i = parseInt($(this).next().html());			
+				$(this).next().html(i-1);
+				var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+				console.log(answer_id+1);//测试其是否是int型
+		});
 	
+		$("i[class='layui-icon layui-icon-tread']").toggle(//踩按钮的特效部分
+				function(){
+				$(this).addClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());			
+				$(this).next().html(i+1);
+				var answer_id = parseInt($(this).parent().prev().prev().val());
+				console.log(answer_id+1);
+				},
+				function(){
+				$(this).removeClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());		
+				$(this).next().html(i-1);
+				var answer_id = parseInt($(this).parent().prev().prev().val());
+				console.log(answer_id+1);
+				}
+			);*/
+		$("[class='layui-btn layui-btn-radius layui-btn-sm']").toggle(//关注按钮的特效部分
+				function(){
+					$(this).addClass("layui-btn-primary");
+					$(this).html("已关注");
+					var user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+					console.log(user_id+1);//测试其是否是int型
+				},
+				function(){
+					$(this).removeClass("layui-btn-primary");
+					$(this).html("关注");
+					var user_id = parseInt($(this).prev().prev().val());
+					console.log(user_id-1);
+				});
+		//弹出评论框特效
+		$("[class='layui-icon layui-icon-reply-fill']").toggle(
+				function(){
+					$(this).addClass("layui-anim layui-anim-scaleSpring");
+					$(this).parent().parent().next().slideDown(500);
+	
+				},
+				function(){
+				$(this).removeClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());		
+				$(this).next().html(i-1);
+				var answer_id = parseInt($(this).parent().prev().val());
+				console.log(answer_id+1);
+				}
+			);		
+				
+	});
+	/*$(function(){
+		$(this).removeClass("layui-anim layui-anim-scaleSpring");
+		$(this).parent().parent().next().slideUp(500);
+	})*/
+		
 </script>
 
