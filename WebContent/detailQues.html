@@ -78,6 +78,8 @@ form {
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
 					<ul class="jieda photos" id="jieda">
+						
+						
 						<li data-id="12" class="jieda-daan"><a
 							name="item-121212121212"></a>
 							<div class="detail-about detail-about-reply" >
@@ -98,8 +100,12 @@ form {
 							</div>
 							<div class="jieda-reply">
 
+<<<<<<< HEAD
 <!--此处设置了隐藏域，用于设置和获取answer_id-->
 
+=======
+<!--此处设置了隐藏域，用于设置和获取answer_id-->
+>>>>>>> branch 'master' of https://github.com/XiangyuTang/RuiDaoQA.git
 								<input type="hidden" name="answer_id" value="1"/>
 								<span class="jieda-zan zanok" type="zan">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
@@ -110,9 +116,39 @@ form {
 								<span class="jieda-zan zanok" type="zan"><i
 									class="layui-icon layui-icon-reply-fill" title="评论"></i><em>3</em>
 								</span>
-								<!--iconfont icon-zan-->
 							</div>
+							
+<!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
+一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
+另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
+							<div style="display:none; background-color:#F0F0F0;" id="comment">
+							<div class="detail-about detail-about-reply">
+								<a class="jie-user" href=""> <img
+									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
+										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
+								<div class="detail-hits">
+									<span>刚刚</span>
+								</div>
+							</div>
+							<div class="detail-body jieda-body">
+								<p>放浆的好处是核桃树被人为截断营养后，让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法利于早日开花和坐果率，避免生理落果。</p>
+							</div>
+							<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill " title="评论"></i><em>3</em>
+								</span>
+							</div>	
+							</div>	
 						</li>
+						
+						
 						<li data-id="13"><a name="item-121212121212"></a>
 							<div class="detail-about detail-about-reply">
 																
@@ -148,7 +184,37 @@ form {
 									<span class="jieda-accept" type="accept">
 									<!--<a href="#" class="layui-btn  layui-btn-small">采纳</a></span>-->
 								</div>
-							</div></li>
+							</div>
+							
+<!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
+一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
+另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
+							<div style="display:none; background-color:#F0F0F0;" id="comment">
+							<div class="detail-about detail-about-reply">
+								<a class="jie-user" href=""> <img
+									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
+										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
+								<div class="detail-hits">
+									<span>刚刚</span>
+								</div>
+							</div>
+							<div class="detail-body jieda-body">
+								<p>放浆的好处是核桃树被人为截断营养后，让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法利于早日开花和坐果率，避免生理落果。</p>
+							</div>
+							<div class="jieda-reply">
+								<input type="hidden" name="answer_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan">
+									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>
+								</span>
+								<span class="jieda-zan zanok" type="zan"><i
+									class="layui-icon layui-icon-reply-fill " title="评论"></i><em>3</em>
+								</span>
+							</div>	
+							</div>
+						</li>
 							
 						<!-- <li class="fly-none">没有任何回答</li> -->
 					</ul>
@@ -300,6 +366,63 @@ form {
 <script>
 	
 
+	$(function(){
+		
+		//点赞按钮的特效部分
+		$("i[class='layui-icon layui-icon-praise']").toggle(//点赞按钮的特效部分
+			function(){
+			$(this).addClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());			
+			$(this).next().html(i+1);
+			var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+			console.log(answer_id+1);//测试其是否是int型
+			},
+			function(){
+			$(this).removeClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());		
+			$(this).next().html(i-1);
+			var answer_id = parseInt($(this).parent().prev().val());
+			console.log(answer_id+1);
+			}
+		);
+		
+		//踩按钮的特效部分
+		$("i[class='layui-icon layui-icon-tread']").toggle(//踩按钮的特效部分
+			function(){
+			$(this).addClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());			
+			$(this).next().html(i+1);
+			var answer_id = parseInt($(this).parent().prev().prev().val());
+			console.log(answer_id+1);
+			},
+			function(){
+			$(this).removeClass("layui-anim layui-anim-scaleSpring");
+			var i = parseInt($(this).next().html());		
+			$(this).next().html(i-1);
+			var answer_id = parseInt($(this).parent().prev().prev().val());
+			console.log(answer_id+1);
+			}
+		);
+		
+		//关注按钮的特效部分
+		$("[class='layui-btn layui-btn-radius layui-btn-sm']").toggle(//关注按钮的特效部分
+			function(){
+				$(this).addClass("layui-btn-primary");
+				var user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				console.log(user_id+1);//测试其是否是int型
+			},
+			function(){
+				$(this).removeClass("layui-btn-primary");
+				var user_id = parseInt($(this).prev().prev().val());
+				console.log(user_id-1);
+//				$(this).removeClass("layui-btn layui-btn-radius  layui-btn-primary layui-btn-sm");
+			}
+		)
+		
+		
+	})
+	
+
 	//收藏小星星图标变换
 	$(function(){
 		$('i[class="layui-icon layui-icon-star"]').click(function(){
@@ -317,6 +440,7 @@ form {
 			}
 		})
 	})
+<<<<<<< HEAD
 	//分享链接图标
 	$(function(){
 		$('i[class="layui-icon layui-icon-share"]').click(function(){
@@ -338,7 +462,16 @@ form {
 			$(this).next().html(i+1);
 			var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
 			console.log(answer_id+1);//测试其是否是int型
+
+	
+	//弹出评论框特效
+	$("[class='layui-icon layui-icon-reply-fill']").toggle(
+		function(){
+				$(this).addClass("layui-anim layui-anim-scaleSpring");
+				$(this).parent().parent().next().slideDown(500);
+
 			},
+
 			function(){
 			$(this).removeClass("layui-anim layui-anim-scaleSpring");
 			var i = parseInt($(this).next().html());		
@@ -378,6 +511,12 @@ form {
 			}
 		)
 		
+
+		function(){
+				$(this).removeClass("layui-anim layui-anim-scaleSpring");
+				$(this).parent().parent().next().slideUp(500);
+
 	})
+	
 </script>
 
