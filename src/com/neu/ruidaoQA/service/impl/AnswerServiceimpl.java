@@ -53,6 +53,7 @@ public class AnswerServiceimpl implements AnswerService {
 		Answer ans = new Answer(answer_id, question_id, user_id, content, dianzan_num, cai_num, comment_num, publish_time);
 		return ans;
 		
+		
 	}
 	
 	public static void main(String[] args) {//测试类
