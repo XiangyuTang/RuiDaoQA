@@ -25,7 +25,6 @@ public class addAcclaim extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer answer_id = Integer.parseInt(request.getParameter("answer_id"));
-		System.out.println(answer_id);
 		String fangfa = request.getParameter("fangfa");
 		AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
 		if (fangfa.equals("add")) {
