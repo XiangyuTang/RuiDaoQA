@@ -22,6 +22,23 @@ public class AnswerServiceimpl implements AnswerService {
 		return i;
 	}
 	
+
+	@Override//取消相应回答点赞
+	public int deleteAcclaim_number(int answer_id) {
+		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		int i = answerDaoimpl.deleteAcclaim_number(answer_id);
+		return i;
+	}
+
+
+
+	@Override//取消相应回答踩
+	public int deleteDefame_number(int answer_id) {
+		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		int i = answerDaoimpl.deleteDefame_number(answer_id);
+		return i;
+	}
+	
 	@Override
 	public int add_answer(Answer ans) {
 		// TODO Auto-generated method stub
