@@ -21,6 +21,22 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		return i;
 	}
 	
+	@Override//取消相应回答点赞
+	public int deleteAcclaim_number(int answer_id) {
+		Object[] params = new Object[] {answer_id};
+		String sql  = "update answer set acclaim_number = acclaim_number-1  where answer_id = ?";
+		int i = super.executeIUD(sql, params);
+		return i;
+	}
+
+	@Override//取消相应回答踩
+	public int deleteDefame_number(int answer_id) {
+		Object[] params = new Object[] {answer_id};
+		String sql  = "update answer set defame_number = defame_number-1  where answer_id = ?";
+		int i = super.executeIUD(sql, params);
+		return i;
+	}
+	
 	public static void main(String[] args) {//测试类
 		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
 		answerDaoimpl.addAcclaim_number(1);
