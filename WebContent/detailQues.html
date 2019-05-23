@@ -467,16 +467,20 @@ form {
 	$(function(){
 		$('i[class="layui-icon layui-icon-star"]').click(function(){
 			var theclass=['layui-icon layui-icon-star','layui-icon layui-icon-star-fill'];
+			var flag;
 			if($(this).attr('class')=='layui-icon layui-icon-star'){
+				flag = 1;
 				var i = parseInt($(this).html());
 				$(this).html(i+1);
 				$(this).attr("class",theclass[1]);
-				
+				clickfavorite(flag);
 			}
 			else{
+				flag = 0;
 				var i = parseInt($(this).html());
 				$(this).html(i-1);
 				$(this).attr("class",theclass[0]);
+				clickfavorite(flag);
 			}
 		})
 	})
@@ -527,6 +531,7 @@ form {
 		
 </script>
 <script type="text/javascript">
+	
 	//实现提交回答post到后端数据库
 	function submit_ans(text)
 	{
@@ -559,4 +564,28 @@ form {
 			});
 		}
 	}
+	
+	//实现收藏问题post到数据库，相应问题的收藏量+1-1用触发器实现
+	function clickfavorite(flag)
+	{
+		//获取文本框中元素的value值,重新绑定一下再传
+		var user_id = 2;//获取提出这个问题的用户id
+		var question_id = 2;//获取这个问题的id
+		var the_flag = flag;
+		//1.new
+		var xhr = new XMLHttpRequest();
+		//2.open
+		//注意与get方法时对比，在第二个参数后面不能加？。应该将传递到后台的参数用send()方法传递
+		xhr.open('post','favoriteQues',true);
+		//3.send
+		//需要加一个头文件，才能用post提交
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//xhr.send(JSON.stringify(data));
+		xhr.send('flag='+the_flag+'&user_id='+user_id+'&question_id='+question_id);
+		//xhr.send('question_id='+question_id);
+		//4.回调
+		xhr.onload = function(){}
+	}
+	
+	
 </script>

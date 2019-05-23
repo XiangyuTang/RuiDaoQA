@@ -17,7 +17,7 @@ public class FavoriteDaoimpl extends BaseDao implements FavoriteDao{
 	@Override
 	public int deleteFavorite(int question_id, int user_id) {//根据user_id和question_id删除收藏
 		Object[] params = new Object[] {question_id, user_id};
-		String sql  = "delete from favorite where question_id=? and user_id=?)";
+		String sql  = "delete from favorite where question_id=? and user_id=?";
 		int i = super.executeIUD(sql, params);
 		return i;
 	}

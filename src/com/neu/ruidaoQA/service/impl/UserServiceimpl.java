@@ -48,6 +48,7 @@ public class UserServiceimpl implements UserService{
 		return i;
 	}
 	
+	
 	public static void main(String[] args) {//测试类
 		UserServiceimpl userServiceimpl = new UserServiceimpl();
 //		int i = userServiceimpl.addFollow(1, 2);
