@@ -422,18 +422,36 @@ form {
 		$("i[class='layui-icon layui-icon-praise']").live('click',function(){
 			$(this).toggle(//点赞按钮的特效部分
 				function(){
+				var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+				$.ajax({
+					type:"get",
+					url:"addAcclaim",
+					async:true,
+					date:{answer_id:answer_id,fangfa:"add"},
+					dataType:"text",
+					success:function(){
+						
+					}
+				});
 				$(this).addClass("layui-anim layui-anim-scaleSpring");
 				var i = parseInt($(this).next().html());			
 				$(this).next().html(i+1);
-				var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
-				console.log(answer_id+1);//测试其是否是int型
 				},
 				function(){
+				var answer_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+				$.ajax({
+					type:"get",
+					url:"addAcclaim",
+					async:true,
+					date:{answer_id:answer_id,fangfa:"delete"},
+					dataType:"text",
+					success:function(){
+						
+					}
+				});
 				$(this).removeClass("layui-anim layui-anim-scaleSpring");
 				var i = parseInt($(this).next().html());		
 				$(this).next().html(i-1);
-				var answer_id = parseInt($(this).parent().prev().val());
-				console.log(answer_id+1);
 				}
 			);
 			//先触发click，不然第一次失效
