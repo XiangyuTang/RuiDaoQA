@@ -427,9 +427,9 @@ form {
 					type:"get",
 					url:"addAcclaim",
 					async:true,
-					date:{answer_id:answer_id,fangfa:"add"},
+					data:{answer_id:answer_id,fangfa:"add"},
 					dataType:"text",
-					success:function(){
+					success:function(e){
 						
 					}
 				});
@@ -443,9 +443,9 @@ form {
 					type:"get",
 					url:"addAcclaim",
 					async:true,
-					date:{answer_id:answer_id,fangfa:"delete"},
+					data:{answer_id:answer_id,fangfa:"delete"},
 					dataType:"text",
-					success:function(){
+					success:function(e){
 						
 					}
 				});
@@ -457,6 +457,7 @@ form {
 			//先触发click，不然第一次失效
        		$(this).trigger("click");
 		});
+		
 		//踩按钮的特效部分
 		$("i[class='layui-icon layui-icon-tread']").live('click',function(){
 			$(this).toggle(//踩按钮的特效部分
