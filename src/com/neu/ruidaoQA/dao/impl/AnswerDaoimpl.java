@@ -2,6 +2,7 @@ package com.neu.ruidaoQA.dao.impl;
 
 import com.neu.ruidaoQA.dao.AnswerDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
+import com.neu.ruidaoQA.entity.Answer;
 
 public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 	@Override//增加相应回答点赞数
@@ -24,5 +25,15 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
 		answerDaoimpl.addAcclaim_number(1);
 		answerDaoimpl.addDefame_number(1);
+	}
+
+	@Override//增加一行question的answer
+	public int addAnswer(Answer ans) {
+		// TODO Auto-generated method stub
+		Object[] params = new Object[] {ans.getAnswer_id(),ans.getQuestion_id(),ans.getUser_id(),ans.getContent(),
+				ans.getDianzan_num(),ans.getCai_num(),ans.getComment_num(),ans.getPublish_time()};
+		String sql = "insert into answer values(?,?,?,?,?,?,?,?)";
+		int i = super.executeIUD(sql, params);
+		return i;
 	}
 }

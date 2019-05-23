@@ -184,29 +184,30 @@ form {
 一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
 另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
 							<div style="display:none; background-color:#F0F0F0;" id="comment">
+								
 							<div class="detail-about detail-about-reply">
+<!--用于获取user_id的隐藏域-->
+								<input type="hidden" name="user_id" value="4" />
 								<a class="jie-user" href=""> <img
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
 								<div class="detail-hits">
-									<span>2019年 5月 23日 星期四 0:33</span>
+									<span>2019年 5月 21日 星期二 0:33</span>
+								</div>
+								<div >
+								<p style="margin-left: 50px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
 								</div>
 							</div>
-							<div class="detail-body jieda-body">
-								<p>放浆的好处是核桃树被人为截断营养后，让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法利于早日开花和坐果率，避免生理落果。</p>
-							</div>
 							<div class="jieda-reply">
-								<input type="hidden" name="answer_id" value="2"/>
-								<span class="jieda-zan zanok" type="zan">
+<!--用于获取comment_id的隐藏域-->
+								<input type="hidden" name="comment_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan" style="margin-left: 50px;">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
 								</span>
 								<span class="jieda-zan zanok" type="zan"><i
-									class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>
+									class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em>3</em>
 								</span>
-								<span class="jieda-zan zanok" type="zan"><i
-									class="layui-icon layui-icon-reply-fill " title="评论"></i><em>3</em>
-								</span>
-							</div>	
+							</div>		
 							</div>
 						</li>
 							
@@ -327,6 +328,7 @@ form {
   	var index;
    	var text;
    	var layedit;
+   	var str_time;
    	layui.use('layedit', function(){
   		layedit = layui.layedit;
  		index = layedit.build('L_content'); //建立编辑器
@@ -334,7 +336,7 @@ form {
  		text = layedit.getContent(index);
 	});
    	function addReply(text){
-   		var str_time = getTime();
+   		str_time = getTime();
    		text = $('textarea[id="L_content"]').val();
 		//alert(text);
 		if(text=='')
@@ -381,7 +383,7 @@ form {
 	  			layer.msg('回答成功！');
 			});
 			//清空富文本框textarea
-			document.getElementById('L_content').reset();
+			//document.getElementById('L_content').reset();
 			$('textarea[id="L_content"]').html("");
    	}
    	
@@ -391,6 +393,7 @@ form {
 		 //富文本编辑器自定义工具栏
 		$('#ans-btn').click(function(){
 			layedit.sync(index);//将富文本编辑器的内容同步到textarea
+			submit_ans();
 			addReply(text);
 		})
 	})
@@ -510,4 +513,43 @@ form {
 
 		
 </script>
-
+<script type="text/javascript">
+	//实现提交回答post到后端数据库
+	function submit_ans()
+	{
+		//获取文本框中元素的value值,重新绑定一下再传
+		var ans_text = text;
+		var user_id = 1;
+		var question_id = 2;
+		var ans_time = getTime();
+		var data = {
+            "ans_text":ans_text,
+            "user_id":user_id,
+            "question_id":question_id,
+            "ans_time":ans_time
+        }
+	
+		
+		//1.new
+		var xhr = new XMLHttpRequest();
+		//2.open
+		//注意与get方法时对比，在第二个参数后面不能加？。应该将传递到后台的参数用send()方法传递
+		xhr.open('post','submitAnswer',true);
+		//3.send
+		//需要加一个头文件，才能用post提交
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//xhr.send(JSON.stringify(data));
+		xhr.send('ans_text='+ans_text+'&user_id='+user_id+'&question_id='+question_id+'&ans_time='+ans_time);
+		//xhr.send('question_id='+question_id);
+		//4.回调
+		xhr.onload = function()
+		{
+			//弹出回答成功提示窗口
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+	  			,form = layui.form;
+	  			layer.msg('回答成功！');
+			});
+		}
+	}
+</script>

@@ -10,9 +10,10 @@ public class Question {
 	private Integer collect_num;//这个问题被收藏的数量
 	private Integer answer_num;
 	private Date publish_time;
+	private String ques_title;
 	
 	public Question(Integer question_id, Integer user_id, Integer ques_type_id, String content, Integer collect_num,
-			Integer answer_num, Date publish_time) {
+			Integer answer_num, Date publish_time,String ques_title) {
 		super();
 		this.question_id = question_id;
 		this.user_id = user_id;
@@ -21,6 +22,7 @@ public class Question {
 		this.collect_num = collect_num;
 		this.answer_num = answer_num;
 		this.publish_time = publish_time;
+		this.ques_title = ques_title;
 	}
 	public Integer getQuestion_id() {
 		return question_id;
@@ -63,6 +65,12 @@ public class Question {
 	}
 	public void setPublish_time(Date publish_time) {
 		this.publish_time = publish_time;
+	}
+	public String getQues_title() {
+		return ques_title;
+	}
+	public void setQues_title(String ques_title) {
+		this.ques_title = ques_title;
 	}
 	
 	

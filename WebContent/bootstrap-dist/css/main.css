@@ -1,0 +1,188 @@
+/*---------------------以下是导航条-------------------*/
+.navbar-brand {
+    background-image: url(../../img/logo.png);
+    width: 50px;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+/*---------------------以下是左侧菜单-------------------*/
+.side-bar .list-group-item {
+    border: 0;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+
+.side-bar .list-group-item.active {
+    background-color: #ea0c3c;
+}
+
+/*---------------------以下是内容列表-------------------*/
+
+img {
+    display: block;
+    border-radius: 3px;
+    max-width: 100%;
+    /*max-width是控制溢出宽度,保证宽度不溢出,如果图片宽度在父容器宽度范围之内,那么就不管他,显示自己的宽度,
+     如果图片宽度超过父容器范围,图片就会跟div宽度一样的,同理还有min-width,最小溢出宽度*/
+   /*区别于width属性,width值该图片的显示宽度,可以百分比,可以是具体像素值*/
+  /*max-width很多场景都是和width配合使用,如设置一个标签,width是80%,max-width不能超过1200px,那么这个标签就有了一个基本的缩放性,类似img-responsive样式*/
+}
+
+
+.news-list-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.news-list-item:first-child {
+    padding-top: 0;
+}
+
+.news-list-item:nth-child(7) {
+    padding-bottom: 20px;
+    border-bottom:none;
+}
+
+
+.news-list-item .title {
+    display: block;
+    color: #444;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+.news-list-item .title:hover {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.news-list-item .info {
+    color: #888;
+}
+
+.touxiang {
+    display: inline-block;
+}
+
+.touxiang img {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+
+/*---------------------以下是右侧列表-------------------*/
+
+.side-bar-right {
+  background: #F8F8F8;
+  margin-top: 15px;
+  padding: 10px 0;
+  border-radius: 3px;
+}
+
+.side-bar-right.jvbao {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.side-bar-right .jvbaoimg{
+	padding-top: 10px;
+}
+
+.side-bar-right .text-lg {
+  font-size: 150%;
+}
+
+.side-bar-right .right-title {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+}
+
+.side-bar-right .right-body .list .item {
+  padding: 10px 15px;
+}
+
+.side-bar-right .right-body .list .item:hover {
+  background: #E6E6E6;
+}
+
+.right-body .list .item .title {
+  padding-bottom: 5px;
+}
+
+.right-body .list .item .desc {
+  color: #999;
+}
+
+/*---------------------以下是底部列表-------------------*/
+.footer {
+  margin-top: 20px;
+  padding: 10px 0;
+  text-align: center;
+  color: #999;
+  background-color: #F8F8F8;
+  font-size: 10px;
+}
+
+/*---------------------以下是新闻详情页news.html样式-------------------*/
+.news-title {
+	font-size: 16px;
+  line-height: 1.3;
+}
+
+.news-status {
+  color: #999;
+}
+
+.news-content {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.news-content img {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/*---------------------news.html右侧样式-------------------*/
+.no-padding-h {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+/*---------------------登录页面login.html样式-------------------*/
+.container-small {
+  max-width: 500px;
+}
+
+/*没有小于768px，是因为Bootstrap3以移动优先设计*/
+
+/* 小屏幕（平板，大于等于768px） */
+@media (min-width: 768px) {
+	.news-title {
+	    font-size: 22px;
+	}
+}
+
+/* 中等屏幕（桌面显示器，大于等于992px） */
+@media (min-width: 992px) {
+	.news-title {
+	    font-size: 29px;
+	}
+}
+
+/* 大屏幕（大桌面显示器，大于等于1200px） */
+@media (min-width: 1200px) {
+	.news-title {
+	   font-size: 36px;
+	}
+}

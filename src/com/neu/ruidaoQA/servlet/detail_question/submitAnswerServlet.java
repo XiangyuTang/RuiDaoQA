@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class submitAnswer
  */
 @WebServlet("/submitAnswer")
-public class submitAnswer extends HttpServlet {
+public class submitAnswerServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -19,6 +19,12 @@ public class submitAnswer extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String ans_text = request.getParameter("ans_text");
+		String user_id = request.getParameter("user_id");
+		String question_id = request.getParameter("question_id");
+		String ans_time = request.getParameter("ans_time");
+		//System.out.println(ans_text+"-------"+user_id+"-------"+question_id+"---"+ans_time);
+		
 		
 	}
 
