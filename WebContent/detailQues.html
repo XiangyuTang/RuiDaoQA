@@ -291,20 +291,13 @@ form {
 			</dl>
 		</div>
 	</div>
- <script type="text/javascript" charset="utf-8" src="js/kindeditor.js"></script>
- <!--<script type="text/javascript">
-    KE.show({
-        id : 'L_content',
-		resizeMode : 1,
-        items : [
-        'fontname', 'fontsize', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline',
-        'removeformat', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-        'insertunorderedlist', 'emoticons', 'image', 'link']
-    });
- </script>-->
+</body>
+</html>
+
+<script type="text/javascript" charset="utf-8" src="js/kindeditor.js"></script>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
- 
-<script>
+
+<script>	
  	//获取当前时间存入数据库中
 	function getTimeIntoDB() {
 	    var submitDate = new Date();
@@ -317,11 +310,8 @@ form {
 	function p(s) {
       return s < 10 ? '0' + s : s
     }
- </script>
-
-
- <script>
- 	//获取当前时间显示在前端中
+	
+	//获取当前时间显示在前端中
 	function getTime() {
     var myDate = new Date;
     var year = myDate.getFullYear(); //获取当前年
@@ -336,10 +326,11 @@ form {
     var str = year + "年  " + mon + "月  " + date + "日  " + weeks[week]+" "+h+":"+m;
     //$("#time").html(year + "年" + mon + "月" + date + "日" + weeks[week]+" "+h+":"+m);
     return str;
-}
- </script>
-<script>
-	
+	}	
+</script>
+
+
+<script>	
   	var index;
    	var text;
    	var layedit;
@@ -398,8 +389,7 @@ form {
 			//document.getElementById('L_content').reset();
 			//$('textarea[id="L_content"]').html("");
    	}
-   	
-	
+   		
 	//点击提交回答按钮触发
 	$(function(){
 		 //富文本编辑器自定义工具栏
@@ -411,12 +401,9 @@ form {
 	})
 </script>
 
-</body>
-</html>
 
 <script>
 	$(function(){
-		
 		//点赞按钮的特效部分
 		$("i[class='layui-icon layui-icon-praise']").live('click',function(){
 			$(this).toggle(//点赞按钮的特效部分
@@ -498,7 +485,7 @@ form {
 		});
 	})
 	
-
+	
 	//收藏小星星图标变换
 	$(function(){
 		$('i[class="layui-icon layui-icon-star"]').click(function(){
@@ -529,11 +516,7 @@ form {
 		})
 	})
 	
-</script>
-
-<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-<script>
-	
+	//关注按钮的特效部分
 	$(function(){				
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
 			$(this).toggle(
@@ -570,26 +553,22 @@ form {
 			$(this).trigger("click");
 		})
 		
-		//弹出评论框特效
-		$("[class='layui-icon layui-icon-reply-fill']").toggle(
+		$("[class='layui-icon layui-icon-reply-fill']").live('click',function(){
+			$(this).toggle(
 				function(){
 					$(this).addClass("layui-anim layui-anim-scaleSpring");
 					$(this).parent().parent().next().slideDown(500);
-	
 				},
 				function(){
 					$(this).removeClass("layui-anim layui-anim-scaleSpring");
 					$(this).parent().parent().next().slideUp(500);
-				}
-			);		
-				
+				}				
+			)
+			$(this).trigger("click");
+		})				
 	});
-
-		
-</script>
-<script type="text/javascript">
 	
-	//实现提交回答post到后端数据库
+		//实现提交回答post到后端数据库
 	function submit_ans(text)
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
@@ -643,6 +622,5 @@ form {
 		//4.回调
 		xhr.onload = function(){}
 	}
-	
 	
 </script>
