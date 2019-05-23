@@ -184,29 +184,30 @@ form {
 一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
 另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
 							<div style="display:none; background-color:#F0F0F0;" id="comment">
+								
 							<div class="detail-about detail-about-reply">
+<!--用于获取user_id的隐藏域-->
+								<input type="hidden" name="user_id" value="4" />
 								<a class="jie-user" href=""> <img
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
 								<div class="detail-hits">
-									<span>2019年 5月 23日 星期四 0:33</span>
+									<span>2019年 5月 21日 星期二 0:33</span>
+								</div>
+								<div >
+								<p style="margin-left: 50px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
 								</div>
 							</div>
-							<div class="detail-body jieda-body">
-								<p>放浆的好处是核桃树被人为截断营养后，让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法利于早日开花和坐果率，避免生理落果。</p>
-							</div>
 							<div class="jieda-reply">
-								<input type="hidden" name="answer_id" value="2"/>
-								<span class="jieda-zan zanok" type="zan">
+<!--用于获取comment_id的隐藏域-->
+								<input type="hidden" name="comment_id" value="2"/>
+								<span class="jieda-zan zanok" type="zan" style="margin-left: 50px;">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
 								</span>
 								<span class="jieda-zan zanok" type="zan"><i
-									class="layui-icon layui-icon-tread" title="踩"></i><em>4</em>
+									class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em>3</em>
 								</span>
-								<span class="jieda-zan zanok" type="zan"><i
-									class="layui-icon layui-icon-reply-fill " title="评论"></i><em>3</em>
-								</span>
-							</div>	
+							</div>		
 							</div>
 						</li>
 							
