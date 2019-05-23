@@ -128,7 +128,7 @@ html .fly-full{margin-top: 65px;}
 
 .avatar{ color:#A9B7B7; font-size:14px;}
 .avatar img{ margin-right: -20px; width: 42px; height: 42px; border-radius:100%;}
-.avatar cite, .avatar i{margin-left: 25px; }
+.avatar cite, .avatar i{margin-left: 25px; margin-right: -20px;}
 .avatar i{line-height: 20px; color:#009688;}
 
 .nav-message{position:absolute; top:0; left: -35px; height:20px; line-height:20px; padding:0 6px; background-color:#FF7200; color:#fff;}
@@ -201,7 +201,7 @@ body .layui-edit-face  .layui-layer-content{padding:0; background-color:#fff; co
 
 /* ���� */
 .fly-search{position:relative; margin:-50px 10px 10px 190px; display:inline-block; *display:inline; *zoom:1; vertical-align:top;}
-.fly-search input{padding-right: 270px;}
+.fly-search input{padding-right: 285px;}
 .fly-search .icon-sousuo{position:absolute; right: 10px; top: 6px; color:#009688; font-weight:900; cursor:pointer;}
 
 /* �û����� */
