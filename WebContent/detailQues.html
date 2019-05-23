@@ -303,10 +303,26 @@ form {
         'insertunorderedlist', 'emoticons', 'image', 'link']
     });
  </script>-->
- <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+ 
+<script>
+ 	//获取当前时间存入数据库中
+	function getTimeIntoDB() {
+	    var submitDate = new Date();
+	    const d = new Date(submitDate);
+        const resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate());
+        const resTime = this.p(d.getHours()) + ':' + this.p(d.getMinutes()) + ':' + this.p(d.getSeconds());
+        var submit_date = resDate+" "+resTime;
+     	return submit_date;
+	}
+	function p(s) {
+      return s < 10 ? '0' + s : s
+    }
+ </script>
+
 
  <script>
- 	//获取当前时间
+ 	//获取当前时间显示在前端中
 	function getTime() {
     var myDate = new Date;
     var year = myDate.getFullYear(); //获取当前年
@@ -375,7 +391,7 @@ form {
 				'</div></li>')
 			$('#jieda').prepend($newTr);
 			//清空文本框内容
-			text = $('textarea[id="L_content"]').val("");
+			//text = $('textarea[id="L_content"]').val("");
 			//弹出回答成功提示窗口
 			layui.use(['layer', 'form'], function(){
 	  		var layer = layui.layer
@@ -384,7 +400,7 @@ form {
 			});
 			//清空富文本框textarea
 			//document.getElementById('L_content').reset();
-			$('textarea[id="L_content"]').html("");
+			//$('textarea[id="L_content"]').html("");
    	}
    	
 	
@@ -393,8 +409,8 @@ form {
 		 //富文本编辑器自定义工具栏
 		$('#ans-btn').click(function(){
 			layedit.sync(index);//将富文本编辑器的内容同步到textarea
-			submit_ans();
 			addReply(text);
+			submit_ans(text);
 		})
 	})
 </script>
@@ -515,13 +531,14 @@ form {
 </script>
 <script type="text/javascript">
 	//实现提交回答post到后端数据库
-	function submit_ans()
+	function submit_ans(text)
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
+		
 		var ans_text = text;
 		var user_id = 1;
 		var question_id = 2;
-		var ans_time = getTime();
+		var ans_time = getTimeIntoDB();
 		var data = {
             "ans_text":ans_text,
             "user_id":user_id,
@@ -545,11 +562,11 @@ form {
 		xhr.onload = function()
 		{
 			//弹出回答成功提示窗口
-			layui.use(['layer', 'form'], function(){
+			/*layui.use(['layer', 'form'], function(){
 	  		var layer = layui.layer
 	  			,form = layui.form;
 	  			layer.msg('回答成功！');
-			});
+			});*/
 		}
 	}
 </script>

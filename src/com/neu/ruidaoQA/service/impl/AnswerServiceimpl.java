@@ -1,8 +1,7 @@
 package com.neu.ruidaoQA.service.impl;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import com.neu.ruidaoQA.dao.impl.AnswerDaoimpl;
 import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.service.AnswerService;
@@ -31,6 +30,13 @@ public class AnswerServiceimpl implements AnswerService {
 		return i;
 	}
 	
+	@Override
+	public Answer createAnswer(Integer answer_id, Integer question_id, Integer user_id, String content,
+			Integer dianzan_num, Integer cai_num, Integer comment_num, Date publish_time) {
+		Answer ans = new Answer(answer_id, question_id, user_id, content, dianzan_num, cai_num, comment_num, publish_time);
+		return ans;
+		
+	}
 	
 	public static void main(String[] args) {//测试类
 		AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
@@ -38,12 +44,21 @@ public class AnswerServiceimpl implements AnswerService {
 		System.out.println(i);
 		int j = answerServiceimpl.addDefame_number(1);
 		System.out.println(j);
-		Timestamp time = new Timestamp(1, 2, 3, 4, 5, 6, 7);
-		Date date = new Date(1000);
-		Answer ans = new Answer(2, 2, 1, "我要回答", 0, 0, 0, date);
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//设置日期格式        
+		Date date = null;
+		try {
+			date = df.parse("2019-05-23 16:01:42");
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Answer ans = new Answer(null, 2, 1, "我要回答", 0, 0, 0, date);
 		int k = answerServiceimpl.add_answer(ans);
 		System.out.println(k);
 	}
+
+	
 
 	
 }

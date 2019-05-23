@@ -1,6 +1,6 @@
 package com.neu.ruidaoQA.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Answer {
 	private Integer answer_id;
@@ -24,6 +24,7 @@ public class Answer {
 		this.comment_num = comment_num;
 		this.publish_time = publish_time;
 	}
+	
 	public Integer getAnswer_id() {
 		return answer_id;
 	}

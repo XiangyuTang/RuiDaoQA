@@ -1,6 +1,6 @@
 package com.neu.ruidaoQA.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Question {
 	private Integer question_id;
