@@ -59,7 +59,7 @@ form {
 					
 						<!--<form action="#" method="post">-->
 							<textarea id="L_content" name="content"  placeholder="我要回答" 
-							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我要回答~~</textarea>
+							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~~</textarea>
 							<br>
 							<div class="layui-form-item">
 								<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
@@ -379,6 +379,7 @@ form {
 	  			layer.msg('回答成功！');
 			});
 			//清空富文本框textarea
+			document.getElementById('L_content').reset();
 			$('textarea[id="L_content"]').html("");
    	}
    	
