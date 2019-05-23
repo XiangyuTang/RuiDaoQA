@@ -22,7 +22,7 @@ form {
 </style>
 </head>
 <body>
-	<iframe src="head.html" scrolling="no" width="100%" height="65px" href="index.html"></iframe>
+	<iframe src="loginHead.html" scrolling="no" width="100%" height="65px" href="index.html"></iframe>
 	<div class="main layui-clear">
 		<div class="wrap">
 			<div class="content detail">
@@ -393,11 +393,8 @@ form {
 			//清空文本框内容
 			//text = $('textarea[id="L_content"]').val("");
 			//弹出回答成功提示窗口
-			layui.use(['layer', 'form'], function(){
-	  		var layer = layui.layer
-	  			,form = layui.form;
-	  			layer.msg('回答成功！');
-			});
+			submit_ans(text);
+			
 			//清空富文本框textarea
 			//document.getElementById('L_content').reset();
 			//$('textarea[id="L_content"]').html("");
@@ -410,7 +407,7 @@ form {
 		$('#ans-btn').click(function(){
 			layedit.sync(index);//将富文本编辑器的内容同步到textarea
 			addReply(text);
-			submit_ans(text);
+			
 		})
 	})
 </script>
@@ -539,13 +536,6 @@ form {
 		var user_id = 1;
 		var question_id = 2;
 		var ans_time = getTimeIntoDB();
-		var data = {
-            "ans_text":ans_text,
-            "user_id":user_id,
-            "question_id":question_id,
-            "ans_time":ans_time
-        }
-	
 		
 		//1.new
 		var xhr = new XMLHttpRequest();
@@ -562,11 +552,11 @@ form {
 		xhr.onload = function()
 		{
 			//弹出回答成功提示窗口
-			/*layui.use(['layer', 'form'], function(){
+			layui.use(['layer', 'form'], function(){
 	  		var layer = layui.layer
 	  			,form = layui.form;
 	  			layer.msg('回答成功！');
-			});*/
+			});
 		}
 	}
 </script>

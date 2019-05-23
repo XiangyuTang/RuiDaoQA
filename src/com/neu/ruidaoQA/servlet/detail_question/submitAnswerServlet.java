@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.service.impl.AnswerServiceimpl;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
 
 /**
  * Servlet implementation class submitAnswer
@@ -43,8 +43,8 @@ public class submitAnswerServlet extends HttpServlet {
 		Answer ans = asip.createAnswer(null, question_id, user_id, ans_text, 0, 0, 0, submit_time);
 		asip.add_answer(ans);
 		
-		System.out.println(ans_text+"-------"+user_id+"-------"+question_id+"---"+ans_time);
-		System.out.println(ans_text+"-------"+user_id+"-------"+question_id+"---"+submit_time);
+		/*System.out.println(ans_text+"-------"+user_id+"-------"+question_id+"---"+ans_time);
+		System.out.println(ans_text+"-------"+user_id+"-------"+question_id+"---"+submit_time);*/
 		
 	}
 
