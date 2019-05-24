@@ -16,16 +16,15 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		String question_content = q.getContent();
 		Integer collect_number = q.getCollect_num();
 		Integer answer_number = q.getAnswer_num();
-		//SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		//String dateStr=sdf.format(q.getPublish_time());
-		Date date=q.getPublish_time();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date=sdf.format(new Date());
+		
 		String ques_type = q.getQues_title();
 		Object[] params = new Object[] { question_id, question_type, user_id, question_content, collect_number,
 				answer_number, date, ques_type };
 		String sql = "insert into question values(?,?,?,?,?,?,?,?)";
 		int i = super.executeIUD(sql, params);
 		return i;
-
 	}
 
 	

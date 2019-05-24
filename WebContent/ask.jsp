@@ -13,7 +13,23 @@
 
 			var layer = layui.layer, form = layui.form, element = layui.element
 			$ = layui.$
+			/*$("#submit_button").click(function(){
+				var question
+				$.ajax({
+					url:"askQuestion",
 
+				})
+			})*/
+		/*	form.on('submit(111)', function (data) {
+			
+
+				layer.msg(JSON.stringify(data.field));
+			
+	
+				return false;
+			});*////layui自带的判断方法，需要的可以用  使用时必须加上lay-filter
+		
+			
 		})
 	</script>
 
@@ -22,8 +38,9 @@
 
 <body>
 
-
-	<form class="layui-form" style="width: 60%; margin: 0px auto;" action="askQuestion" method="POST">
+<!-- 此处的user_id值需要从users表中得到 -->
+	<form class="layui-form" id="111" style="width: 60%; margin: 0px auto;" method="POST" action="askQuestion">
+		<input type="text" id="user_id" name="user_id" value="1" style="display: none"/>
 		<div class="layui-form-item">
 			<label class="layui-form-label">添加标题</label>
 			<div class="layui-input-block">
@@ -57,7 +74,7 @@
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<input type="submit" class="layui-btn" style="width: 30%; float: left;"  lay-submit  
+				<input type="submit" id="submit_button" class="layui-btn" style="width: 30%; float: left;"  lay-submit 
 					value="立即提交" />
 				<button type="reset" class="layui-btn layui-btn-primary" style="width: 30%; float: right;">重置</button>
 			</div>
@@ -65,18 +82,7 @@
 <!--  lay-submitc="111" -->
 	</form>
 
-	<script>
-		//Demo
-		layui.use('form', function () {
-			var form = layui.form;
 
-		
-			form.on('submit(111)', function (data) {
-				layer.msg(JSON.stringify(data.field));
-				return false;
-			});
-		});
-	</script>
 </body>
 
 </html>
