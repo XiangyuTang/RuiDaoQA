@@ -23,10 +23,6 @@ public class addAcclaim extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer answer_id = Integer.parseInt(request.getParameter("answer_id"));
 		String fangfa = request.getParameter("fangfa");
