@@ -59,13 +59,11 @@ form {
 					<div class="layui-form-item">
 						<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
 					</div>				
-				</div>
-				
+				</div>				
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
 					<ul class="jieda photos" id="jieda"> <!--答案div的循环开始基准-->						
-						<li data-id="12" class="jieda-daan"><a><!--此处开始循环10次，加载10个答案-->
-							name="item-121212121212"></a>
+						<li data-id="12" class="jieda-daan"><a name="item-121212121212" ></a><!--此处开始循环10次，加载10个答案-->
 							<div class="detail-about detail-about-reply" >
 								<input type="hidden" name="user_id" value="1" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
 								<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i></cite> </a>
@@ -189,8 +187,6 @@ form {
 							</div>
 							
 						</li>
-							
-						<!-- <li class="fly-none">没有任何回答</li> -->
 					</ul>
 					
 				</div>
