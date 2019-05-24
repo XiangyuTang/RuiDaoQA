@@ -32,6 +32,47 @@
                     }
                 );
             });
+            $.ajax({
+                url:"showUsersQuestionListServlet",
+                data:{user_id:"1"},
+                dataType:"json",
+                type:"post",
+                success:function(data){
+                    for(i=0;i<data.length;i++){
+                        $("#questionlist").append( "<div class='layui-row'> <div class='layui-col-md12'>"+
+                          "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>"+
+                                   " <div class='layui-card-body'>"+
+                                        "<h1>"+data[i].ques_title+"</h1><br>"+
+                                        "<p>"+data[i].answer_num+"人回答"+"·"+data[i].collect_num+"人收藏"+"</p>"+
+
+                                       " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> "+
+                                          "</div></div></div> <hr>")
+
+                    }
+
+                }
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          /* flow.load({
                 elem: '#answerlist',//指定列表容器
                 isAuto: true,
@@ -232,7 +273,11 @@
                     <li>草稿</li>
                 </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show">不开发 </div>
+                    <div class="layui-tab-item layui-show">不开发 
+                        <div class="layui-row"  id="testList">
+
+                        </div>
+                    </div>
 
                     <div class="layui-tab-item" id="answerlist">
 
@@ -391,53 +436,9 @@
 
                     </div>
 
-                    <div class="layui-tab-item"  id="questionlist">
-                        <div class="layui-row">
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-edit " style="color:#01AAED;font-size: 18"
-                                            href="#">回答</a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-edit " style="color:#01AAED;font-size: 18"
-                                            href="#">回答</a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-edit " style="color:#01AAED;font-size: 18"
-                                            href="#">回答</a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-          
+                    <div class="layui-tab-item"  >
+                        <div class="layui-row" id="questionlist">
+                           
                   
 
                         </div>

@@ -1,6 +1,7 @@
 package com.neu.ruidaoQA.service.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import com.neu.ruidaoQA.dao.impl.QuestionDaoimpl;
@@ -42,10 +43,31 @@ public class QuestionServiceimpl implements QuestionService{
 			System.out.println();
 		}
 	}
+	public ArrayList<Question> getQuestionLists(int user_id){
+		QuestionDaoimpl qdi=new QuestionDaoimpl();
+		ArrayList<Question> questions=qdi.getQuestionLists(user_id);
+	
+		
+		
+		return questions;
+	}
+	@Override
+	public Question getQuestion(int question_id) {
+		// TODO Auto-generated method stub
+		Question q = null;
+		QuestionDaoimpl qdi=new QuestionDaoimpl();
+		q = qdi.getQuestion(question_id);
+		return q;
+	}
+
 	
 	public static void main(String[] args) {
 		QuestionServiceimpl questionServiceimpl = new QuestionServiceimpl();
 		questionServiceimpl.test();
 	}
-	}
+	
+
+
+	
+}
 

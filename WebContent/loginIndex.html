@@ -38,22 +38,6 @@
 		<div class="main layui-clear">
 			<div>
 
-				<ul class="layui-nav">
-				  <li class="layui-nav-item"><a href="">热门</a></li>
-				  <li class="layui-nav-item"><a href="add.html">社会</a></li>
-				  <li class="layui-nav-item"><a href="">娱乐</a></li>
-				  <li class="layui-nav-item"><a href="">体育</a></li>
-				  <li class="layui-nav-item"><a href="">军事</a></li>
-				  <li class="layui-nav-item"><a href="">汽车</a></li>
-				  <li class="layui-nav-item"><a href="">财经</a></li>
-				  <li class="layui-nav-item"><a href="">科技</a></li>
-				  <li class="layui-nav-item"><a href="">育儿</a></li>
-				  <li class="layui-nav-item"><a href="">历史</a></li>
-				  <li class="layui-nav-item"><a href="">美食</a></li>
-				  <li class="layui-nav-item"><a href="">数码</a></li>
-				  <li class="layui-nav-item"><a href="">时尚</a></li>
-				  <li class="layui-nav-item"><a href="">宠物</a></li>
-
 				<ul class="layui-nav" id="nav">
 				  <li class="layui-nav-item layui-nav-itemed" id='remen'><a href="#">热门</a></li>
 				  <li class="layui-nav-item"><a href="#">社会</a></li>
@@ -324,12 +308,12 @@
 	    ,scrollElem: '#LAY_demo' //滚动条所在元素，一般不用填，此处只是演示需要。
 	    ,done: function(page, next){ //执行下一页的回调
       
-      //模拟数据插入
-      setTimeout(function(){
+      	//模拟数据插入
+      	setTimeout(function(){
         var lis = [];
         for(var i = 0; i < 2; i++){
           		lis.push('<div class="fly-panel box">'+
-								'<h1><a href="detailQues.html">核桃树为什么要放浆？放浆的好处是什么？</a></h1>'+
+								'<h1><a href="toDetailQues?question_id=2">核桃树为什么要放浆？放浆的好处是什么？</a></h1>'+
 								'<div class="detail-about">'+
 									'<a class="jie-user" href=""> <img '+
 										'src="images/uer.jpg" alt="头像"> <cite> 压缩'+

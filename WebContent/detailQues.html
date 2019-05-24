@@ -27,7 +27,7 @@ form {
 		<div class="wrap">
 			<div class="content detail">
 				<div class="fly-panel detail-box">
-					<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
+					<h1>${Question.ques_title}</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
 						<br>
 						<div class="fly-list-hint">
@@ -710,4 +710,49 @@ form {
 		xhr.onload = function(){}
 	}
 	
+
+
+
 </script>
+
+
+<script>
+	//实现右侧图片轮播的效果
+layui.use(['carousel', 'form'], function(){
+  var carousel = layui.carousel
+  ,form = layui.form;
+
+  //图片轮播
+  carousel.render({
+    elem: '#test10'
+    ,width: '330px'
+    ,height: '200px'
+    ,interval: 2000
+  });
+  
+  
+  var $ = layui.$, active = {
+    set: function(othis){
+      var THIS = 'layui-bg-normal'
+      ,key = othis.data('key')
+      ,options = {};
+      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
+      options[key] = othis.data('value');
+      ins3.reload(options);
+    }
+  };
+  
+  //监听开关
+  form.on('switch(autoplay)', function(){
+    ins3.reload({
+      autoplay: this.checked
+    });
+  });
+  
+
+  
+});
+</script>
+
+
+
