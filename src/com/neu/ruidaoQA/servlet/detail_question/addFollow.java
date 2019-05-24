@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.neu.ruidaoQA.service.impl.UserServiceimpl;
+
 /**
  * Servlet implementation class addFollow
  */
@@ -26,8 +28,18 @@ public class addFollow extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		Integer follow_user_id = Integer.parseInt(request.getParameter("follow_user_id"));
+		String fangfa = request.getParameter("fangfa");
+//		Integer this_user_id = (Integer) request.getSession().getAttribute("user_id");
+		int this_user_id = 2;
+		UserServiceimpl userServiceimpl = new UserServiceimpl();
+		if (fangfa.equals("add")) {
+			userServiceimpl.addFollow(this_user_id,follow_user_id);
+		}else if (fangfa.equals("delete")) {
+			userServiceimpl.deleteFollow(this_user_id,follow_user_id);
+		}else {
+			response.getWriter().print("参数有误");
+		}
 	}
 
 	/**

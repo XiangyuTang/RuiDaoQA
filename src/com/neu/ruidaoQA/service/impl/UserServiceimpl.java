@@ -29,6 +29,7 @@ public class UserServiceimpl implements UserService{
 	public int addFollow(int this_user_id, int follow_user_id) {//根据两人的id号添加关注
 		FollowDaoimpl followDaoimpl = new FollowDaoimpl();
 		int i = followDaoimpl.addFollow(this_user_id, follow_user_id);
+		//System.out.println(i);
 		return i;
 	}
 	

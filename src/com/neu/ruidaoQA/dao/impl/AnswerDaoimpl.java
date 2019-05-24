@@ -44,7 +44,7 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		answerDaoimpl.addAcclaim_number(1);
 		answerDaoimpl.addDefame_number(1);
 	}
-
+	
 	@Override//增加一行question的answer
 	public int addAnswer(Answer ans) {
 		// TODO Auto-generated method stub
@@ -54,6 +54,7 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		int i = super.executeIUD(sql, params);
 		return i;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public Answer selectAnswer(int question_id) {
@@ -79,4 +80,7 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		}
 		return a;
 	}
+=======
+	
+>>>>>>> branch 'master' of https://github.com/XiangyuTang/RuiDaoQA.git
 }

@@ -24,7 +24,6 @@ public class QuestionServiceimpl implements QuestionService{
 		// TODO Auto-generated method stub
 		Question q=new Question( question_id,  user_id,  ques_type_id,  content,
 			 collect_num,  answer_num, publish_time,ques_title);
-		String uuid=UUID.randomUUID().toString().replace("-", "");
 		return q;
 	}
 	

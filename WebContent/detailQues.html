@@ -33,7 +33,6 @@ form {
 						<br>
 						<div class="fly-list-hint">
 							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >233</i>&nbsp;  
-							
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
 					</div>
@@ -43,29 +42,25 @@ form {
 						<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
 							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回味。那么为什么要对核桃树进行放浆呢？</p>
 					</div>
-					<div class="detail-about">
+					<div class="detail-about">						
 						<a class="jie-user" href=""> <img
 							src="images/uer.jpg" alt="头像"> <cite> 压缩
 								<em>2017-05-01发布</em> </cite> </a>
 						<div class="detail-hits" data-id="{{rows.id}}">
+							<input type="hidden" name="user_id" value="1" /><span></span>
 							<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>
-							 	
-
 						</div>
 					</div>
 					<span
 					id="toName">@ 压缩(楼主)
 					</span>		
 					
-						<!--<form action="#" method="post">-->
 							<textarea id="L_content" name="content"  placeholder="我要回答" 
 							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~~</textarea>
 							<br>
 							<div class="layui-form-item">
 								<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
-							</div>
-						<!--</form>-->
-				
+							</div>				
 				</div>
 				
 				<div class="fly-panel detail-box" style="padding-top: 0;">
@@ -78,10 +73,8 @@ form {
 							<div class="detail-about detail-about-reply" >
 								
 <!--此处设置了隐藏域，用于设置和获取User_id-->
-								<input type="hidden" name="user_id" value="4" />
-								<a class="jie-user" href=""> <img
-									src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i>
-										 </cite> </a>
+								<input type="hidden" name="user_id" value="3" />
+								<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i></cite> </a>
 <!--关注的buttton按钮在此处-->
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
 								<div class="detail-hits">
@@ -91,11 +84,8 @@ form {
 							<div class="detail-body jieda-body">
 								<p>放浆时间应选择6月初左右，天气晴朗的中午为佳。这时的温度比较高，利于伤口愈合。如果在二十天以后，伤口还没有愈合，赶紧找塑料膜包扎，防止树枝脱营养死亡。</p>
 							</div>
+							
 							<div class="jieda-reply">
-
-
-<!--此处设置了隐藏域，用于设置和获取answer_id-->
-
 <!--此处设置了隐藏域，用于设置和获取answer_id-->
 
 								<input type="hidden" name="answer_id" value="1"/>
@@ -113,8 +103,19 @@ form {
 <!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
 一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
 另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
-							<div style="display:none; background-color:#F0F0F0;" id="comment">
-								
+							<div style="display:none; background-color:#F0F0F0;" id="comment"><!--该div为即将加载的comment的div-->
+							<!--<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
+							<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
+							<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>-->
+							<div >
+								<div style="height: 60px;">
+									<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
+								</div>
+								<div style="margin-left: 88%; width: 30px;">
+									<button class="layui-btn  layui-btn-sm" style="width:80px; height: 30px;">评论</button>
+								</div>
+							</div>
+							
 							<div class="detail-about detail-about-reply">
 <!--用于获取user_id的隐藏域-->
 								<input type="hidden" name="user_id" value="4" />
@@ -125,9 +126,10 @@ form {
 									<span>2019年 5月 21日 星期二 0:33</span>
 								</div>
 								<div >
-								<p style="margin-left: 50px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
+								<p style="margin-left: 60px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
 								</div>
 							</div>
+							
 							<div class="jieda-reply">
 <!--用于获取comment_id的隐藏域-->
 								<input type="hidden" name="comment_id" value="2"/>
@@ -147,7 +149,7 @@ form {
 							<div class="detail-about detail-about-reply">
 																
 <!--此处设置了隐藏域，用于设置和获取User_id-->
-								<input type="hidden" name="user_id" value="3" />
+								<input type="hidden" name="user_id" value="4" />
 								<a class="jie-user" href=""> <img
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
@@ -163,8 +165,7 @@ form {
 							<div class="jieda-reply">
 				
 <!--此处设置了隐藏域，用于设置和获取answer_id-->
-
-								<input type="hidden" name="answer_id" value="2"/>
+								<input type="hidden" name="answer_id" value="1"/>
 								<span class="jieda-zan zanok" type="zan">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
 								</span>
@@ -183,8 +184,7 @@ form {
 <!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
 一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
 另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
-							<div style="display:none; background-color:#F0F0F0;" id="comment">
-								
+							<div style="display:none; background-color:#F0F0F0;" id="comment"><!--该div为即将加载的comment的div-->									
 							<div class="detail-about detail-about-reply">
 <!--用于获取user_id的隐藏域-->
 								<input type="hidden" name="user_id" value="4" />
@@ -195,7 +195,7 @@ form {
 									<span>2019年 5月 21日 星期二 0:33</span>
 								</div>
 								<div >
-								<p style="margin-left: 50px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
+								<p style="margin-left: 60px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
 								</div>
 							</div>
 							<div class="jieda-reply">
@@ -209,6 +209,7 @@ form {
 								</span>
 							</div>		
 							</div>
+							
 						</li>
 							
 						<!-- <li class="fly-none">没有任何回答</li> -->
@@ -219,6 +220,7 @@ form {
 		</div>
 
 		<div class="edge">
+			
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">最近热帖</dt>
 				<dd>
@@ -254,7 +256,17 @@ form {
 						767</span>
 				</dd>
 			</dl>
-
+			<dl class="fly-panel fly-list-one">
+				<div class="layui-carousel" id="test10">
+				  <div carousel-item="">
+				    <div><img src="images/banner/banner1.png" height="200" width="340"></div>
+				    <div><img src="images/banner/banner2.png" height="200" width="340"></div>
+				    <div><img src="images/banner/banner3.png" height="200" width="340"></div>
+				    <div><img src="images/banner/banner4.png" height="200" width="340"></div>
+				   
+				  </div>
+				</div>
+			</dl>
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">近期热议</dt>
 				<dd>
@@ -290,22 +302,16 @@ form {
 						class="iconfont">&#xe60c;</i> 96</span>
 				</dd>
 			</dl>
+			
 		</div>
 	</div>
- <script type="text/javascript" charset="utf-8" src="js/kindeditor.js"></script>
- <!--<script type="text/javascript">
-    KE.show({
-        id : 'L_content',
-		resizeMode : 1,
-        items : [
-        'fontname', 'fontsize', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline',
-        'removeformat', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-        'insertunorderedlist', 'emoticons', 'image', 'link']
-    });
- </script>-->
+</body>
+</html>
+
+<script type="text/javascript" charset="utf-8" src="js/kindeditor.js"></script>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
- 
-<script>
+
+<script>	
  	//获取当前时间存入数据库中
 	function getTimeIntoDB() {
 	    var submitDate = new Date();
@@ -318,11 +324,8 @@ form {
 	function p(s) {
       return s < 10 ? '0' + s : s
     }
- </script>
-
-
- <script>
- 	//获取当前时间显示在前端中
+	
+	//获取当前时间显示在前端中
 	function getTime() {
     var myDate = new Date;
     var year = myDate.getFullYear(); //获取当前年
@@ -337,10 +340,11 @@ form {
     var str = year + "年  " + mon + "月  " + date + "日  " + weeks[week]+" "+h+":"+m;
     //$("#time").html(year + "年" + mon + "月" + date + "日" + weeks[week]+" "+h+":"+m);
     return str;
-}
- </script>
-<script>
-	
+	}	
+</script>
+
+
+<script>	
   	var index;
    	var text;
    	var layedit;
@@ -390,8 +394,7 @@ form {
 					'</span>'+
 				'</div></li>')
 			$('#jieda').prepend($newTr);
-			//清空文本框内容
-			//text = $('textarea[id="L_content"]').val("");
+			
 			//弹出回答成功提示窗口
 			submit_ans(text);
 			
@@ -399,8 +402,7 @@ form {
 			//document.getElementById('L_content').reset();
 			//$('textarea[id="L_content"]').html("");
    	}
-   	
-	
+   		
 	//点击提交回答按钮触发
 	$(function(){
 		 //富文本编辑器自定义工具栏
@@ -412,12 +414,9 @@ form {
 	})
 </script>
 
-</body>
-</html>
 
 <script>
 	$(function(){
-		
 		//点赞按钮的特效部分
 		$("i[class='layui-icon layui-icon-praise']").live('click',function(){
 			$(this).toggle(//点赞按钮的特效部分
@@ -427,9 +426,9 @@ form {
 					type:"get",
 					url:"addAcclaim",
 					async:true,
-					date:{answer_id:answer_id,fangfa:"add"},
+					data:{answer_id:answer_id,fangfa:"add"},
 					dataType:"text",
-					success:function(){
+					success:function(e){
 						
 					}
 				});
@@ -443,9 +442,9 @@ form {
 					type:"get",
 					url:"addAcclaim",
 					async:true,
-					date:{answer_id:answer_id,fangfa:"delete"},
+					data:{answer_id:answer_id,fangfa:"delete"},
 					dataType:"text",
-					success:function(){
+					success:function(e){
 						
 					}
 				});
@@ -457,22 +456,41 @@ form {
 			//先触发click，不然第一次失效
        		$(this).trigger("click");
 		});
+		
 		//踩按钮的特效部分
 		$("i[class='layui-icon layui-icon-tread']").live('click',function(){
 			$(this).toggle(//踩按钮的特效部分
 				function(){
+				var answer_id = parseInt($(this).parent().prev().prev().val());
+				$.ajax({
+					type:"get",
+					url:"addDefame",
+					async:true,
+					data:{answer_id:answer_id,fangfa:"add"},
+					dataType:"text",
+					success:function(e){
+						
+					}
+				});
 				$(this).addClass("layui-anim layui-anim-scaleSpring");
 				var i = parseInt($(this).next().html());			
 				$(this).next().html(i+1);
-				var answer_id = parseInt($(this).parent().prev().prev().val());
-				console.log(answer_id+1);
 				},
 				function(){
+				var answer_id = parseInt($(this).parent().prev().prev().val());
+				$.ajax({
+					type:"get",
+					url:"addDefame",
+					async:true,
+					data:{answer_id:answer_id,fangfa:"delete"},
+					dataType:"text",
+					success:function(e){
+						
+					}
+				});
 				$(this).removeClass("layui-anim layui-anim-scaleSpring");
 				var i = parseInt($(this).next().html());		
 				$(this).next().html(i-1);
-				var answer_id = parseInt($(this).parent().prev().prev().val());
-				console.log(answer_id+1);
 				}
 			);
 			//先触发click，不然第一次失效
@@ -480,7 +498,7 @@ form {
 		});
 	})
 	
-
+	
 	//收藏小星星图标变换
 	$(function(){
 		$('i[class="layui-icon layui-icon-star"]').click(function(){
@@ -511,46 +529,64 @@ form {
 		})
 	})
 	
+
 </script>
 
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script>
 	
-	$(function(){
-		
-		$("[class='layui-btn layui-btn-radius layui-btn-sm']").toggle(//关注按钮的特效部分
-				function(){
-					$(this).addClass("layui-btn-primary");
-					$(this).html("已关注");
-					var user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
-					console.log(user_id+1);//测试其是否是int型
-				},
-				function(){
-					$(this).removeClass("layui-btn-primary");
-					$(this).html("关注");
-					var user_id = parseInt($(this).prev().prev().val());
-					console.log(user_id-1);
+	//关注按钮的特效部分,并实现数据库端同步
+	$(function(){				
+		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
+			$(this).toggle(
+			function(){
+				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				$.ajax({
+					type:"get",
+					url:"addFollow",
+					async:true,
+					data:{follow_user_id:follow_user_id,fangfa:"add"},
+					dataType:"text",
+					success:function(e){	
+					}
+
 				});
-		//弹出评论框特效
-		$("[class='layui-icon layui-icon-reply-fill']").toggle(
+				$(this).addClass("layui-btn-primary");
+				$(this).html("已关注");
+			},
+			function(){
+				var follow_user_id = parseInt($(this).prev().prev().val());
+				$.ajax({
+					type:"get",
+					url:"addFollow",
+					async:true,
+					data:{follow_user_id:follow_user_id, fangfa:"delete"},
+					dataType:"text",
+					success:function(e){
+					}
+				});
+				$(this).removeClass("layui-btn-primary");
+				$(this).html("关注");
+			})
+			$(this).trigger("click");
+		})
+		
+		$("[class='layui-icon layui-icon-reply-fill']").live('click',function(){
+			$(this).toggle(
 				function(){
 					$(this).addClass("layui-anim layui-anim-scaleSpring");
 					$(this).parent().parent().next().slideDown(500);
-	
 				},
 				function(){
 					$(this).removeClass("layui-anim layui-anim-scaleSpring");
 					$(this).parent().parent().next().slideUp(500);
-				}
-			);		
-				
+				}				
+			)
+			$(this).trigger("click");
+		})				
 	});
-
-		
-</script>
-<script type="text/javascript">
 	
-	//实现提交回答post到后端数据库
+		//实现提交回答post到后端数据库
 	function submit_ans(text)
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
@@ -605,5 +641,43 @@ form {
 		xhr.onload = function(){}
 	}
 	
-	
+
+
+</script>
+
+<script>
+layui.use(['carousel', 'form'], function(){
+  var carousel = layui.carousel
+  ,form = layui.form;
+
+  //图片轮播
+  carousel.render({
+    elem: '#test10'
+    ,width: '330px'
+    ,height: '200px'
+    ,interval: 2000
+  });
+  
+  
+  var $ = layui.$, active = {
+    set: function(othis){
+      var THIS = 'layui-bg-normal'
+      ,key = othis.data('key')
+      ,options = {};
+      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
+      options[key] = othis.data('value');
+      ins3.reload(options);
+    }
+  };
+  
+  //监听开关
+  form.on('switch(autoplay)', function(){
+    ins3.reload({
+      autoplay: this.checked
+    });
+  });
+  
+
+  
+});
 </script>
