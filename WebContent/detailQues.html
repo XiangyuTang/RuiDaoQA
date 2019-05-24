@@ -33,7 +33,6 @@ form {
 						<br>
 						<div class="fly-list-hint">
 							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >233</i>&nbsp;  
-							
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
 					</div>
@@ -56,15 +55,12 @@ form {
 					id="toName">@ 压缩(楼主)
 					</span>		
 					
-						<!--<form action="#" method="post">-->
 							<textarea id="L_content" name="content"  placeholder="我要回答" 
 							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~~</textarea>
 							<br>
 							<div class="layui-form-item">
 								<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
-							</div>
-						<!--</form>-->
-				
+							</div>				
 				</div>
 				
 				<div class="fly-panel detail-box" style="padding-top: 0;">
@@ -78,9 +74,7 @@ form {
 								
 <!--此处设置了隐藏域，用于设置和获取User_id-->
 								<input type="hidden" name="user_id" value="1" />
-								<a class="jie-user" href=""> <img
-									src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i>
-										 </cite> </a>
+								<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i></cite> </a>
 <!--关注的buttton按钮在此处-->
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
 								<div class="detail-hits">
@@ -90,11 +84,8 @@ form {
 							<div class="detail-body jieda-body">
 								<p>放浆时间应选择6月初左右，天气晴朗的中午为佳。这时的温度比较高，利于伤口愈合。如果在二十天以后，伤口还没有愈合，赶紧找塑料膜包扎，防止树枝脱营养死亡。</p>
 							</div>
+							
 							<div class="jieda-reply">
-
-
-<!--此处设置了隐藏域，用于设置和获取answer_id-->
-
 <!--此处设置了隐藏域，用于设置和获取answer_id-->
 
 								<input type="hidden" name="answer_id" value="1"/>
@@ -112,8 +103,19 @@ form {
 <!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
 一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
 另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
-							<div style="display:none; background-color:#F0F0F0;" id="comment">
-								
+							<div style="display:none; background-color:#F0F0F0;" id="comment"><!--该div为即将加载的comment的div-->
+							<!--<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
+							<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
+							<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>-->
+							<div >
+								<div style="height: 60px;">
+									<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
+								</div>
+								<div style="margin-left: 88%; width: 30px;">
+									<button class="layui-btn  layui-btn-sm" style="width:80px; height: 30px;">评论</button>
+								</div>
+							</div>
+							
 							<div class="detail-about detail-about-reply">
 <!--用于获取user_id的隐藏域-->
 								<input type="hidden" name="user_id" value="4" />
@@ -124,9 +126,10 @@ form {
 									<span>2019年 5月 21日 星期二 0:33</span>
 								</div>
 								<div >
-								<p style="margin-left: 50px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
+								<p style="margin-left: 60px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
 								</div>
 							</div>
+							
 							<div class="jieda-reply">
 <!--用于获取comment_id的隐藏域-->
 								<input type="hidden" name="comment_id" value="2"/>
@@ -162,7 +165,6 @@ form {
 							<div class="jieda-reply">
 				
 <!--此处设置了隐藏域，用于设置和获取answer_id-->
-
 								<input type="hidden" name="answer_id" value="1"/>
 								<span class="jieda-zan zanok" type="zan">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
@@ -182,8 +184,7 @@ form {
 <!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
 一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
 另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
-							<div style="display:none; background-color:#F0F0F0;" id="comment">
-								
+							<div style="display:none; background-color:#F0F0F0;" id="comment"><!--该div为即将加载的comment的div-->									
 							<div class="detail-about detail-about-reply">
 <!--用于获取user_id的隐藏域-->
 								<input type="hidden" name="user_id" value="4" />
@@ -194,7 +195,7 @@ form {
 									<span>2019年 5月 21日 星期二 0:33</span>
 								</div>
 								<div >
-								<p style="margin-left: 50px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
+								<p style="margin-left: 60px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
 								</div>
 							</div>
 							<div class="jieda-reply">
@@ -208,6 +209,7 @@ form {
 								</span>
 							</div>		
 							</div>
+							
 						</li>
 							
 						<!-- <li class="fly-none">没有任何回答</li> -->
@@ -516,6 +518,32 @@ form {
 		})
 	})
 	
+
+</script>
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script>
+	
+	$(function(){
+		
+		$("[class='layui-btn layui-btn-radius layui-btn-sm']").toggle(//关注按钮的特效部分
+			
+				function(){
+					$(this).addClass("layui-btn-primary");
+					$(this).html("已关注");
+					var user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+					console.log(user_id+1);//测试其是否是int型
+					var flag = 1;
+					follow(flag,user_id);
+				},
+				function(){
+					$(this).removeClass("layui-btn-primary");
+					$(this).html("关注");
+					var user_id = parseInt($(this).prev().prev().val());
+					console.log(user_id-1);
+					var flag = 0;
+					follow(flag,user_id);
+
 	//关注按钮的特效部分
 	$(function(){				
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
@@ -531,6 +559,7 @@ form {
 					success:function(e){
 						
 					}
+
 				});
 				$(this).addClass("layui-btn-primary");
 				$(this).html("已关注");
@@ -623,4 +652,26 @@ form {
 		xhr.onload = function(){}
 	}
 	
+
+	//实现关注与取消关注到后台数据库连接
+	function follow(flag,user_id)
+	{
+		var the_flag = flag;
+		var user_id = user_id;
+		//1.new
+		var xhr = new XMLHttpRequest();
+		//2.open
+		//注意与get方法时对比，在第二个参数后面不能加？。应该将传递到后台的参数用send()方法传递
+		xhr.open('post','favoriteQues',true);
+		//3.send
+		//需要加一个头文件，才能用post提交
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//xhr.send(JSON.stringify(data));
+		xhr.send('flag='+the_flag+'&user_id='+user_id);
+		//xhr.send('question_id='+question_id);
+		//4.回调
+		xhr.onload = function(){}
+	}
+	
+
 </script>
