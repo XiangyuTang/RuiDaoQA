@@ -29,9 +29,9 @@ form {
 				<div class="fly-panel detail-box">
 					<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
-					
 						<br>
 						<div class="fly-list-hint">
+							<input type="hidden" name="question_id" value="" /><!--question_id的隐藏域，放此处供收藏功能获取-->
 							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >233</i>&nbsp;  
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
@@ -47,13 +47,12 @@ form {
 							src="images/uer.jpg" alt="头像"> <cite> 压缩
 								<em>2017-05-01发布</em> </cite> </a>
 						<div class="detail-hits" data-id="{{rows.id}}">
-							<input type="hidden" name="user_id" value="1" /><span></span>
+							<input type="hidden" name="user_id" value="1" />
+							<span></span>
 							<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>
 						</div>
 					</div>
-					<span
-					id="toName">@ 压缩(楼主)
-					</span>		
+					<span id="toName">@ 压缩(楼主)</span>		
 					
 							<textarea id="L_content" name="content"  placeholder="我要回答" 
 							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~~</textarea>
@@ -662,8 +661,8 @@ form {
 		//获取文本框中元素的value值,重新绑定一下再传
 		
 		var ans_text = text;
-		var user_id = 1;
-		var question_id = 2;
+		var user_id = 1;//答者的id
+		var question_id = 2;//回答的问题的id
 		var ans_time = getTimeIntoDB();
 		
 		//1.new
