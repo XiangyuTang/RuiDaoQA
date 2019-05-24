@@ -28,15 +28,15 @@ public class addFollow extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer this_user_id = Integer.parseInt(request.getParameter("this_user_id"));
+		Integer follow_user_id = Integer.parseInt(request.getParameter("follow_user_id"));
 		String fangfa = request.getParameter("fangfa");
-//		Integer follow_user_id = (Integer) request.getSession().getAttribute("user_id");
-		int follow_user_id = 2;
+//		Integer this_user_id = (Integer) request.getSession().getAttribute("user_id");
+		int this_user_id = 2;
 		UserServiceimpl userServiceimpl = new UserServiceimpl();
 		if (fangfa.equals("add")) {
-			userServiceimpl.addFollow(this_user_id, follow_user_id);
+			userServiceimpl.addFollow(this_user_id,follow_user_id);
 		}else if (fangfa.equals("delete")) {
-			userServiceimpl.deleteFollow(this_user_id, follow_user_id);
+			userServiceimpl.deleteFollow(this_user_id,follow_user_id);
 		}else {
 			response.getWriter().print("参数有误");
 		}

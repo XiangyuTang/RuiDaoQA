@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class addFavorite
+ * Servlet implementation class toAsk
  */
-@WebServlet("/addFavorite")
-public class addFavorite extends HttpServlet {
+@WebServlet("/toAsk")
+public class toAsk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addFavorite() {
+    public toAsk() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,6 +28,9 @@ public class addFavorite extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int user_id=Integer.parseInt(request.getParameter("user_id"));
+		request.setAttribute("user_id",user_id);
+		request.getRequestDispatcher("ask.jsp").forward(request, response);
 	}
 
 	/**
