@@ -53,7 +53,7 @@ public class askQuestionServlet extends HttpServlet {
 		String question_title=request.getParameter("title");
 		System.out.println("已获取问题标题："+question_title);
 		QuestionServiceimpl q=new QuestionServiceimpl();
-		Question question=q.createQuestion(null, 1, question_type_id, question_content, 0, 0, null, question_title);
+		Question question=q.createQuestion(null, user_id, question_type_id, question_content, 0, 0, null, question_title);
 		int count=q.addQuestion(question);
 
 		if(count>0) {

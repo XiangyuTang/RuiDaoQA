@@ -57,8 +57,8 @@
 <body>
 
 <!-- 此处的user_id值需要从users表中得到 -->
-	<form class="layui-form" id="111" style="width: 60%; margin: 0px auto;" method="POST" >
-		<input type="text" id="user_id" name="user_id" value="1" style="display:none"/>
+	<form class="layui-form" id="111" style="width: 60%; margin: 0px auto;"  >
+		<input type="text" id="user_id" name="user_id" value="${user_id }" style="display:none"/>
 		<div class="layui-form-item">
 			<label class="layui-form-label">添加标题</label>
 			<div class="layui-input-block">

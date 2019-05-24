@@ -32,7 +32,7 @@
                     }
                 );
             });
-          flow.load({
+         /* flow.load({
                 elem: '#answerlist',//指定列表容器
                 isAuto: true,
                 end:'牛逼啊',
@@ -70,7 +70,7 @@
 
 
 
-            });/*
+            });*//*
             flow.load({
                 elem: '#questionlist',//指定列表容器
                 isAuto: true,
