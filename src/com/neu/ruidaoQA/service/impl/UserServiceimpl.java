@@ -2,6 +2,8 @@ package com.neu.ruidaoQA.service.impl;
 
 import com.neu.ruidaoQA.dao.impl.FavoriteDaoimpl;
 import com.neu.ruidaoQA.dao.impl.FollowDaoimpl;
+import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
+import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.UserService;
 
 public class UserServiceimpl implements UserService{
@@ -49,6 +51,19 @@ public class UserServiceimpl implements UserService{
 		return i;
 	}
 	
+	public void test1() {
+		UserDaoimpl u1 = new UserDaoimpl();
+		User u = u1.selectUser(1);
+			System.out.print(u.getUser_id());
+			System.out.print(u.getNick_name());
+			System.out.print(u.getSex());
+			System.out.print(u.getBirthday());
+			System.out.print(u.getPassword());
+			System.out.print(u.getEmail());
+			System.out.print(u.getHead_photo());
+			System.out.print(u.getIntroduce());
+			System.out.println();
+		}
 	
 	public static void main(String[] args) {//测试类
 		UserServiceimpl userServiceimpl = new UserServiceimpl();
@@ -58,6 +73,9 @@ public class UserServiceimpl implements UserService{
 //		System.out.println(j);
 		int i = userServiceimpl.addFavorite(1, 1);
 		System.out.println(i);
+		
+		UserServiceimpl userServiceimpl1 = new UserServiceimpl();
+		userServiceimpl1.test1();
 	}
 	
 }

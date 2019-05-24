@@ -3,7 +3,9 @@ package com.neu.ruidaoQA.service.impl;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import com.neu.ruidaoQA.dao.impl.AnswerDaoimpl;
+import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
 import com.neu.ruidaoQA.entity.Answer;
+import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.AnswerService;
 
 public class AnswerServiceimpl implements AnswerService {
@@ -56,6 +58,20 @@ public class AnswerServiceimpl implements AnswerService {
 		
 	}
 	
+	public void test1() {
+		AnswerDaoimpl a1 = new AnswerDaoimpl();
+		Answer a = a1.selectAnswer(1);
+			System.out.print(a.getAnswer_id());
+			System.out.print(a.getQuestion_id());
+			System.out.print(a.getUser_id());
+			System.out.print(a.getContent());
+			System.out.print(a.getDianzan_num());
+			System.out.print(a.getCai_num());
+			System.out.print(a.getComment_num());
+			System.out.print(a.getPublish_time());
+			System.out.println();
+		}
+	
 	public static void main(String[] args) {//测试类
 		AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
 		int i = answerServiceimpl.addAcclaim_number(1);
@@ -74,6 +90,9 @@ public class AnswerServiceimpl implements AnswerService {
 		Answer ans = new Answer(null, 2, 1, "我要回答", 0, 0, 0, date);
 		int k = answerServiceimpl.add_answer(ans);
 		System.out.println(k);
+		
+		AnswerServiceimpl answerServiceimpl1 = new AnswerServiceimpl();
+		answerServiceimpl.test1();
 	}
 
 	

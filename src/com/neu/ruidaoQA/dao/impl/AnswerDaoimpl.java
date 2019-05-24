@@ -1,5 +1,7 @@
 package com.neu.ruidaoQA.dao.impl;
 
+import java.sql.ResultSet;
+
 import com.neu.ruidaoQA.dao.AnswerDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
 import com.neu.ruidaoQA.entity.Answer;
@@ -52,5 +54,33 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		int i = super.executeIUD(sql, params);
 		return i;
 	}
+<<<<<<< HEAD
+
+	@Override
+	public Answer selectAnswer(int question_id) {
+		// TODO Auto-generated method stub
+		Object[] params = new Object[] {question_id};
+		String sql = "select * from answer where question_id = ? order by comment_number DESC";
+		ResultSet rs = super.executeSelect(sql, params);
+		Answer a = new Answer(null, null, null, null, null, null, null, null);
+		try {
+			if (rs.next()) {
+				a.setAnswer_id(rs.getInt(1));
+				a.setQuestion_id(rs.getInt(2));
+				a.setUser_id(rs.getInt(3));
+				a.setContent(rs.getString(4));
+				a.setDianzan_num(rs.getInt(5));
+				a.setCai_num(rs.getInt(6));
+				a.setComment_num(rs.getInt(7));
+				a.setPublish_time(rs.getDate(8));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return a;
+	}
+=======
 	
+>>>>>>> branch 'master' of https://github.com/XiangyuTang/RuiDaoQA.git
 }

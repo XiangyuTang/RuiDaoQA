@@ -8,5 +8,6 @@ public interface AnswerDao {
 	int addDefame_number(int answer_id);//增加相应回答踩数
 	int deleteDefame_number(int answer_id);//取消相应回答踩数
 	int addAnswer(Answer ans);//增加一行question的answer
+	Answer selectAnswer(int question_id);//选出一个话题评论量最多的回答
 	
 }
