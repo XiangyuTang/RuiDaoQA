@@ -2,6 +2,7 @@ package com.neu.ruidaoQA.dao.impl;
 
 import com.neu.ruidaoQA.dao.CommentDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
+import com.neu.ruidaoQA.entity.Comment;
 
 public class CommentDaoimpl extends BaseDao implements CommentDao{
 	
@@ -17,5 +18,11 @@ public class CommentDaoimpl extends BaseDao implements CommentDao{
 		CommentDaoimpl commentDaoimpl = new CommentDaoimpl();
 		int i = commentDaoimpl.addAcclaim_number(1);
 		System.out.println(i);
+	}
+
+	@Override
+	public int addComment(Comment comment) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
