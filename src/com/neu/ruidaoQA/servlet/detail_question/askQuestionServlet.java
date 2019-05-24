@@ -32,7 +32,7 @@ public class askQuestionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class askQuestionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/javascript;charset=utf-8");
 		int question_type_id=Integer.parseInt(request.getParameter("type"));
@@ -53,10 +53,15 @@ public class askQuestionServlet extends HttpServlet {
 		String question_title=request.getParameter("title");
 		System.out.println("已获取问题标题："+question_title);
 		QuestionServiceimpl q=new QuestionServiceimpl();
-		Question question=q.createQuestion(null, user_id, question_type_id, question_content, 0, 0, null, question_title);
+		Question question=q.createQuestion(null, 1, question_type_id, question_content, 0, 0, null, question_title);
 		int count=q.addQuestion(question);
+
 		if(count>0) {
-			request.getRequestDispatcher("userinfo.jsp").forward(request, response);
+			
+			response.getWriter().write("success");
+			
+		}else {
+			response.getWriter().write("failed");
 		}
 		
 		

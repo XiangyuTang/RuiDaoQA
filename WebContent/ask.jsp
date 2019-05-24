@@ -13,13 +13,31 @@
 
 			var layer = layui.layer, form = layui.form, element = layui.element
 			$ = layui.$
-			/*$("#submit_button").click(function(){
-				var question
+			
+				$("#submit_button").click(function(){
+				
 				$.ajax({
 					url:"askQuestion",
+					type:"post",
+					dataType:"text",
+					data:{user_id:$("#user_id").val(),type:$("#type").val(),desc:$("#desc").val(),title:$("#title").val()},
+					success:function(data){
+						
+						if(data=="success"){
+							alert("发布问题成功！")
+						}
+						if(data=="failed"){
+							alert("服务异常！")
+						}
+	                    window.parent.layer.closeAll();//关闭弹窗
+
+
+					}
 
 				})
-			})*/
+			})
+			
+			
 		/*	form.on('submit(111)', function (data) {
 			
 
@@ -39,8 +57,8 @@
 <body>
 
 <!-- 此处的user_id值需要从users表中得到 -->
-	<form class="layui-form" id="111" style="width: 60%; margin: 0px auto;" method="POST" action="askQuestion">
-		<input type="text" id="user_id" name="user_id" value="1" style="display: none"/>
+	<form class="layui-form" id="111" style="width: 60%; margin: 0px auto;" method="POST" >
+		<input type="text" id="user_id" name="user_id" value="1" style="display:none"/>
 		<div class="layui-form-item">
 			<label class="layui-form-label">添加标题</label>
 			<div class="layui-input-block">
@@ -74,7 +92,7 @@
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<input type="submit" id="submit_button" class="layui-btn" style="width: 30%; float: left;"  lay-submit 
+				<input type="button" id="submit_button" class="layui-btn" style="width: 30%; float: left;"  lay-submit 
 					value="立即提交" />
 				<button type="reset" class="layui-btn layui-btn-primary" style="width: 30%; float: right;">重置</button>
 			</div>
