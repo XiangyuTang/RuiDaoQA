@@ -73,7 +73,7 @@ form {
 							<div class="detail-about detail-about-reply" >
 								
 <!--此处设置了隐藏域，用于设置和获取User_id-->
-								<input type="hidden" name="user_id" value="3" />
+								<input type="hidden" name="user_id" value="1" />
 								<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i></cite> </a>
 <!--关注的buttton按钮在此处-->
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
@@ -149,7 +149,7 @@ form {
 							<div class="detail-about detail-about-reply">
 																
 <!--此处设置了隐藏域，用于设置和获取User_id-->
-								<input type="hidden" name="user_id" value="4" />
+								<input type="hidden" name="user_id" value="1" />
 								<a class="jie-user" href=""> <img
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
@@ -220,7 +220,6 @@ form {
 		</div>
 
 		<div class="edge">
-			
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">最近热帖</dt>
 				<dd>
@@ -256,17 +255,7 @@ form {
 						767</span>
 				</dd>
 			</dl>
-			<dl class="fly-panel fly-list-one">
-				<div class="layui-carousel" id="test10">
-				  <div carousel-item="">
-				    <div><img src="images/banner/banner1.png" height="200" width="340"></div>
-				    <div><img src="images/banner/banner2.png" height="200" width="340"></div>
-				    <div><img src="images/banner/banner3.png" height="200" width="340"></div>
-				    <div><img src="images/banner/banner4.png" height="200" width="340"></div>
-				   
-				  </div>
-				</div>
-			</dl>
+
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">近期热议</dt>
 				<dd>
@@ -302,7 +291,6 @@ form {
 						class="iconfont">&#xe60c;</i> 96</span>
 				</dd>
 			</dl>
-			
 		</div>
 	</div>
 </body>
@@ -403,7 +391,8 @@ form {
 					'</span>'+
 				'</div></li>')
 			$('#jieda').prepend($newTr);
-			
+			//清空文本框内容
+			//text = $('textarea[id="L_content"]').val("");
 			//弹出回答成功提示窗口
 			submit_ans(text);
 			
@@ -538,40 +527,35 @@ form {
 		})
 	})
 	
-
-</script>
-
-<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-<script>
-	
-	//关注按钮的特效部分,并实现数据库端同步
+	//关注按钮的特效部分
 	$(function(){				
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
 			$(this).toggle(
 			function(){
-				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				var this_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
 				$.ajax({
 					type:"get",
 					url:"addFollow",
 					async:true,
-					data:{follow_user_id:follow_user_id,fangfa:"add"},
+					data:{this_user_id:this_user_id,fangfa:"add"},
 					dataType:"text",
-					success:function(e){	
+					success:function(e){
+						
 					}
-
 				});
 				$(this).addClass("layui-btn-primary");
 				$(this).html("已关注");
 			},
 			function(){
-				var follow_user_id = parseInt($(this).prev().prev().val());
+				var this_user_id = parseInt($(this).prev().prev().val());
 				$.ajax({
 					type:"get",
 					url:"addFollow",
 					async:true,
-					data:{follow_user_id:follow_user_id, fangfa:"delete"},
+					data:{this_user_id:this_user_id, fangfa:"delete"},
 					dataType:"text",
 					success:function(e){
+						
 					}
 				});
 				$(this).removeClass("layui-btn-primary");
@@ -607,7 +591,7 @@ form {
 		var $textarea = $("[id='commentcontent']");
 		var commentcontent = $textarea.val();
 		var answer_id = $(this).parent().parent().parent().prev().find("input").val();
-		console.log(answer_id);
+		var comment_time = getTimeIntoDB();
 		if(commentcontent=='')
 		{
 			layui.use(['layer', 'form'], function(){
@@ -620,9 +604,9 @@ form {
 		console.log(comment_flag);
 		$.ajax({
 					type:"post",
-					url:"addFollow",
+					url:"addComment",
 					async:true,
-					data:{this_user_id:this_user_id, fangfa:"delete"},
+					data:{answer_id:answer_id,comment_content:commentcontent,comment_flag:comment_flag,time:str_time},
 					dataType:"text",
 					success:function(e){
 						
@@ -719,43 +703,4 @@ form {
 		xhr.onload = function(){}
 	}
 	
-
-
-</script>
-
-<script>
-layui.use(['carousel', 'form'], function(){
-  var carousel = layui.carousel
-  ,form = layui.form;
-
-  //图片轮播
-  carousel.render({
-    elem: '#test10'
-    ,width: '330px'
-    ,height: '200px'
-    ,interval: 2000
-  });
-  
-  
-  var $ = layui.$, active = {
-    set: function(othis){
-      var THIS = 'layui-bg-normal'
-      ,key = othis.data('key')
-      ,options = {};
-      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
-      options[key] = othis.data('value');
-      ins3.reload(options);
-    }
-  };
-  
-  //监听开关
-  form.on('switch(autoplay)', function(){
-    ins3.reload({
-      autoplay: this.checked
-    });
-  });
-  
-
-  
-});
 </script>
