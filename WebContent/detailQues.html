@@ -531,12 +531,12 @@ form {
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
 			$(this).toggle(
 			function(){
-				var this_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
 				$.ajax({
 					type:"get",
 					url:"addFollow",
 					async:true,
-					data:{this_user_id:this_user_id,fangfa:"add"},
+					data:{follow_user_id:follow_user_id,fangfa:"add"},
 					dataType:"text",
 					success:function(e){
 						
@@ -546,12 +546,12 @@ form {
 				$(this).html("已关注");
 			},
 			function(){
-				var this_user_id = parseInt($(this).prev().prev().val());
+				var follow_user_id = parseInt($(this).prev().prev().val());
 				$.ajax({
 					type:"get",
 					url:"addFollow",
 					async:true,
-					data:{this_user_id:this_user_id, fangfa:"delete"},
+					data:{follow_user_id:follow_user_id, fangfa:"delete"},
 					dataType:"text",
 					success:function(e){
 						
