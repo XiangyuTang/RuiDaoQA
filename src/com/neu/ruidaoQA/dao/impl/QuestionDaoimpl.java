@@ -59,7 +59,7 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 	@Override
 	public ArrayList<Question> getQuestionLists(int user_id) {
 		// TODO Auto-generated method stub
-		ArrayList<Question> questions=new ArrayList();
+		ArrayList<Question> questions=new ArrayList<Question>();
 		Object[] params=new Object[] {user_id};
 		String sql="select * from question where user_id=?";
 		ResultSet rs=super.executeSelect(sql, params);
@@ -76,12 +76,14 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 				questions.add(q);
 				
 			}
-			return questions;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			super.closeAll(con, super.pst, rs);
 		}
-		return null;
+		return questions;
 	}
 
 	@Override
