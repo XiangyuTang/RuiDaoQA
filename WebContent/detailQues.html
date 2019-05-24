@@ -73,7 +73,7 @@ form {
 							<div class="detail-about detail-about-reply" >
 								
 <!--此处设置了隐藏域，用于设置和获取User_id-->
-								<input type="hidden" name="user_id" value="3" />
+								<input type="hidden" name="user_id" value="1" />
 								<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i></cite> </a>
 <!--关注的buttton按钮在此处-->
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
@@ -107,12 +107,12 @@ form {
 							<!--<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 							<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
 							<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>-->
-							<div >
+							<div id="writecomment">
 								<div style="height: 60px;">
-									<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
+									<textarea name="" id="commentcontent" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
 								</div>
-								<div style="margin-left: 88%; width: 30px;">
-									<button class="layui-btn  layui-btn-sm" style="width:80px; height: 30px;">评论</button>
+								<div style="margin-left: 88%;margin-top: 10px; width: 30px;">
+									<button class="layui-btn  layui-btn-sm" style="width:85px; height: 30px;">评论</button>
 								</div>
 							</div>
 							
@@ -137,7 +137,7 @@ form {
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
 								</span>
 								<span class="jieda-zan zanok" type="zan"><i
-									class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em>3</em>
+									class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em></em>
 								</span>
 							</div>		
 							</div>	
@@ -149,7 +149,7 @@ form {
 							<div class="detail-about detail-about-reply">
 																
 <!--此处设置了隐藏域，用于设置和获取User_id-->
-								<input type="hidden" name="user_id" value="4" />
+								<input type="hidden" name="user_id" value="1" />
 								<a class="jie-user" href=""> <img
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
@@ -220,7 +220,6 @@ form {
 		</div>
 
 		<div class="edge">
-			
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">最近热帖</dt>
 				<dd>
@@ -256,17 +255,7 @@ form {
 						767</span>
 				</dd>
 			</dl>
-			<dl class="fly-panel fly-list-one">
-				<div class="layui-carousel" id="test10">
-				  <div carousel-item="">
-				    <div><img src="images/banner/banner1.png" height="200" width="340"></div>
-				    <div><img src="images/banner/banner2.png" height="200" width="340"></div>
-				    <div><img src="images/banner/banner3.png" height="200" width="340"></div>
-				    <div><img src="images/banner/banner4.png" height="200" width="340"></div>
-				   
-				  </div>
-				</div>
-			</dl>
+
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">近期热议</dt>
 				<dd>
@@ -302,7 +291,6 @@ form {
 						class="iconfont">&#xe60c;</i> 96</span>
 				</dd>
 			</dl>
-			
 		</div>
 	</div>
 </body>
@@ -343,6 +331,15 @@ form {
 	}	
 </script>
 
+<!--<script>
+	var commenttext;
+	function addcomment(){
+		str_time = getTime();
+		var commenttext = $("[id='commentcontent']").val();
+//		console.log(commenttext);
+	}
+	$('[class="layui-btn  layui-btn-sm"]').live('click',addcomment());
+</script>-->
 
 <script>	
   	var index;
@@ -394,7 +391,8 @@ form {
 					'</span>'+
 				'</div></li>')
 			$('#jieda').prepend($newTr);
-			
+			//清空文本框内容
+			//text = $('textarea[id="L_content"]').val("");
 			//弹出回答成功提示窗口
 			submit_ans(text);
 			
@@ -529,40 +527,35 @@ form {
 		})
 	})
 	
-
-</script>
-
-<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-<script>
-	
-	//关注按钮的特效部分,并实现数据库端同步
+	//关注按钮的特效部分
 	$(function(){				
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
 			$(this).toggle(
 			function(){
-				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				var this_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
 				$.ajax({
 					type:"get",
 					url:"addFollow",
 					async:true,
-					data:{follow_user_id:follow_user_id,fangfa:"add"},
+					data:{this_user_id:this_user_id,fangfa:"add"},
 					dataType:"text",
-					success:function(e){	
+					success:function(e){
+						
 					}
-
 				});
 				$(this).addClass("layui-btn-primary");
 				$(this).html("已关注");
 			},
 			function(){
-				var follow_user_id = parseInt($(this).prev().prev().val());
+				var this_user_id = parseInt($(this).prev().prev().val());
 				$.ajax({
 					type:"get",
 					url:"addFollow",
 					async:true,
-					data:{follow_user_id:follow_user_id, fangfa:"delete"},
+					data:{this_user_id:this_user_id, fangfa:"delete"},
 					dataType:"text",
 					success:function(e){
+						
 					}
 				});
 				$(this).removeClass("layui-btn-primary");
@@ -585,6 +578,83 @@ form {
 			$(this).trigger("click");
 		})				
 	});
+	
+
+//	function addcomment(text){
+//		str_time = getTime();
+//		var $textarea = $("[id='commentcontent']");
+//		var commentcontent = $textarea.val();
+//	}
+	var comment_flag = 0;
+	$('[class="layui-btn  layui-btn-sm"]').live('click',function(){
+		var str_time = getTime();
+		var ans_time = getTimeIntoDB();
+		var $textarea = $("[id='commentcontent']");
+		var commentcontent = $textarea.val();
+		var answer_id = $(this).parent().parent().parent().prev().find("input").val();
+		var comment_time = getTimeIntoDB();
+		if(commentcontent=='')
+		{
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+	  			,form = layui.form;
+	  			layer.msg('回答不能为空！');
+			});
+			return;
+		}
+		console.log(comment_flag);
+		$.ajax({
+					type:"post",
+					url:"addComment",
+					async:true,
+					data:{answer_id:answer_id,comment_content:commentcontent,comment_flag:comment_flag,time:ans_time},
+					dataType:"text",
+					success:function(e){
+//						if(e !="0"){
+//							return false;
+//						}else{
+//							return true;
+//						}
+					},
+					error:function(XMLHttpRequest, textStatus, errorThrown){
+						
+					}
+				});
+		var $commentdiv=$(
+			'<div class="detail-about detail-about-reply">'+
+								'<input type="hidden" name="user_id" value="4 " />'+
+								'<a class="jie-user" href=""> <img'+
+									' src="images/uer.jpg" alt=""> <cite> <i>我</i>'+
+										'<em style="color:#FF9E3F"></em> </cite> </a>'+
+								'<div class="detail-hits">'+
+									'<span>'+str_time+'</span>'+
+								'</div>'+
+								'<div >'+
+								'<p style="margin-left: 60px;">'+commentcontent+'</p>'+
+								'</div>'+
+							'</div>'+
+							'<div class="jieda-reply">'+
+								'<input type="hidden" name="comment_id" value="2"/>'+
+								'<span class="jieda-zan zanok" type="zan" style="margin-left: 50px;">'+
+									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
+								'</span>'+
+								'<span class="jieda-zan zanok" type="zan"><i'+
+									' class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em></em>'+
+								'</span>'+
+							'</div>'
+		)
+		$commentdiv.insertAfter($("#writecomment"));
+		
+	});
+	
+	$("#comment_for_comment").live("click",function(){
+		var name = $(this).parent().parent().prev().find("i").text();
+		var content = $(this).parent().parent().prev().find("p").text();
+		var setcontent = "//@"+name+"："+content;
+		$("[id='commentcontent']").val(setcontent);
+		comment_flag = 1;
+	})
+
 	
 		//实现提交回答post到后端数据库
 	function submit_ans(text)
@@ -643,6 +713,7 @@ form {
 	
 
 
+
 </script>
 
 
@@ -683,3 +754,6 @@ layui.use(['carousel', 'form'], function(){
   
 });
 </script>
+
+
+

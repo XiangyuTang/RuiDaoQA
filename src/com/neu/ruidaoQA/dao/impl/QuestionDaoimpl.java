@@ -3,7 +3,9 @@ package com.neu.ruidaoQA.dao.impl;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.neu.ruidaoQA.dao.QuestionDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
@@ -53,6 +55,34 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		return q;
 	}
 	
+
+	@Override
+	public List<Question> getQuestionByType(int kinds_id) {
+		// TODO Auto-generated method stub
+		Object[] params = new Object[] {kinds_id};
+		String sql = "select * from question where question_type=? order by answer_number DESC";
+		ResultSet rs = super.executeSelect(sql, params);
+		List<Question> list = new ArrayList<Question>();
+		try {
+			while (rs.next()) {
+				Question question = new Question(null, null, null, null, null, null, null, null);
+				question.setQuestion_id(rs.getInt(1));
+				question.setQues_type_id(rs.getInt(2));
+				question.setUser_id(rs.getInt(3));
+				question.setContent(rs.getString(4));
+				question.setCollect_num(rs.getInt(5));
+				question.setAnswer_num(rs.getInt(6));
+				question.setPublish_time(rs.getDate(7));
+				question.setQues_title(rs.getString(8));
+				list.add(question);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			super.closeAll(con, super.pst, rs);
+		}
+		return list;
+	}
 	
 	public static void main(String[] args) {//测试类
 		

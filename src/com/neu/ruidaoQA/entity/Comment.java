@@ -11,20 +11,18 @@ public class Comment {
 	private Integer answer_id;
 	private Integer user_id;
 	private String content;
-	private String flag;//flag标志区分是回答的评论，还是评论的评论
-	private Integer goal_id;//如果是评论的评论，标记父级评论的id
+	private Integer flag;//flag标志区分是回答的评论，还是评论的评论
 	private Integer dianzan_num;
 	private Date publish_time;
 	
-	public Comment(Integer comment_id, Integer answer_id, Integer user_id, String content, String flag, Integer goal_id,
+	public Comment(Integer comment_id, Integer answer_id, Integer user_id, String content, Integer comment_flag,
 			Integer dianzan_num, Date publish_time) {
 		super();
 		this.comment_id = comment_id;
 		this.answer_id = answer_id;
 		this.user_id = user_id;
 		this.content = content;
-		this.flag = flag;
-		this.goal_id = goal_id;
+		this.flag = comment_flag;
 		this.dianzan_num = dianzan_num;
 		this.publish_time = publish_time;
 	}
@@ -52,17 +50,11 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getFlag() {
+	public Integer getFlag() {
 		return flag;
 	}
-	public void setFlag(String flag) {
+	public void setFlag(Integer flag) {
 		this.flag = flag;
-	}
-	public Integer getGoal_id() {
-		return goal_id;
-	}
-	public void setGoal_id(Integer goal_id) {
-		this.goal_id = goal_id;
 	}
 	public Integer getDianzan_num() {
 		return dianzan_num;
