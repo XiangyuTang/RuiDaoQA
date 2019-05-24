@@ -1,24 +1,24 @@
 package com.neu.ruidaoQA.entity;
 
+import java.sql.Date;
+
 public class User {
 	private Integer user_id;
 	private String nick_name;
 	private String sex;
-	private String birthday;
-	private Integer phone_num;
+	private Date birthday;
 	private String password;
 	private String email;
 	private String head_photo;
 	private String introduce;
 	
-	public User(Integer user_id, String nick_name, String sex, String birthday, Integer phone_num, String password,
+	public User(Integer user_id, String nick_name, String sex, Date birthday, String password,
 			String email, String head_photo, String introduce) {
 		super();
 		this.user_id = user_id;
 		this.nick_name = nick_name;
 		this.sex = sex;
 		this.birthday = birthday;
-		this.phone_num = phone_num;
 		this.password = password;
 		this.email = email;
 		this.head_photo = head_photo;
@@ -42,17 +42,11 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
-	}
-	public Integer getPhone_num() {
-		return phone_num;
-	}
-	public void setPhone_num(Integer phone_num) {
-		this.phone_num = phone_num;
 	}
 	public String getPassword() {
 		return password;
