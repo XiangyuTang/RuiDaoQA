@@ -107,9 +107,9 @@ form {
 							<!--<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 							<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
 							<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>-->
-							<div >
+							<div id="writecomment">
 								<div style="height: 60px;">
-									<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
+									<textarea name="" id="commentcontent" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
 								</div>
 								<div style="margin-left: 88%; width: 30px;">
 									<button class="layui-btn  layui-btn-sm" style="width:80px; height: 30px;">评论</button>
@@ -331,6 +331,15 @@ form {
 	}	
 </script>
 
+<!--<script>
+	var commenttext;
+	function addcomment(){
+		str_time = getTime();
+		var commenttext = $("[id='commentcontent']").val();
+//		console.log(commenttext);
+	}
+	$('[class="layui-btn  layui-btn-sm"]').live('click',addcomment());
+</script>-->
 
 <script>	
   	var index;
@@ -569,6 +578,75 @@ form {
 			$(this).trigger("click");
 		})				
 	});
+	
+
+//	function addcomment(text){
+//		str_time = getTime();
+//		var $textarea = $("[id='commentcontent']");
+//		var commentcontent = $textarea.val();
+//	}
+	var comment_flag = 0;
+	$('[class="layui-btn  layui-btn-sm"]').live('click',function(){
+		str_time = getTime();
+		var $textarea = $("[id='commentcontent']");
+		var commentcontent = $textarea.val();
+		var answer_id = $(this).parent().parent().parent().prev().find("input").val();
+		console.log(answer_id);
+		if(commentcontent=='')
+		{
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+	  			,form = layui.form;
+	  			layer.msg('回答不能为空！');
+			});
+			return;
+		}
+		console.log(comment_flag);
+		$.ajax({
+					type:"post",
+					url:"addFollow",
+					async:true,
+					data:{this_user_id:this_user_id, fangfa:"delete"},
+					dataType:"text",
+					success:function(e){
+						
+					}
+				});
+		var $commentdiv=$(
+			'<div class="detail-about detail-about-reply">'+
+								'<input type="hidden" name="user_id" value="4 " />'+
+								'<a class="jie-user" href=""> <img'+
+									' src="images/uer.jpg" alt=""> <cite> <i>我</i>'+
+										'<em style="color:#FF9E3F"></em> </cite> </a>'+
+								'<div class="detail-hits">'+
+									'<span>'+str_time+'</span>'+
+								'</div>'+
+								'<div >'+
+								'<p style="margin-left: 60px;">'+commentcontent+'</p>'+
+								'</div>'+
+							'</div>'+
+							'<div class="jieda-reply">'+
+								'<input type="hidden" name="comment_id" value="2"/>'+
+								'<span class="jieda-zan zanok" type="zan" style="margin-left: 50px;">'+
+									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>'+
+								'</span>'+
+								'<span class="jieda-zan zanok" type="zan"><i'+
+									' class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em>0</em>'+
+								'</span>'+
+							'</div>'
+		)
+		$commentdiv.insertAfter($("#writecomment"));
+		
+	});
+	
+	$("#comment_for_comment").live("click",function(){
+		var name = $(this).parent().parent().prev().find("i").text();
+		var content = $(this).parent().parent().prev().find("p").text();
+		var setcontent = "//@"+name+"："+content;
+		$("[id='commentcontent']").val(setcontent);
+		comment_flag = 1;
+	})
+
 	
 		//实现提交回答post到后端数据库
 	function submit_ans(text)
