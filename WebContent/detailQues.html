@@ -27,7 +27,7 @@ form {
 		<div class="wrap">
 			<div class="content detail">
 				<div class="fly-panel detail-box">
-					<h1>核桃树为什么要放浆？放浆的好处是什么？</h1>
+					<h1>${Question.ques_title}</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
 					
 						<br>
@@ -645,7 +645,9 @@ form {
 
 </script>
 
+
 <script>
+	//实现右侧图片轮播的效果
 layui.use(['carousel', 'form'], function(){
   var carousel = layui.carousel
   ,form = layui.form;

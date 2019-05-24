@@ -25,4 +25,13 @@ public class QuestionServiceimpl implements QuestionService{
 		return q;
 	}
 
+	@Override
+	public Question getQuestion(int question_id) {
+		// TODO Auto-generated method stub
+		Question q = null;
+		QuestionDaoimpl qdi=new QuestionDaoimpl();
+		q = qdi.getQuestion(question_id);
+		return q;
+	}
+
 }

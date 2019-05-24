@@ -12,6 +12,8 @@ public class Question {
 	private Date publish_time;
 	private String ques_title;
 	
+	public Question() {}
+	
 	public Question(Integer question_id, Integer user_id, Integer ques_type_id, String content, Integer collect_num,
 			Integer answer_num, Date publish_time,String ques_title) {
 		super();

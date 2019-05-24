@@ -4,5 +4,5 @@ import com.neu.ruidaoQA.entity.Question;
 
 public interface QuestionDao {
 	public int addQuestion(Question q);
-	
+	public Question getQuestion(int question_id);
 }

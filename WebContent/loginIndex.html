@@ -306,12 +306,12 @@
 	    ,scrollElem: '#LAY_demo' //滚动条所在元素，一般不用填，此处只是演示需要。
 	    ,done: function(page, next){ //执行下一页的回调
       
-      //模拟数据插入
-      setTimeout(function(){
+      	//模拟数据插入
+      	setTimeout(function(){
         var lis = [];
         for(var i = 0; i < 2; i++){
           		lis.push('<div class="fly-panel box">'+
-								'<h1><a href="detailQues.html">核桃树为什么要放浆？放浆的好处是什么？</a></h1>'+
+								'<h1><a href="toDetailQues?question_id=2">核桃树为什么要放浆？放浆的好处是什么？</a></h1>'+
 								'<div class="detail-about">'+
 									'<a class="jie-user" href=""> <img '+
 										'src="images/uer.jpg" alt="头像"> <cite> 压缩'+

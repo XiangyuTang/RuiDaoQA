@@ -1,5 +1,6 @@
 package com.neu.ruidaoQA.dao.impl;
 
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,7 +27,31 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		int i = super.executeIUD(sql, params);
 		return i;
 	}
-
+	
+	@Override
+	public Question getQuestion(int question_id) {
+		Question q = new Question();
+		Object[] params = new Object[] { question_id };
+		String sql = "select * from question where question_id=?";
+		ResultSet rs = super.executeSelect(sql, params);
+		try {
+			if (rs.next()) {
+				q.setQuestion_id(rs.getInt(1));
+				q.setQues_type_id(rs.getInt(2));
+				q.setUser_id(rs.getInt(3));
+				q.setContent(rs.getString(4));
+				q.setCollect_num(rs.getInt(5));
+				q.setAnswer_num(rs.getInt(6));
+				q.setPublish_time(rs.getDate(7));
+				q.setQues_title(rs.getString(8));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
+		}
+		return q;
+	}
 	
 	
 	public static void main(String[] args) {//测试类
@@ -36,4 +61,8 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		QuestionDaoimpl qdi=new QuestionDaoimpl();
 		System.out.print(qdi.addQuestion(q));
 	}
+
+
+
+	
 }
