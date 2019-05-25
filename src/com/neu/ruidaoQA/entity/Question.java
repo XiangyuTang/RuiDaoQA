@@ -11,6 +11,15 @@ public class Question {
 	private Integer answer_num;
 	private Date publish_time;
 	private String ques_title;
+	private Answer answer;
+	
+	public Answer getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
+	}
 	
 	public Question() {}
 	
