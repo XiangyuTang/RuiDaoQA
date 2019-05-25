@@ -34,9 +34,9 @@ form {
 				<div class="fly-panel detail-box">
 					<h1>${Question.ques_title}</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
-					<br>
+					
+						<br>
 						<div class="fly-list-hint">
-							<input type="hidden" name="question_id" value="" /><!--question_id的隐藏域，放此处供收藏功能获取，该位置可以变动-->
 							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >233</i>&nbsp;  
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
@@ -50,16 +50,10 @@ form {
 							src="${User.head_photo}" alt="头像"> <cite> ${User.nick_name} 
 								<em>${Question.publish_time}发布</em> </cite> </a>
 						<div class="detail-hits" data-id="{{rows.id}}">
-
 							<input type="hidden" name="user_id" value="${User.user_id}" /><span></span>
-
-							<input type="hidden" name="user_id" value="1" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
-							<span></span>
-
 							<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>
 						</div>
 					</div>
-
 					<span
 					id="toName">@ ${User.nick_name} (楼主)
 					</span>		
@@ -72,26 +66,17 @@ form {
 							</div>				
 				</div>
 				
-
-					<span id="toName">@ 压缩(楼主)</span>							
-					<textarea id="L_content" name="content"  placeholder="我要回答" 
-						class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~~</textarea>
-					<br>
-					<div class="layui-form-item">
-						<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
-					</div>				
-				</div>				
-
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
 					<ul class="jieda photos" id="jieda">	
 						<li data-id="12" class="jieda-daan"><a
 							name="item-121212121212"></a>
-					<ul class="jieda photos" id="jieda"> <!--答案div的循环开始基准-->						
-						<li data-id="12" class="jieda-daan"><a name="item-121212121212" ></a><!--此处开始循环10次，加载10个答案-->
 							<div class="detail-about detail-about-reply" >
-								<input type="hidden" name="user_id" value="1" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
+								
+<!--此处设置了隐藏域，用于设置和获取User_id-->
+								<input type="hidden" name="user_id" value="1" />
 								<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>纸飞机</i></cite> </a>
+<!--关注的buttton按钮在此处-->
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
 								<div class="detail-hits">
 									<span>2019年 5月 22日 星期三 0:33</span>
@@ -99,9 +84,12 @@ form {
 							</div>
 							<div class="detail-body jieda-body">
 								<p>放浆时间应选择6月初左右，天气晴朗的中午为佳。这时的温度比较高，利于伤口愈合。如果在二十天以后，伤口还没有愈合，赶紧找塑料膜包扎，防止树枝脱营养死亡。</p>
-							</div>							
+							</div>
+							
 							<div class="jieda-reply">
-								<input type="hidden" name="answer_id" value="1"/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->
+<!--此处设置了隐藏域，用于设置和获取answer_id-->
+
+								<input type="hidden" name="answer_id" value="1"/>
 								<span class="jieda-zan zanok" type="zan">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
 								</span>
@@ -112,7 +100,14 @@ form {
 									class="layui-icon layui-icon-reply-fill" title="评论"></i><em>3</em>
 								</span>
 							</div>
+							
+<!--此处是弹出div，还要做出仔细修改；建议一次加载10条评论(即一个大的div下10个小的div并上评论填写工具一共11个小的div)，对于每一条评论，设置两个隐藏域
+一个保存评论人的user_id，实现点击其头像可以进入其个人界面并关注他
+另一个保存评论的comment_id，实现对评论的再评论，及点赞评论的功能-->
 							<div style="display:none; background-color:#F0F0F0;" id="comment"><!--该div为即将加载的comment的div-->
+							<!--<a class="jie-user" href=""> <img src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
+							<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
+							<textarea name="" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>-->
 							<div id="writecomment">
 								<div style="height: 60px;">
 									<textarea name="" id="commentcontent" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
@@ -120,9 +115,11 @@ form {
 								<div style="margin-left: 88%;margin-top: 10px; width: 30px;">
 									<button class="layui-btn  layui-btn-sm" style="width:85px; height: 30px;">评论</button>
 								</div>
-							</div>	<!--改div为循环开始基准-->				
-							<div class="detail-about detail-about-reply"><!--从该处开始第二次循环，循环10次，结合外层，共加载出100条热评-->
-								<input type="hidden" name="user_id" value="4" /><!--评论人的user_id隐藏域，暂时未使用，后续可能使用-->
+							</div>
+							
+							<div class="detail-about detail-about-reply">
+<!--用于获取user_id的隐藏域-->
+								<input type="hidden" name="user_id" value="4" />
 								<a class="jie-user" href=""> <img
 									src="images/uer.jpg" alt=""> <cite> <i>香菇</i>
 										<em style="color:#FF9E3F">活雷锋</em> </cite> </a>
@@ -132,9 +129,11 @@ form {
 								<div >
 								<p style="margin-left: 60px;">让生理营养不良，从而导致生殖营养平衡，而达到早结果的目的。这种办法</p>
 								</div>
-							</div>							
+							</div>
+							
 							<div class="jieda-reply">
-								<input type="hidden" name="comment_id" value="2"/><!--该条评论的id，用于评论点赞和评论的再评论，位置不可变动-->
+<!--用于获取comment_id的隐藏域-->
+								<input type="hidden" name="comment_id" value="2"/>
 								<span class="jieda-zan zanok" type="zan" style="margin-left: 50px;">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>12</em>
 								</span>

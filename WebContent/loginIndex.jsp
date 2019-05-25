@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -37,22 +41,21 @@
 		<iframe  src="loginHead.html" scrolling="no" width="100%" height="65px" ></iframe>
 		<div class="main layui-clear">
 			<div>
-
 				<ul class="layui-nav" id="nav">
-				  <li class="layui-nav-item layui-nav-itemed" id='remen'><a href="#">热门</a></li>
-				  <li class="layui-nav-item"><a href="#">社会</a></li>
-				  <li class="layui-nav-item"><a href="#">娱乐</a></li>
-				  <li class="layui-nav-item"><a href="#">体育</a></li>
-				  <li class="layui-nav-item"><a href="#">军事</a></li>
-				  <li class="layui-nav-item"><a href="#">汽车</a></li>
-				  <li class="layui-nav-item"><a href="#">财经</a></li>
-				  <li class="layui-nav-item"><a href="#">科技</a></li>
-				  <li class="layui-nav-item"><a href="#">育儿</a></li>
-				  <li class="layui-nav-item"><a href="#">历史</a></li>
-				  <li class="layui-nav-item"><a href="#">美食</a></li>
-				  <li class="layui-nav-item"><a href="#">数码</a></li>
-				  <li class="layui-nav-item"><a href="#">时尚</a></li>
-				  <li class="layui-nav-item"><a href="#">宠物</a></li>
+				  <li class="layui-nav-item" id='1'><a>热门</a></li>
+				  <li class="layui-nav-item" id='2'><a href="#">社会</a></li>
+				  <li class="layui-nav-item" id='3'><a href="#">娱乐</a></li>
+				  <li class="layui-nav-item" id='4'><a href="#">体育</a></li>
+				  <li class="layui-nav-item" id='5'><a href="#">军事</a></li>
+				  <li class="layui-nav-item" id='6'><a href="#">汽车</a></li>
+				  <li class="layui-nav-item" id='7'><a href="#">财经</a></li>
+				  <li class="layui-nav-item" id='8'><a href="#">科技</a></li>
+				  <li class="layui-nav-item" id='9'><a href="#">育儿</a></li>
+				  <li class="layui-nav-item" id='10'><a href="#">历史</a></li>
+				  <li class="layui-nav-item" id='11'><a href="#">美食</a></li>
+				  <li class="layui-nav-item" id='12'><a href="#">数码</a></li>
+				  <li class="layui-nav-item" id='13'><a href="#">时尚</a></li>
+				  <li class="layui-nav-item" id='14'><a href="#">宠物</a></li>
 
 				  <li class="layui-nav-item">
 				    <a href="javascript:;">更多</a>
@@ -68,10 +71,13 @@
 			
 			<div class="wrap">
 				<div class="content detail">
+					
 				<!--	<ul class="flow-default" id="LAY_demo1"></ul>-->
+				<%-- <c:forEach items="${getQuestionByType}" var="q" varStatus="status"> --%>
 				<ul class="flow-default" id="LAY_demo">
 					<!--动态加载流对象-->
 				</ul>
+<%-- 				</c:forEach> --%>
 				</div>
 		</div>
 		
@@ -293,9 +299,21 @@
         	$(this).siblings('li').removeClass('selected');  // 删除其他兄弟元素的样式
         	$(this).addClass('selected'); // 添加当前元素的样式
         	//在这个地方执行ajax
+        	var id = $(this).attr('id');
+        	$.ajax({
+				type:"post",
+				url:"getQuestionServlet",
+				async:true,
+				data:{id:id},
+				dataType:"text",
+				success:function(e){
+					alert("已经从servlet回来了");
+				}
+			});
     	});
     	
 	})
+	
 </script>
 
 <script>
@@ -306,14 +324,15 @@
 	  	flow.load({
 	    elem: '#LAY_demo' //流加载容器
 	    ,scrollElem: '#LAY_demo' //滚动条所在元素，一般不用填，此处只是演示需要。
+	    ,isAuto:true
 	    ,done: function(page, next){ //执行下一页的回调
       
-      	//模拟数据插入
-      	setTimeout(function(){
+      //模拟数据插入
+      setTimeout(function(){
         var lis = [];
         for(var i = 0; i < 2; i++){
           		lis.push('<div class="fly-panel box">'+
-								'<h1><a href="toDetailQues?question_id=2">核桃树为什么要放浆？放浆的好处是什么？</a></h1>'+
+								'<h1><a href="toDetailQues?question_id=2">haha${title1}</a></h1>'+
 								'<div class="detail-about">'+
 									'<a class="jie-user" href=""> <img '+
 										'src="images/uer.jpg" alt="头像"> <cite> 压缩'+
@@ -343,8 +362,8 @@
 										'</div>'+
 								'</div>'+
 						'</div>')
-        		}
-        
+        		} 
+        		
 	       		//执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
 	        	//pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
 	        	next(lis.join(''), page < 10); //假设总页数为 10

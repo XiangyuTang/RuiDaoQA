@@ -21,7 +21,6 @@ public class BaseDao {
 	public static Connection con=null;
 	public static  PreparedStatement pst =null;
 	public static  ResultSet rs = null;
-	
 	/**
 	 * 获取会话的方法
 	 * @return
