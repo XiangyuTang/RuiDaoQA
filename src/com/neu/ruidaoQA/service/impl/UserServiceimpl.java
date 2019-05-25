@@ -54,6 +54,15 @@ public class UserServiceimpl implements UserService{
 		return i;
 	}
 	
+	public User getUser(int user_id)
+	{
+		User u = null;
+		UserDaoimpl udip = new UserDaoimpl();
+		u = udip.selectUser(user_id);
+		return u;
+		
+	}
+	
 	public void test1() {
 		UserDaoimpl u1 = new UserDaoimpl();
 		User u = u1.selectUser(1);

@@ -32,7 +32,7 @@ form {
 		<div class="wrap">
 			<div class="content detail">
 				<div class="fly-panel detail-box">
-					<h1>${q_content}</h1>
+					<h1>${Question.ques_title}</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
 					
 						<br>
@@ -42,22 +42,20 @@ form {
 						</div>
 					</div>
 					<div class="detail-body photos" style="margin-bottom: 20px;">
-						<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
-							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回味。</p>
-						<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。
-							小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回味。那么为什么要对核桃树进行放浆呢？</p>
+						<p>${Question.content}</p>
+						
 					</div>
 					<div class="detail-about">						
 						<a class="jie-user" href=""> <img
-							src="images/uer.jpg" alt="头像"> <cite> 压缩
-								<em>2017-05-01发布</em> </cite> </a>
+							src="${User.head_photo}" alt="头像"> <cite> ${User.nick_name} 
+								<em>${Question.publish_time}发布</em> </cite> </a>
 						<div class="detail-hits" data-id="{{rows.id}}">
-							<input type="hidden" name="user_id" value="1" /><span></span>
+							<input type="hidden" name="user_id" value="${User.user_id}" /><span></span>
 							<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>
 						</div>
 					</div>
 					<span
-					id="toName">@ 压缩(楼主)
+					id="toName">@ ${User.nick_name} (楼主)
 					</span>		
 					
 							<textarea id="L_content" name="content"  placeholder="我要回答" 
@@ -70,9 +68,7 @@ form {
 				
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
-					<ul class="jieda photos" id="jieda">
-						
-						
+					<ul class="jieda photos" id="jieda">	
 						<li data-id="12" class="jieda-daan"><a
 							name="item-121212121212"></a>
 							<div class="detail-about detail-about-reply" >
@@ -260,7 +256,17 @@ form {
 						767</span>
 				</dd>
 			</dl>
-
+			<dl class="fly-panel fly-list-one">
+				<div class="layui-carousel" id="test10">
+				  <div carousel-item="">
+				    <div><img src="images/banner/banner1.png" height="200" width="340"></div>
+				    <div><img src="images/banner/banner2.png" height="200" width="340"></div>
+				    <div><img src="images/banner/banner3.png" height="200" width="340"></div>
+				    <div><img src="images/banner/banner4.png" height="200" width="340"></div>
+				   
+				  </div>
+				</div>
+			</dl>
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">近期热议</dt>
 				<dd>
