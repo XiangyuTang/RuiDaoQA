@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +16,7 @@
 <link rel="stylesheet" href="css/global.css">
 <script src="layui/layui.js"></script>
 <style type="text/css" rel="stylesheet">
+
 form {
 	margin: 0;
 }
@@ -27,7 +32,7 @@ form {
 		<div class="wrap">
 			<div class="content detail">
 				<div class="fly-panel detail-box">
-					<h1>${Question.ques_title}</h1>
+					<h1>${q_content}</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
 					
 						<br>
@@ -616,9 +621,9 @@ form {
 //							return true;
 //						}
 					},
-					error:function(XMLHttpRequest, textStatus, errorThrown){
-						
+					error:function(XMLHttpRequest, textStatus, errorThrown){	
 					}
+
 				});
 		var $commentdiv=$(
 			'<div class="detail-about detail-about-reply">'+
@@ -688,7 +693,7 @@ form {
 			});
 		}
 	}
-	
+
 	//实现收藏问题post到数据库，相应问题的收藏量+1-1用触发器实现
 	function clickfavorite(flag)
 	{
@@ -749,11 +754,6 @@ layui.use(['carousel', 'form'], function(){
       autoplay: this.checked
     });
   });
-  
-
-  
+    
 });
 </script>
-
-
-

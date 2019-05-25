@@ -65,7 +65,7 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		List<Question> list = new ArrayList<Question>();
 		try {
 			while (rs.next()) {
-				Question question = new Question(null, null, null, null, null, null, null, null);
+				Question question = new Question();
 				question.setQuestion_id(rs.getInt(1));
 				question.setQues_type_id(rs.getInt(2));
 				question.setUser_id(rs.getInt(3));

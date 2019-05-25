@@ -17,19 +17,7 @@ import com.neu.ruidaoQA.service.impl.QuestionServiceimpl;
  */
 @WebServlet("/askQuestion")
 public class askQuestionServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public askQuestionServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
@@ -45,7 +33,6 @@ public class askQuestionServlet extends HttpServlet {
 		response.setContentType("text/javascript;charset=utf-8");
 		int question_type_id=Integer.parseInt(request.getParameter("type"));
 		System.out.println("已获取问题类型："+question_type_id);
-
 		int user_id=Integer.parseInt(request.getParameter("user_id"));
 		System.out.println("已获取用户id："+user_id);
 		String question_content=request.getParameter("desc");
@@ -63,19 +50,6 @@ public class askQuestionServlet extends HttpServlet {
 		}else {
 			response.getWriter().write("failed");
 		}
-		
-		
-		
-		
-		
-		
-		
-
-
-	
-		
-		
-		
 	}
 
 }
