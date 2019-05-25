@@ -54,6 +54,23 @@
             })
 
 
+           setTimeout(function(){
+            $.ajax({
+                url:"showFavoriteQuestions",
+                data:{user_id:1},
+                dataType:"json",
+                type:"post",
+                success:function(data){
+                    for(i=0;i<data.length;i++){
+                        console.log(data[i]);
+
+                    }
+                }
+            })
+
+           },500)
+
+
 
 
 

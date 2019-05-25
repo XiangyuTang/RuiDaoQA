@@ -1,8 +1,11 @@
 package com.neu.ruidaoQA.service.impl;
 
+import java.util.ArrayList;
+
 import com.neu.ruidaoQA.dao.impl.FavoriteDaoimpl;
 import com.neu.ruidaoQA.dao.impl.FollowDaoimpl;
 import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
+import com.neu.ruidaoQA.entity.Question;
 import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.UserService;
 
@@ -76,6 +79,14 @@ public class UserServiceimpl implements UserService{
 		
 		UserServiceimpl userServiceimpl1 = new UserServiceimpl();
 		userServiceimpl1.test1();
+	}
+
+	@Override
+	public ArrayList<Question> getFavoriteQuestions(int user_id) {
+		// TODO Auto-generated method stub
+		FavoriteDaoimpl favoriteDaoimpl = new FavoriteDaoimpl();
+		ArrayList<Question> questions=favoriteDaoimpl.getFavoriteQuestions(user_id);
+		return questions;
 	}
 	
 }
