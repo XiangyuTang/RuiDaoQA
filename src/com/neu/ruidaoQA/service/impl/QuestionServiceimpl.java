@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import com.neu.ruidaoQA.dao.impl.QuestionDaoimpl;
+import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.entity.Question;
 import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.QuestionService;
@@ -64,6 +65,12 @@ public class QuestionServiceimpl implements QuestionService{
 	public static void main(String[] args) {
 		QuestionServiceimpl questionServiceimpl = new QuestionServiceimpl();
 		questionServiceimpl.test();
+	}
+
+	@Override
+	public List<Answer> getAnswersList(int question_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

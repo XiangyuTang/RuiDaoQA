@@ -2,7 +2,9 @@ package com.neu.ruidaoQA.service;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.entity.Question;
 
 public interface QuestionService {
@@ -11,4 +13,5 @@ public interface QuestionService {
 			Integer answer_num, Date publish_time,String ques_title);
 	public Question getQuestion(int question_id);
 	public ArrayList<Question> getQuestionLists(int user_id);
+	public List<Answer> getAnswersList(int question_id);
 }

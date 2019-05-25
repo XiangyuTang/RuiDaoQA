@@ -21,7 +21,10 @@ public class Answer {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-
+	
+	public Answer() {
+	}
+	
 	public Answer(Integer answer_id, Integer question_id, Integer user_id, String content, Integer dianzan_num,
 			Integer cai_num, Integer comment_num, Date publish_time) {
 		super();

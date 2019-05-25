@@ -1,6 +1,9 @@
 package com.neu.ruidaoQA.service.impl;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.text.SimpleDateFormat;
 import com.neu.ruidaoQA.dao.impl.AnswerDaoimpl;
 import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
@@ -73,29 +76,40 @@ public class AnswerServiceimpl implements AnswerService {
 		}
 	
 	public static void main(String[] args) {//测试类
-		AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
-		int i = answerServiceimpl.addAcclaim_number(1);
-		System.out.println(i);
-		int j = answerServiceimpl.addDefame_number(1);
-		System.out.println(j);
+//		AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
+//		int i = answerServiceimpl.addAcclaim_number(1);
+//		System.out.println(i);
+//		int j = answerServiceimpl.addDefame_number(1);
+//		System.out.println(j);
+//		
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//设置日期格式        
+//		Date date = null;
+//		try {
+//			date = df.parse("2019-05-23 16:01:42");
+//		} catch (java.text.ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Answer ans = new Answer(null, 2, 1, "我要回答", 0, 0, 0, date);
+//		int k = answerServiceimpl.add_answer(ans);
+//		System.out.println(k);
+//		
+//		AnswerServiceimpl answerServiceimpl1 = new AnswerServiceimpl();
+//		answerServiceimpl.test1();
+		AnswerServiceimpl answerServiceimpl2 = new AnswerServiceimpl();
+		answerServiceimpl2.getAnswerslist(2);
 		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//设置日期格式        
-		Date date = null;
-		try {
-			date = df.parse("2019-05-23 16:01:42");
-		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Answer ans = new Answer(null, 2, 1, "我要回答", 0, 0, 0, date);
-		int k = answerServiceimpl.add_answer(ans);
-		System.out.println(k);
-		
-		AnswerServiceimpl answerServiceimpl1 = new AnswerServiceimpl();
-		answerServiceimpl.test1();
 	}
 
-	
-
+	@Override//根据问题id获取最热的十条回答及其评论
+	public List<Answer> getAnswerslist(int question_id) {
+		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		List<Answer> answers = answerDaoimpl.getAnswersList(question_id);
+//		Collections.reverse(answers);
+		for (Answer answer:answers ) {
+			System.out.println(answer.getComment_num());
+		}
+		return null;
+	}
 	
 }

@@ -1,6 +1,9 @@
 package com.neu.ruidaoQA.dao.impl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.neu.ruidaoQA.dao.AnswerDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
@@ -78,5 +81,64 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 			e.printStackTrace();
 		}
 		return a;
+	}
+
+	@Override//获取最热的10条回答
+	public List<Answer> getAnswersList(int question_id) {
+		Object[] params = new Object[] {question_id};
+		String sql = "select * from answer where question_id =? order by comment_number DESC";
+		ResultSet rsResultSet = super.executeSelect(sql, params);
+		List<Answer> answers = new ArrayList<Answer>();
+		int number = 0;
+		try {
+			rsResultSet.last();
+			number = rsResultSet.getRow();
+			System.out.println(number);
+			rsResultSet.first();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}finally {
+			super.closeAll(con, super.pst, rsResultSet);
+		}
+		if (number <= 10) {
+			try {
+				while (rsResultSet.next()) {
+					Answer answer = new Answer();
+					answer.setAnswer_id(rsResultSet.getInt(1));
+					answer.setQuestion_id(rsResultSet.getInt(2));
+					answer.setUser_id(rsResultSet.getInt(3));
+					answer.setContent(rsResultSet.getString(4));
+					answer.setDianzan_num(rsResultSet.getInt(5));
+					answer.setCai_num(rsResultSet.getInt(6));
+					answer.setComment_num(rsResultSet.getInt(7));
+					answer.setPublish_time(rsResultSet.getDate(8));
+					answers.add(answer);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				super.closeAll(con, super.pst, rsResultSet);
+			}
+		}else {
+			try {
+				for (int i = 0; i < 10; i++) {
+					Answer answer = new Answer();
+					answer.setAnswer_id(rsResultSet.getInt(1));
+					answer.setQuestion_id(rsResultSet.getInt(2));
+					answer.setUser_id(rsResultSet.getInt(3));
+					answer.setContent(rsResultSet.getString(4));
+					answer.setDianzan_num(rsResultSet.getInt(5));
+					answer.setCai_num(rsResultSet.getInt(6));
+					answer.setComment_num(rsResultSet.getInt(7));
+					answer.setPublish_time(rsResultSet.getDate(8));
+					answers.add(answer);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				super.closeAll(con, super.pst, rsResultSet);
+			}
+		}
+		return answers;
 	}
 }

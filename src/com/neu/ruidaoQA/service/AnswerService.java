@@ -1,6 +1,7 @@
 package com.neu.ruidaoQA.service;
 
 import java.util.Date;
+import java.util.List;
 
 import com.neu.ruidaoQA.entity.Answer;
 
@@ -12,4 +13,5 @@ public interface AnswerService {
 	int add_answer(Answer ans);
 	Answer createAnswer(Integer answer_id, Integer question_id, Integer user_id, String content, Integer dianzan_num,
 			Integer cai_num, Integer comment_num, Date publish_time);
+	List<Answer> getAnswerslist(int question_id);//根据问题id获取最热的十条回答及其评论
 }
