@@ -34,9 +34,9 @@ form {
 				<div class="fly-panel detail-box">
 					<h1>${Question.ques_title}</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
-					<br>
+					
+						<br>
 						<div class="fly-list-hint">
-							<input type="hidden" name="question_id" value="" /><!--question_id的隐藏域，放此处供收藏功能获取，该位置可以变动-->
 							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >233</i>&nbsp;  
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
@@ -50,16 +50,10 @@ form {
 							src="${User.head_photo}" alt="头像"> <cite> ${User.nick_name} 
 								<em>${Question.publish_time}发布</em> </cite> </a>
 						<div class="detail-hits" data-id="{{rows.id}}">
-
 							<input type="hidden" name="user_id" value="${User.user_id}" /><span></span>
-
-							<input type="hidden" name="user_id" value="1" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
-							<span></span>
-
 							<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>
 						</div>
 					</div>
-
 					<span
 					id="toName">@ ${User.nick_name} (楼主)
 					</span>		
@@ -72,22 +66,9 @@ form {
 							</div>				
 				</div>
 				
-
-					<span id="toName">@ 压缩(楼主)</span>							
-					<textarea id="L_content" name="content"  placeholder="我要回答" 
-						class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~~</textarea>
-					<br>
-					<div class="layui-form-item">
-						<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
-					</div>				
-				</div>				
-
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
 					<ul class="jieda photos" id="jieda">	
-						<li data-id="12" class="jieda-daan"><a
-							name="item-121212121212"></a>
-					<ul class="jieda photos" id="jieda"> <!--答案div的循环开始基准-->						
 						<li data-id="12" class="jieda-daan"><a name="item-121212121212" ></a><!--此处开始循环10次，加载10个答案-->
 							<div class="detail-about detail-about-reply" >
 								<input type="hidden" name="user_id" value="1" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
