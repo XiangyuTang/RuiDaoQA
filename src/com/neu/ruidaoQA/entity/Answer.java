@@ -1,6 +1,7 @@
 package com.neu.ruidaoQA.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Answer {
 	private Integer answer_id;
@@ -11,7 +12,16 @@ public class Answer {
 	private Integer cai_num;
 	private Integer comment_num;
 	private Date publish_time;
+	public List<Comment> comments;
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public Answer(Integer answer_id, Integer question_id, Integer user_id, String content, Integer dianzan_num,
 			Integer cai_num, Integer comment_num, Date publish_time) {
 		super();
