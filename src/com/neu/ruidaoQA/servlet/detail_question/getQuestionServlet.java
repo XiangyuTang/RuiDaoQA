@@ -44,9 +44,12 @@ public class getQuestionServlet extends HttpServlet {
 		List<Question> getQuestionByType = impl.getQuestionByType(1);
 		session.setAttribute("getQuestionByType", getQuestionByType);
 		
-		request.setAttribute("title1", getQuestionByType.get(0).getQues_title());
+		request.setAttribute("title1", getQuestionByType.get(1));
 		String s = request.getAttribute("title1").toString();
 		System.out.println(s);
+		
+		System.out.println(getQuestionByType);
+		
 		request.getRequestDispatcher("loginIndex.jsp").forward(request, response);
 		
 	}
