@@ -1,6 +1,7 @@
 package com.neu.ruidaoQA.dao.impl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Year;
 
 import com.neu.ruidaoQA.dao.UserDao;
@@ -42,6 +43,54 @@ public class UserDaoimpl extends BaseDao implements UserDao{
 //		System.out.print(qdi.addQuestion(q));
 		
 
+	}
+
+	@Override//根据question_id选出其对应的用户
+	public User selectUserByAnswer_id(int Answer_id) {
+		Object[] params = new Object[] {Answer_id};
+		String sql = "select * from users where user_id in (select user_id from answer where answer_id =?)";
+		ResultSet rsResultSet = super.executeSelect(sql, params);
+		User user = new User();
+		try {
+			user.setUser_id(rsResultSet.getInt(1));
+			user.setNick_name(rsResultSet.getString(2));
+			user.setSex(rsResultSet.getString(3));
+			user.setBirthday(rsResultSet.getDate(4));
+			user.setPassword(rsResultSet.getString(5));
+			user.setEmail(rsResultSet.getString(6));
+			user.setHead_photo(rsResultSet.getString(7));
+			user.setIntroduce(rsResultSet.getString(8));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			super.closeAll(con, super.pst, rsResultSet);
+		}
+		
+		return user;
+	}
+
+	@Override//根据comment_id选出其对应的用户
+	public User selectUserByComment_id(int comment_id) {
+		Object[] params = new Object[] {comment_id};
+		String sql = "select * from users where user_id in (select user_id from comment where comment_id =?)";
+		ResultSet rsResultSet = super.executeSelect(sql, params);
+		User user = new User();
+		try {
+			user.setUser_id(rsResultSet.getInt(1));
+			user.setNick_name(rsResultSet.getString(2));
+			user.setSex(rsResultSet.getString(3));
+			user.setBirthday(rsResultSet.getDate(4));
+			user.setPassword(rsResultSet.getString(5));
+			user.setEmail(rsResultSet.getString(6));
+			user.setHead_photo(rsResultSet.getString(7));
+			user.setIntroduce(rsResultSet.getString(8));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			super.closeAll(con, super.pst, rsResultSet);
+		}
+		
+		return user;
 	}
 	
 }

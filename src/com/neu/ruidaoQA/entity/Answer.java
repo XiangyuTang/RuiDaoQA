@@ -15,6 +15,14 @@ public class Answer {
 	public List<Comment> comments;
 	public User user;
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public List<Comment> getComments() {
 		return comments;
 	}
