@@ -31,7 +31,7 @@ public class toDetailQuesServlet extends HttpServlet {
 		request.setAttribute("User", u);
 		//HttpSession sess = request.getSession();
 		request.setAttribute("Question", q);
-		System.out.println(q.getContent());
+		System.out.println(q.getContent());		
 		request.getRequestDispatcher("detailQues.jsp").forward(request, response);
 		
 	}

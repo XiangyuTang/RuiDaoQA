@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class BaseDao {
 	private String driver="com.mysql.jdbc.Driver";
-	private String url="jdbc:mysql://localhost:3306/wukong";
+	private String url="jdbc:mysql://localhost:3306/wukong?useSSL=false";
 	private String user="root";
 	private String pwd="woshitiancha9i";
 	public static Connection con=null;

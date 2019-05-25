@@ -52,14 +52,16 @@ public class UserDaoimpl extends BaseDao implements UserDao{
 		ResultSet rsResultSet = super.executeSelect(sql, params);
 		User user = new User();
 		try {
-			user.setUser_id(rsResultSet.getInt(1));
-			user.setNick_name(rsResultSet.getString(2));
-			user.setSex(rsResultSet.getString(3));
-			user.setBirthday(rsResultSet.getDate(4));
-			user.setPassword(rsResultSet.getString(5));
-			user.setEmail(rsResultSet.getString(6));
-			user.setHead_photo(rsResultSet.getString(7));
-			user.setIntroduce(rsResultSet.getString(8));
+			while (rsResultSet.next()) {
+				user.setUser_id(rsResultSet.getInt(1));
+				user.setNick_name(rsResultSet.getString(2));
+				user.setSex(rsResultSet.getString(3));
+				user.setBirthday(rsResultSet.getDate(4));
+				user.setPassword(rsResultSet.getString(5));
+				user.setEmail(rsResultSet.getString(6));
+				user.setHead_photo(rsResultSet.getString(7));
+				user.setIntroduce(rsResultSet.getString(8));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -76,14 +78,16 @@ public class UserDaoimpl extends BaseDao implements UserDao{
 		ResultSet rsResultSet = super.executeSelect(sql, params);
 		User user = new User();
 		try {
-			user.setUser_id(rsResultSet.getInt(1));
-			user.setNick_name(rsResultSet.getString(2));
-			user.setSex(rsResultSet.getString(3));
-			user.setBirthday(rsResultSet.getDate(4));
-			user.setPassword(rsResultSet.getString(5));
-			user.setEmail(rsResultSet.getString(6));
-			user.setHead_photo(rsResultSet.getString(7));
-			user.setIntroduce(rsResultSet.getString(8));
+			while (rsResultSet.next()) {
+				user.setUser_id(rsResultSet.getInt(1));
+				user.setNick_name(rsResultSet.getString(2));
+				user.setSex(rsResultSet.getString(3));
+				user.setBirthday(rsResultSet.getDate(4));
+				user.setPassword(rsResultSet.getString(5));
+				user.setEmail(rsResultSet.getString(6));
+				user.setHead_photo(rsResultSet.getString(7));
+				user.setIntroduce(rsResultSet.getString(8));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

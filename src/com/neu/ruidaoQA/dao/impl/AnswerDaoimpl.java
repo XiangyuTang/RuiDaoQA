@@ -79,7 +79,6 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 				a.setPublish_time(rs.getDate(8));
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return a;
@@ -112,7 +111,6 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			super.closeAll(con, super.pst, rsResultSet);
 		}
 		return answers;
 	}

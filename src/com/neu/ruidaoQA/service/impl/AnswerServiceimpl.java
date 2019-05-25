@@ -111,7 +111,6 @@ public class AnswerServiceimpl implements AnswerService {
 		List<Answer> answers = answerDaoimpl.getAnswersList(question_id);
 //		Collections.reverse(answers);
 		for (Answer answer:answers ) {
-			System.out.println(answer.getAnswer_id());
 			User user = userDaoimpl.selectUserByAnswer_id(answer.getAnswer_id());
 			answer.setUser(user);
 			List<Comment> comments = commentDaoimpl.getCommentsList(answer.getAnswer_id());
