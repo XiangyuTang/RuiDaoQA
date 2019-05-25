@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import com.neu.ruidaoQA.dao.impl.AnswerDaoimpl;
+import com.neu.ruidaoQA.dao.impl.CommentDaoimpl;
 import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
 import com.neu.ruidaoQA.entity.Answer;
+import com.neu.ruidaoQA.entity.Comment;
 import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.AnswerService;
 
@@ -104,12 +106,16 @@ public class AnswerServiceimpl implements AnswerService {
 	@Override//根据问题id获取最热的十条回答及其评论
 	public List<Answer> getAnswerslist(int question_id) {
 		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		CommentDaoimpl commentDaoimpl = new CommentDaoimpl();
 		List<Answer> answers = answerDaoimpl.getAnswersList(question_id);
 //		Collections.reverse(answers);
 		for (Answer answer:answers ) {
-			System.out.println(answer.getComment_num());
+			System.out.println(answer.getAnswer_id());
+			List<Comment> comments = commentDaoimpl.getCommentsList(answer.getAnswer_id());
+//			Collections.reverse(comments);
+			answer.setComments(comments);
 		}
-		return null;
+		return answers;
 	}
 	
 }

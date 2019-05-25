@@ -15,6 +15,7 @@ public class Comment {
 	private Integer dianzan_num;
 	private Date publish_time;
 	
+	public Comment() {}
 	public Comment(Integer comment_id, Integer answer_id, Integer user_id, String content, Integer comment_flag,
 			Integer dianzan_num, Date publish_time) {
 		super();
