@@ -1,11 +1,13 @@
 package com.neu.ruidaoQA.dao.impl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.neu.ruidaoQA.dao.QuestionDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
@@ -54,7 +56,35 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		}
 		return q;
 	}
-	
+	@Override
+	public ArrayList<Question> getQuestionLists(int user_id) {
+		// TODO Auto-generated method stub
+		ArrayList<Question> questions=new ArrayList<Question>();
+		Object[] params=new Object[] {user_id};
+		String sql="select * from question where user_id=?";
+		ResultSet rs=super.executeSelect(sql, params);
+		try {
+			while(rs.next()) {
+				int question_id=rs.getInt(1);
+				int question_type=rs.getInt(2);
+				String question_content=rs.getString(4);
+				int collect_number=rs.getInt(5);
+				int answer_number=rs.getInt(6);
+				Date time=rs.getTimestamp(7);
+				String question_title=rs.getString(8);
+				Question q=new Question(question_id, question_type, user_id, question_content, collect_number, answer_number, time, question_title);
+				questions.add(q);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			super.closeAll(con, super.pst, rs);
+		}
+		return questions;
+	}
 
 	@Override
 	public List<Question> getQuestionByType(int kinds_id) {
