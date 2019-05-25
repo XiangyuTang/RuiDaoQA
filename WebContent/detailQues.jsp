@@ -68,7 +68,7 @@ form {
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
 					<ul class="jieda photos" id="jieda">
-						<c:forEach items="${answerlist }" var="answer" varStatus="status">
+						<c:forEach items="${answerlist }" var="answer" varStatus="status1">
 						<li data-id="12" class="jieda-daan"><a name="item-121212121212" ></a><!--此处开始循环10次，加载10个答案-->
 							<div class="detail-about detail-about-reply" >
 								<input type="hidden" name="user_id" value="${answer.user.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
@@ -96,13 +96,13 @@ form {
 							<div style="display:none; background-color:#F0F0F0;" id="comment"><!--该div为即将加载的comment的div-->
 							<div id="writecomment">
 								<div style="height: 60px;">
-									<textarea name="" id="commentcontent" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
+									<textarea name="" class="commentcontent" id="${status1.count }" required lay-verify="required" placeholder="请输入" style="height: 60px; width: 100% "></textarea>
 								</div>
 								<div style="margin-left: 88%;margin-top: 10px; width: 30px;">
 									<button class="layui-btn  layui-btn-sm" style="width:85px; height: 30px;">评论</button>
 								</div>
 							</div>	<!--改div为循环开始基准-->
-							<c:forEach items="${answer.comments }" var="comment" varStatus="status">				
+							<c:forEach items="${answer.comments }" var="comment" varStatus="status2">				
 							<div class="detail-about detail-about-reply"><!--从该处开始第二次循环，循环10次，结合外层，共加载出100条热评-->
 								<input type="hidden" name="user_id" value="${comment.user.user_id }" /><!--评论人的user_id隐藏域，暂时未使用，后续可能使用-->
 								<a class="jie-user" href=""> <img
@@ -120,8 +120,9 @@ form {
 								<span class="jieda-zan zanok" type="zan" style="margin-left: 50px;">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>${comment.dianzan_num }</em>
 								</span>
-								<span class="jieda-zan zanok" type="zan"><i
-									class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em></em>
+								<span class="jieda-zan zanok" type="zan">
+									<input type="hidden" name="count" value="${status1.count }"/>
+									<i class="layui-icon layui-icon-reply-fill comment_for_comment" id="${status1.count }"  title=""></i><em></em>
 								</span>
 							</div>
 							</c:forEach>		
@@ -510,14 +511,23 @@ form {
 //		var $textarea = $("[id='commentcontent']");
 //		var commentcontent = $textarea.val();
 //	}
-	var comment_flag = 0;
+
 	$('[class="layui-btn  layui-btn-sm"]').live('click',function(){
+		var comment_flag = 0;
 		var str_time = getTime();
 		var ans_time = getTimeIntoDB();
-		var $textarea = $("[id='commentcontent']");
+		var $textarea = $(this).parent().prev().find("textarea");
 		var commentcontent = $textarea.val();
 		var answer_id = $(this).parent().parent().parent().prev().find("input").val();
 		var comment_time = getTimeIntoDB();
+		$("[class='layui-icon layui-icon-reply-fill comment_for_comment']").live("click",function(){
+		var id = $(this).prev().val();
+		var name = $(this).parent().parent().prev().find("i").text();
+		var content = $(this).parent().parent().prev().find("p").text();
+		var setcontent = "//@"+name+"："+content;
+		$("[class='commentcontent'][id='"+id+"']").val(setcontent);
+		comment_flag = 1;
+		})
 		if(commentcontent=='')
 		{
 			layui.use(['layer', 'form'], function(){
@@ -527,7 +537,6 @@ form {
 			});
 			return;
 		}
-		console.log(comment_flag);
 		$.ajax({
 					type:"post",
 					url:"addComment",
@@ -535,21 +544,16 @@ form {
 					data:{answer_id:answer_id,comment_content:commentcontent,comment_flag:comment_flag,time:ans_time},
 					dataType:"text",
 					success:function(e){
-//						if(e !="0"){
-//							return false;
-//						}else{
-//							return true;
-//						}
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown){	
 					}
 
 				});
 		var $commentdiv=$(
-			'<div class="detail-about detail-about-reply">'+
-								'<input type="hidden" name="user_id" value="4 " />'+
-								'<a class="jie-user" href=""> <img'+
-									' src="images/uer.jpg" alt=""> <cite> <i>我</i>'+
+			'<div class="detail-about detail-about-reply"><!--从该处开始第二次循环，循环10次，结合外层，共加载出100条热评-->'+
+								'<input type="hidden" name="user_id" value="${comment.user.user_id }" /><!--评论人的user_id隐藏域，暂时未使用，后续可能使用-->'+
+								'<a class="jie-user" href=""> <img '+
+									'src="${comment.user.head_photo }" alt=""> <cite> <i>我</i> '+
 										'<em style="color:#FF9E3F"></em> </cite> </a>'+
 								'<div class="detail-hits">'+
 									'<span>'+str_time+'</span>'+
@@ -557,28 +561,29 @@ form {
 								'<div >'+
 								'<p style="margin-left: 60px;">'+commentcontent+'</p>'+
 								'</div>'+
-							'</div>'+
+							'</div>	'+						
 							'<div class="jieda-reply">'+
-								'<input type="hidden" name="comment_id" value="2"/>'+
+								'<input type="hidden" name="comment_id" value="${comment.comment_id }"/><!--该条评论的id，用于评论点赞和评论的再评论，位置不可变动-->'+
 								'<span class="jieda-zan zanok" type="zan" style="margin-left: 50px;">'+
-									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
+									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>'+0+'</em>'+
 								'</span>'+
-								'<span class="jieda-zan zanok" type="zan"><i'+
-									' class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em></em>'+
+								'<span class="jieda-zan zanok" type="zan"><i '+
+								'	class="layui-icon layui-icon-reply-fill " id="comment_for_comment" title="评论"></i><em>'+0+'</em>'+
 								'</span>'+
 							'</div>'
 		)
-		$commentdiv.insertAfter($("#writecomment"));
+		$commentdiv.insertAfter($(this).parent().parent());
 		
 	});
 	
-	$("#comment_for_comment").live("click",function(){
+		$("[class='layui-icon layui-icon-reply-fill comment_for_comment']").live("click",function(){
+		var id = $(this).prev().val();
 		var name = $(this).parent().parent().prev().find("i").text();
 		var content = $(this).parent().parent().prev().find("p").text();
 		var setcontent = "//@"+name+"："+content;
-		$("[id='commentcontent']").val(setcontent);
+		$("[class='commentcontent'][id='"+id+"']").val(setcontent);
 		comment_flag = 1;
-	})
+		})
 
 	
 		//实现提交回答post到后端数据库
