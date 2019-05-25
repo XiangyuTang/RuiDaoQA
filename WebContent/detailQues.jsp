@@ -65,10 +65,9 @@ form {
 								<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
 							</div>				
 				</div>
-				
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
-					<ul class="jieda photos" id="jieda">	
+					<ul class="jieda photos" id="jieda">
 						<li data-id="12" class="jieda-daan"><a name="item-121212121212" ></a><!--此处开始循环10次，加载10个答案-->
 							<div class="detail-about detail-about-reply" >
 								<input type="hidden" name="user_id" value="1" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
@@ -525,12 +524,12 @@ form {
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
 			$(this).toggle(
 			function(){
-				var this_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
 				$.ajax({
 					type:"get",
 					url:"addFollow",
 					async:true,
-					data:{this_user_id:this_user_id,fangfa:"add"},
+					data:{follow_user_id:follow_user_id,fangfa:"add"},
 					dataType:"text",
 					success:function(e){
 						
@@ -540,12 +539,12 @@ form {
 				$(this).html("已关注");
 			},
 			function(){
-				var this_user_id = parseInt($(this).prev().prev().val());
+				var follow_user_id = parseInt($(this).prev().prev().val());
 				$.ajax({
 					type:"get",
 					url:"addFollow",
 					async:true,
-					data:{this_user_id:this_user_id, fangfa:"delete"},
+					data:{follow_user_id:follow_user_id, fangfa:"delete"},
 					dataType:"text",
 					success:function(e){
 						
