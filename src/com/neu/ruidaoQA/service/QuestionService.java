@@ -14,4 +14,5 @@ public interface QuestionService {
 	public Question getQuestion(int question_id);
 	public ArrayList<Question> getQuestionLists(int user_id);
 	public List<Answer> getAnswersList(int question_id);
+	public List<Question> getQuestionByType(int kinds_id);
 }
