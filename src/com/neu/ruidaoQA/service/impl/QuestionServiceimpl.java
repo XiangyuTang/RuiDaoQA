@@ -4,7 +4,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.neu.ruidaoQA.dao.impl.AnswerDaoimpl;
 import com.neu.ruidaoQA.dao.impl.QuestionDaoimpl;
+import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.entity.Question;
 import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.QuestionService;
@@ -64,6 +67,25 @@ public class QuestionServiceimpl implements QuestionService{
 	public static void main(String[] args) {
 		QuestionServiceimpl questionServiceimpl = new QuestionServiceimpl();
 		questionServiceimpl.test();
+	}
+
+	@Override
+	public List<Answer> getAnswersList(int question_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Question> getQuestionByType(int kinds_id) {
+		// TODO Auto-generated method stub
+		QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
+		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		List<Question> list = questionDaoimpl.getQuestionByType(kinds_id);
+		for (Question question:list) {
+			Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
+			question.setAnswer(answer);
+		}
+		return list;
 	}
 	
 

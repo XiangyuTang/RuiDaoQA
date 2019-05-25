@@ -13,7 +13,16 @@ public class Answer {
 	private Integer comment_num;
 	private Date publish_time;
 	public List<Comment> comments;
+	public User user;
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -21,7 +30,10 @@ public class Answer {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-
+	
+	public Answer() {
+	}
+	
 	public Answer(Integer answer_id, Integer question_id, Integer user_id, String content, Integer dianzan_num,
 			Integer cai_num, Integer comment_num, Date publish_time) {
 		super();

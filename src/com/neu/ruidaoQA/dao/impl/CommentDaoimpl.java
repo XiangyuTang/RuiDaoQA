@@ -1,7 +1,12 @@
 package com.neu.ruidaoQA.dao.impl;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.neu.ruidaoQA.dao.CommentDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
+import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.entity.Comment;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
@@ -27,5 +32,36 @@ public class CommentDaoimpl extends BaseDao implements CommentDao{
 		String sql = "insert into comment(answer_id,user_id,comment_content,comment_flag,acclaim_number,time) values(?,?,?,?,?,?)";
 		int i = super.executeIUD(sql, params);
 		return i;
+	}
+
+	@Override
+	public List<Comment> getCommentsList(int answer_id) {
+		Object[] params = new Object[] {answer_id};
+		String sql = "select * from comment where answer_id =? order by acclaim_number DESC";
+		ResultSet rsResultSet = super.executeSelect(sql, params);
+		List<Comment> comments = new ArrayList<Comment>();
+		int i = 0;
+		try {
+			while (rsResultSet.next()) {
+				i++;
+				Comment comment = new Comment();
+				comment.setComment_id(rsResultSet.getInt(1));
+				comment.setAnswer_id(rsResultSet.getInt(2));
+				comment.setUser_id(rsResultSet.getInt(3));
+				comment.setContent(rsResultSet.getString(4));
+				comment.setFlag(rsResultSet.getInt(5));
+				comment.setDianzan_num(rsResultSet.getInt(6));
+				comment.setPublish_time(rsResultSet.getDate(7));
+				comments.add(comment);
+				if (i == 10) {
+					return comments;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			super.closeAll(con, super.pst, rsResultSet);
+		}
+		return comments;
 	}
 }

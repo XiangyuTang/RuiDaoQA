@@ -12,6 +12,7 @@ public class User {
 	private String head_photo;
 	private String introduce;
 	
+	public User() {}
 	public User(Integer user_id, String nick_name, String sex, Date birthday, String password,
 			String email, String head_photo, String introduce) {
 		super();

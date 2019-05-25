@@ -46,7 +46,9 @@ public class getQuestionServlet extends HttpServlet {
 		session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
 		//response.sendRedirect("loginIndex.jsp");
 		request.getRequestDispatcher("loginIndex.jsp").forward(request, response);
-	
+		
+		
+		
 	}
 
 }
