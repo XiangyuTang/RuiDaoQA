@@ -14,7 +14,14 @@ public class Comment {
 	private Integer flag;//flag标志区分是回答的评论，还是评论的评论
 	private Integer dianzan_num;
 	private Date publish_time;
+	private User user;
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public Comment() {}
 	public Comment(Integer comment_id, Integer answer_id, Integer user_id, String content, Integer comment_flag,
 			Integer dianzan_num, Date publish_time) {

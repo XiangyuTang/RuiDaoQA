@@ -13,6 +13,7 @@ public class Answer {
 	private Integer comment_num;
 	private Date publish_time;
 	public List<Comment> comments;
+	public User user;
 	
 	public List<Comment> getComments() {
 		return comments;
