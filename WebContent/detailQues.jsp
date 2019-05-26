@@ -34,10 +34,9 @@ form {
 				<div class="fly-panel detail-box">
 					<h1>${Question.ques_title}</h1>
 					<div class="fly-tip fly-detail-hint" data-id="">
-					
 						<br>
 						<div class="fly-list-hint">
-							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >233</i>&nbsp;  
+							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >${Question.collect_num}</i>&nbsp;  
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
 					</div>
