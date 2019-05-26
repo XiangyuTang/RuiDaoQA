@@ -15,4 +15,5 @@ public interface QuestionService {
 	public ArrayList<Question> getQuestionLists(int user_id);
 	public List<Answer> getAnswersList(int question_id);
 	public List<Question> getQuestionByType(int kinds_id);
+	public ArrayList<Question> getSearchResult(String txt);
 }

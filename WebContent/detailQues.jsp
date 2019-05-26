@@ -27,7 +27,7 @@ form {
 </style>
 </head>
 <body>
-	<iframe src="loginHead.html" scrolling="no" width="100%" height="65px" href="index.html"></iframe>
+	<iframe src="head.jsp" scrolling="no" width="100%" height="65px" href="index.html"></iframe>
 	<div class="main layui-clear">
 		<div class="wrap">
 			<div class="content detail">

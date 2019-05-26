@@ -114,12 +114,41 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		return list;
 	}
 	
+	
+	@Override
+	public ArrayList<Question> getSearchResult(String txt) {
+		ArrayList<Question> list = new ArrayList<Question>();
+		Object[] params = new Object[] {txt};
+		String sql = "select * from question where question_content like \"%\"?\"%\" order by answer_number DESC";//转义字符
+		ResultSet rs = super.executeSelect(sql, params);
+		try {
+			while(rs.next()) {
+				Question question = new Question();
+				question.setQuestion_id(rs.getInt(1));
+				question.setQues_type_id(rs.getInt(2));
+				question.setUser_id(rs.getInt(3));
+				question.setContent(rs.getString(4));
+				question.setCollect_num(rs.getInt(5));
+				question.setAnswer_num(rs.getInt(6));
+				question.setPublish_time(rs.getDate(7));
+				question.setQues_title(rs.getString(8));
+				list.add(question);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 	public static void main(String[] args) {//测试类
 		
-		Question q=new Question(null,1,1,"惹惹惹",1,1,null,"嘿嘿嘿");
+		/*Question q=new Question(null,1,1,"惹惹惹",1,1,null,"嘿嘿嘿");
 		System.out.print("dasds");
 		QuestionDaoimpl qdi=new QuestionDaoimpl();
-		System.out.print(qdi.addQuestion(q));
+		System.out.print(qdi.addQuestion(q));*/
+		QuestionDaoimpl qdi=new QuestionDaoimpl();
+		ArrayList<Question> list = qdi.getSearchResult("坤");
+		System.out.println(list.size());
 	}
 
 

@@ -87,6 +87,15 @@ public class QuestionServiceimpl implements QuestionService{
 		}
 		return list;
 	}
+
+	@Override
+	public ArrayList<Question> getSearchResult(String txt) {
+		// TODO Auto-generated method stub
+		ArrayList<Question> list = new ArrayList<Question>();
+		QuestionDaoimpl qdip = new QuestionDaoimpl();
+		list = qdip.getSearchResult(txt);
+		return list;
+	}
 	
 
 

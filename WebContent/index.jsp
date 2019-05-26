@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>问答系统首页_已登录</title>
+		<title>问答系统首页</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
@@ -38,32 +37,33 @@
 	</head>
 	
 	<body>
-		<iframe  src="loginHead.html" scrolling="no" width="100%" height="65px" ></iframe>
+		<iframe src="head.jsp" scrolling="no" width="100%" height="65px" ></iframe>
+		
 		<div class="main layui-clear">
 			<div>
 				<ul class="layui-nav" id="nav">
-				  <li class="layui-nav-item" id='1'><a>热门</a></li>
-				  <li class="layui-nav-item" id='2'><a href="#">社会</a></li>
-				  <li class="layui-nav-item" id='3'><a href="#">娱乐</a></li>
-				  <li class="layui-nav-item" id='4'><a href="#">体育</a></li>
-				  <li class="layui-nav-item" id='5'><a href="#">军事</a></li>
-				  <li class="layui-nav-item" id='6'><a href="#">汽车</a></li>
-				  <li class="layui-nav-item" id='7'><a href="#">财经</a></li>
-				  <li class="layui-nav-item" id='8'><a href="#">科技</a></li>
-				  <li class="layui-nav-item" id='9'><a href="#">育儿</a></li>
-				  <li class="layui-nav-item" id='10'><a href="#">历史</a></li>
-				  <li class="layui-nav-item" id='11'><a href="#">美食</a></li>
-				  <li class="layui-nav-item" id='12'><a href="#">数码</a></li>
-				  <li class="layui-nav-item" id='13'><a href="#">时尚</a></li>
-				  <li class="layui-nav-item" id='14'><a href="#">宠物</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='1'>热门</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='2'>社会</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='3'>娱乐</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='4'>体育</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='5'>军事</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='6'>汽车</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='7'>财经</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='8'>科技</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='9'>育儿</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='10'>历史</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='11'>美食</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='12'>数码</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='13'>时尚</a></li>
+				  <li class="layui-nav-item" ><a href="#" id='14'>宠物</a></li>
 
 				  <li class="layui-nav-item">
-				    <a href="javascript:;">更多</a>
+				    <a href="#">更多</a>
 				    <dl class="layui-nav-child">
-				      <dd><a href="#">家居</a></dd>
-				      <dd><a href="#">文化</a></dd>
-				      <dd><a href="#">健康</a></dd>
-				      <dd><a href="#">游戏</a></dd>
+				      <dd><a href="#" id='15'>家居</a></dd>
+				      <dd><a href="#" id='16'>文化</a></dd>
+				      <dd><a href="#" id='17'>健康</a></dd>
+				      <dd><a href="#" id='18'>游戏</a></dd>
 				    </dl>
 				  </li>
 				</ul>
@@ -71,7 +71,6 @@
 			
 			<div class="wrap">
 				<div class="content detail">
-					
 				<!--	<ul class="flow-default" id="LAY_demo1"></ul>-->
 				<%-- <c:forEach items="${getQuestionByType}" var="q" varStatus="status"> --%>
 				<ul class="flow-default" id="LAY_demo">
@@ -83,7 +82,7 @@
 		
 			<div class="edge">
 					<dl class="fly-panel fly-list-one">
-						<dt class="fly-panel-title">最近热帖</dt>
+						<dt class="fly-panel-title">${title1}最近热帖</dt>
 						<dd>
 							<a href="">使用 layui 秒搭后台大布局（基本结构）</a> <span><i
 								class="iconfont">&#xe60b;</i> 6087</span>
@@ -172,6 +171,27 @@
 </script>
 
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+ <script type="text/javascript">
+	// 200毫秒后模拟点击
+	setTimeout(function() {
+	    // IE
+	    if(document.all) {
+	        document.getElementById("1").click();
+	    }
+	    // 其它浏览器
+	    else {
+	        var e = document.createEvent("MouseEvents");
+	        e.initEvent("click", true, true);
+	        document.getElementById("1").dispatchEvent(e);
+	    }
+	}, 200);
+</script>
+  
+<!--<script>
+	$(function(){
+		$("#nav li:first").trigger("click");//在页面加载时，触发点击热门事件
+	})
+</script>-->
 <script>
 	
 	$(function(){
@@ -186,7 +206,6 @@
 					data:{answer_id:answer_id,fangfa:"add"},
 					dataType:"text",
 					success:function(e){
-						
 					}
 				});
 				$(this).addClass("layui-anim layui-anim-scaleSpring");
@@ -202,7 +221,6 @@
 					data:{answer_id:answer_id,fangfa:"delete"},
 					dataType:"text",
 					success:function(e){
-						
 					}
 				});
 				$(this).removeClass("layui-anim layui-anim-scaleSpring");
@@ -295,28 +313,66 @@
 <script>
 	//点击导航栏某一话题触发事件
 	$(function(){
-		$("#nav li").click(function() {
+		$("li[class='layui-nav-item']").click(function() {
         	$(this).siblings('li').removeClass('selected');  // 删除其他兄弟元素的样式
         	$(this).addClass('selected'); // 添加当前元素的样式
         	//在这个地方执行ajax
-        	var id = $(this).attr('id');
-        	$.ajax({
-				type:"post",
-				url:"getQuestionServlet",
-				async:true,
-				data:{id:id},
-				dataType:"text",
-				success:function(e){
-					alert("已经从servlet回来了");
+        	var topic = $(this).find('a[id]').attr('id');
+        	if (topic!=15) {
+        		var ajax = new XMLHttpRequest();
+				ajax.open('get','getQuestion?topic='+topic,true);
+				ajax.send();
+				//responseText 该变量是引擎内置的属性，专门负责从后台接收文本类型的内容
+				
+				//回调函数实现流加载
+				ajax.onload=function(){
+					
+					console.log(ajax.responseText);
+					var ul = document.getElementById('LAY_demo');
+					//ul.innerHTML = ajax.responseText;
+					
+					layui.use('flow', function(){
+						//$("#nav li:first").triggerHandler("focus");//在首页流加载时，触发点击热门事件
+					 	//$("#nav li:first").trigger("click");//在首页流加载时，触发点击热门事件
+					  	var flow = layui.flow;
+						  	flow.load({
+						    elem: '#LAY_demo' //流加载容器
+						    ,scrollElem: '#LAY_demo' //滚动条所在元素，一般不用填，此处只是演示需要。
+						    ,done: function(page, next){ //执行下一页的回调
+				      
+					      	//模拟数据插入
+					      	setTimeout(function(){
+						        var lis = [];
+				          		lis.push(ajax.responseText);
+					       		//执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+					        	//pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+					        	next(lis.join(''), page < 3); //假设总页数为 3
+						      	}, 500);
+				    		}
+				  			});
+				  	})					
 				}
-			});
+        	}
+			
     	});
     	
+    	//下面是点击更多出现的内容，还没有实现
+    	/*$("dl[class='layui-nav-child']").click(function() {
+        	$(this).children().siblings('li').removeClass('selected');  // 删除其他兄弟元素的样式
+        	$(this).children().addClass('selected'); // 添加当前元素的样式
+        	//在这个地方执行ajax
+        	var topic = $(this).find('a[id]').attr('id');
+			var ajax = new XMLHttpRequest();
+			ajax.open('get','getQuestion?topic='+topic,true);
+			ajax.send();
+			//responseText 该变量是引擎内置的属性，专门负责从后台接收文本类型的内容
+			ajax.onload=function(){
+			}
+    	});*/
 	})
-	
 </script>
 
-<script>
+<!--<script>
 		layui.use('flow', function(){
 		//$("#nav li:first").triggerHandler("focus");//在首页流加载时，触发点击热门事件
 	 	$("#nav li:first").trigger("click");//在首页流加载时，触发点击热门事件
@@ -324,15 +380,15 @@
 	  	flow.load({
 	    elem: '#LAY_demo' //流加载容器
 	    ,scrollElem: '#LAY_demo' //滚动条所在元素，一般不用填，此处只是演示需要。
-	    ,isAuto:true
 	    ,done: function(page, next){ //执行下一页的回调
       
       //模拟数据插入
       setTimeout(function(){
         var lis = [];
         for(var i = 0; i < 2; i++){
+         
           		lis.push('<div class="fly-panel box">'+
-								'<h1><a href="toDetailQues?question_id=2">haha${title1}</a></h1>'+
+								'<h1><a href="toDetailQues?question_id=2">222${title1}</a></h1>'+
 								'<div class="detail-about">'+
 									'<a class="jie-user" href=""> <img '+
 										'src="images/uer.jpg" alt="头像"> <cite> 压缩'+
@@ -373,6 +429,6 @@
   	})
 	
 	
-</script>
+</script>-->
 
 
