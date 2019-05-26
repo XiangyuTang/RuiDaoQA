@@ -43,7 +43,7 @@
 			<div>
 				<ul class="layui-nav" id="nav">
 				  <li class="layui-nav-item" id='1'><a>热门</a></li>
-				  <li class="layui-nav-item" id='2'><a href="#">社会</a></li>
+				  <li class="layui-nav-item" id='2'><a href="getQuestionServlet">社会</a></li>
 				  <li class="layui-nav-item" id='3'><a href="#">娱乐</a></li>
 				  <li class="layui-nav-item" id='4'><a href="#">体育</a></li>
 				  <li class="layui-nav-item" id='5'><a href="#">军事</a></li>
@@ -72,9 +72,9 @@
 			<div class="wrap">
 				<div class="content detail">
 				
-				<c:forEach items="${getQuestionByType}" var="q" varStatus="status">
+<%-- 				<c:forEach items="${getQuestionByType}" var="q" varStatus="status">
 				<img alt="" src="${q.answer.user.head_photo }">
-				</c:forEach>
+				</c:forEach> --%>
 				
 				<!-- <img alt="" src="images/uer.jpg"> -->
 				<!--	<ul class="flow-default" id="LAY_demo1"></ul>-->
@@ -311,7 +311,6 @@
 				data:{id:id},
 				dataType:"text",
 				success:function(e){
-					alert("已经从servlet回来了");
 				}
 			});
     	});
@@ -331,7 +330,6 @@
 	    ,isAuto:true
 	    ,done: function(page, next){ //执行下一页的回调
       
-      //模拟数据插入      ${q.answer.user.head_photo}
       setTimeout(function(){
         var lis = [];
         for(var i = 0; i < 2; i++){
@@ -339,8 +337,7 @@
           				'<div class="fly-panel box">'+
 								'<h1><a href="toDetailQues?question_id=2">${q.ques_title }</a></h1>'+
 								'<div class="detail-about">'+
-									'<a class="jie-user" href=""> <img '+ 
-										'src="images/uer.jpg" alt="头像"> <cite> ${q.answer.user.nick_name}'+
+									'<a class="jie-user" href=""> <img alt="头像" src=" ${q.answer.user.head_photo }"/> <cite> ${q.answer.user.nick_name} '+
 											'<em>2017-05-01发布</em> </cite> </a>'+
 									'<div class="detail-hits" data-id="{{rows.id}}">'+
 										'<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>'+

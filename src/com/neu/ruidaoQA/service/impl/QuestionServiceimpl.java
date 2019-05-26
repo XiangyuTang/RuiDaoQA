@@ -85,10 +85,10 @@ public class QuestionServiceimpl implements QuestionService{
 		List<Question> list = questionDaoimpl.getQuestionByType(kinds_id);
 		for (Question question:list) {
 			Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
-//			if (answer.getUser_id() == null) {
-//				answer.setContent("该问题没有回答");
-//				continue;
-//			}
+			if (answer.getUser_id() == null) {
+				answer.setContent("该问题没有回答");
+				continue;
+			}
 			User user = userDaoimpl.selectUser(answer.getUser_id());
 			answer.setUser(user);
 			question.setAnswer(answer);

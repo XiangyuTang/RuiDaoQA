@@ -32,23 +32,17 @@ public class getQuestionServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Question selectQuestion = impl.selecctQuestion(q);
-		
-//		int ID =0;
-//		
-//		Integer id = new Integer(ID);
-//		
-//		id = Integer.parseInt(request.getParameter("id"));
-//		
-////		System.out.println(id);
-//		
-//		if (id == null) {
-//			id = 1;
-//		}
-		
+		String idString = request.getParameter("id");
+		Integer id;
+		if (idString == null) {
+			idString = "1";
+			id = Integer.parseInt(idString);
+		}else {
+			id = Integer.parseInt(idString);
+		}
 		//与数据库交互的方法
 //		HttpSession session = request.getSession();
-		List<Question> getQuestionByType = impl.getQuestionByType(2);
+		List<Question> getQuestionByType = impl.getQuestionByType(id);
 //		System.out.println(getQuestionByType.indexOf(0));
 		request.setAttribute("getQuestionByType", getQuestionByType);
 //		session.setAttribute("getQuestionByType", getQuestionByType.get(2).getQues_title());
