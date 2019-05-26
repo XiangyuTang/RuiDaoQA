@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import com.neu.ruidaoQA.dao.impl.AnswerDaoimpl;
 import com.neu.ruidaoQA.dao.impl.QuestionDaoimpl;
+import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
 import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.entity.Question;
 import com.neu.ruidaoQA.entity.User;
@@ -80,9 +81,16 @@ public class QuestionServiceimpl implements QuestionService{
 		// TODO Auto-generated method stub
 		QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
 		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		UserDaoimpl userDaoimpl = new UserDaoimpl();
 		List<Question> list = questionDaoimpl.getQuestionByType(kinds_id);
 		for (Question question:list) {
 			Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
+//			if (answer.getUser_id() == null) {
+//				answer.setContent("该问题没有回答");
+//				continue;
+//			}
+			User user = userDaoimpl.selectUser(answer.getUser_id());
+			answer.setUser(user);
 			question.setAnswer(answer);
 		}
 		return list;
