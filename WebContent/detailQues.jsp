@@ -511,23 +511,14 @@ form {
 //		var $textarea = $("[id='commentcontent']");
 //		var commentcontent = $textarea.val();
 //	}
-
+	var comment_flag = 0;
 	$('[class="layui-btn  layui-btn-sm"]').live('click',function(){
-		var comment_flag = 0;
 		var str_time = getTime();
 		var ans_time = getTimeIntoDB();
 		var $textarea = $(this).parent().prev().find("textarea");
 		var commentcontent = $textarea.val();
 		var answer_id = $(this).parent().parent().parent().prev().find("input").val();
 		var comment_time = getTimeIntoDB();
-		$("[class='layui-icon layui-icon-reply-fill comment_for_comment']").live("click",function(){
-		var id = $(this).prev().val();
-		var name = $(this).parent().parent().prev().find("i").text();
-		var content = $(this).parent().parent().prev().find("p").text();
-		var setcontent = "//@"+name+"："+content;
-		$("[class='commentcontent'][id='"+id+"']").val(setcontent);
-		comment_flag = 1;
-		})
 		if(commentcontent=='')
 		{
 			layui.use(['layer', 'form'], function(){
@@ -573,8 +564,16 @@ form {
 							'</div>'
 		)
 		$commentdiv.insertAfter($(this).parent().parent());
-		
+		comment_flag = 0;
 	});
+	$("[class='layui-icon layui-icon-reply-fill comment_for_comment']").live("click",function(){
+		var id = $(this).prev().val();
+		var name = $(this).parent().parent().prev().find("i").text();
+		var content = $(this).parent().parent().prev().find("p").text();
+		var setcontent = "//@"+name+"："+content;
+		$("[class='commentcontent'][id='"+id+"']").val(setcontent);
+		comment_flag = 1;
+		})
 	
 		$("[class='layui-icon layui-icon-reply-fill comment_for_comment']").live("click",function(){
 		var id = $(this).prev().val();
