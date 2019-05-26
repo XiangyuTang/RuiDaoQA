@@ -29,21 +29,21 @@ public class getQuestionServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		Question selectQuestion = impl.selecctQuestion(q);
 		
-		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(id);
+//		int id = Integer.parseInt(request.getParameter("id"));
+//		System.out.println(id);
 		//与数据库交互的方法
-		HttpSession session = request.getSession();
+//		HttpSession session = request.getSession();
 		List<Question> getQuestionByType = impl.getQuestionByType(1);
 		//System.out.println(getQuestionByType.indexOf(0));
-		session.setAttribute("getQuestionByType", getQuestionByType);
+		request.setAttribute("getQuestionByType", getQuestionByType);
 		System.out.println(getQuestionByType.get(1).getQues_title());
-		session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
+		request.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
 		//response.sendRedirect("loginIndex.jsp");
 		request.getRequestDispatcher("loginIndex.jsp").forward(request, response);
 		
