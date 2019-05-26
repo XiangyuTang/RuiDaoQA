@@ -34,7 +34,7 @@ public class CommentDaoimpl extends BaseDao implements CommentDao{
 		return i;
 	}
 
-	@Override
+	@Override//根据answer_id选出其最热的10条评论
 	public List<Comment> getCommentsList(int answer_id) {
 		Object[] params = new Object[] {answer_id};
 		String sql = "select * from comment where answer_id =? order by acclaim_number DESC";
@@ -63,5 +63,13 @@ public class CommentDaoimpl extends BaseDao implements CommentDao{
 			super.closeAll(con, super.pst, rsResultSet);
 		}
 		return comments;
+	}
+
+	@Override
+	public int deleteAcclaim_number(int comment_id) {//取消相应评论的点赞
+		Object[] params = new Object[] {comment_id};
+		String sql  = "update comment set acclaim_number = acclaim_number-1  where comment_id = ?";
+		int i = super.executeIUD(sql, params);
+		return i;
 	}
 }

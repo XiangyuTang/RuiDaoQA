@@ -118,7 +118,7 @@ form {
 							<div class="jieda-reply">
 								<input type="hidden" name="comment_id" value="${comment.comment_id }"/><!--该条评论的id，用于评论点赞和评论的再评论，位置不可变动-->
 								<span class="jieda-zan zanok" type="zan" style="margin-left: 50px;">
-									<i class="layui-icon layui-icon-praise" title="赞"></i><em>${comment.dianzan_num }</em>
+									<i class="layui-icon layui-icon-praise comment" title="赞"></i><em>${comment.dianzan_num }</em>
 								</span>
 								<span class="jieda-zan zanok" type="zan">
 									<input type="hidden" name="count" value="${status1.count }"/>
@@ -367,6 +367,45 @@ form {
 					url:"addAcclaim",
 					async:true,
 					data:{answer_id:answer_id,fangfa:"delete"},
+					dataType:"text",
+					success:function(e){
+						
+					}
+				});
+				$(this).removeClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());		
+				$(this).next().html(i-1);
+				}
+			);
+			//先触发click，不然第一次失效
+       		$(this).trigger("click");
+		});
+		
+		//对评论进行点赞
+		$("i[class='layui-icon layui-icon-praise comment']").live('click',function(){
+			$(this).toggle(//点赞按钮的特效部分
+				function(){
+				var comment_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+				$.ajax({
+					type:"post",
+					url:"addAcclaimforComment",
+					async:true,
+					data:{comment_id:comment_id,fangfa:"add"},
+					dataType:"text",
+					success:function(e){
+					}
+				});
+				$(this).addClass("layui-anim layui-anim-scaleSpring");
+				var i = parseInt($(this).next().html());			
+				$(this).next().html(i+1);
+				},
+				function(){
+				var comment_id = parseInt($(this).parent().prev().val());//用于获取answer_id(int类型的)
+				$.ajax({
+					type:"post",
+					url:"addAcclaimforComment",
+					async:true,
+					data:{comment_id:comment_id,fangfa:"delete"},
 					dataType:"text",
 					success:function(e){
 						

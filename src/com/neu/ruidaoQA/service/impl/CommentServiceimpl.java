@@ -29,4 +29,11 @@ public class CommentServiceimpl implements CommentService{
 		int i = commentDaoimpl.addComment(comment);
 		return i;
 	}
+
+	@Override//取消相应评论点赞
+	public int deleteAcclaim_number(int comment_id) {
+		CommentDaoimpl commentDaoimpl = new CommentDaoimpl();
+		int i = commentDaoimpl.deleteAcclaim_number(comment_id);
+		return i;
+	}
 }
