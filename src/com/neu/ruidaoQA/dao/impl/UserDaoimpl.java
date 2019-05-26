@@ -29,8 +29,9 @@ public class UserDaoimpl extends BaseDao implements UserDao{
 				u.setIntroduce(rs.getString(8));
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
+		}finally {
+			super.closeAll(con, super.pst, rs);
 		}
 		return u;
 	}
