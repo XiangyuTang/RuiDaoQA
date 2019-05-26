@@ -71,13 +71,18 @@
 			
 			<div class="wrap">
 				<div class="content detail">
-					
+				
+				<c:forEach items="${getQuestionByType}" var="q" varStatus="status">
+				<img alt="" src="${q.answer.user.head_photo }">
+				</c:forEach>
+				
+				<!-- <img alt="" src="images/uer.jpg"> -->
 				<!--	<ul class="flow-default" id="LAY_demo1"></ul>-->
 				<%-- <c:forEach items="${getQuestionByType}" var="q" varStatus="status"> --%>
 				<ul class="flow-default" id="LAY_demo">
 					<!--动态加载流对象-->
 				</ul>
-<%-- 				</c:forEach> --%>
+ 				<%-- </c:forEach> --%>
 				</div>
 		</div>
 		
@@ -117,7 +122,6 @@
 								767</span>
 						</dd>
 					</dl>
-		
 					<dl class="fly-panel fly-list-one">
 						<dt class="fly-panel-title">近期热议</dt>
 						<dd>
@@ -327,41 +331,42 @@
 	    ,isAuto:true
 	    ,done: function(page, next){ //执行下一页的回调
       
-      //模拟数据插入
+      //模拟数据插入      ${q.answer.user.head_photo}
       setTimeout(function(){
         var lis = [];
         for(var i = 0; i < 2; i++){
-          		lis.push('<div class="fly-panel box">'+
-								'<h1><a href="toDetailQues?question_id=2">haha${title1}</a></h1>'+
+          		lis.push('<c:forEach items="${getQuestionByType}" var="q" varStatus="status">'+
+          				'<div class="fly-panel box">'+
+								'<h1><a href="toDetailQues?question_id=2">${q.ques_title }</a></h1>'+
 								'<div class="detail-about">'+
-									'<a class="jie-user" href=""> <img '+
-										'src="images/uer.jpg" alt="头像"> <cite> 压缩'+
+									'<a class="jie-user" href=""> <img '+ 
+										'src="images/uer.jpg" alt="头像"> <cite> ${q.answer.user.nick_name}'+
 											'<em>2017-05-01发布</em> </cite> </a>'+
 									'<div class="detail-hits" data-id="{{rows.id}}">'+
 										'<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>'+
 									'</div>'+
 								'</div>'+
 								'<div class="detail-body photos" style="margin-bottom: 0px;">'+
-									'<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。'+
-									'小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回……</p>'+
+									'<p>${q.answer.content }</p>'+
 								'</div>'+
 		
 								'<div class="jieda-reply">'+
 										'<input type="hidden" name="answer_id" value="2"/>'+
 										'<span class="jieda-zan zanok" type="zan">'+
-											'<i class="layui-icon layui-icon-praise" style="font-size: 20px; color: #009688;" title="赞"></i><em style="font-size: 15px; color: #009688;">12</em>'+
+											'<i class="layui-icon layui-icon-praise" style="font-size: 20px; color: #009688;" title="赞"></i><em style="font-size: 15px; color: #009688;">${q.answer.dianzan_num}</em>'+
 										'</span>'+
 										'<span class="jieda-zan zanok" type="zan"><i '+
-											'class="layui-icon layui-icon-tread" style="font-size: 20px; color: #009688;" title="踩"></i><em style="font-size: 15px; color: #009688;">3</em>'+
+											'class="layui-icon layui-icon-tread" style="font-size: 20px; color: #009688;" title="踩"></i><em style="font-size: 15px; color: #009688;">${q.answer.cai_num}</em>'+
 										'</span>'+
 										'<span class="jieda-zan zanok" type="zan"><i '+
-											'class="layui-icon layui-icon-reply-fill"  style="font-size: 20px; color: #009688;" title="评论"></i><em style="font-size: 15px; color: #009688;">5</em>'+
+											'class="layui-icon layui-icon-reply-fill"  style="font-size: 20px; color: #009688;" title="评论"></i><em style="font-size: 15px; color: #009688;">${q.answer.comment_num}</em>'+
 										'</span>'+
 										'<div class="jieda-admin">'+
 											'<span class="jieda-accept" type="accept">'+
 										'</div>'+
 								'</div>'+
-						'</div>')
+						'</div>'+
+						'</c:forEach>')
         		} 
         		
 	       		//执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
