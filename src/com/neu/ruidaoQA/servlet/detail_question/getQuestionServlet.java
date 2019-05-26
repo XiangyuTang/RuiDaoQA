@@ -1,9 +1,9 @@
 package com.neu.ruidaoQA.servlet.detail_question;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.neu.ruidaoQA.dao.impl.QuestionDaoimpl;
 import com.neu.ruidaoQA.entity.Question;
+import com.neu.ruidaoQA.service.impl.QuestionServiceimpl;
 import com.sun.istack.internal.Pool.Impl;
 
 /**
@@ -21,7 +22,12 @@ import com.sun.istack.internal.Pool.Impl;
 @WebServlet("/getQuestion")
 public class getQuestionServlet extends HttpServlet implements java.io.Serializable{
 	
-	QuestionDaoimpl impl = new QuestionDaoimpl();
+
+	QuestionServiceimpl impl = new QuestionServiceimpl();
+	
+    public getQuestionServlet() {
+        super();
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -70,27 +76,32 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
         }
 
 		response.getWriter().print(s);
-
+}
 		//request.getRequestDispatcher("index.jsp").forward(request, response);
-	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-//		Question selectQuestion = impl.selecctQuestion(q);
-		
-		Integer id = Integer.parseInt(request.getParameter("topic"));
-		System.out.println(id);
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String idString = request.getParameter("id");
+		Integer id;
+		if (idString == null) {
+			idString = "1";
+			id = Integer.parseInt(idString);
+		}else {
+			id = Integer.parseInt(idString);
+		}
 		//与数据库交互的方法
-		HttpSession session = request.getSession();
-		List<Question> getQuestionByType = impl.getQuestionByType(1);
-		//System.out.println(getQuestionByType.indexOf(0));
-		session.setAttribute("getQuestionByType", getQuestionByType);
-		System.out.println(getQuestionByType.get(1).getQues_title());
-		session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
-		//response.sendRedirect("loginIndex.jsp");
+//		HttpSession session = request.getSession();
+		List<Question> getQuestionByType = impl.getQuestionByType(id);
+//		System.out.println(getQuestionByType.indexOf(0));
+		request.setAttribute("getQuestionByType", getQuestionByType);
+//		session.setAttribute("getQuestionByType", getQuestionByType.get(2).getQues_title());
+//		System.out.println(getQuestionByType.get(1).getContent());
+//		session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
 		request.getRequestDispatcher("loginIndex.jsp").forward(request, response);
-		
-		
-		
+//		System.out.println(getQuestionByType.get(0).getAnswer().getContent());
+
+
 	}
 
 }

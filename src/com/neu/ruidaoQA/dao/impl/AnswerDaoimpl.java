@@ -111,6 +111,7 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
+			super.closeAll(con, super.pst, rsResultSet);
 		}
 		return answers;
 	}

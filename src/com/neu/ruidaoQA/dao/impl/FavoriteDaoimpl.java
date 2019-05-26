@@ -50,7 +50,6 @@ public class FavoriteDaoimpl extends BaseDao implements FavoriteDao{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally{
 			super.closeAll(con, super.pst, rs);

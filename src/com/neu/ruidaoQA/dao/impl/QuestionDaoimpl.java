@@ -93,8 +93,10 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		String sql = "select * from question where question_type=? order by answer_number DESC";
 		ResultSet rs = super.executeSelect(sql, params);
 		List<Question> list = new ArrayList<Question>();
+		int i = 0;
 		try {
 			while (rs.next()) {
+				i++;
 				Question question = new Question();
 				question.setQuestion_id(rs.getInt(1));
 				question.setQues_type_id(rs.getInt(2));
@@ -105,6 +107,9 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 				question.setPublish_time(rs.getDate(7));
 				question.setQues_title(rs.getString(8));
 				list.add(question);
+				if (i==10) {
+					return list;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

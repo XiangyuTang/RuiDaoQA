@@ -111,20 +111,18 @@ public class AnswerServiceimpl implements AnswerService {
 		List<Answer> answers = answerDaoimpl.getAnswersList(question_id);
 //		Collections.reverse(answers);
 		for (Answer answer:answers ) {
-			System.out.println(answer.getContent());
 			User user = userDaoimpl.selectUserByAnswer_id(answer.getAnswer_id());
 			answer.setUser(user);
-			System.out.println(user.getNick_name());
 			List<Comment> comments = commentDaoimpl.getCommentsList(answer.getAnswer_id());
 //			Collections.reverse(comments);
 			for (Comment comment:comments) {
 				User user1 = userDaoimpl.selectUserByComment_id(comment.getComment_id());
 				comment.setUser(user1);
-				System.out.println(comment.getDianzan_num());
 			}
 			answer.setComments(comments);
 		}
 		return answers;
 	}
+	
 	
 }
