@@ -52,7 +52,7 @@ public class searchQuesServlet extends HttpServlet {
 							"</div>"+
 						"</div>"+
 						"<div class='detail-body photos' style='margin-bottom: 0px;'>"+
-							"<p>"+q.getContent()+
+							"<p>"+q.getAnswer().getContent()+
 							"</p>"+
 						"</div>"+
 						"<div class='jieda-reply'>"+
@@ -74,7 +74,7 @@ public class searchQuesServlet extends HttpServlet {
 	        }
 			
 			response.getWriter().print(s);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			//request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		
 	}
