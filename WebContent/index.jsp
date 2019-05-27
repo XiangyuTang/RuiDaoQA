@@ -329,17 +329,14 @@
 					
 					console.log(ajax.responseText);
 					var ul = document.getElementById('LAY_demo');
-					//ul.innerHTML = ajax.responseText;
+					ul.innerHTML = ajax.responseText;
 					
-					layui.use('flow', function(){
-						//$("#nav li:first").triggerHandler("focus");//在首页流加载时，触发点击热门事件
-					 	//$("#nav li:first").trigger("click");//在首页流加载时，触发点击热门事件
+					/*layui.use('flow', function(){
 					  	var flow = layui.flow;
 						  	flow.load({
 						    elem: '#LAY_demo' //流加载容器
 						    ,scrollElem: '#LAY_demo' //滚动条所在元素，一般不用填，此处只是演示需要。
 						    ,done: function(page, next){ //执行下一页的回调
-				      
 					      	//模拟数据插入
 					      	setTimeout(function(){
 						        var lis = [];
@@ -350,7 +347,7 @@
 						      	}, 500);
 				    		}
 				  			});
-				  	})					
+				  	})			*/		
 				}
         	}
 			
@@ -371,64 +368,41 @@
     	});*/
 	})
 </script>
-
 <!--<script>
-		layui.use('flow', function(){
-		//$("#nav li:first").triggerHandler("focus");//在首页流加载时，触发点击热门事件
-	 	$("#nav li:first").trigger("click");//在首页流加载时，触发点击热门事件
-	  	var flow = layui.flow;
-	  	flow.load({
-	    elem: '#LAY_demo' //流加载容器
-	    ,scrollElem: '#LAY_demo' //滚动条所在元素，一般不用填，此处只是演示需要。
-	    ,done: function(page, next){ //执行下一页的回调
-      
-      //模拟数据插入
-      setTimeout(function(){
-        var lis = [];
-        for(var i = 0; i < 2; i++){
-         
-          		lis.push('<div class="fly-panel box">'+
-								'<h1><a href="toDetailQues?question_id=2">222${title1}</a></h1>'+
-								'<div class="detail-about">'+
-									'<a class="jie-user" href=""> <img '+
-										'src="images/uer.jpg" alt="头像"> <cite> 压缩'+
-											'<em>2017-05-01发布</em> </cite> </a>'+
-									'<div class="detail-hits" data-id="{{rows.id}}">'+
-										'<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>'+
-									'</div>'+
-								'</div>'+
-								'<div class="detail-body photos" style="margin-bottom: 0px;">'+
-									'<p>核桃树在我国分布很广，对于土壤不那么挑剔，树冠高大，树龄达百年之久。前些年多生长在山上和农民院中，还有的生长在埝边地头。'+
-									'小的时候为了吃核桃不但两手染成黑色，而且有的小孩还从树上掉下来，这些往事只能回……</p>'+
-								'</div>'+
-		
-								'<div class="jieda-reply">'+
-										'<input type="hidden" name="answer_id" value="2"/>'+
-										'<span class="jieda-zan zanok" type="zan">'+
-											'<i class="layui-icon layui-icon-praise" style="font-size: 20px; color: #009688;" title="赞"></i><em style="font-size: 15px; color: #009688;">12</em>'+
-										'</span>'+
-										'<span class="jieda-zan zanok" type="zan"><i '+
-											'class="layui-icon layui-icon-tread" style="font-size: 20px; color: #009688;" title="踩"></i><em style="font-size: 15px; color: #009688;">3</em>'+
-										'</span>'+
-										'<span class="jieda-zan zanok" type="zan"><i '+
-											'class="layui-icon layui-icon-reply-fill"  style="font-size: 20px; color: #009688;" title="评论"></i><em style="font-size: 15px; color: #009688;">5</em>'+
-										'</span>'+
-										'<div class="jieda-admin">'+
-											'<span class="jieda-accept" type="accept">'+
-										'</div>'+
-								'</div>'+
-						'</div>')
-        		} 
-        		
-	       		//执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-	        	//pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-	        	next(lis.join(''), page < 10); //假设总页数为 10
-	      	}, 500);
-    		}
-  		});
-  	})
-	
-	
+	$(function(){
+		var $newTr=$("<div class='fly-panel box'>"+
+						"<h1><a href='toDetailQues?question_id="+q.getQuestion_id()+"'>"+q.getQues_title()+"</a></h1>"+
+						"<div class='question-info'><span class='question-answer-num'>"+q.getAnswer_num()+"回答</span> <span class='question-follow-num'>"+q.getCollect_num()+"人收藏</span></div>"+
+						"<div class='detail-about'>"+
+							"<a class='jie-user' href=''> <img "+
+								"src='images/uer.jpg' alt='头像'> <cite> 压缩"+
+									"<em>2017-05-01发布</em> </cite> </a>"+
+							"<div class='detail-hits' data-id='{{rows.id}}'>"+
+								"<button class='layui-btn layui-btn-radius layui-btn-sm' style='width:80px; border-radius:20px;'>关注</button>"+
+							"</div>"+
+						"</div>"+
+						"<div class='detail-body photos' style='margin-bottom: 0px;'>"+
+							"<p>"+q.getContent()+
+							"</p>"+
+						"</div>"+
+						"<div class='jieda-reply'>"+
+								"<input type='hidden' name='answer_id' value='2'/>"+
+								"<span class='jieda-zan zanok' type='zan'>"+
+									"<i class='layui-icon layui-icon-praise' style='font-size: 20px; color: #009688;' title='赞'></i><em style='font-size: 15px; color: #009688;'>"+12+"</em>"+
+								"</span>"+
+								"<span class='jieda-zan zanok' type='zan'><i "+
+									"class='layui-icon layui-icon-tread' style='font-size: 20px; color: #009688;' title='踩'></i><em style='font-size: 15px; color: #009688;'>3</em>"+
+								"</span>"+
+								"<span class='jieda-zan zanok' type='zan'><i "+
+									"class='layui-icon layui-icon-reply-fill'  style='font-size: 20px; color: #009688;' title='评论'></i><em style='font-size: 15px; color: #009688;'>"+q.getAnswer_num()+"</em>"+
+								"</span>"+
+								"<div class='jieda-admin'>"+
+									"<span class='jieda-accept' type='accept'>"+
+								"</div>"+
+						"</div>"+
+				"</div>")
+			$('#jieda').prepend($newTr);
+	})
 </script>-->
 
 
