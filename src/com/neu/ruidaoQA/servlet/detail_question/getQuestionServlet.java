@@ -36,7 +36,7 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
 		System.out.println(id);
 		//与数据库交互的方法
 		HttpSession session = request.getSession();
-		List<Question> getQuestionByType = impl.getQuestionByType(1);
+		List<Question> getQuestionByType = impl.getQuestionByType(id);
 		session.setAttribute("getQuestionByType", getQuestionByType);	
 		//session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
 
@@ -65,16 +65,15 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
 							"<span class='jieda-zan zanok' type='zan'><i "+
 								"class='layui-icon layui-icon-tread' style='font-size: 20px; color: #009688;' title='踩'></i><em style='font-size: 15px; color: #009688;'>3</em>"+
 							"</span>"+
-							"<span class='jieda-zan zanok' type='zan'><i "+
+							/*"<span class='jieda-zan zanok' type='zan'><i "+
 								"class='layui-icon layui-icon-reply-fill'  style='font-size: 20px; color: #009688;' title='评论'></i><em style='font-size: 15px; color: #009688;'>"+q.getAnswer_num()+"</em>"+
-							"</span>"+
+							"</span>"+*/
 							"<div class='jieda-admin'>"+
 								"<span class='jieda-accept' type='accept'>"+
 							"</div>"+
 					"</div>"+
 			"</div>";
         }
-
 		response.getWriter().print(s);
 }
 		//request.getRequestDispatcher("index.jsp").forward(request, response);
