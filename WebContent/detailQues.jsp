@@ -291,30 +291,30 @@ form {
 			return;
 		}
 		
-   		var $newTr=$('<li data-id="12" class="jieda-daan"><a'+
-				' name="item-121212121212"></a>'+
-				'<div class="detail-about detail-about-reply">'+
-					'<a class="jie-user" href=""> <img '+
-						'src="images/uer.jpg" alt=""> <cite> <i>我</i>'+
-							'</cite> </a>' +
-					'<div class="detail-hits">'+
-						'<span id="time">'+str_time+'</span>'+
-					'</div>'+
-				'</div>'+
-				'<div class="detail-body jieda-body">'+
-					'<p>'+ text +'</p>'+
-				'</div>'+
-				'<div class="jieda-reply">'+
-					'<span class="jieda-zan zanok" type="zan">'+
-						'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
-					'</span>'+
-					'<span class="jieda-zan zanok" type="zan"><i'+
-						' class="layui-icon layui-icon-tread" title="踩"></i><em>0</em>'+
-					'</span>'+
-					'<span class="jieda-zan zanok" type="zan"><i'+
-						' class="layui-icon layui-icon-reply-fill" title="评论"></i><em>0</em>'+
-					'</span>'+
-				'</div></li>')
+   		var $newTr=$('<li data-id="12" class="jieda-daan"><a name="item-121212121212"></a>'+
+					'<div class="detail-about detail-about-reply" > '+
+								'<input type="hidden" name="user_id" value="${answer.user.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
+								'<a class="jie-user" href=""> <img src="images/uer.jpg " alt=""> <cite> <i>我</i></cite> </a> '+
+								'<div class="detail-hits"> '+
+									'<span>'+str_time+'</span>'+
+								'</div>'+
+							'</div>'+
+							'<div class="detail-body jieda-body">'+
+								'<p>'+ text +'</p>'+
+							'</div>	'+						
+							'<div class="jieda-reply">'+
+								'<input type="hidden" name="answer_id" value=""/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->'+
+								'<span class="jieda-zan zanok" type="zan">'+
+									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
+								'</span>'+
+								'<span class="jieda-zan zanok" type="zan"><i '+
+									'class="layui-icon layui-icon-tread" title="踩"></i><em>0</em>'+
+								'</span>'+
+								'<span class="jieda-zan zanok" type="zan"><i '+
+									'class="layui-icon layui-icon-reply-fill" title="评论"></i><em>0</em>'+
+								'</span>'+
+							'</div>'+
+				'</li>')
 			$('#jieda').prepend($newTr);
 			//清空文本框内容
 			//text = $('textarea[id="L_content"]').val("");
