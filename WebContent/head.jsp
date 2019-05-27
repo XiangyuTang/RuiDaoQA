@@ -65,6 +65,7 @@
 	</body>
 </html>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
 <script>
 	$(function(){
 		$('i[class="iconfont icon-sousuo"]').click(function(){
@@ -82,8 +83,10 @@
 			//xhr.send('question_id='+question_id);
 			//4.回调
 			xhr.onload = function(){
-				
-				alert("从searchQuesServlet回来了");
+				console.log(xhr.responseText);
+				var ul = document.getElementById('LAY_demo');
+				ul.innerHTML = xhr.responseText;
+				//flush(ajax.responseText);
 			}
 			})
 	}) 

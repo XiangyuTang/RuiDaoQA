@@ -39,9 +39,8 @@
 	</head>
 	
 	<body>
-		<iframe src="head.jsp" scrolling="no" width="100%" height="65px" ></iframe>
-		
-		<div class="main layui-clear">
+		<%@ include file="head.jsp"%>
+		<div class="main layui-clear" style="margin-top: 80px;">
 			<div>
 				<ul class="layui-nav" id="nav">
 				  <li class="layui-nav-item" ><a href="#" id='1'>热门</a></li>
@@ -80,7 +79,7 @@
 				</ul>
 <%-- 				</c:forEach> --%>
 				</div>
-		</div>
+			</div>
 		
 			<div class="edge">
 					<dl class="fly-panel fly-list-one">
