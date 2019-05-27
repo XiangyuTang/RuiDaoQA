@@ -9,31 +9,31 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * ¹¤¾ßÀà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author Administrator
  *
  */
 public class BaseDao {
-	private String driver="com.mysql.jdbc.Driver";
-	private String url="jdbc:mysql://localhost:3306/wukong?useSSL=false";
+	private String driver="com.mysql.cj.jdbc.Driver";
+	private String url="jdbc:mysql://localhost:3306/admin?serverTimezone=GMT";
 	private String user="root";
 	private String pwd="5046513";
 	public static Connection con=null;
 	public static  PreparedStatement pst =null;
 	public static  ResultSet rs = null;
 	/**
-	 * »ñÈ¡»á»°µÄ·½·¨
+	 * ï¿½ï¿½È¡ï¿½á»°ï¿½Ä·ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public Connection getCon(){
 		try {
-			Class.forName(driver);//¼ÓÔØmysqlÇý¶¯
+			Class.forName(driver);//ï¿½ï¿½ï¿½ï¿½mysqlï¿½ï¿½ï¿½ï¿½
 			con=DriverManager.getConnection(url,user,pwd);
 		} catch (ClassNotFoundException e) {
-			System.out.println("Çý¶¯¼ÓÔØÊ§°Ü");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("Á¬½Ó½¨Á¢Ê§°Ü");
+			System.out.println("ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,7 +43,7 @@ public class BaseDao {
 	}
 	
 	/**
-	 * ¹«ÓÃµÄ¹Ø±Õ¸÷ÖÖjdbc¶ÔÏóµÄ·½·¨
+	 * ï¿½ï¿½ï¿½ÃµÄ¹Ø±Õ¸ï¿½ï¿½ï¿½jdbcï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
 	 * @param con
 	 * @param st
 	 * @param rs
@@ -60,29 +60,29 @@ public class BaseDao {
 				con.close();
 			}
 		} catch (Exception e2) {
-			System.out.println("¹Ø±ÕÊý¾Ý¿âÊ§°Ü");
+			System.out.println("ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ê§ï¿½ï¿½");
 			e2.printStackTrace();
 		}
 		
 	}
 	
 	/**
-	 * ½«ÔöÉ¾¸ÄµÄ²Ù×÷³éÈ¡³É¹²Í¨µÄ·½·¨
-	 * @return int ±íÊ¾Ó°ÏìµÄÐÐÊý
+	 * ï¿½ï¿½ï¿½ï¿½É¾ï¿½ÄµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½É¹ï¿½Í¨ï¿½Ä·ï¿½ï¿½ï¿½
+	 * @return int ï¿½ï¿½Ê¾Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public int executeIUD(String sql , Object[] params){
-		PreparedStatement pst =null;//Ô¤±àÒësqlÓï¾ä¶ÔÏó
-		con = getCon();//Í¨¹ý¹²Í¨·½·¨µÃµ½Êý¾Ý¿âÁ¬½Ó
-		int count =0;//ÉèÖÃÓ°ÏìÐÐÊýµÄ±äÁ¿
+		PreparedStatement pst =null;//Ô¤ï¿½ï¿½ï¿½ï¿½sqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		con = getCon();//Í¨ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
+		int count =0;//ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
 		try {
 			pst=con.prepareStatement(sql);
-			//Æ´½Ó²ÎÊý  ,Ò»¸ö?¶ÔÓ¦Ò»¸ö²ÎÊý
+			//Æ´ï¿½Ó²ï¿½ï¿½ï¿½  ,Ò»ï¿½ï¿½?ï¿½ï¿½Ó¦Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (null!=params) {
 				for (int i = 0; i <params.length; i++) {
-					pst.setObject(i+1, params[i]);//ÎªsqlÖÐµÄÃ¿Ò»¸ö?¸³Öµ
+					pst.setObject(i+1, params[i]);//Îªsqlï¿½Ðµï¿½Ã¿Ò»ï¿½ï¿½?ï¿½ï¿½Öµ
 				}
 			}
-			count=pst.executeUpdate();//PreparedStatementµÄÔöÉ¾¸Ä·½·¨
+			count=pst.executeUpdate();//PreparedStatementï¿½ï¿½ï¿½ï¿½É¾ï¿½Ä·ï¿½ï¿½ï¿½
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,18 +93,18 @@ public class BaseDao {
 	}
 	
 	/**
-	 * ¹²Í¨µÄ²éÑ¯·½·¨,·µ»ØÖµÊÇ½á¹û¼¯
+	 * ï¿½ï¿½Í¨ï¿½Ä²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Öµï¿½Ç½ï¿½ï¿½ï¿½ï¿½
 	 * @param sql
 	 * @param params
 	 * @return
 	 */
 	public ResultSet executeSelect(String sql , Object[] params){
-		con = getCon();//Í¨¹ý¹²Í¨·½·¨µÃµ½Êý¾Ý¿âÁ¬½Ó
+		con = getCon();//Í¨ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 		try {
 			pst=con.prepareStatement(sql);
 			if (null!=params) {
 				for (int i = 0; i <params.length; i++) {
-					pst.setObject(i+1, params[i]);//ÎªsqlÖÐµÄÃ¿Ò»¸ö?¸³Öµ
+					pst.setObject(i+1, params[i]);//Îªsqlï¿½Ðµï¿½Ã¿Ò»ï¿½ï¿½?ï¿½ï¿½Öµ
 				}
 			}
 			
@@ -112,7 +112,7 @@ public class BaseDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally{
-			//ÕâÀï×¢Òâ²»ÄÜµ÷ÓÃcloseAll·½·¨,²»È»ºóÆÚµÃ²»µ½rsÖÐµÄÖµÅ¶
+			//ï¿½ï¿½ï¿½ï¿½×¢ï¿½â²»ï¿½Üµï¿½ï¿½ï¿½closeAllï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½È»ï¿½ï¿½ï¿½ÚµÃ²ï¿½ï¿½ï¿½rsï¿½Ðµï¿½ÖµÅ¶
 		}
 		
 		return rs;

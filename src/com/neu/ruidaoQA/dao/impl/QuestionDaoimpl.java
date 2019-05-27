@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import com.neu.ruidaoQA.dao.QuestionDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
 import com.neu.ruidaoQA.entity.Question;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 	public int addQuestion(Question q) {
@@ -186,6 +187,38 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 			super.closeAll(con, super.pst, rs);
 		}
 		return getQuestionByCollectNum;
+	}
+
+	@Override
+	public List<Question> getQuestionByTypeandnumber(Integer kinds_id, Integer min, Integer max) {
+		Object[] params = new Object[] {kinds_id}; 
+		String sql = "select * from question where question_type=? order by answer_number DESC";
+		ResultSet rs = super.executeSelect(sql, params);
+		List<Question> questions = new ArrayList<Question>();
+		int i = min;
+		try {
+			while (rs.next()) {
+				i++;
+				Question question = new Question();
+				question.setQuestion_id(rs.getInt(1));
+				question.setQues_type_id(rs.getInt(2));
+				question.setUser_id(rs.getInt(3));
+				question.setContent(rs.getString(4));
+				question.setCollect_num(rs.getInt(5));
+				question.setAnswer_num(rs.getInt(6));
+				question.setPublish_time(rs.getDate(7));
+				question.setQues_title(rs.getString(8));
+				questions.add(question);
+				if (i== max) {
+					return questions;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			super.closeAll(con, super.pst, rs);
+		}
+		return questions;
 	}
 
 	

@@ -11,8 +11,25 @@ public class Question {
 	private Integer answer_num;
 	private Date publish_time;
 	private String ques_title;
+	private User user;
 	private Answer answer;
+	private Integer collect_flag;
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
+	public Integer getCollect_flag() {
+		return collect_flag;
+	}
+
+	public void setCollect_flag(Integer collect_flag) {
+		this.collect_flag = collect_flag;
+	}
+
 	public Answer getAnswer() {
 		return answer;
 	}

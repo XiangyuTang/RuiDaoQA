@@ -223,7 +223,6 @@
 					dataType:"text",
 					success:function(e){	
 					}
-
 				});
 				$(this).addClass("layui-btn-primary");
 				$(this).html("已关注");
@@ -361,8 +360,7 @@
 		ajax1.send();
 		ajax2.open('get','getAnswerByAcclaimNum',true);
 		ajax2.send();
-		//responseText 该变量是引擎内置的属性，专门负责从后台接收文本类型的内容
-		
+		//responseText 该变量是引擎内置的属性，专门负责从后台接收文本类型的内容		
 		//回调函数实现流加载
 		ajax1.onload=function(){
 			console.log(ajax1.responseText);

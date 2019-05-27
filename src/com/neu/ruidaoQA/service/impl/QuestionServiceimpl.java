@@ -110,8 +110,9 @@ public class QuestionServiceimpl implements QuestionService{
 		// TODO Auto-generated method stub
 		QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
 		List<Question> getQuestionByCollectNum = questionDaoimpl.getQuestionByCollectNum();
-		/*System.out.println(getQuestionByCollectNum.size());
-		System.out.println(getQuestionByCollectNum.get(0).getQues_title());*/
+
+		//System.out.println(getQuestionByCollectNum.get(0).getQues_title());
+
 		return getQuestionByCollectNum;
 	}
 

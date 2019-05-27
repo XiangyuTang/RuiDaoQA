@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import com.alibaba.fastjson.JSON;
+import com.mysql.cj.Session;
 import com.neu.ruidaoQA.dao.impl.QuestionDaoimpl;
 import com.neu.ruidaoQA.entity.FlowLoadJson;
 import com.neu.ruidaoQA.entity.Question;
@@ -48,7 +50,7 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
 			"</div>";
     	}
     	else {
-    		s+="<div class='fly-panel box'>"+
+        	s+="<div class='fly-panel box'>"+
 					"<h1><a href='toDetailQues?question_id="+q.getQuestion_id()+"'>"+q.getQues_title()+"</a></h1>"+
 					"<div class='question-info'><span class='question-answer-num'>"+q.getAnswer_num()+"回答</span> <span class='question-follow-num'>"+q.getCollect_num()+"人收藏</span></div>"+
 					"<div class='detail-about'>"+
@@ -127,52 +129,6 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
 		//将java中的对象转为json字符串
 		String str = JSON.toJSONString(fljson);
 		
-        /*for(Question q:getQuestionByType){
-        	if(q.getAnswer()==null)//说明该问题没有人回答
-        	{
-        		s+="<div class='fly-panel box'>"+
-    					"<h1><a href='toDetailQues?question_id="+q.getQuestion_id()+"'>"+q.getQues_title()+"</a></h1>"+
-    					"<div class='question-info'><span class='question-answer-num'>"+0+"回答</span> <span class='question-follow-num'>"+q.getCollect_num()+"人收藏</span></div>"+
-    					
-    					"<div class='detail-body photos' style='margin-bottom: 0px;'>"+
-    						"<p>"+"该回答为空."+
-    						"</p>"+
-    					"</div>"+
-    					
-    			"</div>";
-        	}
-        	else {
-        		s+="<div class='fly-panel box'>"+
-    					"<h1><a href='toDetailQues?question_id="+q.getQuestion_id()+"'>"+q.getQues_title()+"</a></h1>"+
-    					"<div class='question-info'><span class='question-answer-num'>"+q.getAnswer_num()+"回答</span> <span class='question-follow-num'>"+q.getCollect_num()+"人收藏</span></div>"+
-    					"<div class='detail-about'>"+
-    						"<a class='jie-user' href=''> <img "+
-    							"src='"+q.getAnswer().getUser().getHead_photo()+"' alt='头像'> <cite> "+q.getAnswer().getUser().getNick_name()+" "+
-    								"<em>"+q.getAnswer().getPublish_time()+"</em> </cite> </a>"+
-    						"<div class='detail-hits' data-id='{{rows.id}}'>"+
-    						"<input type='hidden' name='user_id' value='"+q.getAnswer().getUser().getUser_id()+"' /><span></span>"+
-    							"<button class='layui-btn layui-btn-radius layui-btn-sm' style='width:80px; border-radius:20px;'>关注</button>"+
-    						"</div>"+
-    					"</div>"+
-    					"<div class='detail-body photos' style='margin-bottom: 0px;'>"+
-    						"<p>"+q.getAnswer().getContent()+
-    						"</p>"+
-    					"</div>"+
-    					"<div class='jieda-reply'>"+
-    							"<input type='hidden' name='answer_id' value='"+q.getAnswer().getAnswer_id()+"'/>"+
-    							"<span class='jieda-zan zanok' type='zan'>"+
-    								"<i class='layui-icon layui-icon-praise' style='font-size: 20px; color: #009688;' title='赞'></i><em style='font-size: 15px; color: #009688;'>"+q.getAnswer().getDianzan_num()+"</em>"+
-    							"</span>"+
-    							"<span class='jieda-zan zanok' type='zan'><i "+
-    								"class='layui-icon layui-icon-tread' style='font-size: 20px; color: #009688;' title='踩'></i><em style='font-size: 15px; color: #009688;'>"+q.getAnswer().getCai_num()+"</em>"+
-    							"</span>"+
-    							"<div class='jieda-admin'>"+
-    								"<span class='jieda-accept' type='accept'>"+
-    							"</div>"+
-    					"</div>"+
-    			"</div>";
-        	}
-        }*/
 		response.getWriter().print(str);
 }
 		//request.getRequestDispatcher("index.jsp").forward(request, response);

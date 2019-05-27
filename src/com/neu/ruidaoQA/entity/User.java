@@ -11,7 +11,14 @@ public class User {
 	private String email;
 	private String head_photo;
 	private String introduce;
+	private Integer follow_flag;
 	
+	public Integer getFollow_flag() {
+		return follow_flag;
+	}
+	public void setFollow_flag(Integer follow_flag) {
+		this.follow_flag = follow_flag;
+	}
 	public User() {}
 	public User(Integer user_id, String nick_name, String sex, Date birthday, String password,
 			String email, String head_photo, String introduce) {

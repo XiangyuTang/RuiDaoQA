@@ -17,4 +17,6 @@ public interface QuestionDao {
 	public ArrayList<Question> getSearchResult(String txt);
 	
 	public List<Question> getQuestionByCollectNum();//从所有话题中选出回答数最多的10条话题
+	
+	public List<Question> getQuestionByTypeandnumber(Integer kinds_id, Integer min, Integer max);
 }
