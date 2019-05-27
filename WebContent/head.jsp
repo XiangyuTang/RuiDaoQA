@@ -40,23 +40,28 @@
 						<i class="iconfont icon-wenda"></i>欢迎使用</a>
 				</div>
 				
-				<div class="nav-user" >
+				<c:if test = "${!empty sessionScope.username}">
+					<div class="nav-user" >
+						<a class="avatar" href="userinfo.jsp">
+						<img src="images/头像1.JPG">
+						<cite>老汉</cite>
+						</a>
+					<div class="nav">
+						<a href="logoutServlet" target="_parent"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退出</a>
+					</div>
+					</div>
+				</c:if>
+				
+				<c:if test = "${empty sessionScope.username}">
+					<div class="nav-user" >
 					  <a   class="iconfont icon-touxiang layui-hide-xs" style="margin-top: 4px; display: inline-block;">
                     </a>
                     <div class="nav"  style="font-size:14px;color: white;margin-top: -5px;margin-left: 1px; "  />
                     	<a href="login.html"  target="_parent" >登录</a>
                     	<a href="register.html" target="_parent" >注册</a>
                     </div>
-				</div>
-				<div class="nav-user" hidden="hidden">
-					<a class="avatar" href="">
-						<img src="images/头像1.JPG">
-						<cite>老汉</cite>
-					</a>
-					<div class="nav">
-						<a href="index.jsp" target="_parent"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退出</a>
 					</div>
-				</div>
+				</c:if>
 			</div>
 		</div>
 		

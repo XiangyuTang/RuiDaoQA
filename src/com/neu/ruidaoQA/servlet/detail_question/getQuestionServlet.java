@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.cj.Session;
 import com.neu.ruidaoQA.dao.impl.QuestionDaoimpl;
 import com.neu.ruidaoQA.entity.Question;
 import com.neu.ruidaoQA.service.impl.QuestionServiceimpl;
@@ -35,11 +36,11 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
 		int id = Integer.parseInt(request.getParameter("topic"));
 		System.out.println(id);
 		//与数据库交互的方法
-		HttpSession session = request.getSession();
 		List<Question> getQuestionByType = impl.getQuestionByType(id);
-		session.setAttribute("getQuestionByType", getQuestionByType);	
+		request.setAttribute("getQuestionByType", getQuestionByType);	
 		//session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
-
+		request.getSession().setAttribute("username", "aaa");
+		
 		String s = "";
         for(Question q:getQuestionByType){
         	s+="<div class='fly-panel box'>"+
