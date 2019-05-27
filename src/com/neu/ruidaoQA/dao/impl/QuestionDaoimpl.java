@@ -72,7 +72,7 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 				int answer_number=rs.getInt(6);
 				Date time=rs.getTimestamp(7);
 				String question_title=rs.getString(8);
-				Question q=new Question(question_id, question_type, user_id, question_content, collect_number, answer_number, time, question_title);
+				Question q=new Question(question_id, user_id, question_type, question_content, collect_number, answer_number, time, question_title);
 				questions.add(q);
 				
 			}
