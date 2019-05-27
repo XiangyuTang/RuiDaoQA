@@ -5,11 +5,53 @@ import java.util.ArrayList;
 import com.neu.ruidaoQA.dao.impl.FavoriteDaoimpl;
 import com.neu.ruidaoQA.dao.impl.FollowDaoimpl;
 import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
+import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.entity.Question;
 import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.UserService;
 
 public class UserServiceimpl implements UserService{
+
+	@Override
+	public String getUserName(int user_id) {
+		UserDaoimpl ul=new UserDaoimpl();
+		User user=ul.selectUser(user_id);
+		return user.getNick_name();
+	}
+
+	@Override
+	public ArrayList<Object[]> getAnswersList(int user_id) {
+		
+			AnswerServiceimpl answerService=new AnswerServiceimpl();
+			UserServiceimpl userServiceimpl=new UserServiceimpl();
+			QuestionServiceimpl quesitonServiceimpl=new QuestionServiceimpl();
+			ArrayList<Answer> answers=answerService.getAnswerLists(user_id);
+			ArrayList<Integer> quesiton_ids=new ArrayList<Integer>();
+			for(Answer answer:answers) {
+				quesiton_ids.add(answer.getQuestion_id());
+			}
+			ArrayList<Question> questions=new ArrayList<Question>();
+			for(int i=0;i<quesiton_ids.size();i++) {
+				questions.add(quesitonServiceimpl.getQuestion(quesiton_ids.get(i)));
+			}
+			ArrayList<Object[]> objs=new ArrayList<Object[]>();
+			for(int i=0;i<answers.size();i++) {
+				int question_id=answers.get(i).getQuestion_id();
+				String question_title=questions.get(i).getQues_title();
+				int question_answer_num=questions.get(i).getAnswer_num();
+				int question_collect_num=questions.get(i).getCollect_num();
+				String nickname=userServiceimpl.getUserName(user_id);
+				String answer_content=answers.get(i).getContent();
+				int comment_number=answers.get(i).getComment_num();
+				int acclaim_number=answers.get(i).getDianzan_num();
+				Object[] obj=new Object[] {question_id,question_title,question_answer_num,question_collect_num,
+						nickname,answer_content,comment_number,acclaim_number};
+				objs.add(obj);
+				
+			}
+			return objs;
+		
+	}
 
 	@Override
 	public void dologin() {

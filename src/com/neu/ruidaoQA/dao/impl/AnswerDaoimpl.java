@@ -3,6 +3,7 @@ package com.neu.ruidaoQA.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.neu.ruidaoQA.dao.AnswerDao;
@@ -82,6 +83,33 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 			e.printStackTrace();
 		}
 		return a;
+	}
+	@Override
+	public ArrayList<Answer> getAnswerLists(int user_id) {
+		Object[] params=new Object[] {user_id};
+		ArrayList<Answer> answers=new ArrayList<Answer>();
+		String sql="select * from answer where user_id=?";
+		ResultSet rs=super.executeSelect(sql, params);
+		try {
+			while(rs.next()) {
+				int answer_id=rs.getInt(1);
+				int question_id=rs.getInt(2);
+				String content=rs.getString(4);
+				int agree_number=rs.getInt(5);
+				int diss_number=rs.getInt(6);
+				int comment_num=rs.getInt(7);
+				
+				Date time=rs.getDate(8);
+				Answer answer=new Answer(answer_id, question_id, user_id, content, agree_number, diss_number, comment_num, time);
+				answers.add(answer);				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		return answers;
+		
 	}
 
 	@Override//获取最热的10条回答

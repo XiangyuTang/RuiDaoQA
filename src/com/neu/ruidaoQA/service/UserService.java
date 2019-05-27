@@ -13,6 +13,8 @@ public interface UserService {
 	public int addFavorite(int question_id, int user_id);
 	public int deleteFavorite(int question_id, int user_id);
 	public ArrayList<Question> getFavoriteQuestions(int user_id) ;
+	public String getUserName(int user_id);
+	public ArrayList<Object[]> getAnswersList(int user_id);
 
 	
 }

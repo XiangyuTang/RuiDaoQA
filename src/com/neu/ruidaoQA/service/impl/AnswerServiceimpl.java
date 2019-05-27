@@ -1,5 +1,6 @@
 package com.neu.ruidaoQA.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -38,6 +39,13 @@ public class AnswerServiceimpl implements AnswerService {
 	}
 
 
+
+	@Override
+	public ArrayList<Answer> getAnswerLists(int user_id) {
+		// TODO Auto-generated method stub
+	  AnswerDaoimpl answerServiceimpl = new AnswerDaoimpl();
+		return answerServiceimpl.getAnswerLists(user_id);
+	}
 
 	@Override//取消相应回答踩
 	public int deleteDefame_number(int answer_id) {

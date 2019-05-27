@@ -1,11 +1,10 @@
-
-
 <html>
-    <%@ page  language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page  language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
 <head>
 
     <title>Insert title here</title>
-    <link rel="stylesheet" href="./layui/css/layui.css"  type="text/css" media="all">
+    <link rel="stylesheet" href="./layui/css/layui.css" type="text/css" media="all">
     <script src="./layui/layui.js" charset="utf-8" type="text/javascript"></script>
 
 
@@ -16,37 +15,37 @@
             var layer = layui.layer
                 , form = layui.form
                 , element = layui.element
-                
-               
-            $ = layui.$ 
+
+
+            $ = layui.$
             layer.msg('hello');
-            
+
             $("#ask").on("click", function (e) {
                 layer.open({
                     type: 2,
                     offset: 'auto',
-                    area:['50%','50%'],
-                    content: 'toAsk?user_id=1',//这里content是一个普通的String,
-                    
-                        
-                    }
+                    area: ['50%', '50%'],
+                    content: 'toAsk?user_id=2',//这里content是一个普通的String,
+
+
+                }
                 );
             });
             $.ajax({
-                url:"showUsersQuestionListServlet",
-                data:{user_id:"1"},
-                dataType:"json",
-                type:"post",
-                success:function(data){
-                    for(i=0;i<data.length;i++){
-                        $("#questionlist").append( "<div class='layui-row'> <div class='layui-col-md12'>"+
-                          "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>"+
-                                   " <div class='layui-card-body'>"+
-                                        "<h1>"+data[i].ques_title+"</h1><br>"+
-                                        "<p>"+data[i].answer_num+"人回答"+"·"+data[i].collect_num+"人收藏"+"</p>"+
+                url: "showUsersQuestionListServlet",
+                data: { user_id: "2" },
+                dataType: "json",
+                type: "post",
+                success: function (data) {
+                    for (i = 0; i < data.length; i++) {
+                        $("#questionlist").append("<div class='layui-row'> <div class='layui-col-md12'>" +
+                            "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
+                            " <div class='layui-card-body'>" +
+                            "<h1>" + data[i].ques_title + "</h1><br>" +
+                            "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
 
-                                       " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> "+
-                                          "</div></div></div> <hr>")
+                            " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
+                            "</div></div></div> <hr>")
 
                     }
 
@@ -54,81 +53,122 @@
             })
 
 
-           setTimeout(function(){
-            $.ajax({
-                url:"showFavoriteQuestions",
-                data:{user_id:1},
-                dataType:"json",
-                type:"post",
-                success:function(data){
-                    for(i=0;i<data.length;i++){
-                        console.log(data[i]);
+            setTimeout(function () {
+                $.ajax({
+                    url: "showFavoriteQuestions",
+                    data: { user_id: "1" },
+                    dataType: "json",
+                    type: "post",
+                    success: function (data) {
+                        for (i = 0; i < data.length; i++) {
+                            for (i = 0; i < data.length; i++) {
+                                $("#collectlist").append("<div class='layui-col-md12'>" +
+                                    "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
+                                    " <div class='layui-card-body'>" +
+                                    "<h1>" + data[i].ques_title + "</h1><br>" +
+                                    "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
 
-                    }
-                }
-            })
+                                    " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
+                                    "</div></div></div> <hr>")
 
-           },500)
+                            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         /* flow.load({
-                elem: '#answerlist',//指定列表容器
-                isAuto: true,
-                end:'牛逼啊',
-                done: function (page, next) { //执行下一页的回调
-
-                    //模拟数据插入
-                    setTimeout(function () {
-                        var lis = [];
-                        for (var i = 0; i < 3; i++) {
-                            lis.push(`   <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">nickname</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>`)
                         }
+                    }
+                })
 
-                        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                        next(lis.join(''), page <5); //假设总页数为 10
-                    }, 500);
-                }
+            }, 500)
 
 
 
-            });*//*
+
+
+            setTimeout(function () {
+                $.ajax({
+                    url: "showUsersAnswerList",
+                    data: { user_id: "2" },
+                    dataType: "json",
+                    type: "post",
+                    success: function (data) {
+                        for (i = 0; i < data.length; i++) {
+                         $("#answerlist").append(   " <div class='layui-col-md12'>"+
+                               " <div class='layui-card' style='width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>"+
+                                  "  <div class='layui-card-body'>"+
+                                       " <h1>"+data[i][1]+"</h1><br>"+
+                                       " <p>"+data[i][2]+"人回答·"+data[i][3]+"人收藏</p>"+
+
+                                      "  <a class='layui-icon layui-icon-username' href='#'>"+data[i][4]+"</a><br>"+
+                                        data[i][5]+"<br><br>"+
+                                      "  <span style='float: left;width:30%;'>"+data[i][6]+"人评论</span>"+
+                                       " <span style='float:initial;width:30%'>"+data[i][7]+"人点赞</span>"+
+                                       " <a class='layui-icon layui-icon-share' style='float: right;cursor: pointer'>分享</a>    </div>  </div>  </div>   <hr>")
+
+                        }
+                    }
+                })
+
+            }, 500)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /* flow.load({
+                   elem: '#answerlist',//指定列表容器
+                   isAuto: true,
+                   end:'牛逼啊',
+                   done: function (page, next) { //执行下一页的回调
+   
+                       //模拟数据插入
+                       setTimeout(function () {
+                           var lis = [];
+                           for (var i = 0; i < 3; i++) {
+                               lis.push(`   <hr>
+                               <div class="layui-col-md12">
+                                   <div class="layui-card"
+                                       style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
+                                       <div class="layui-card-body">
+                                           <h1>你说你帅吗</h1><br>
+                                           <p>暂无回答·&{num}人收藏</p>
+   
+                                           <a class="layui-icon layui-icon-username" href="#">nickname</a><br>
+                                           &{commentcontent}<br><br>
+                                           <span style="float: left;width:30%">&{cnumber}评论</span>
+                                           <span style="float:initial;width:30%">&{fnumber}点赞</span>
+                                           <a class="layui-icon layui-icon-share"
+                                               style="float: right;cursor: pointer">分享</a>
+   
+                                       </div>
+                                   </div>
+                               </div>`)
+                           }
+   
+                           //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                           //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                           next(lis.join(''), page <5); //假设总页数为 10
+                       }, 500);
+                   }
+   
+
+   
+               });*//*
             flow.load({
                 elem: '#questionlist',//指定列表容器
                 isAuto: true,
@@ -283,228 +323,40 @@
             <!--这个地方用来显示回答提问收藏等可以切换的界面-->
             <div class="layui-tab layui-tab-brief">
                 <ul class="layui-tab-title">
-                    <li class="layui-this">动态</li>
+                    <li class="layui-this">通知</li>
                     <li>回答</li>
                     <li>提问</li>
                     <li>收藏</li>
                     <li>草稿</li>
                 </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show">不开发 
-                        <div class="layui-row"  id="testList">
+                    <div class="layui-tab-item layui-show">即将完成的通知界面
+                        <div class="layui-row" id="testList">
 
                         </div>
                     </div>
 
-                    <div class="layui-tab-item" id="answerlist">
+                    <div class="layui-tab-item" >
 
-                        <div class="layui-row" >
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">${nickname}</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">${nickname}</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">${nickname}</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">${nickname}</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">${nickname}</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">${nickname}</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">${nickname}</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
-
-                                        <a class="layui-icon layui-icon-username" href="#">${nickname}</a><br>
-                                        &{commentcontent}<br><br>
-                                        <span style="float: left;width:30%">&{cnumber}评论</span>
-                                        <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                        <a class="layui-icon layui-icon-share"
-                                            style="float: right;cursor: pointer">分享</a>
-
-                                    </div>
-                                </div>
-                            </div>
-           
-                
-
-
+                        <div class="layui-row" id="answerlist">
                         </div>
-
-
-
                     </div>
 
-                    <div class="layui-tab-item"  >
+                    <div class="layui-tab-item">
                         <div class="layui-row" id="questionlist">
-                           
-                  
+
+
 
                         </div>
 
 
                     </div>
 
-                    <div class="layui-tab-item" id="collectlist">
-                        <div clsss="layui-row" >
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
+                    <div class="layui-tab-item">
+                        <div clsss="layui-row" id="collectlist">
 
-                                        <a class="layui-icon layui-icon-edit " style="color:#01AAED;font-size: 18"
-                                            href="#">回答</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
 
-                                        <a class="layui-icon layui-icon-edit " style="color:#01AAED;font-size: 18"
-                                            href="#">回答</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1>你说你帅吗</h1><br>
-                                        <p>暂无回答·&{num}人收藏</p>
 
-                                        <a class="layui-icon layui-icon-edit " style="color:#01AAED;font-size: 18"
-                                            href="#">回答</a>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                        
                         </div>
 
 
