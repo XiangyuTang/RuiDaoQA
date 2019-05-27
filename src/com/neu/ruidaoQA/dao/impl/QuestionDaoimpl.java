@@ -123,8 +123,8 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 	@Override
 	public ArrayList<Question> getSearchResult(String txt) {
 		ArrayList<Question> list = new ArrayList<Question>();
-		Object[] params = new Object[] {txt};
-		String sql = "select * from question where question_content like \"%\"?\"%\" order by answer_number DESC";//转义字符
+		Object[] params = new Object[] {txt,txt};
+		String sql = "select * from question where question_content like \"%\"?\"%\" or question_title like \"%\"?\"%\" order by answer_number DESC";//转义字符
 		ResultSet rs = super.executeSelect(sql, params);
 		try {
 			while(rs.next()) {
