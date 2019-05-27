@@ -81,6 +81,8 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
 		}
 		return a;
 	}
@@ -106,7 +108,9 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}  finally {
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
+		}
 		
 		return answers;
 		
@@ -138,8 +142,8 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			super.closeAll(con, super.pst, rsResultSet);
+		} finally {
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
 		}
 		return answers;
 	}
