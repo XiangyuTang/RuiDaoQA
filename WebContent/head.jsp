@@ -82,12 +82,7 @@
 			//xhr.send('question_id='+question_id);
 			//4.回调
 			xhr.onload = function(){
-				/* if(${isSearchEmpty==1})
-					alert("搜索结果为空。");
-				else
-				{
-					alert("结果有：");
-				} */
+				
 				alert("从searchQuesServlet回来了");
 			}
 			})
