@@ -9,6 +9,7 @@ import java.util.List;
 import com.neu.ruidaoQA.dao.AnswerDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
 import com.neu.ruidaoQA.entity.Answer;
+import com.sun.org.apache.regexp.internal.recompile;
 
 import jdk.nashorn.internal.ir.Flags;
 
@@ -182,5 +183,23 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		}
 //		return getAnswerByAcclaimNum;
 		return getAnswerByAcclaimNum;
+	}
+
+	@Override
+	public Integer getNewAnswer_id() {
+		Object[] params = new Object[] {0};
+		String sql = "select max(answer_id) from answer where answer_id>?";
+		ResultSet rsResultSet = super.executeSelect(sql, params);
+		Integer answer_id = null;
+		try {
+			while (rsResultSet.next()) {
+				answer_id = rsResultSet.getInt(1);				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
+		}
+		return answer_id;
 	}
 }

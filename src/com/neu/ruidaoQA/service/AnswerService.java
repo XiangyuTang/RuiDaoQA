@@ -17,4 +17,5 @@ public interface AnswerService {
 	List<Answer> getAnswerslist(int question_id);//根据问题id获取最热的十条回答及其评论
 	public ArrayList<Answer> getAnswerLists(int user_id);
 	List<Answer> getAnswerByAcclaimNum();////按照点赞数多少选出所有回答
+	Integer getNewAnswer_id();//选出新增答案的id
 }
