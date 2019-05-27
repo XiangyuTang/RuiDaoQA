@@ -120,7 +120,7 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
 			perPageQues[page] += doQues(getQuestionByType.get(ques_size-2));
 			perPageQues[page] += doQues(getQuestionByType.get(ques_size-1));
 		}
-		else
+		else if(ques_size%3==1)
 		{
 			perPageQues[page] += doQues(getQuestionByType.get(ques_size-1));
 		}
