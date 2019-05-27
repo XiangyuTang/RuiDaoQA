@@ -41,6 +41,12 @@ public class AnswerServiceimpl implements AnswerService {
 
 
 	@Override
+	public int getAQuesiton_idByAnswer_id(int answer_id) {
+		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		return answerDaoimpl.getAQuesiton_idByAnswer_id(answer_id);
+	}
+
+	@Override
 	public ArrayList<Answer> getAnswerLists(int user_id) {
 		// TODO Auto-generated method stub
 	  AnswerDaoimpl answerServiceimpl = new AnswerDaoimpl();

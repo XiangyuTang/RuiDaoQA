@@ -1,11 +1,14 @@
 package com.neu.ruidaoQA.service.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import com.neu.ruidaoQA.dao.impl.FavoriteDaoimpl;
 import com.neu.ruidaoQA.dao.impl.FollowDaoimpl;
 import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
 import com.neu.ruidaoQA.entity.Answer;
+import com.neu.ruidaoQA.entity.Comment;
 import com.neu.ruidaoQA.entity.Question;
 import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.UserService;
@@ -19,6 +22,38 @@ public class UserServiceimpl implements UserService{
 		return user.getNick_name();
 	}
 
+	@Override
+	public ArrayList<Comment> getComments(int user_id){
+		UserDaoimpl ud=new UserDaoimpl();
+		ArrayList<Comment> comments=ud.getComments(user_id);
+		return comments;
+		
+	}
+	@Override
+	public ArrayList<Object[]> showMessages(int user_id){
+		UserServiceimpl userServiceimpl=new UserServiceimpl();
+		AnswerServiceimpl answerService=new AnswerServiceimpl();
+		ArrayList<Object[]> objs=new ArrayList<Object[]>();
+		ArrayList<Comment> comments=userServiceimpl.getComments(user_id);
+		ArrayList<Integer> quesiton_ids=new ArrayList<Integer>();
+		for(Comment comment:comments) {
+			quesiton_ids.add(answerService.getAQuesiton_idByAnswer_id(comment.getAnswer_id()));
+		}
+		for(int i=0;i<comments.size();i++) {
+			int question_id=quesiton_ids.get(i);
+			String nick_name=userServiceimpl.getUserName(comments.get(i).getUser_id());		
+			String content = comments.get(i).getContent();
+			
+			 DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；  
+	         String datetime = dFormat.format(comments.get(i).getPublish_time());
+	         Object[] obj=new Object[] {question_id,nick_name,content,datetime};
+	         objs.add(obj);
+		}
+		
+
+		
+		return objs;
+	}
 	@Override
 	public ArrayList<Object[]> getAnswersList(int user_id) {
 		

@@ -2,6 +2,7 @@ package com.neu.ruidaoQA.service;
 
 import java.util.ArrayList;
 
+import com.neu.ruidaoQA.entity.Comment;
 import com.neu.ruidaoQA.entity.Question;
 
 public interface UserService {
@@ -15,6 +16,7 @@ public interface UserService {
 	public ArrayList<Question> getFavoriteQuestions(int user_id) ;
 	public String getUserName(int user_id);
 	public ArrayList<Object[]> getAnswersList(int user_id);
-
+	public ArrayList<Comment> getComments(int user_id);
+	public ArrayList<Object[]> showMessages(int user_id);
 	
 }
