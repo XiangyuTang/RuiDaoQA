@@ -43,7 +43,7 @@ public class FavoriteDaoimpl extends BaseDao implements FavoriteDao{
 				String question_content=rs.getString(4);
 				int collect_number=rs.getInt(5);
 				int answer_number=rs.getInt(6);
-				Date time=rs.getDate(7);
+				Date time=rs.getTimestamp(7);
 				String question_title=rs.getString(8);
 				Question q=new Question(question_id, user_id_ask, question_type, question_content, collect_number, answer_number, time, question_title);
 				questions.add(q);
