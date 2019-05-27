@@ -66,7 +66,7 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 	public Answer selectAnswer(int question_id) {
 		// TODO Auto-generated method stub
 		Object[] params = new Object[] {question_id};
-		String sql = "select * from answer where question_id = ? order by comment_number DESC";
+		String sql = "select * from answer where question_id = ? order by acclaim_number DESC";
 		ResultSet rs = super.executeSelect(sql, params);
 		Answer a = new Answer(null, null, null, null, null, null, null, null);
 		try {
@@ -138,7 +138,7 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 	@Override//获取最热的10条回答
 	public List<Answer> getAnswersList(int question_id) {
 		Object[] params = new Object[] {question_id};
-		String sql = "select * from answer where question_id =? order by comment_number DESC";
+		String sql = "select * from answer where question_id =? order by acclaim_number DESC";
 		ResultSet rsResultSet = super.executeSelect(sql, params);
 		List<Answer> answers = new ArrayList<Answer>();
 		int i = 0;
@@ -170,7 +170,7 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 	@Override
 	public List<Answer> getAnswerByAcclaimNum() {
 		// TODO Auto-generated method stub
-		String sql = "select * from answer order by acclaim_number DESC";
+		String sql = "select * from answer order by comment_number DESC";
 		ResultSet rs = super.executeSelect(sql, null);
 		List<Answer> getAnswerByAcclaimNum = new ArrayList<Answer>();
 		int i = 0;
