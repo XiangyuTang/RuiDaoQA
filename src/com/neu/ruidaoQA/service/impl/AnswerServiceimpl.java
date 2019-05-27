@@ -131,6 +131,13 @@ public class AnswerServiceimpl implements AnswerService {
 		}
 		return answers;
 	}
+
+	@Override
+	public Integer getNewAnswer_id() {
+		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		Integer newAnswer_id = answerDaoimpl.getNewAnswer_id();
+		return newAnswer_id;
+	}
 	
 	
 }

@@ -16,5 +16,6 @@ public interface AnswerService {
 			Integer cai_num, Integer comment_num, Date publish_time);
 	List<Answer> getAnswerslist(int question_id);//根据问题id获取最热的十条回答及其评论
 	public ArrayList<Answer> getAnswerLists(int user_id);
+	Integer getNewAnswer_id();//选出新增答案的id
 
 }
