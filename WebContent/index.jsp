@@ -83,12 +83,12 @@
 		
 			<div class="edge">
 					<dl class="fly-panel fly-list-one">
-						<dt class="fly-panel-title">最近热帖</dt>
+						<dt class="fly-panel-title">近期最热收藏</dt>
 						<ul id="zuirehuida"></ul>
 					</dl>
 		
 					<dl class="fly-panel fly-list-one">
-						<dt class="fly-panel-title">近期热议</dt>
+						<dt class="fly-panel-title">近期最热评论</dt>
 						<ul id="zuirewenti"></ul>
 					</dl>
 			</div>
@@ -265,12 +265,19 @@
 				
 				//回调函数实现流加载
 				ajax.onload=function(){
-					
 					console.log(ajax.responseText);
-					var ul = document.getElementById('LAY_demo');
-					ul.innerHTML = ajax.responseText;
+					var json=JSON.parse(ajax.responseText); 
 					
-					/*layui.use('flow', function(){
+					var ul = document.getElementById('LAY_demo');
+					ul.innerHTML = "";//导航栏切换刷新流加载的关键！!
+					var pages;
+					if(ajax.responseText=="")
+						pages = 1;
+					else{
+						pages = json.pages;
+					}
+					layui.use('flow', function(){
+						var i = 0;
 					  	var flow = layui.flow;
 						  	flow.load({
 						    elem: '#LAY_demo' //流加载容器
@@ -279,14 +286,15 @@
 					      	//模拟数据插入
 					      	setTimeout(function(){
 						        var lis = [];
-				          		lis.push(ajax.responseText);
+				          		lis.push(json.s[i]);
+				          		i = i+1;
 					       		//执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
 					        	//pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-					        	next(lis.join(''), page < 3); //假设总页数为 3
+					        	next(lis.join(''), page < pages); //假设总页数为 3
 						      	}, 500);
 				    		}
 				  			});
-				  	})			*/		
+				  	})			
 				}
         	}
 			

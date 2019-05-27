@@ -85,7 +85,7 @@ public class QuestionServiceimpl implements QuestionService{
 		List<Question> list = questionDaoimpl.getQuestionByType(kinds_id);
 		for (Question question:list) {
 			Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
-			if (answer.getUser_id() == null) {
+			if (answer.getUser_id() == null||answer.getAnswer_id() == null) {
 				answer.setContent("该问题没有回答");
 				continue;
 			}
@@ -110,8 +110,8 @@ public class QuestionServiceimpl implements QuestionService{
 		// TODO Auto-generated method stub
 		QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
 		List<Question> getQuestionByCollectNum = questionDaoimpl.getQuestionByCollectNum();
-		System.out.println("bbbbbbbbbbbbbbb"+getQuestionByCollectNum.size());
-		System.out.println(getQuestionByCollectNum.get(0).getQues_title());
+		/*System.out.println(getQuestionByCollectNum.size());
+		System.out.println(getQuestionByCollectNum.get(0).getQues_title());*/
 		return getQuestionByCollectNum;
 	}
 

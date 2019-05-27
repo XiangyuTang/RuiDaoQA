@@ -2,7 +2,7 @@
     <wb-module deploy-name="RuiDaoQA">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="RuiDaoQA"/>
         <property name="java-output-path" value="/RuiDaoQA/build/classes"/>
+        <property name="context-root" value="RuiDaoQA"/>
     </wb-module>
 </project-modules>
