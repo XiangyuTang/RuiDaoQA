@@ -105,7 +105,15 @@ public class QuestionServiceimpl implements QuestionService{
 		return list;
 	}
 	
-
+	@Override
+	public List<Question> getQuestionByCollectNum() {
+		// TODO Auto-generated method stub
+		QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
+		List<Question> getQuestionByCollectNum = questionDaoimpl.getQuestionByCollectNum();
+		System.out.println("bbbbbbbbbbbbbbb"+getQuestionByCollectNum.size());
+		System.out.println(getQuestionByCollectNum.get(0).getQues_title());
+		return getQuestionByCollectNum;
+	}
 
 	
 }

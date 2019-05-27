@@ -132,5 +132,13 @@ public class AnswerServiceimpl implements AnswerService {
 		return answers;
 	}
 	
-	
+	@Override
+	public List<Answer> getAnswerByAcclaimNum() {
+		// TODO Auto-generated method stub
+		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		List<Answer> getAnswerByAcclaimNum = answerDaoimpl.getAnswerByAcclaimNum();
+//		System.out.println("bbbbbbbbbbbbbbb"+getAnswerByAcclaimNum.size());
+//		System.out.println(getAnswerByAcclaimNum.get(0).getContent());
+		return getAnswerByAcclaimNum;
+	}
 }

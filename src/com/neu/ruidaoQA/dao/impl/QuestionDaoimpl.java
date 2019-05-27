@@ -156,7 +156,37 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		System.out.println(list.size());
 	}
 
-
+	@Override
+	public List<Question> getQuestionByCollectNum() {
+		// TODO Auto-generated method stub
+		String sql = "select * from question order by collect_number DESC";
+		ResultSet rs = super.executeSelect(sql, null);
+		List<Question> getQuestionByCollectNum = new ArrayList<Question>();
+		int i = 0;
+		try {
+			while (rs.next()) {
+				i++;
+				Question question = new Question();
+				question.setQuestion_id(rs.getInt(1));
+				question.setQues_type_id(rs.getInt(2));
+				question.setUser_id(rs.getInt(3));
+				question.setContent(rs.getString(4));
+				question.setCollect_num(rs.getInt(5));
+				question.setAnswer_num(rs.getInt(6));
+				question.setPublish_time(rs.getDate(7));
+				question.setQues_title(rs.getString(8));
+				getQuestionByCollectNum.add(question);
+				if (i==10) {
+					return getQuestionByCollectNum;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			super.closeAll(con, super.pst, rs);
+		}
+		return getQuestionByCollectNum;
+	}
 
 	
 }
