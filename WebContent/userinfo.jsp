@@ -112,24 +112,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             /* flow.load({
                    elem: '#answerlist',//指定列表容器
                    isAuto: true,
@@ -354,43 +336,10 @@
 
                     <div class="layui-tab-item">
                         <div clsss="layui-row" id="collectlist">
-
-
-
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                     <div class="layui-tab-item">不开发</div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
