@@ -271,6 +271,7 @@ form {
    	var text;
    	var layedit;
    	var str_time;
+   	var answer_id;
    	layui.use('layedit', function(){
   		layedit = layui.layedit;
  		index = layedit.build('L_content'); //建立编辑器
@@ -290,8 +291,15 @@ form {
 			});
 			return;
 		}
-		
-   		var $newTr=$('<li data-id="12" class="jieda-daan"><a name="item-121212121212"></a>'+
+		$.ajax({
+			type:"get",
+			url:"getNewAnswer_id",
+			async:true,
+			dataType:"text",
+			success:function(e){
+				answer_id=e;
+				var answer_id1 = parseInt(answer_id)+1;
+				var $newTr=$('<li data-id="12" class="jieda-daan"><a name="item-121212121212"></a>'+
 					'<div class="detail-about detail-about-reply" > '+
 								'<input type="hidden" name="user_id" value="${answer.user.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
 								'<a class="jie-user" href=""> <img src="images/uer.jpg " alt=""> <cite> <i>我</i></cite> </a> '+
@@ -303,7 +311,7 @@ form {
 								'<p>'+ text +'</p>'+
 							'</div>	'+						
 							'<div class="jieda-reply">'+
-								'<input type="hidden" name="answer_id" value=""/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->'+
+								'<input type="hidden" name="answer_id" value="'+answer_id1+'"/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->'+
 								'<span class="jieda-zan zanok" type="zan">'+
 									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
 								'</span>'+
@@ -324,6 +332,42 @@ form {
 			//清空富文本框textarea
 			//document.getElementById('L_content').reset();
 			//$('textarea[id="L_content"]').html("");
+			}
+			
+		});
+// 		var $newTr=$('<li data-id="12" class="jieda-daan"><a name="item-121212121212"></a>'+
+//					'<div class="detail-about detail-about-reply" > '+
+//								'<input type="hidden" name="user_id" value="${answer.user.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
+//								'<a class="jie-user" href=""> <img src="images/uer.jpg " alt=""> <cite> <i>我</i></cite> </a> '+
+//								'<div class="detail-hits"> '+
+//									'<span>'+str_time+'</span>'+
+//								'</div>'+
+//							'</div>'+
+//							'<div class="detail-body jieda-body">'+
+//								'<p>'+ text +'</p>'+
+//							'</div>	'+						
+//							'<div class="jieda-reply">'+
+//								'<input type="hidden" name="answer_id" value="'+answer_id+'"/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->'+
+//								'<span class="jieda-zan zanok" type="zan">'+
+//									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
+//								'</span>'+
+//								'<span class="jieda-zan zanok" type="zan"><i '+
+//									'class="layui-icon layui-icon-tread" title="踩"></i><em>0</em>'+
+//								'</span>'+
+//								'<span class="jieda-zan zanok" type="zan"><i '+
+//									'class="layui-icon layui-icon-reply-fill" title="评论"></i><em>0</em>'+
+//								'</span>'+
+//							'</div>'+
+//				'</li>')
+//			$('#jieda').prepend($newTr);
+//			//清空文本框内容
+//			//text = $('textarea[id="L_content"]').val("");
+//			//弹出回答成功提示窗口
+//			submit_ans(text);
+//			
+//			//清空富文本框textarea
+//			//document.getElementById('L_content').reset();
+//			//$('textarea[id="L_content"]').html("");
    	}
    		
 	//点击提交回答按钮触发
