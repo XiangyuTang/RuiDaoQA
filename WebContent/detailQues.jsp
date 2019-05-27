@@ -70,7 +70,7 @@ form {
 						<c:forEach items="${answerlist }" var="answer" varStatus="status1">
 						<li data-id="12" class="jieda-daan"><a name="item-121212121212" ></a><!--此处开始循环10次，加载10个答案-->
 							<div class="detail-about detail-about-reply" >
-								<input type="hidden" name="user_id" value="${answer.user.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
+								<input type="hidden" name="user_id" value="${answer.user.user_id }" class="$" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
 								<a class="jie-user" href=""> <img src=" ${answer.user.head_photo }" alt=""> <cite> <i>${answer.user.nick_name }</i></cite> </a>
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
 								<div class="detail-hits">
@@ -81,7 +81,7 @@ form {
 								<p>${answer.content }</p>
 							</div>							
 							<div class="jieda-reply">
-								<input type="hidden" name="answer_id" value="${answer.answer_id }"/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->
+								<input type="hidden" name="answer_id" value="${answer.answer_id }" /><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->
 								<span class="jieda-zan zanok" type="zan">
 									<i class="layui-icon layui-icon-praise" title="赞"></i><em>${answer.dianzan_num }</em>
 								</span>
@@ -504,7 +504,6 @@ form {
 		});
 	})
 	
-	
 	//收藏小星星图标变换
 	$(function(){
 		$('i[class="layui-icon layui-icon-star"]').click(function(){
@@ -537,40 +536,42 @@ form {
 	
 	//关注按钮的特效部分
 	$(function(){				
-		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
-			$(this).toggle(
-			function(){
-				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
-				$.ajax({
-					type:"get",
-					url:"addFollow",
-					async:true,
-					data:{follow_user_id:follow_user_id,fangfa:"add"},
-					dataType:"text",
-					success:function(e){
-						
-					}
-				});
-				$(this).addClass("layui-btn-primary");
-				$(this).html("已关注");
-			},
-			function(){
-				var follow_user_id = parseInt($(this).prev().prev().val());
-				$.ajax({
-					type:"get",
-					url:"addFollow",
-					async:true,
-					data:{follow_user_id:follow_user_id, fangfa:"delete"},
-					dataType:"text",
-					success:function(e){
-						
-					}
-				});
-				$(this).removeClass("layui-btn-primary");
-				$(this).html("关注");
-			})
-			$(this).trigger("click");
-		})
+//		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
+//			$(this).toggle(
+//			function(){
+//				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+//				$.ajax({
+//					type:"get",
+//					url:"addFollow",
+//					async:true,
+//					data:{follow_user_id:follow_user_id,fangfa:"add"},
+//					dataType:"text",
+//					success:function(e){
+//						
+//					}
+//				});
+//				$(this).addClass("layui-btn-primary");
+//				alert($(this).attr("class"));
+//				$(this).html("已关注");
+//			},
+//			function(){
+//				var follow_user_id = parseInt($(this).prev().prev().val());
+//				$.ajax({
+//					type:"get",
+//					url:"addFollow",
+//					async:true,
+//					data:{follow_user_id:follow_user_id, fangfa:"delete"},
+//					dataType:"text",
+//					success:function(e){
+//						
+//					}
+//				});
+//				$(this).removeClass("layui-btn-primary");
+//				alert($(this).attr("class"));
+//				$(this).html("关注");
+//			})
+//			$(this).trigger("click");
+//		})
 		
 		$("[class='layui-icon layui-icon-reply-fill']").live('click',function(){
 			$(this).toggle(
@@ -586,6 +587,46 @@ form {
 			$(this).trigger("click");
 		})				
 	});
+
+	var follow_flag = 0;
+	$(function(){
+		$
+		
+		$("[class='layui-btn layui-btn-radius layui-btn-sm']").click(function(){
+			var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
+			if($(this).attr("class")=="layui-btn layui-btn-radius layui-btn-sm"){
+				follow_flag = 0;
+				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				$.ajax({
+					type:"get",
+					url:"addFollow",
+					async:true,
+					data:{follow_user_id:follow_user_id,fangfa:"add"},
+					dataType:"text",
+					success:function(e){
+						
+					}
+				});				
+				$(this).attr("class",theclass[0]);
+				$(this).html("已关注");				
+			}else{
+				follow_flag = 1;
+				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				$.ajax({
+					type:"get",
+					url:"addFollow",
+					async:true,
+					data:{follow_user_id:follow_user_id,fangfa:"delete"},
+					dataType:"text",
+					success:function(e){
+						
+					}
+				});				
+				$(this).attr("class",theclass[1]);
+				$(this).html("关注");
+			}
+		})
+	})
 	
 
 //	function addcomment(text){
