@@ -82,75 +82,13 @@
 		
 			<div class="edge">
 					<dl class="fly-panel fly-list-one">
-						<dt class="fly-panel-title">${title1}最近热帖</dt>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局（基本结构）</a> <span><i
-								class="iconfont">&#xe60b;</i> 6087</span>
-						</dd>
-						<dd>
-							<a href="">Java实现LayIM后端的核心代码</a> <span><i class="iconfont">&#xe60b;</i>
-								767</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局（基本结构）</a> <span><i
-								class="iconfont">&#xe60b;</i> 6087</span>
-						</dd>
-						<dd>
-							<a href="">Java实现LayIM后端的核心代码</a> <span><i class="iconfont">&#xe60b;</i>
-								767</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局（基本结构）</a> <span><i
-								class="iconfont">&#xe60b;</i> 6087</span>
-						</dd>
-						<dd>
-							<a href="">Java实现LayIM后端的核心代码</a> <span><i class="iconfont">&#xe60b;</i>
-								767</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局（基本结构）</a> <span><i
-								class="iconfont">&#xe60b;</i> 6087</span>
-						</dd>
-						<dd>
-							<a href="">Java实现LayIM后端的核心代码</a> <span><i class="iconfont">&#xe60b;</i>
-								767</span>
-						</dd>
+						<dt class="fly-panel-title">最近热帖</dt>
+						<ul id="zuirehuida"></ul>
 					</dl>
 		
 					<dl class="fly-panel fly-list-one">
 						<dt class="fly-panel-title">近期热议</dt>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局之基本结构</a> <span><i
-								class="iconfont">&#xe60c;</i> 96</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局之基本结构</a> <span><i
-								class="iconfont">&#xe60c;</i> 96</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局之基本结构</a> <span><i
-								class="iconfont">&#xe60c;</i> 96</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局之基本结构</a> <span><i
-								class="iconfont">&#xe60c;</i> 96</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局之基本结构</a> <span><i
-								class="iconfont">&#xe60c;</i> 96</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局之基本结构</a> <span><i
-								class="iconfont">&#xe60c;</i> 96</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局之基本结构</a> <span><i
-								class="iconfont">&#xe60c;</i> 96</span>
-						</dd>
-						<dd>
-							<a href="">使用 layui 秒搭后台大布局之基本结构</a> <span><i
-								class="iconfont">&#xe60c;</i> 96</span>
-						</dd>
+						<ul id="zuirewenti"></ul>
 					</dl>
 			</div>
 	</div>
@@ -405,4 +343,27 @@
 	})
 </script>-->
 
-
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script>
+	window.onload = function(){
+		var ajax1 = new XMLHttpRequest();
+		var ajax2 = new XMLHttpRequest();
+		ajax1.open('get','getQuestionByCollectnum',true);
+		ajax1.send();
+		ajax2.open('get','getAnswerByAcclaimNum',true);
+		ajax2.send();
+		//responseText 该变量是引擎内置的属性，专门负责从后台接收文本类型的内容
+		
+		//回调函数实现流加载
+		ajax1.onload=function(){
+			console.log(ajax1.responseText);
+			var ul1 = document.getElementById('zuirehuida');
+			ul1.innerHTML = ajax1.responseText;
+		}
+		ajax2.onload=function(){
+			console.log(ajax2.responseText);
+			var ul2 = document.getElementById('zuirewenti');
+			ul2.innerHTML = ajax2.responseText;
+		}
+	}
+</script>

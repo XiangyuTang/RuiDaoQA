@@ -148,6 +148,42 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		}
 		return answers;
 	}
+	
+	@Override
+	public List<Answer> getAnswerByAcclaimNum() {
+		// TODO Auto-generated method stub
+		String sql = "select * from answer order by acclaim_number DESC";
+		ResultSet rs = super.executeSelect(sql, null);
+		List<Answer> getAnswerByAcclaimNum = new ArrayList<Answer>();
+		int i = 0;
+		try {
+			while (rs.next()) {
+				i++;
+				Answer answer = new Answer();
+				answer.setAnswer_id(rs.getInt(1));
+				answer.setQuestion_id(rs.getInt(2));
+				answer.setUser_id(rs.getInt(3));
+				answer.setContent(rs.getString(4));
+				answer.setDianzan_num(rs.getInt(5));
+				answer.setCai_num(rs.getInt(6));
+				answer.setComment_num(rs.getInt(7));
+				answer.setPublish_time(rs.getDate(8));
+				getAnswerByAcclaimNum.add(answer);
+				if (i == 10) {
+//					return getAnswerByAcclaimNum;
+					break;
+				}
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally{
+			super.closeAll(con, super.pst, rs);
+		}
+//		return getAnswerByAcclaimNum;
+		return getAnswerByAcclaimNum;
+	}
 
 	@Override
 	public Integer getNewAnswer_id() {

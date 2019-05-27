@@ -82,24 +82,24 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idString = request.getParameter("id");
-		Integer id;
-		if (idString == null) {
-			idString = "1";
-			id = Integer.parseInt(idString);
-		}else {
-			id = Integer.parseInt(idString);
-		}
-		//与数据库交互的方法
-//		HttpSession session = request.getSession();
-		List<Question> getQuestionByType = impl.getQuestionByType(id);
-//		System.out.println(getQuestionByType.indexOf(0));
-		request.setAttribute("getQuestionByType", getQuestionByType);
-//		session.setAttribute("getQuestionByType", getQuestionByType.get(2).getQues_title());
-//		System.out.println(getQuestionByType.get(1).getContent());
-//		session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
-		request.getRequestDispatcher("loginIndex.jsp").forward(request, response);
-//		System.out.println(getQuestionByType.get(0).getAnswer().getContent());
+//		String idString = request.getParameter("id");
+//		Integer id;
+//		if (idString == null) {
+//			idString = "1";
+//			id = Integer.parseInt(idString);
+//		}else {
+//			id = Integer.parseInt(idString);
+//		}
+//		//与数据库交互的方法
+////		HttpSession session = request.getSession();
+//		List<Question> getQuestionByType = impl.getQuestionByType(id);
+////		System.out.println(getQuestionByType.indexOf(0));
+//		request.setAttribute("getQuestionByType", getQuestionByType);
+////		session.setAttribute("getQuestionByType", getQuestionByType.get(2).getQues_title());
+////		System.out.println(getQuestionByType.get(1).getContent());
+////		session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
+//		request.getRequestDispatcher("loginIndex.jsp").forward(request, response);
+////		System.out.println(getQuestionByType.get(0).getAnswer().getContent());
 
 
 	}
