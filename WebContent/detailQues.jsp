@@ -36,6 +36,7 @@ form {
 					<div class="fly-tip fly-detail-hint" data-id="">
 						<br>
 						<div class="fly-list-hint">
+							<input type="hidden" name="question_id" value="" /><!--question_id的隐藏域-->
 							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >${Question.collect_num}</i>&nbsp;  
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
