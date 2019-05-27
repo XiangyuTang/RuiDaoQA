@@ -16,6 +16,7 @@ public interface AnswerDao {
 	ArrayList<Answer> getAnswerLists(int user_id);//根据用户id来获取历史回答列表
 	List<Answer> getAnswerByAcclaimNum();//按照点赞数多少选出所有回答
 	Integer getNewAnswer_id();//选出新增答案的id
+	public int getAQuesiton_idByAnswer_id(int answer_id);
 
 
 }

@@ -69,7 +69,7 @@
                     type: "post",
                     success: function (data) {
                         for (i = 0; i < data.length; i++) {
-                            for (i = 0; i < data.length; i++) {
+                            
                                 $("#collectlist").append("<div class='layui-col-md12'>" +
                                     "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
                                     " <div class='layui-card-body'>" +
@@ -79,7 +79,7 @@
                                     " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
                                     "</div></div></div> <hr>")
 
-                            }
+                   
 
                         }
                     }
@@ -115,7 +115,26 @@
                     }
                 })
 
-        
+                $.ajax({
+                async: false,
+                url: "showMessage",
+                data: { user_id: "1" },
+                dataType: "json",
+                type: "post",
+                success: function (data) {
+                    for (i = 0; i < data.length; i++) {
+                      console.log(data[i]);
+                      $("#testlist").append("<div class='layui-col-md12'>"+
+                                "<div class='layui-card' style='width: 100%;height:100px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>"
+                                 +"   <div class='layui-card-body'>"+
+                                     "   <h1  >"+" <a href='toDetailQues?question_id="+data[i][0]+"'>"+data[i][1]+"评论了你</a></h1><br>"+
+                                       " <p>"+data[i][2]+"</p>"+
+                                        " <div class='datetime'>"+ data[i][3]+"</div>"+   "</div>   </div> </div>  <hr>");
+
+                    }
+
+                }
+            })
 
 
 
@@ -319,32 +338,8 @@
                     <li>草稿</li>
                 </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show">即将完成的通知界面
-                        <div class="layui-row" id="testList">
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:100px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1> <a href="answer.id">(nickname)(action)了你</a></h1><br>
-                                         <div class="datetime">comment time</div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="layui-col-md12">
-                                <div class="layui-card"
-                                    style="width: 100%;height:100px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                    <div class="layui-card-body">
-                                        <h1> <a href="comment.id">(nickname)(action)了你</a></h1><br>
-                                        <div class="datetime">comment time</div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                    <div class="layui-tab-item layui-show" id="testlist">即将完成的通知界面
+                        
                     </div>
 
                     

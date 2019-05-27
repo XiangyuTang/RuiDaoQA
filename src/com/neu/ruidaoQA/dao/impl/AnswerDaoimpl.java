@@ -117,6 +117,24 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 		
 	}
 
+	@Override
+	public int getAQuesiton_idByAnswer_id(int answer_id) {
+		Object[] params = new Object[] {answer_id};
+		String sql = "select question_id from answer where answer_id = ? ";
+		int question_id=0;
+		ResultSet rs = super.executeSelect(sql, params);
+		try {
+			if(rs.next()) {
+				question_id=rs.getInt(1);
+				return question_id;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return 0;
+		
+	}
 	@Override//获取最热的10条回答
 	public List<Answer> getAnswersList(int question_id) {
 		Object[] params = new Object[] {question_id};

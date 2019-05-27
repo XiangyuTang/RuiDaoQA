@@ -3,12 +3,45 @@ package com.neu.ruidaoQA.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.Date;
 
 import com.neu.ruidaoQA.dao.UserDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
+import com.neu.ruidaoQA.entity.Comment;
 import com.neu.ruidaoQA.entity.User;
 
 public class UserDaoimpl extends BaseDao implements UserDao{
+
+	@Override
+	public ArrayList<Comment> getComments(int user_id){
+		Object[] params = new Object[] {user_id};
+		String sql = "select * from comment where answer_id in (select answer_id from answer where user_id=?) order by time DESC";
+		ArrayList<Comment> comments=new ArrayList<Comment>();
+		ResultSet rs = super.executeSelect(sql, params);
+		try {
+			while(rs.next()) {
+				
+				int comment_id=rs.getInt(1);
+				int answer_id=rs.getInt(2);
+				int comment_user_id=rs.getInt(3);
+				String content=rs.getString(4);
+				int flag=rs.getInt(5);
+				int acclaim_number=rs.getInt(6);
+				Date time=rs.getTimestamp(7);
+				Comment comment=new Comment(comment_id,answer_id,comment_user_id,content,flag,acclaim_number,time);
+				comments.add(comment);				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
+		}
+		return comments;
+		
+	}
 
 	@Override
 	public User selectUser(int user_id) {
