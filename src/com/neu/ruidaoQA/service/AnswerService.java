@@ -1,5 +1,6 @@
 package com.neu.ruidaoQA.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface AnswerService {
 	Answer createAnswer(Integer answer_id, Integer question_id, Integer user_id, String content, Integer dianzan_num,
 			Integer cai_num, Integer comment_num, Date publish_time);
 	List<Answer> getAnswerslist(int question_id);//根据问题id获取最热的十条回答及其评论
+	public ArrayList<Answer> getAnswerLists(int user_id);
+
 }

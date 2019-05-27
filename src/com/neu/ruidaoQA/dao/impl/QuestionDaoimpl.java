@@ -81,7 +81,7 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			super.closeAll(con, super.pst, rs);
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
 		}
 		return questions;
 	}
