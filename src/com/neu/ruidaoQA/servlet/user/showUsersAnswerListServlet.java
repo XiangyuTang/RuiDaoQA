@@ -60,7 +60,6 @@ public class showUsersAnswerListServlet extends HttpServlet {
 
 		response.getWriter().write(jsonStr);
 		
-		
 	}
 
 }
