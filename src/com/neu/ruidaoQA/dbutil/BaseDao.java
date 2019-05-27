@@ -14,8 +14,8 @@ import java.util.List;
  *
  */
 public class BaseDao {
-	private String driver="com.mysql.cj.jdbc.Driver";
-	private String url="jdbc:mysql://localhost:3306/admin?serverTimezone=GMT";
+	private String driver="com.mysql.jdbc.Driver";
+	private String url="jdbc:mysql://localhost:3306/wukong?useSSL=false";
 	private String user="root";
 	private String pwd="5046513";
 	public static Connection con=null;
