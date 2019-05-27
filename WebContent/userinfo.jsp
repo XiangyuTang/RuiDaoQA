@@ -48,7 +48,7 @@
                         $("#questionlist").append("<div class='layui-row'> <div class='layui-col-md12'>" +
                             "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
                             " <div class='layui-card-body'>" +
-                            "<h1>" + data[i].ques_title + "</h1><br>" +
+                            "<h1><a href='toDetailQues?question_id="+data[i].question_id+"'</a>"+ data[i].ques_title + "</h1><br>" +
                             "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
 
                             " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
@@ -73,7 +73,7 @@
                                 $("#collectlist").append("<div class='layui-col-md12'>" +
                                     "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
                                     " <div class='layui-card-body'>" +
-                                    "<h1>" + data[i].ques_title + "</h1><br>" +
+                                    "<h1><a href='toDetailQues?question_id="+data[i].question_id+"'</a>" + data[i].ques_title + "</h1><br>" +
                                     "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
 
                                     " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
@@ -102,7 +102,7 @@
                             $("#answerlist").append(" <div class='layui-col-md12'>" +
                                 " <div class='layui-card' style='width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
                                 "  <div class='layui-card-body'>" +
-                                " <h1>" + data[i][1] + "</h1><br>" +
+                                " <h1><a href='toDetailQues?question_id="+data[i][0]+"'</a>" + data[i][1] + "</h1><br>" +
                                 " <p>" + data[i][2] + "人回答·" + data[i][3] + "人收藏</p>" +
 
                                 "  <a class='layui-icon layui-icon-username' href='#'>" + data[i][4] + "</a><br>" +
@@ -127,7 +127,7 @@
                       $("#testlist").append("<div class='layui-col-md12'>"+
                                 "<div class='layui-card' style='width: 100%;height:100px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>"
                                  +"   <div class='layui-card-body'>"+
-                                     "   <h1  >"+" <a href='toDetailQues?question_id="+data[i][0]+"'>"+data[i][1]+"评论了你</a></h1><br>"+
+                                     "   <h1  >"+" <a href='toDetailQues?question_id="+data[i][0]+"'</a>"+data[i][1]+"评论了你</h1><br>"+
                                        " <p>"+data[i][2]+"</p>"+
                                         " <div class='datetime'>"+ data[i][3]+"</div>"+   "</div>   </div> </div>  <hr>");
 
@@ -327,6 +327,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="layui-col-md4 layui-col-md-offset1" style="width: 30%">
             <!--这个地方用来显示回答提问收藏等可以切换的界面-->
             <div class="layui-tab layui-tab-brief">
@@ -335,10 +337,10 @@
                     <li>回答</li>
                     <li>提问</li>
                     <li>收藏</li>
-                    <li>草稿</li>
+                    
                 </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show" id="testlist">即将完成的通知界面
+                    <div class="layui-tab-item layui-show" id="testlist">
                         
                     </div>
 
@@ -364,7 +366,7 @@
                         <div clsss="layui-row" id="collectlist">
                         </div>
                     </div>
-                    <div class="layui-tab-item">不开发</div>
+                 
                 </div>
 
 
