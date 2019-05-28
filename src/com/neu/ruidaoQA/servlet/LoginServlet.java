@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.LoginService;
@@ -42,7 +43,6 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("尼玛死了");
 		String p1 = request.getParameter("userName");
 		String oldp2 = request.getParameter("pass");
 		String p3 = request.getParameter("saveorno");
@@ -72,19 +72,21 @@ public class LoginServlet extends HttpServlet {
 			request.getSession().setAttribute("currentPassword",p2);
 			UserService us = new UserServiceimpl();
 			List<User> lu=us.findAllUser(p1,p2);
-			System.out.println(lu.size());
+			/*System.out.println(lu.size());
 			System.out.println(lu.get(0));
-			System.out.println(lu.get(0).getUser_id());
-			//System.out.println("oooooooo"+lu.get(0).getHead_photo());
-			//System.out.println(lu.get(0).getHead_photo().length());
+			System.out.println(lu.get(0).getUser_id());*/
+			
 			if(lu.get(0).getHead_photo()==null) {
 				lu.get(0).setHead_photo("images/avatar/0.jpg");//默认0.jpg
 			}
-			request.getSession().setAttribute("current_user_id", lu.get(0).getUser_id());
-			System.out.println("login"+lu.get(0).getHead_photo()+lu.get(0).getUser_id());
-			request.getSession().setAttribute("filename", lu.get(0).getHead_photo());
+			//HttpSession session = request.getSession();
+			 request.getSession().setAttribute("current_user_id", lu.get(0).getUser_id());
+			//System.out.println("login"+lu.get(0).getHead_photo()+lu.get(0).getUser_id());
+			 //request.getSession().setAttribute("filename", lu.get(0).getHead_photo());
 			us.addHeadPhoto(Integer.parseInt(request.getSession().getAttribute("current_user_id").toString()),lu.get(0).getHead_photo());
-			request.getSession().setAttribute("CurrentUser", lu.get(0));
+			 //request.getServletContext().setAttribute("CurrentUser", lu.get(0));
+			request.getServletContext().setAttribute("CurrentUser", lu.get(0));
+			
 			if (null!=p3 && p3.equals("1")) {
 				Cookie cookie = new Cookie("savedname",p1);
 				cookie.setMaxAge(60*5);
@@ -92,8 +94,10 @@ public class LoginServlet extends HttpServlet {
 			}
 //			response.sendRedirect("self.jsp");
 //			response.sendRedirect("userinfo.jsp");
-			request.getRequestDispatcher("CounterFollowGuanZhuServlet").forward(request,response);
-			System.out.println("chenggogn");
+			//request.getRequestDispatcher("CounterFollowGuanZhuServlet").forward(request,response);
+			
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			//System.out.println("chenggogn");
 		}
 	}
 

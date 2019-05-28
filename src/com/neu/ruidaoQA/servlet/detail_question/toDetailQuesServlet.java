@@ -30,13 +30,11 @@ public class toDetailQuesServlet extends HttpServlet {
 				QuestionServiceimpl qsip = new QuestionServiceimpl();
 				UserServiceimpl usip = new UserServiceimpl();
 				AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
-				
-				
 				List<Answer> answers = answerServiceimpl.getAnswerslist(question_id,1);//得到其answer的回答者是否在收藏域中
 				Integer have1 = qsip.haveQuestion(question_id, 1);////得到其question是否在收藏域中
 				Question q = qsip.getQuestion(question_id);
 				q.setCollect_flag(have1);
-				
+				System.out.println(request.getServletContext().getAttribute("CurrentUser"));
 				Integer user_id = q.getUser_id();
 				Integer haveUser = usip.haveUser(user_id, 1);//得到其user是否被关注
 				User u = usip.getUser(user_id);

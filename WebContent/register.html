@@ -1,9 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN”>
 <html>
 
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<style type="text/css"> 
+		 	.red{
+				color:#F00;
+				float:left;
+				padding-left:5px;
+			}
+		 </style>
 		<link rel="stylesheet" href="layui/css/layui.css">
 		<link rel="stylesheet" href="css/global.css">
 		<script src="layui/layui.js"></script>
@@ -24,27 +31,33 @@
 					<div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
 						<div class="layui-tab-item layui-show">
 							<div class="layui-form layui-form-pane">
-								<form method="post">
-									<div class="layui-form-item"> <label for="L_email" class="layui-form-label">用户名</label>
-										<div class="layui-input-inline"> <input type="text" id="userName" name="userName" placeholder="请输入用户名" required="" lay-verify="userName"  class="layui-input"> </div>
+								<form action="RegisterServlet" method="post">
+									<div class="layui-form-item"> <label for="L_email" class="layui-form-label">邮箱</label>
+										<div class="layui-input-inline"> <input type="text" id="userName" name="email" placeholder="请输入用户名" required="" lay-verify="userName"  class="layui-input"> </div>
+										<div class="red" id="DivEmail"></div>
 										<div class="layui-form-mid layui-word-aux">将会成为您唯一的登入名</div>
 									</div>
 									
 									<div class="layui-form-item"> <label for="L_pass" class="layui-form-label">密码</label>
-										<div class="layui-input-inline"> <input type="password" id="L_pass" placeholder="请输入密码" name="pass" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
+										<div class="layui-input-inline"> <input type="password" id="L_pass" placeholder="请输入密码" name="password" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
 										<div class="layui-form-mid layui-word-aux">6到16个字符</div>
 									</div>
 									<div class="layui-form-item"> <label for="L_repass" class="layui-form-label">确认密码</label>
 										<div class="layui-input-inline"> <input type="password" id="L_repass" name="repass" required="" placeholder="请输入确认密码" lay-verify="required" autocomplete="off" class="layui-input"> </div>
 									</div>
-									<div class="layui-form-item"> <label for="L_username" class="layui-form-label" >姓名</label>
-										<div class="layui-input-inline"> <input type="text" id="name" placeholder="请输入姓名" name="name" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
-									</div>
+									
 									<div class="layui-form-item"> <label for="L_username" class="layui-form-label" >昵称</label>
-										<div class="layui-input-inline"> <input type="text" id="L_username" placeholder="请输入昵称" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
+										<div class="layui-input-inline"> <input type="text" id="L_username" placeholder="请输入昵称" name="nickname" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
 									</div>
-									
-									
+									<div class="layui-form-item"> <label for="L_username" class="layui-form-label" >性别</label>
+										<div class="layui-input-inline"> <input type="text" id="L_username" placeholder="请输入性别" name="sex" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
+									</div>
+									<div class="layui-form-item"> <label for="L_username" class="layui-form-label" >生日</label>
+										<div class="layui-input-inline"> <input type="text" id="L_username" placeholder="请输入生日yyyy-mm-dd" name="birthday" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
+									</div>
+									<div class="layui-form-item"> <label for="L_username" class="layui-form-label" >简介</label>
+										<div class="layui-input-inline"> <input type="text" id="L_username" placeholder="请输入个人简介" name="introduce" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
+									</div>
 									<div class="layui-form-item"> <button class="layui-btn" lay-filter="*" lay-submit="">立即注册</button> </div>
 									
 								</form>
@@ -57,3 +70,34 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+<script>
+	$(function(){
+		$('#userName').blur(checkemail);
+		
+		function checkemail(){
+			//定义一个邮箱的正则表达式  ,并用 test方法验证正则表达式
+			var regCode = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+			
+			var email = $('#userName').val();
+			var $msg = $('#DivEmail');
+			$msg.html("");//先设置为空,根据后续判断情况,填入不同的提示信息
+			if (email=='') {
+				$msg.html('email cannot null');
+				return false;
+			}else if(regCode.test(email)==false){// test() 专门做正则验证 ,如果通过,返回true ,不通过,返回false
+				$msg.html('邮箱的格式不正确');
+				return false;
+			}
+			return true;
+		}
+		$('#myForm').submit(function(){
+			var flag = true;
+			if(checkemail()==false){
+				flag = false;
+			}
+			return  flag;
+		})
+	
+	});
+</script>

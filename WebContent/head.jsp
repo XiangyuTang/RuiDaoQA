@@ -40,11 +40,11 @@
 						<i class="iconfont icon-wenda"></i>欢迎使用</a>
 				</div>
 				
-				<c:if test = "${!empty sessionScope.username}">
+				<c:if test = "${!empty  applicationScope.CurrentUser}">
 					<div class="nav-user" >
 						<a class="avatar" href="userinfo.jsp">
-						<img src="images/头像1.JPG">
-						<cite>老汉</cite>
+						<img src="${ applicationScope.CurrentUser.head_photo}">
+						<cite>${ applicationScope.CurrentUser.nick_name}</cite>
 						</a>
 					<div class="nav">
 						<a href="logoutServlet" target="_parent"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退出</a>
@@ -52,7 +52,7 @@
 					</div>
 				</c:if>
 				
-				<c:if test = "${empty sessionScope.username}">
+				<c:if test = "${empty  applicationScope.CurrentUser}">
 					<div class="nav-user" >
 					  <a   class="iconfont icon-touxiang layui-hide-xs" style="margin-top: 4px; display: inline-block;">
                     </a>

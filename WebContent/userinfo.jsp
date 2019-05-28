@@ -11,10 +11,7 @@
 
 <head>
 
-    <title>Insert title here</title>
-    <link rel="stylesheet" href="./layui/css/layui.css" type="text/css" media="all">
-    <link rel="stylesheet" href="css/global.css">
-    <script src="./layui/layui.js" charset="utf-8" type="text/javascript"></script>
+    <title>用户管理界面</title>
     <script src="./js/admin.js"> </script>
     <style>
         .datetime {
@@ -42,8 +39,6 @@
                     offset: 'auto',
                     area: ['50%', '50%'],
                     content: 'toAsk?user_id=${current_user_id}',//这里content是一个普通的String,
-
-
                 }
                 );
             });
@@ -130,11 +125,6 @@
             }
         )
 
-
-            
-
-
-
             $("#2").on("click", function (e) {
 
                 $.ajax({
@@ -190,14 +180,6 @@
             )
 
 
-           
-
-
-
-
-
-
-
             //……
             //你的代码都应该写在这里面
         });</script>
@@ -210,53 +192,8 @@
 		
     %>
 
-    <div class="header">
-        <div class="main">
-            <a class="title" href="index.jsp" target="_parent" title="睿道QA">
-
-                <img src="images/logo.png" height="60" width="80" />
-
-                <i class="iconfont icon-jiaoliu layui-hide-xs" style="font-size: 22px;"></i>
-                &nbsp;&nbsp;睿道QA</a>
-
-            <form action="searchQues" class="fly-search">
-                <input class="layui-input" autocomplete="off" placeholder="搜索你感兴趣的内容" type="text" name="q">
-                <i class="iconfont icon-sousuo"></i>
-            </form>
-
-            <div class="fly-tab" style="margin-top:30px">
-                <a id="ask" target="_parent" class="layui-btn jie-add">发布问题</a>
-            </div>
-
-            <i class="layui-icon icon-jiaoliu layui-hide-xs" style="font-size: 22px;"></i>
-
-
-            <div class="nav">
-                <a class="nav-this" href="index.jsp">
-                    <i class="iconfont icon-wenda"></i>欢迎使用</a>
-            </div>
-
-            <div class="nav-user">
-                <a class="iconfont icon-touxiang layui-hide-xs" style="margin-top: 4px; display: inline-block;">
-                </a>
-                <div class="nav" style="font-size:14px;color: white;margin-top: -5px;margin-left: 1px; ">
-                    <a href="login.html" target="_parent">登录</a>
-                    <a href="register.html" target="_parent">注册</a>
-                </div>
-            </div>
-            <div class="nav-user" hidden="hidden">
-                <a class="avatar" href="">
-                    <img src="images/头像1.JPG">
-                    <cite>老汉</cite>
-                </a>
-                <div class="nav">
-                    <a href="index.jsp" target="_parent"><i class="iconfont icon-tuichu"
-                            style="top: 0; font-size: 22px;"></i>退出</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div clsss="layui-row" style="margin-top:65px">
+   <%@ include file="head.jsp"%>
+    <div clsss="layui-row" style="margin-top:80px">
 
 
 
