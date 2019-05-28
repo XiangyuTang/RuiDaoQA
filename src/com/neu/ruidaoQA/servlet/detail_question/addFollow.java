@@ -28,10 +28,11 @@ public class addFollow extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("ajax进来了");
 		Integer follow_user_id = Integer.parseInt(request.getParameter("follow_user_id"));
 		String fangfa = request.getParameter("fangfa");
 //		Integer this_user_id = (Integer) request.getSession().getAttribute("user_id");
-		int this_user_id = 2;
+		int this_user_id = 1;
 		UserServiceimpl userServiceimpl = new UserServiceimpl();
 		if (fangfa.equals("add")) {
 			userServiceimpl.addFollow(this_user_id,follow_user_id);
