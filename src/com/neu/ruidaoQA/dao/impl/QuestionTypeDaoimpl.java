@@ -11,7 +11,7 @@ import com.neu.ruidaoQA.entity.QuestionType;
 
 public class QuestionTypeDaoimpl extends BaseDao implements QuestionTypeDao{
 	 public ArrayList<QuestionType> getQuestiontypes(){
-		 String sql="select * from questype";
+		 String sql="select * from questype order by kinds_id ";
 		 ArrayList<QuestionType> types=new ArrayList<QuestionType>();
 		 ResultSet rs=super.executeSelect(sql, null);
 		 try {

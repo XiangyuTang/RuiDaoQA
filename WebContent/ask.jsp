@@ -21,8 +21,13 @@
 				dataType:"json",
 				success:function(data){
 					var str=""
-					for(i=0;i<data.length;i++){
+					for(i=1;i<data.length;i++){
 						console.log(data[i].type_id+data[i].type_name)
+						if(data[i].type_name=="更多-家居") data[i].type_name="家居"
+						if(data[i].type_name=="更多-文化") data[i].type_name="文化"
+						if(data[i].type_name=="更多-健康") data[i].type_name="健康"
+						if(data[i].type_name=="更多-游戏") data[i].type_name="游戏"
+
 						
 						str+="<option value='"+data[i].type_id+"'>"+data[i].type_name+"</option>"
 					}
@@ -92,8 +97,8 @@
 			<label class="layui-form-label">话题</label>
 			<div class="layui-input-block">
 				<select name="type" id="type" lay-verify="required">
-					<option value="0">请选择</option>
-					<option value="1">草年末</option>
+					<option value="">请选择</option>
+					
 					
 				</select>
 			</div>
