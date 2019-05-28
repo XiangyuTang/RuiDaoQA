@@ -57,5 +57,23 @@ public class FavoriteDaoimpl extends BaseDao implements FavoriteDao{
 		}
 		return questions;
 	}
+
+	@Override
+	public ArrayList<Integer> getFavoriteQuestion_id(int user_id) {
+		ArrayList<Integer> question_ids = new ArrayList<Integer>();
+		Object[] params=new Object[] {user_id};
+		String sql="select question_id from favorite where user_id=?";
+		ResultSet rs=super.executeSelect(sql, params);
+		try {
+			while(rs.next()) {
+				question_ids.add(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
+		}
+		return question_ids;
+	}
 	
 }

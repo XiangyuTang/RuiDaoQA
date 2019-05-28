@@ -25,20 +25,27 @@ public class toDetailQuesServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		Integer question_id = Integer.parseInt(request.getParameter("question_id"));
-		QuestionServiceimpl qsip = new QuestionServiceimpl();
-		UserServiceimpl usip = new UserServiceimpl();
-		AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
-		List<Answer> answers = answerServiceimpl.getAnswerslist(question_id);
-		Question q = qsip.getQuestion(question_id);
-		Integer user_id = q.getUser_id();
-		User u = usip.getUser(user_id);
-		request.setAttribute("User", u);
-		request.setAttribute("Question", q);
-		request.setAttribute("answerlist", answers);
-		System.out.println(q.getContent());	
-		request.getRequestDispatcher("detailQues.jsp").forward(request, response);
+				//response.getWriter().append("Served at: ").append(request.getContextPath());		
+				Integer question_id = Integer.parseInt(request.getParameter("question_id"));
+				QuestionServiceimpl qsip = new QuestionServiceimpl();
+				UserServiceimpl usip = new UserServiceimpl();
+				AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
+				
+				
+				List<Answer> answers = answerServiceimpl.getAnswerslist(question_id,1);//得到其answer的回答者是否在收藏域中
+				Integer have1 = qsip.haveQuestion(question_id, 1);////得到其question是否在收藏域中
+				Question q = qsip.getQuestion(question_id);
+				q.setCollect_flag(have1);
+				
+				Integer user_id = q.getUser_id();
+				Integer haveUser = usip.haveUser(user_id, 1);//得到其user是否被关注
+				User u = usip.getUser(user_id);
+				u.setFollow_flag(haveUser);
+				request.setAttribute("User", u);
+				request.setAttribute("Question", q);
+				request.setAttribute("answerlist", answers);
+				System.out.println(q.getContent());	
+				request.getRequestDispatcher("detailQues.jsp").forward(request, response);
 		
 	}
 

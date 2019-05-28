@@ -174,5 +174,14 @@ public class UserServiceimpl implements UserService{
 		ArrayList<Question> questions=favoriteDaoimpl.getFavoriteQuestions(user_id);
 		return questions;
 	}
+	public Integer haveUser(Integer follow_user_id, Integer this_user_id) {
+		FollowDaoimpl followDaoimpl = new FollowDaoimpl();
+		ArrayList<Integer> follow_user_idlist = followDaoimpl.getFollow_user_idlist(this_user_id);
+		if (follow_user_idlist.contains(follow_user_id)) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 	
 }
