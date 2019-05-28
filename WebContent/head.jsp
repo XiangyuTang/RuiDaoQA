@@ -29,7 +29,7 @@
 				</form>
 				
 				<div class="fly-tab">
-					<a href="add.html" target="_parent" class="layui-btn jie-add">发布问题</a>
+					<a id="ask" target="_parent" class="layui-btn jie-add">发布问题</a>
 				</div>
 				
 					<i class="layui-icon icon-jiaoliu layui-hide-xs" style="font-size: 22px;"></i>
