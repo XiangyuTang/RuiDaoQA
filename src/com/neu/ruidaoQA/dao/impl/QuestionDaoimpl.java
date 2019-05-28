@@ -94,7 +94,7 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		String sql = "select * from question where question_type=? order by answer_number DESC";
 		ResultSet rs = super.executeSelect(sql, params);
 		List<Question> list = new ArrayList<Question>();
-		int i = 0;
+		//int i = 0;
 		try {
 			while (rs.next()) {
 				/*i++;*/
