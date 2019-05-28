@@ -8,6 +8,7 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import com.neu.ruidaoQA.dao.impl.AnswerDaoimpl;
 import com.neu.ruidaoQA.dao.impl.CommentDaoimpl;
+import com.neu.ruidaoQA.dao.impl.FollowDaoimpl;
 import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
 import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.entity.Comment;
@@ -113,20 +114,27 @@ public class AnswerServiceimpl implements AnswerService {
 //		AnswerServiceimpl answerServiceimpl1 = new AnswerServiceimpl();
 //		answerServiceimpl.test1();
 		AnswerServiceimpl answerServiceimpl2 = new AnswerServiceimpl();
-		answerServiceimpl2.getAnswerslist(2);
+		answerServiceimpl2.getAnswerslist(2,1);
 		
 	}
 
 	@Override//根据问题id获取最热的十条回答及其评论
-	public List<Answer> getAnswerslist(int question_id) {
+	public List<Answer> getAnswerslist(int question_id,Integer user_id) {
 		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
 		CommentDaoimpl commentDaoimpl = new CommentDaoimpl();
 		UserDaoimpl userDaoimpl = new UserDaoimpl();
+		FollowDaoimpl followDaoimpl = new FollowDaoimpl();
+		ArrayList<Integer> follow_user_idlist = followDaoimpl.getFollow_user_idlist(user_id);
 		List<Answer> answers = answerDaoimpl.getAnswersList(question_id);
 //		Collections.reverse(answers);
 		for (Answer answer:answers ) {
 			User user = userDaoimpl.selectUserByAnswer_id(answer.getAnswer_id());
 			answer.setUser(user);
+			if (follow_user_idlist.contains(user.getUser_id())) {
+				user.setFollow_flag(1);
+			}else {
+				user.setFollow_flag(0);
+			}
 			List<Comment> comments = commentDaoimpl.getCommentsList(answer.getAnswer_id());
 //			Collections.reverse(comments);
 			for (Comment comment:comments) {

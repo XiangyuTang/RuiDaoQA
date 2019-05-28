@@ -17,4 +17,5 @@ public interface QuestionService {
 	public List<Question> getQuestionByType(int kinds_id);
 	public ArrayList<Question> getSearchResult(String txt);
 	public List<Question> getQuestionByCollectNum();
+	List<Question> getQuestionByTypeAndnumber(Integer kinds_id, Integer min, Integer max, Integer user_id);
 }

@@ -36,8 +36,8 @@ form {
 					<div class="fly-tip fly-detail-hint" data-id="">
 						<br>
 						<div class="fly-list-hint">
-							<input type="hidden" name="question_id" value="" /><!--question_id的隐藏域-->
-							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >${Question.collect_num}</i>&nbsp;  
+							<input type="hidden" name="question_id" value="${Question.question_id }" class="${Question.collect_flag }"/><!--question_id的隐藏域-->
+							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >${Question.collect_num} </i>&nbsp;  
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
 					</div>
@@ -71,7 +71,7 @@ form {
 						<c:forEach items="${answerlist }" var="answer" varStatus="status1">
 						<li data-id="12" class="jieda-daan"><a name="item-121212121212" ></a><!--此处开始循环10次，加载10个答案-->
 							<div class="detail-about detail-about-reply" >
-								<input type="hidden" name="user_id" value="${answer.user.user_id }" class="$" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
+								<input type="hidden" name="user_id" value="${answer.user.user_id }" class="${answer.user.follow_flag }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->
 								<a class="jie-user" href=""> <img src=" ${answer.user.head_photo }" alt=""> <cite> <i>${answer.user.nick_name }</i></cite> </a>
 								<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; margin-left: 68%;">关注</button>
 								<div class="detail-hits">
@@ -525,6 +525,30 @@ form {
 				clickfavorite(flag);
 			}
 		})
+		$('i[class="layui-icon layui-icon-star-fill"]').click(function(){
+			var theclass=['layui-icon layui-icon-star','layui-icon layui-icon-star-fill'];
+			var flag;
+			if($(this).attr('class')=='layui-icon layui-icon-star'){
+				flag = 1;
+				var i = parseInt($(this).html());
+				$(this).html(i+1);
+				$(this).attr("class",theclass[1]);
+				clickfavorite(flag);
+			}
+			else{
+				flag = 0;
+				var i = parseInt($(this).html());
+				$(this).html(i-1);
+				$(this).attr("class",theclass[0]);
+				clickfavorite(flag);
+			}
+		})
+	})
+	
+	$(function(){
+		var theclass=['layui-icon layui-icon-star','layui-icon layui-icon-star-fill'];
+		$("[name='question_id'][class='1']").next().attr("class",theclass[1]);
+		$("[name='question_id'][class='0']").next().attr("class",theclass[0]);
 	})
 
 	//分享链接图标
@@ -589,14 +613,14 @@ form {
 		})				
 	});
 
-	var follow_flag = 0;
+//	var follow_flag = 0;
 	$(function(){
-		$
+		
 		
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").click(function(){
 			var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
+			var follow_flag = 0;
 			if($(this).attr("class")=="layui-btn layui-btn-radius layui-btn-sm"){
-				follow_flag = 0;
 				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
 				$.ajax({
 					type:"get",
@@ -609,9 +633,9 @@ form {
 					}
 				});				
 				$(this).attr("class",theclass[0]);
-				$(this).html("已关注");				
-			}else{
+				$(this).html("已关注");
 				follow_flag = 1;
+			}else{
 				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
 				$.ajax({
 					type:"get",
@@ -625,10 +649,89 @@ form {
 				});				
 				$(this).attr("class",theclass[1]);
 				$(this).html("关注");
+				follow_flag = 0;
+			}
+		})
+		$("[class='layui-btn layui-btn-radius layui-btn-sm layui-btn-primary']").click(function(){
+			var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
+			var follow_flag = 0;
+			if($(this).attr("class")=="layui-btn layui-btn-radius layui-btn-sm"){
+				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				$.ajax({
+					type:"get",
+					url:"addFollow",
+					async:true,
+					data:{follow_user_id:follow_user_id,fangfa:"add"},
+					dataType:"text",
+					success:function(e){
+						
+					}
+				});				
+				$(this).attr("class",theclass[0]);
+				$(this).html("已关注");
+				follow_flag = 1;
+			}else{
+				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
+				$.ajax({
+					type:"get",
+					url:"addFollow",
+					async:true,
+					data:{follow_user_id:follow_user_id,fangfa:"delete"},
+					dataType:"text",
+					success:function(e){
+						
+					}
+				});				
+				$(this).attr("class",theclass[1]);
+				$(this).html("关注");
+				follow_flag = 0;
 			}
 		})
 	})
 	
+
+	$(function(){
+		
+//		setTimeout(function () { 
+//      var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
+//		if($("[type='hidden'][name='user_id']").attr("class") == "1"){
+////			alert(1);
+////			alert($("[type='hidden'][name='user_id']").attr("class"));
+//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[0]);
+//			$(this).html("已关注");
+//		}else{
+//			alert($("[type='hidden'][name='user_id']").attr("class"));
+//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[1]);
+//			$(this).html("关注");
+//		}
+//  	}, 500);
+    	
+//		var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
+//		if($("[type='hidden'][name='user_id']").attr("class") == "1"){
+//			alert($("[type='hidden'][name='user_id']").attr("class"));
+//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[0]);
+//			$(this).html("已关注");
+//		}else{
+//			alert($("[type='hidden'][name='user_id']").attr("class"));
+//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[1]);
+//			$(this).html("关注");
+//		}
+		var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
+		$("[type='hidden'][name='user_id'][class='1']").next().next().attr("class",theclass[0]);
+		$("[type='hidden'][name='user_id'][class='1']").next().next().html("已关注");
+		$("[type='hidden'][name='user_id'][class='0']").next().next().attr("class",theclass[1]);
+	    $("[type='hidden'][name='user_id'][class='0']").next().next().html("关注");
+//			alert($("[type='hidden'][name='user_id']").attr("class"));
+//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[0]);
+//			$("[type='hidden'][name='user_id']").next().next().html("已关注");
+//		}
+//		else{
+//			alert($("[type='hidden'][name='user_id']").attr("class"));
+//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[1]);
+//			$(this).html("关注");
+//		}
+		
+	})
 
 //	function addcomment(text){
 //		str_time = getTime();
@@ -715,8 +818,8 @@ form {
 		//获取文本框中元素的value值,重新绑定一下再传
 		
 		var ans_text = text;
-		var user_id = 1;
-		var question_id = 2;
+		var user_id = 2;
+		var question_id = 2
 		var ans_time = getTimeIntoDB();
 		
 		//1.new
@@ -746,8 +849,8 @@ form {
 	function clickfavorite(flag)
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
-		var user_id = 2;//获取提出这个问题的用户id
-		var question_id = 2;//获取这个问题的id
+		var user_id = 1;//获取提出这个问题的用户id
+		var question_id =  $("[name='question_id']").val();//获取这个问题的id
 		var the_flag = flag;
 		//1.new
 		var xhr = new XMLHttpRequest();

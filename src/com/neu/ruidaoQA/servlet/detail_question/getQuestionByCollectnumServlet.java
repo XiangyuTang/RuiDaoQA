@@ -40,7 +40,7 @@ public class getQuestionByCollectnumServlet extends HttpServlet {
 		String s = "";
         for(Question q:getQuestionByCollectNum){
 			s+="<dd>"+
-					"<a href='toDetailQues?question_id="+q.getQuestion_id() +"'>"+q.getQues_title()+"</a> <span><i class='iconfont'>&#xe60b;</i> "+q.getCollect_num()+"</span" + 
+					"<a href='toDetailQues?question_id="+q.getQuestion_id() +"'>"+q.getQues_title()+"</a> <span><i class='layui-icon'>&#xe658;</i> "+q.getCollect_num()+"</span" + 
 				"</dd>";
         }
         

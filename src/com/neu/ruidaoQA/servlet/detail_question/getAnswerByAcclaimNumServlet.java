@@ -42,7 +42,7 @@ public class getAnswerByAcclaimNumServlet extends HttpServlet {
 		String s = "";
         for(Answer a:getAnswerByAcclaimNum){
         	s+="<dd>"+
-					"<a href='toDetailQues?question_id="+a.getQuestion_id() +"'>"+a.getContent()+"</a> <span><i class='iconfont'>&#xe60b;</i> "+a.getDianzan_num()+"</span" + 
+					"<a href='toDetailQues?question_id="+a.getQuestion_id() +"'>"+a.getContent()+"</a> <span><i class='layui-icon layui-icon-reply-fill comment_for_comment'></i> "+a.getDianzan_num()+"</span" + 
 				"</dd>";
         }
         

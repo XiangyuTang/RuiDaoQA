@@ -6,15 +6,17 @@ import java.util.List;
 import java.util.UUID;
 
 import com.neu.ruidaoQA.dao.impl.AnswerDaoimpl;
+import com.neu.ruidaoQA.dao.impl.FavoriteDaoimpl;
+import com.neu.ruidaoQA.dao.impl.FollowDaoimpl;
 import com.neu.ruidaoQA.dao.impl.QuestionDaoimpl;
 import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
 import com.neu.ruidaoQA.entity.Answer;
 import com.neu.ruidaoQA.entity.Question;
 import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.QuestionService;
+import com.neu.ruidaoQA.servlet.detail_question.favoriteQuesServlet;
 
 public class QuestionServiceimpl implements QuestionService{
-
 	@Override
 	public int addQuestion(Question q) {
 		// TODO Auto-generated method stub
@@ -86,7 +88,8 @@ public class QuestionServiceimpl implements QuestionService{
 		for (Question question:list) {
 			Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
 			if (answer.getUser_id() == null||answer.getAnswer_id() == null) {
-				answer.setContent("该问题没有回答");
+				User user = userDaoimpl.selectUser(1);
+				answer.setUser(user);
 				continue;
 			}
 			User user = userDaoimpl.selectUser(answer.getUser_id());
@@ -114,6 +117,61 @@ public class QuestionServiceimpl implements QuestionService{
 		//System.out.println(getQuestionByCollectNum.get(0).getQues_title());
 
 		return getQuestionByCollectNum;
+	}
+
+	@Override
+	public List<Question> getQuestionByTypeAndnumber(Integer kinds_id, Integer min, Integer max,Integer user_id ) {
+		QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
+		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+		UserDaoimpl userDaoimpl = new UserDaoimpl();
+		FollowDaoimpl followDaoimpl = new FollowDaoimpl();
+		FavoriteDaoimpl favoriteDaoimpl = new FavoriteDaoimpl();
+		ArrayList<Integer> follow_user_idlist = followDaoimpl.getFollow_user_idlist(user_id);
+		ArrayList<Integer> favoriteQuestion_id = favoriteDaoimpl.getFavoriteQuestion_id(user_id);
+		List<Question> questions = questionDaoimpl.getQuestionByTypeandnumber(kinds_id, min, max);		
+		for(Question question:questions) {
+			Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
+			if (answer.getUser_id() == null) {
+				User user = userDaoimpl.selectUser(1);
+				answer.setUser(user);
+				continue;
+			}
+			User selectUser = userDaoimpl.selectUser(answer.getUser_id());
+			answer.setUser(selectUser);
+			User selectUser2 = userDaoimpl.selectUser(question.getUser_id());
+			question.setUser(selectUser2);
+			if (follow_user_idlist.contains(answer.getUser_id())) {
+				answer.getUser().setFollow_flag(1);
+			}else {
+				answer.getUser().setFollow_flag(0);
+			}
+			if (favoriteQuestion_id.contains(question.getQuestion_id())) {
+				question.setCollect_flag(1);
+				
+			}else {
+				question.setCollect_flag(0);
+			}
+		}
+		return null;
+	}
+//	public Integer haveQuestion(Integer question_id, Integer user_id) {
+//		FavoriteDaoimpl favoriteDaoimpl = new FavoriteDaoimpl();
+//		ArrayList<Integer> favoriteQuestion_id = favoriteDaoimpl.getFavoriteQuestion_id(user_id);
+//		if (favoriteQuestion_id.contains(question_id)) {
+//			return 1;
+//		}else {
+//			return 0;
+//		}
+//	}
+
+	public Integer haveQuestion(Integer question_id, Integer user_id) {
+		FavoriteDaoimpl favoriteDaoimpl = new FavoriteDaoimpl();
+		ArrayList<Integer> favoriteQuestion_id = favoriteDaoimpl.getFavoriteQuestion_id(user_id);
+		if (favoriteQuestion_id.contains(question_id)) {
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 
 	
