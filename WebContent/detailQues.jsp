@@ -37,7 +37,7 @@ form {
 						<br>
 						<div class="fly-list-hint">
 							<input type="hidden" name="question_id" value="${Question.question_id }" class="${Question.collect_flag }"/><!--question_id的隐藏域-->
-							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >${Question.collect_num} ${Question.collect_flag } ${Question.question_id }</i>&nbsp;  
+							<i class="layui-icon layui-icon-star" style="font-size: 20px; color: #1E9FFF; "; title="收藏"; >${Question.collect_num} </i>&nbsp;  
 							<i class="layui-icon layui-icon-share" style="font-size: 20px; color: #1E9FFF; " title="分享">分享</i>  
 						</div>
 					</div>
@@ -525,6 +525,30 @@ form {
 				clickfavorite(flag);
 			}
 		})
+		$('i[class="layui-icon layui-icon-star-fill"]').click(function(){
+			var theclass=['layui-icon layui-icon-star','layui-icon layui-icon-star-fill'];
+			var flag;
+			if($(this).attr('class')=='layui-icon layui-icon-star'){
+				flag = 1;
+				var i = parseInt($(this).html());
+				$(this).html(i+1);
+				$(this).attr("class",theclass[1]);
+				clickfavorite(flag);
+			}
+			else{
+				flag = 0;
+				var i = parseInt($(this).html());
+				$(this).html(i-1);
+				$(this).attr("class",theclass[0]);
+				clickfavorite(flag);
+			}
+		})
+	})
+	
+	$(function(){
+		var theclass=['layui-icon layui-icon-star','layui-icon layui-icon-star-fill'];
+		$("[name='question_id'][class='1']").next().attr("class",theclass[1]);
+		$("[name='question_id'][class='0']").next().attr("class",theclass[0]);
 	})
 
 	//分享链接图标
@@ -694,9 +718,9 @@ form {
 //		}
 		var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
 		$("[type='hidden'][name='user_id'][class='1']").next().next().attr("class",theclass[0]);
-//		$("[type='hidden'][name='user_id'][class='1']").next().next().html("已关注");
+		$("[type='hidden'][name='user_id'][class='1']").next().next().html("已关注");
 		$("[type='hidden'][name='user_id'][class='0']").next().next().attr("class",theclass[1]);
-//		$("[type='hidden'][name='user_id'][class='0']").next().next().html("关注");
+	    $("[type='hidden'][name='user_id'][class='0']").next().next().html("关注");
 //			alert($("[type='hidden'][name='user_id']").attr("class"));
 //			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[0]);
 //			$("[type='hidden'][name='user_id']").next().next().html("已关注");
@@ -794,8 +818,8 @@ form {
 		//获取文本框中元素的value值,重新绑定一下再传
 		
 		var ans_text = text;
-		var user_id = 1;
-		var question_id = 2;
+		var user_id = 2;
+		var question_id = 2
 		var ans_time = getTimeIntoDB();
 		
 		//1.new
@@ -825,8 +849,8 @@ form {
 	function clickfavorite(flag)
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
-		var user_id = 2;//获取提出这个问题的用户id
-		var question_id = 2;//获取这个问题的id
+		var user_id = 1;//获取提出这个问题的用户id
+		var question_id =  $("[name='question_id']").val();//获取这个问题的id
 		var the_flag = flag;
 		//1.new
 		var xhr = new XMLHttpRequest();

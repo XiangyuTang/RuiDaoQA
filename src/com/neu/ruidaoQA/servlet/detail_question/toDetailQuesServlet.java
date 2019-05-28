@@ -38,7 +38,7 @@ public class toDetailQuesServlet extends HttpServlet {
 				q.setCollect_flag(have1);
 				
 				Integer user_id = q.getUser_id();
-				Integer haveUser = usip.haveUser(user_id, 2);//得到其user是否被关注
+				Integer haveUser = usip.haveUser(user_id, 1);//得到其user是否被关注
 				User u = usip.getUser(user_id);
 				u.setFollow_flag(haveUser);
 				request.setAttribute("User", u);
