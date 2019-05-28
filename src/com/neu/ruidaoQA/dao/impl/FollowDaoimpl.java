@@ -3,9 +3,11 @@ package com.neu.ruidaoQA.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.neu.ruidaoQA.dao.FollowDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
+import com.neu.ruidaoQA.entity.Follow;
 
 public class FollowDaoimpl extends BaseDao implements FollowDao {
 
@@ -42,5 +44,52 @@ public class FollowDaoimpl extends BaseDao implements FollowDao {
 		}
 		return follow_user_idlists;
 	}
-	
+	public List<Follow> selectFollowById(int Id) {
+		// TODO Auto-generated method stub
+		System.out.println("bbbbbbbbbbbb"+Id);
+		String sql = "select * from follow where follow_user_id = "+Id;
+		ResultSet rs = super.executeSelect(sql, null);
+		
+		List<Follow> lf = new ArrayList<Follow>();
+		try {
+			if(rs!=null) {
+				
+			
+			while(rs.next()) {
+				Follow f = new Follow();
+				
+				f.setFollow_id(rs.getInt(1));
+				f.setThis_user_id(rs.getInt(2));
+				f.setFollow_user_id(rs.getInt(3));
+				lf.add(f);
+			}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//System.out.println("eeeeeeeeeeeeeeeee"+lf.get(0).getFollow_user_id());
+		return lf;
+	}
+
+	@Override
+	public List<Follow> selectGuanZhuById(int Id) {
+		// TODO Auto-generated method stub
+		String sql = "select * from follow where this_user_id = "+Id;
+		ResultSet rs = super.executeSelect(sql,null);
+		List<Follow> lf = new ArrayList<Follow>();
+		try {
+			while(rs.next()) {
+				Follow f = new Follow();
+				f.setFollow_id(rs.getInt(1));
+				f.setThis_user_id(rs.getInt(2));
+				f.setFollow_user_id(rs.getInt(3));
+				lf.add(f);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lf;
+	}
 }

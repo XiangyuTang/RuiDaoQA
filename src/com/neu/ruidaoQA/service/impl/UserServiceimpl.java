@@ -3,7 +3,9 @@ package com.neu.ruidaoQA.service.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.neu.ruidaoQA.dao.UserDao;
 import com.neu.ruidaoQA.dao.impl.FavoriteDaoimpl;
 import com.neu.ruidaoQA.dao.impl.FollowDaoimpl;
 import com.neu.ruidaoQA.dao.impl.UserDaoimpl;
@@ -54,6 +56,29 @@ public class UserServiceimpl implements UserService{
 		
 		return objs;
 	}
+	@Override
+	public List<User> findAllUser(String userName, String Password) {
+		// TODO Auto-generated method stub
+		System.out.println("wwwwwwwwwwwwwwwwwwww");
+		Object[] params =new Object[]{userName,Password};
+		UserDao ud = new UserDaoimpl();
+		User u = ud.selectUser(params);
+		System.out.println("wwwwwwwwwwwwwwwwwwww");
+		List<User> lu = new ArrayList<User>();
+		lu.add(u);
+		System.out.println(lu.size());
+		return lu;
+	}
+
+	@Override
+	public void addHeadPhoto(int id, String path) {
+		// TODO Auto-generated method stub
+		UserDao ud = new UserDaoimpl();
+		Object[] params = new Object[] {path,id};
+		ud.addHeadPhoto(params);
+	}
+
+
 	@Override
 	public ArrayList<Object[]> getAnswersList(int user_id) {
 		
