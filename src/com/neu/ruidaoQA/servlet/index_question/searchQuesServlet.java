@@ -92,6 +92,7 @@ public class searchQuesServlet extends HttpServlet {
 	        }
 			response.getWriter().print(s);
 			//request.getRequestDispatcher("index.jsp").forward(request, response);
+			
 		}
 	}
 
