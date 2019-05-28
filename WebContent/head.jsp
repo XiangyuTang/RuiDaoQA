@@ -23,10 +23,10 @@
 					<i class="iconfont icon-jiaoliu layui-hide-xs" style="font-size: 22px;"></i>
 					&nbsp;&nbsp;睿道QA</a>
 				
-				<form action="searchQues" class="fly-search">
-							<input class="layui-input" autocomplete="off" placeholder="搜索你感兴趣的内容" type="text" name="q">
+				<div action="searchQues" class="fly-search" ><!-- form表单改为div,触发输入框回车事件才能用ajax实现回调 -->
+							<input id="search" class="layui-input" autocomplete="off" placeholder="搜索你感兴趣的内容" type="text" name="q">
 							<i class="iconfont icon-sousuo"></i>
-				</form>
+				</div>
 				
 				<div class="fly-tab">
 					<a href="add.html" target="_parent" class="layui-btn jie-add">发布问题</a>
@@ -70,7 +70,6 @@
 	</body>
 </html>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
-<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
 <script>
 	$(function(){
 		$('i[class="iconfont icon-sousuo"]').click(function(){
@@ -95,4 +94,12 @@
 			}
 			})
 	}) 
+	
+	$(function(){
+		$("#search").keydown(function(event){
+			  if(event.keyCode == 13){
+				  $('i[class="iconfont icon-sousuo"]').trigger("click");
+			  }
+			});
+	})
 </script>
