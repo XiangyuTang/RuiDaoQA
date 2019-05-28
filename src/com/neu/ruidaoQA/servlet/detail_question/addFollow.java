@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.impl.UserServiceimpl;
 
 /**
@@ -31,8 +32,8 @@ public class addFollow extends HttpServlet {
 		System.out.println("ajax进来了");
 		Integer follow_user_id = Integer.parseInt(request.getParameter("follow_user_id"));
 		String fangfa = request.getParameter("fangfa");
-//		Integer this_user_id = (Integer) request.getSession().getAttribute("user_id");
-		int this_user_id = 1;
+		User currentuser = (User)request.getServletContext().getAttribute("CurrentUser");
+		int this_user_id = currentuser.getUser_id();
 		UserServiceimpl userServiceimpl = new UserServiceimpl();
 		if (fangfa.equals("add")) {
 			userServiceimpl.addFollow(this_user_id,follow_user_id);

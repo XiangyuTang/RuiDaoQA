@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.impl.CommentServiceimpl;
 
 /**
@@ -39,8 +40,8 @@ public class addComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer answer_id = Integer.parseInt(request.getParameter("answer_id"));
-//		Integer user_id = (Integer) request.getSession().getAttribute("user_id");
-		Integer user_id = 2;
+		User currentuser = (User)request.getServletContext().getAttribute("CurrentUser");
+		int user_id = currentuser.getUser_id();
 		String comment_content = request.getParameter("comment_content");
 		Integer comment_flag = Integer.parseInt(request.getParameter("comment_flag"));
 		String time = request.getParameter("time");

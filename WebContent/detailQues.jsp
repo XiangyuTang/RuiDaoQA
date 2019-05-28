@@ -28,7 +28,7 @@ form {
 </head>
 <body>
 	<!-- <iframe src="head.jsp" scrolling="no" width="100%" height="65px" href="index.html"></iframe> -->
-	<%@ include file="head.jsp"%>
+<%-- 	<%@ include file="head.jsp"%> --%>
 	<div class="main layui-clear" style="margin-top: 80px;">
 		<div class="wrap">
 			<div class="content detail">
@@ -51,7 +51,7 @@ form {
 							src="${User.head_photo}" alt="头像"> <cite> ${User.nick_name} 
 								<em>${Question.publish_time}发布</em> </cite> </a>
 						<div class="detail-hits" data-id="{{rows.id}}">
-							<input type="hidden" name="user_id" value="${User.user_id}" /><span></span>
+							<input type="hidden" name="user_id" value="${User.user_id}" class="${User.follow_flag }" /><span></span>
 							<button class="layui-btn layui-btn-radius layui-btn-sm" style="width:80px; border-radius:20px;">关注</button>
 						</div>
 					</div>
@@ -225,7 +225,7 @@ form {
 
 <script type="text/javascript" charset="utf-8" src="js/kindeditor.js"></script>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
-
+<!--<script src='guangd.js'></script> -->
 <script>	
  	//获取当前时间存入数据库中
 	function getTimeIntoDB() {
@@ -303,7 +303,7 @@ form {
 				var answer_id1 = parseInt(answer_id)+1;
 				var $newTr=$('<li data-id="12" class="jieda-daan"><a name="item-121212121212"></a>'+
 					'<div class="detail-about detail-about-reply" > '+
-								'<input type="hidden" name="user_id" value="${answer.user.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
+								'<input type="hidden" name="user_id" value="${applicationScope.CurrentUser.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
 								'<a class="jie-user" href=""> <img src="${applicationScope.CurrentUser.head_photo}" alt=""> <cite> <i>我</i></cite> </a> '+
 								'<div class="detail-hits"> '+
 									'<span>'+str_time+'</span>'+
@@ -603,11 +603,11 @@ form {
 			$(this).toggle(
 				function(){
 					$(this).addClass("layui-anim layui-anim-scaleSpring");
-					$(this).parent().parent().next().slideDown(500);
+					$(this).parent().parent().next().slideDown(700);
 				},
 				function(){
 					$(this).removeClass("layui-anim layui-anim-scaleSpring");
-					$(this).parent().parent().next().slideUp(500);
+					$(this).parent().parent().next().slideUp(700);
 				}				
 			)
 			$(this).trigger("click");
@@ -689,7 +689,7 @@ form {
 			}
 		})
 	})
-	
+
 
 	$(function(){
 		
@@ -770,9 +770,9 @@ form {
 				});
 		var $commentdiv=$(
 			'<div class="detail-about detail-about-reply"><!--从该处开始第二次循环，循环10次，结合外层，共加载出100条热评-->'+
-								'<input type="hidden" name="user_id" value="${comment.user.user_id }" /><!--评论人的user_id隐藏域，暂时未使用，后续可能使用-->'+
+								'<input type="hidden" name="user_id" value="${applicationScope.CurrentUser.user_id}" /><!--评论人的user_id隐藏域，暂时未使用，后续可能使用-->'+
 								'<a class="jie-user" href=""> <img '+
-									'src="${comment.user.head_photo }" alt=""> <cite> <i>我</i> '+
+									'src="${applicationScope.CurrentUser.head_photo}" alt=""> <cite> <i>我</i> '+
 										'<em style="color:#FF9E3F"></em> </cite> </a>'+
 								'<div class="detail-hits">'+
 									'<span>'+str_time+'</span>'+
@@ -817,10 +817,9 @@ form {
 	function submit_ans(text)
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
-		
 		var ans_text = text;
-		var user_id = ${applicationScope.CurrentUser.user_id};
-		var question_id = ${Question.question_id};
+		var user_id = "${applicationScope.CurrentUser.user_id }";
+		var question_id = "${Question.question_id}";
 		var ans_time = getTimeIntoDB();
 		
 		//1.new
@@ -850,7 +849,7 @@ form {
 	function clickfavorite(flag)
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
-		var user_id = 1;//获取提出这个问题的用户id
+		var user_id = "${applicationScope.CurrentUser.user_id }";//登陆者id
 		var question_id =  $("[name='question_id']").val();//获取这个问题的id
 		var the_flag = flag;
 		//1.new
