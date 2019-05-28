@@ -855,6 +855,7 @@ form {
 		var the_flag = flag;
 		//1.new
 		var xhr = new XMLHttpRequest();
+		
 		//2.open
 		//注意与get方法时对比，在第二个参数后面不能加？。应该将传递到后台的参数用send()方法传递
 		xhr.open('post','favoriteQues',true);
