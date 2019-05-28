@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.neu.ruidaoQA.dao.UserDao;
 import com.neu.ruidaoQA.dbutil.BaseDao;
@@ -41,6 +42,90 @@ public class UserDaoimpl extends BaseDao implements UserDao{
 		}
 		return comments;
 		
+	}
+
+	public User selectUser(Object[] params) {
+		// TODO Auto-generated method stub
+		ResultSet rs = super.executeSelect("select * from users where email=? and userPwd=?", params);
+		User u2=new User();
+		try {
+			if (rs.next()) {
+				u2.setUser_id(rs.getInt(1));
+				u2.setNick_name(rs.getString(2));
+				u2.setSex(rs.getString(3));
+				u2.setBirthday(rs.getDate(4));
+				u2.setPassword(rs.getString(5));
+				u2.setEmail(rs.getString(6));
+				u2.setHead_photo(rs.getString(7));
+				u2.setIntroduce(rs.getString(8));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			super.closeAll(BaseDao.con, BaseDao.pst, rs);
+		}
+		return u2;
+	}
+	public int addUser(Object[] params) {
+		// TODO Auto-generated method stub
+		int rs = super.executeIUD("insert into users(nickname,sex,birthday,userPwd,email,head_photo,introduce) "
+				+ "values(?,?,?,?,?,?,?)",new Object[] {params[2],params[5],params[3],params[1],params[0],null,params[4]} );
+		try {
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return rs;
+	}
+
+
+	@Override
+	public int updateUser(User u) {
+		// TODO Auto-generated method stub
+		//不更新headphoto的值
+		int rs = super.executeIUD("update users set nickname=?,sex=?,birthday=?,userPwd=?,email=?,introduce=? where user_id=?",
+				new Object[] {u.getNick_name(),u.getSex(),u.getBirthday(),u.getPassword(),u.getEmail(),u.getIntroduce(),u.getUser_id()});
+		try {
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return rs;
+	}
+
+	@Override
+	public int deleteUser(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		String sql = "select * from users";
+		ResultSet rs = super.executeSelect(sql, null);
+		List<User> lu = new ArrayList<User>();
+		try {
+			while(rs.next()) {
+				User u = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));
+				lu.add(u);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lu;
+	}
+	@Override
+	public void addHeadPhoto(Object[] params) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		String sql = "update users set head_photo = ? where user_id = ?";
+		super.executeIUD(sql, params);
 	}
 
 	@Override

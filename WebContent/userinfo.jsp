@@ -1,18 +1,28 @@
 <html>
-<%@ page  language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page  language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
+<%@page import="com.neu.ruidaoQA.entity.User"%>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
 
     <title>Insert title here</title>
     <link rel="stylesheet" href="./layui/css/layui.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/global.css">
     <script src="./layui/layui.js" charset="utf-8" type="text/javascript"></script>
+    <script src="./js/admin.js"> </script>
     <style>
-    .datetime {
-    font-size: 14px;
-    color: #999;
-    margin-top: 4px;
-    line-height: 22px;
-    }
+        .datetime {
+            font-size: 14px;
+            color: #999;
+            margin-top: 4px;
+            line-height: 22px;
+        }
     </style>
 
     <script>
@@ -31,220 +41,159 @@
                     type: 2,
                     offset: 'auto',
                     area: ['50%', '50%'],
-                    content: 'toAsk?user_id=2',//这里content是一个普通的String,
+                    content: 'toAsk?user_id=${current_user_id}',//这里content是一个普通的String,
 
 
                 }
                 );
             });
-            $.ajax({
-                async: false,
-                url: "showUsersQuestionListServlet",
-                data: { user_id: "2" },
-                dataType: "json",
-                type: "post",
-                success: function (data) {
-                    for (i = 0; i < data.length; i++) {
-                        $("#questionlist").append("<div class='layui-row'> <div class='layui-col-md12'>" +
-                            "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
-                            " <div class='layui-card-body'>" +
-                            "<h1><a href='toDetailQues?question_id="+data[i].question_id+"'</a>"+ data[i].ques_title + "</h1><br>" +
-                            "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
-
-                            " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
-                            "</div></div></div> <hr>")
-
-                    }
-
-                }
+            $("#showUserMessage").on("click", function (e) {
+                alert("nima")
+                layer.open({
+                    type: 2,
+                    scrollbar: false,
+                    offeset: 'auto',
+                    area: ['80%', '30%'],
+                    content: "UserMessageServlet",
+                })
             })
-
-
-          
+            $("#focus").on("click", function (e) {
+                alert("nimabi")
+                layer.open({
+                    type: 2,
+                    scrollbar: false,
+                    offeset: 'auto',
+                    area: ['80%', '70%'],
+                    content: "GuanZhuServlet",
+                })
+            })
+            $("#fans").on("click", function (e) {
+                alert("nimabi")
+                layer.open({
+                    type: 2,
+                    scrollbar: false,
+                    offeset: 'auto',
+                    area: ['80%', '70%'],
+                    content: "FansMessageServlet",
+                })
+            })
+            $("#3").on("click", function (e) {
                 $.ajax({
                     async: false,
-                    url: "showFavoriteQuestions",
-                    data: { user_id: "1" },
+                    url: "showUsersQuestionListServlet",
+                    data: { user_id: "${current_user_id}" },
                     dataType: "json",
                     type: "post",
                     success: function (data) {
+                        var str=""
                         for (i = 0; i < data.length; i++) {
-                            
-                                $("#collectlist").append("<div class='layui-col-md12'>" +
-                                    "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
-                                    " <div class='layui-card-body'>" +
-                                    "<h1><a href='toDetailQues?question_id="+data[i].question_id+"'</a>" + data[i].ques_title + "</h1><br>" +
-                                    "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
+                            str+="<div class='layui-row'> <div class='layui-col-md12'>" +
+                                "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
+                                " <div class='layui-card-body'>" +
+                                "<h1><a href='toDetailQues?question_id=" + data[i].question_id + "'</a>" + data[i].ques_title + "</h1><br>" +
+                                "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
 
-                                    " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
-                                    "</div></div></div> <hr>")
+                                " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
+                                "</div></div></div> <hr>"
+                        $("#questionlist").html(str)
 
-                   
+                        }
+
+                    }
+                })
+
+            })
+            $("#4").on("click", function (e) {
+                $.ajax({
+                    async: false,
+                    url: "showFavoriteQuestions",
+                    data: { user_id: "${current_user_id}" },
+                    dataType: "json",
+                    type: "post",
+                    success: function (data) {
+                        var str=""
+                        for (i = 0; i < data.length; i++) {
+                          str+= "<div class='layui-col-md12'>" +
+                                "  <div class='layui-card' style='width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
+                                " <div class='layui-card-body'>" +
+                                "<h1><a href='toDetailQues?question_id=" + data[i].question_id + "'</a>" + data[i].ques_title + "</h1><br>" +
+                                "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
+
+                                " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
+                                "</div></div></div> <hr>"
+
+                                $("#collectlist").html(str)
 
                         }
                     }
                 })
+            }
+        )
+
 
             
 
 
 
+            $("#2").on("click", function (e) {
 
-          
                 $.ajax({
                     async: false,
                     url: "showUsersAnswerList",
-                    data: { user_id: "2" },
+                    data: { user_id: "${current_user_id}" },
                     dataType: "json",
                     type: "post",
                     success: function (data) {
+                        var str=""
                         for (i = 0; i < data.length; i++) {
-                            $("#answerlist").append(" <div class='layui-col-md12'>" +
+                         str+=  " <div class='layui-col-md12'>" +
                                 " <div class='layui-card' style='width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>" +
                                 "  <div class='layui-card-body'>" +
-                                " <h1><a href='toDetailQues?question_id="+data[i][0]+"'</a>" + data[i][1] + "</h1><br>" +
+                                " <h1><a href='toDetailQues?question_id=" + data[i][0] + "'</a>" + data[i][1] + "</h1><br>" +
                                 " <p>" + data[i][2] + "人回答·" + data[i][3] + "人收藏</p>" +
 
                                 "  <a class='layui-icon layui-icon-username' href='#'>" + data[i][4] + "</a><br>" +
                                 data[i][5] + "<br><br>" +
                                 "  <span style='float: left;width:30%;'>" + data[i][6] + "人评论</span>" +
                                 " <span style='float:initial;width:30%'>" + data[i][7] + "人点赞</span>" +
-                                " <a class='layui-icon layui-icon-share' style='float: right;cursor: pointer'>分享</a>    </div>  </div>  </div>   <hr>")
-
+                                " <a class='layui-icon layui-icon-share' style='float: right;cursor: pointer'>分享</a>    </div>  </div>  </div>   <hr>"
+                                $("#answerlist").html(str)
                         }
                     }
                 })
+            })
 
+
+            $("#1").on("click", function (e) {
                 $.ajax({
                 async: false,
                 url: "showMessage",
-                data: { user_id: "1" },
+                data: { user_id: "${current_user_id}" },
                 dataType: "json",
                 type: "post",
                 success: function (data) {
+                    var str=""
                     for (i = 0; i < data.length; i++) {
-                      console.log(data[i]);
-                      $("#testlist").append("<div class='layui-col-md12'>"+
-                                "<div class='layui-card' style='width: 100%;height:100px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>"
-                                 +"   <div class='layui-card-body'>"+
-                                     "   <h1  >"+" <a href='toDetailQues?question_id="+data[i][0]+"'</a>"+data[i][1]+"评论了你</h1><br>"+
-                                       " <p>"+data[i][2]+"</p>"+
-                                        " <div class='datetime'>"+ data[i][3]+"</div>"+   "</div>   </div> </div>  <hr>");
-
+                        console.log(data[i]);
+                     str+= "<div class='layui-col-md12'>" +
+                            "<div class='layui-card' style='width: 100%;height:100px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>"
+                            + "   <div class='layui-card-body'>" +
+                            "   <h1  >" + " <a href='toDetailQues?question_id=" + data[i][0] + "'</a>" + data[i][1] + "评论了你</h1><br>" +
+                            " <p>" + data[i][2] + "</p>" +
+                            " <div class='datetime'>" + data[i][3] + "</div>" + "</div>   </div> </div>  <hr>"
+                            $("#testlist").html(str)
                     }
 
                 }
             })
+            }
+            )
+
+
+           
 
 
 
-            /* flow.load({
-                   elem: '#answerlist',//指定列表容器
-                   isAuto: true,
-                   end:'牛逼啊',
-                   done: function (page, next) { //执行下一页的回调
-   
-                       //模拟数据插入
-                       setTimeout(function () {
-                           var lis = [];
-                           for (var i = 0; i < 3; i++) {
-                               lis.push(`   <hr>
-                               <div class="layui-col-md12">
-                                   <div class="layui-card"
-                                       style="width: 100%;height:175px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                       <div class="layui-card-body">
-                                           <h1>你说你帅吗</h1><br>
-                                           <p>暂无回答·&{num}人收藏</p>
-   
-                                           <a class="layui-icon layui-icon-username" href="#">nickname</a><br>
-                                           &{commentcontent}<br><br>
-                                           <span style="float: left;width:30%">&{cnumber}评论</span>
-                                           <span style="float:initial;width:30%">&{fnumber}点赞</span>
-                                           <a class="layui-icon layui-icon-share"
-                                               style="float: right;cursor: pointer">分享</a>
-   
-                                       </div>
-                                   </div>
-                               </div>`)
-                           }
-   
-                           //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                           //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                           next(lis.join(''), page <5); //假设总页数为 10
-                       }, 500);
-                   }
-   
-
-   
-               });*//*
-         flow.load({
-             elem: '#questionlist',//指定列表容器
-             isAuto: true,
-             end:'牛逼啊',
-             done: function (page, next) { //执行下一页的回调
-
-                 //模拟数据插入
-                 setTimeout(function () {
-                     var lis = [];
-                     for (var i = 0; i < 3; i++) {
-                         lis.push(`  <hr> <div class="layui-col-md12">
-                             <div class="layui-card"
-                                 style="width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                 <div class="layui-card-body">
-                                     <h1>你说你帅吗</h1><br>
-                                     <p>暂无回答·&{num}人收藏</p>
-                             
-                                     <a class="layui-icon layui-icon-edit " style="color:#01AAED;font-size: 18" href="#">回答</a>
-
-                                 </div>
-                             </div>
-
-                         </div>`)
-                     }
-
-                     //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                     //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                     next(lis.join(''), page < 5); //假设总页数为 10
-                 }, 500);
-             }
-
-         }
-         );
-
-         flow.load({
-             elem: '#collectlist',//指定列表容器
-             isAuto: true,
-             end:'牛逼啊',
-
-             done: function (page, next) { //执行下一页的回调
-
-                 //模拟数据插入
-                 setTimeout(function () {
-                     var lis = [];
-                     for (var i = 0; i < 3; i++) {
-                         lis.push(`  <hr> <div class="layui-col-md12">
-                             <div class="layui-card"
-                                 style="width: 100%;height:125px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
-                                 <div class="layui-card-body">
-                                     <h1>你说你帅吗</h1><br>
-                                     <p>暂无回答·&{num}人收藏</p>
-                             
-                                     <a class="layui-icon layui-icon-edit " style="color:#01AAED;font-size: 18" href="#">回答</a>
-
-                                 </div>
-                             </div>
-
-                         </div>`)
-                     }
-
-                     //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                     //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                     next(lis.join(''), page < 5); //假设总页数为 10
-                 }, 500);
-             }
-
-         }
-         );*/
 
 
 
@@ -256,25 +205,60 @@
 
 
 <body>
-    <ul class="layui-nav layui-bg-blue">
-        <li class="layui-nav-item">
-            <a href="#">控制台<span class="layui-badge">9</span></a>
-        </li>
-        <li class="layui-nav-item">
-            <a id="ask" href="#">提问<span class="layui-badge-dot"></span></a>
-        </li>
-        <li class="layui-nav-item">
-            <a href="#"><img src="./images/ceshi.png" class="layui-nav-img">我</a>
-            <dl class="layui-nav-child">
-                <dd><a href="#">修改信息</a></dd>
-                <dd><a href="#">安全管理</a></dd>
-                <dd><a href="#">退了</a></dd>
-            </dl>
-        </li>
-    </ul>
+    <%
+	    List<Integer> list = (List<Integer>) request.getSession().getAttribute("List");
+		
+    %>
+
+    <div class="header">
+        <div class="main">
+            <a class="title" href="index.jsp" target="_parent" title="睿道QA">
+
+                <img src="images/logo.png" height="60" width="80" />
+
+                <i class="iconfont icon-jiaoliu layui-hide-xs" style="font-size: 22px;"></i>
+                &nbsp;&nbsp;睿道QA</a>
+
+            <form action="searchQues" class="fly-search">
+                <input class="layui-input" autocomplete="off" placeholder="搜索你感兴趣的内容" type="text" name="q">
+                <i class="iconfont icon-sousuo"></i>
+            </form>
+
+            <div class="fly-tab" style="margin-top:30px">
+                <a id="ask" target="_parent" class="layui-btn jie-add">发布问题</a>
+            </div>
+
+            <i class="layui-icon icon-jiaoliu layui-hide-xs" style="font-size: 22px;"></i>
 
 
-    <div clsss="layui-row">
+            <div class="nav">
+                <a class="nav-this" href="index.jsp">
+                    <i class="iconfont icon-wenda"></i>欢迎使用</a>
+            </div>
+
+            <div class="nav-user">
+                <a class="iconfont icon-touxiang layui-hide-xs" style="margin-top: 4px; display: inline-block;">
+                </a>
+                <div class="nav" style="font-size:14px;color: white;margin-top: -5px;margin-left: 1px; ">
+                    <a href="login.html" target="_parent">登录</a>
+                    <a href="register.html" target="_parent">注册</a>
+                </div>
+            </div>
+            <div class="nav-user" hidden="hidden">
+                <a class="avatar" href="">
+                    <img src="images/头像1.JPG">
+                    <cite>老汉</cite>
+                </a>
+                <div class="nav">
+                    <a href="index.jsp" target="_parent"><i class="iconfont icon-tuichu"
+                            style="top: 0; font-size: 22px;"></i>退出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div clsss="layui-row" style="margin-top:65px">
+
+
 
         <div class="layui-col-md3 layui-col-md-offset1"
             style="padding: 30px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
@@ -285,10 +269,23 @@
                         style="padding: 30px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;">
 
                         <div class="layui-card-body">
-                            <img src='./images/ceshi.png'><br>
+
+
+
+                            <%-- <img class="layui-nav-img" src="<%=path %>" /> --%>
+
+                            <img style="width: 100px;
+                                height: 100px;
+                                border-radius: 50px;" src="${filename}"><br>
+                            <form action="UploadServlet" method="post" enctype="multipart/form-data">
+                                <input type="text" name="user1" /><br>
+                                <input type="file" name="pic"><br>
+                                <input type="submit" value="上传" />
+                            </form>
                             <i class="layui-icon layui-icon-username" style="height: 20px;"></i> <span>liubin</span><br>
                             <i class="layui-icon layui-icon-list" style="height: 20px;"></i> <span>我很懒</span><br>
-                            <a class="layui-icon layui-icon-edit" style="height: 20px; " href="#">编辑个人信息</a>
+                            <a class="layui-icon layui-icon-edit" id="showUserMessage" style="height: 20px; ">编辑个人信息</a>
+                         
 
 
 
@@ -303,8 +300,8 @@
                         vertical-align: middle;">
                         <div class="layui-card-body">
 
-                            关注<br>
-                            <i id="follow" name="follow">34</i> </div>
+                            <a id="focus">关注</a><br>
+                            <i id="follow" name="follow"><%=list.get(0)%></i> </div>
                     </div>
 
                 </div>
@@ -313,8 +310,8 @@
 
                     <div class="layui-card" style="padding: 30px;background-color: #F2F2F2; display: inline-block;
                         vertical-align: middle;">
-                        <div class="layui-card-body">粉丝<br>
-                            <i id="fan" name="fan">34</i></div>
+                        <div class="layui-card-body"><a id="fans">粉丝</a><br>
+                            <i id="fan" name="fan"><%=list.get(1)%></i></div>
                     </div>
                 </div>
                 <div class="layui-col-md12"><br><br><br></div>
@@ -333,26 +330,28 @@
             <!--这个地方用来显示回答提问收藏等可以切换的界面-->
             <div class="layui-tab layui-tab-brief">
                 <ul class="layui-tab-title">
-                    <li class="layui-this">通知</li>
-                    <li>回答</li>
-                    <li>提问</li>
-                    <li>收藏</li>
-                    
+                    <li class="layui-this" id="1">通知</li>
+                    <li id="2">回答</li>
+                    <li id="3">提问</li>
+                    <li id="4">收藏</li>
+
                 </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show" id="testlist">
-                        
+                    <div class="layui-tab-item layui-show" >
+                        <div class="layui-row" id="testlist">
+                        </div>
+
                     </div>
 
-                    
 
-                    <div class="layui-tab-item">
+
+                    <div class="layui-tab-item" >
 
                         <div class="layui-row" id="answerlist">
                         </div>
                     </div>
 
-                    <div class="layui-tab-item">
+                    <div class="layui-tab-item" >
                         <div class="layui-row" id="questionlist">
 
 
@@ -362,11 +361,11 @@
 
                     </div>
 
-                    <div class="layui-tab-item">
+                    <div class="layui-tab-item" >
                         <div clsss="layui-row" id="collectlist">
                         </div>
                     </div>
-                 
+
                 </div>
 
 
@@ -377,10 +376,7 @@
     </div>
 
 
-    </div>
 
-
-    </div>
 
 
 
