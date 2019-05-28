@@ -32,7 +32,6 @@ public class getNewAnswer_id extends HttpServlet {
 		Integer newAnswer_id = answerServiceimpl.getNewAnswer_id();
 		response.getWriter().print(newAnswer_id);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
