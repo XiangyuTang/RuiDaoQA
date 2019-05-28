@@ -14,11 +14,32 @@
 			var layer = layui.layer, form = layui.form, element = layui.element
 			$ = layui.$
 			
+
+			$.ajax({
+				url:"getQuestionTypeServlet",
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					var str=""
+					for(i=0;i<data.length;i++){
+						console.log(data[i].type_id+data[i].type_name)
+						
+						str+="<option value='"+data[i].type_id+"'>"+data[i].type_name+"</option>"
+					}
+					$("#type").append(str)
+					form.render()//非常tm的重要
+				
+
+				}
+				
+			})
+			
 				$("#submit_button").click(function(){
 				
 				$.ajax({
 					url:"askQuestion",
 					type:"post",
+					async:false,
 					dataType:"text",
 					data:{user_id:$("#user_id").val(),type:$("#type").val(),desc:$("#desc").val(),title:$("#title").val()},
 					success:function(data){
@@ -71,12 +92,9 @@
 			<label class="layui-form-label">话题</label>
 			<div class="layui-input-block">
 				<select name="type" id="type" lay-verify="required">
-					<option value="">请选择</option>
-					<option value="0"></option>
-					<option value="1">体育</option>
-					<option value="2">娱乐</option>
-					<option value="3">财经</option>
-					<option value="4">IT</option>
+					<option value="0">请选择</option>
+					<option value="1">草年末</option>
+					
 				</select>
 			</div>
 		</div>
