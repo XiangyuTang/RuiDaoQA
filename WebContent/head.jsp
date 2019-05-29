@@ -68,6 +68,23 @@
 						<a href="login.html" target="_parent">登录</a> <a
 							href="register.html" target="_parent">注册</a>
 					</div>
+				</c:if>
+				
+				<c:if test = "${empty  applicationScope.CurrentUser}">
+					<div class="nav-user" >
+					  <a   class="iconfont icon-touxiang layui-hide-xs" style="margin-top: 4px; display: inline-block;">
+                    </a>
+                    <div class="nav"  style="font-size:14px;color: white;margin-top: -5px;margin-left: 1px; ">
+                    	<a href="login.html"  target="_parent" >登录</a>
+                    	<a href="register.html" target="_parent" >注册</a>
+                    </div>
+					</div>
+				</c:if>
+			</div>
+				</div>
+			</c:if>
+				</div>
+			</c:if>
 				</div>
 			</c:if>
 		</div>
