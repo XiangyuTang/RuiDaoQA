@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="layui/css/layui.css">
 <link rel="stylesheet" href="css/global.css">
 <script src="layui/layui.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<!--<script src="js/script.js"></script>-->
 <style type="text/css" rel="stylesheet">
 
 form {
@@ -44,7 +46,6 @@ form {
 					</div>
 					<div class="detail-body photos" style="margin-bottom: 20px;">
 						<p>${Question.content}</p>
-						
 					</div>
 					<div class="detail-about">						
 						<a class="jie-user" href=""> <img
@@ -60,12 +61,18 @@ form {
 					</span>		
 					
 							<textarea id="L_content" name="content"  placeholder="我要回答" 
-							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~~</textarea>
+							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~</textarea>
 							<br>
+							
 							<div class="layui-form-item">
 								<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
-							</div>				
+								<button id="start-record-btn" class="layui-btn" lay-filter="*" lay-submit>语音识别</button>
+								<button id="pause-record-btn" class="layui-btn" >暂停识别</button>
+							</div>
+							<p id="recording-instructions">按下 <strong>语音识别</strong> 按钮并按提示给予相关权限。</p>
+							<div class="no-browser-support" style="display:none">您的浏览器不支持Web Speech API，请使用Chrome浏览器打开此应用。</div>			
 				</div>
+			
 				<div class="fly-panel detail-box" style="padding-top: 0;">
 					<a name="comment"></a>
 					<ul class="jieda photos" id="jieda">
@@ -337,39 +344,7 @@ form {
 			}
 			
 		});
-// 		var $newTr=$('<li data-id="12" class="jieda-daan"><a name="item-121212121212"></a>'+
-//					'<div class="detail-about detail-about-reply" > '+
-//								'<input type="hidden" name="user_id" value="${answer.user.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
-//								'<a class="jie-user" href=""> <img src="images/uer.jpg " alt=""> <cite> <i>我</i></cite> </a> '+
-//								'<div class="detail-hits"> '+
-//									'<span>'+str_time+'</span>'+
-//								'</div>'+
-//							'</div>'+
-//							'<div class="detail-body jieda-body">'+
-//								'<p>'+ text +'</p>'+
-//							'</div>	'+						
-//							'<div class="jieda-reply">'+
-//								'<input type="hidden" name="answer_id" value="'+answer_id+'"/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->'+
-//								'<span class="jieda-zan zanok" type="zan">'+
-//									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
-//								'</span>'+
-//								'<span class="jieda-zan zanok" type="zan"><i '+
-//									'class="layui-icon layui-icon-tread" title="踩"></i><em>0</em>'+
-//								'</span>'+
-//								'<span class="jieda-zan zanok" type="zan"><i '+
-//									'class="layui-icon layui-icon-reply-fill" title="评论"></i><em>0</em>'+
-//								'</span>'+
-//							'</div>'+
-//				'</li>')
-//			$('#jieda').prepend($newTr);
-//			//清空文本框内容
-//			//text = $('textarea[id="L_content"]').val("");
-//			//弹出回答成功提示窗口
-//			submit_ans(text);
-//			
-//			//清空富文本框textarea
-//			//document.getElementById('L_content').reset();
-//			//$('textarea[id="L_content"]').html("");
+
    	}
    		
 	//点击提交回答按钮触发
@@ -909,4 +884,98 @@ layui.use(['carousel', 'form'], function(){
   });
     
 });
+</script>
+<script>
+	$(function(){
+		try {
+		  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+		  var recognition = new SpeechRecognition();
+		}
+		catch(e) {
+		  console.error(e);
+		  $('.no-browser-support').attr('style','display: block');
+		  alert("想不到吧，调用不了API");
+		}
+		
+		
+		//var noteTextarea = $('#note-textarea');
+		var noteTextarea = $('#L_content');
+		var instructions = $('#recording-instructions');
+		
+		var noteContent = '';
+		
+		/*-----------------------------
+		      语音识别 
+		------------------------------*/
+		
+		recognition.continuous = true;//使用户在录入语音时能有更长的停顿时间，大约15秒
+		
+		recognition.onresult = function(event) {
+		
+		  // event 是一个SpeechRecognitionEvent 对象
+		  // 保存了所有历史捕获对象 
+		  // 我们只取当前的内容
+		  var current = event.resultIndex;
+		
+		  // 获取此前所说话的记录
+		  var transcript = event.results[current][0].transcript;
+		
+		  // 将当前记录添加到笔记内容中
+		  // 解决安卓设备的bug
+		  var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+		
+		  if(!mobileRepeatBug) {
+		  	layedit.sync(index);
+		    noteContent += transcript;
+		    noteTextarea.val(noteContent);
+		    layedit.sync(index);//将富文本编辑器的内容同步到textarea
+		    layedit.setContent(index,noteContent); 
+		  }
+		};
+		
+		recognition.onstart = function() { 
+		  instructions.text('语音识别功能激活！请对着麦克风讲话。');
+		}
+		
+		recognition.onspeechend = function() {
+		  instructions.text('录音结束。');
+		}
+		
+		recognition.onerror = function(event) {
+		  if(event.error == 'no-speech') {
+		    instructions.text('未检测到语音，请再试一次。');  
+		  };
+		}
+		
+		/*-----------------------------
+		      应用功能按钮与输入 
+		------------------------------*/
+		
+		$('#start-record-btn').on('click', function(e) {
+			 
+		  if (noteContent.length) {
+		    noteContent += ' ';
+		    layedit.setContent(index,noteContent); 
+		  }
+		  recognition.start();
+		 
+		});
+		
+		
+		$('#pause-record-btn').on('click', function(e) {
+			
+			layedit.setContent(index,noteContent); 
+		  recognition.stop();
+		  instructions.text('语音识别暂停。');
+		  layedit.sync(index);
+		});
+		
+		// 同步文本框文本与noteContent变量
+		noteTextarea.on('input', function() {
+		 
+		  noteContent = $(this).val();
+		  layedit.setContent(index,noteContent); 
+		  layedit.sync(index);//将富文本编辑器的内容同步到textarea
+		})
+	})
 </script>

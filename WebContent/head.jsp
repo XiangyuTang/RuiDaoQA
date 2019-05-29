@@ -11,7 +11,9 @@
 		<meta name="description" content="">
 		<link rel="stylesheet" href="layui/css/layui.css">
 		<link rel="stylesheet" href="css/global.css">
+		<link rel="stylesheet" href="layui/css/iconfont.css">
 		<script src="layui/layui.js"></script>
+		
 	</head>
 	<body>
 		<div class="header">
@@ -25,7 +27,7 @@
 				
 				<div action="searchQues" class="fly-search" ><!-- form表单改为div,触发输入框回车事件才能用ajax实现回调 -->
 							<input id="search" class="layui-input" autocomplete="off" placeholder="搜索你感兴趣的内容" type="text" name="q">
-							<i class="iconfont icon-sousuo"></i>
+							<i class="iconfont icon-sousuo" ></i>
 				</div>
 				
 				<div class="fly-tab">
@@ -74,24 +76,28 @@
 	$(function(){
 		$('i[class="iconfont icon-sousuo"]').click(function(){
 			var searchtxt = $(this).prev().val();
-			//1.new
-			var xhr = new XMLHttpRequest();
-			//2.open
-			//注意与get方法时对比，在第二个参数后面不能加？。应该将传递到后台的参数用send()方法传递
-			xhr.open('post','searchQues',true);
-			//3.send
-			//需要加一个头文件，才能用post提交
-			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			//xhr.send(JSON.stringify(data));
-			xhr.send('searchtxt='+searchtxt);
-			//xhr.send('question_id='+question_id);
-			//4.回调
-			xhr.onload = function(){
-				console.log(xhr.responseText);
-				var ul = document.getElementById('LAY_demo');
-				ul.innerHTML = xhr.responseText;
-				//flush(ajax.responseText);
+			if(searchtxt!="")
+			{
+				//1.new
+				var xhr = new XMLHttpRequest();
+				//2.open
+				//注意与get方法时对比，在第二个参数后面不能加？。应该将传递到后台的参数用send()方法传递
+				xhr.open('post','searchQues',true);
+				//3.send
+				//需要加一个头文件，才能用post提交
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				//xhr.send(JSON.stringify(data));
+				xhr.send('searchtxt='+searchtxt);
+				//xhr.send('question_id='+question_id);
+				//4.回调
+				xhr.onload = function(){
+					console.log(xhr.responseText);
+					var ul = document.getElementById('LAY_demo');
+					ul.innerHTML = xhr.responseText;
+					//flush(ajax.responseText);
+				}
 			}
+			
 			})
 	}) 
 	

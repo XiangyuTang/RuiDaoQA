@@ -95,8 +95,8 @@ public class LoginServlet extends HttpServlet {
 //			response.sendRedirect("self.jsp");
 //			response.sendRedirect("userinfo.jsp");
 			//request.getRequestDispatcher("CounterFollowGuanZhuServlet").forward(request,response);
-			
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			response.sendRedirect("index.jsp");
+			//request.getRequestDispatcher("index.jsp").forward(request, response);
 			//System.out.println("chenggogn");
 		}
 	}
