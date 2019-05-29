@@ -28,7 +28,7 @@ form {
 </head>
 <body>
 	<!-- <iframe src="head.jsp" scrolling="no" width="100%" height="65px" href="index.html"></iframe> -->
-<%-- 	<%@ include file="head.jsp"%> --%>
+<%@ include file="head.jsp"%> 
 	<div class="main layui-clear" style="margin-top: 80px;">
 		<div class="wrap">
 			<div class="content detail">

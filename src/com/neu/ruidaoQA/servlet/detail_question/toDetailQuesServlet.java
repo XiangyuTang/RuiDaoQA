@@ -45,7 +45,6 @@ public class toDetailQuesServlet extends HttpServlet {
 					Integer have1 = qsip.haveQuestion(question_id, currentUser.getUser_id());////得到其question是否在收藏域中
 					Question q = qsip.getQuestion(question_id);
 					q.setCollect_flag(have1);
-					System.out.println(servletContext.getAttribute("CurrentUser"));
 					Integer user_id = q.getUser_id();
 					Integer haveUser = usip.haveUser(user_id, currentUser.getUser_id());//得到其user是否被关注
 					User u = usip.getUser(user_id);
@@ -53,7 +52,6 @@ public class toDetailQuesServlet extends HttpServlet {
 					request.setAttribute("User", u);
 					request.setAttribute("Question", q);
 					request.setAttribute("answerlist", answers);
-					System.out.println(q.getContent());	
 					request.getRequestDispatcher("detailQues.jsp").forward(request, response);
 				}
 				
