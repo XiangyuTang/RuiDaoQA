@@ -351,6 +351,48 @@ form {
 	//点击提交回答按钮触发
 	var user = "${applicationScope.CurrentUser}";
 	if(user == ""){
+		$("[class='layui-icon layui-icon-star']").click(function(){
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+//	  			,form = layui.form;
+	  			layer.msg('请先登陆！');
+			});
+		})
+		$("[class='layui-btn layui-btn-radius layui-btn-sm']").click(function(){
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+//	  			,form = layui.form;
+	  			layer.msg('请先登陆！');
+			});
+		})
+		$("[class='layui-icon layui-icon-reply-fill comment_for_comment']").click(function(){
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+//	  			,form = layui.form;
+	  			layer.msg('请先登陆！');
+			});
+		})
+		$("[class='']").click(function(){
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+//	  			,form = layui.form;
+	  			layer.msg('请先登陆！');
+			});
+		})
+		$("[id='ans-btn']").click(function(){
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+//	  			,form = layui.form;
+	  			layer.msg('请先登陆！');
+			});
+		})
+		$("[class='layui-btn  layui-btn-sm']").click(function(){
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+//	  			,form = layui.form;
+	  			layer.msg('请先登陆！');
+			});
+		})
 	}else{
 		$(function(){
 		 //富文本编辑器自定义工具栏

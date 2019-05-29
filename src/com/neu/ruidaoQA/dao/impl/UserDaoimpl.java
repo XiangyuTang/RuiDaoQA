@@ -136,7 +136,7 @@ public class UserDaoimpl extends BaseDao implements UserDao{
 		ResultSet rs = super.executeSelect(sql, params);
 		User u = new User(null, null, null, null, null, null, null, null);
 		try {
-			if (rs.next()) {
+			while (rs.next()) {
 				u.setUser_id(rs.getInt(1));
 				u.setNick_name(rs.getString(2));
 				u.setSex(rs.getString(3));

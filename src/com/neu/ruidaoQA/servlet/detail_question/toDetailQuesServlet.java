@@ -29,14 +29,14 @@ public class toDetailQuesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 				//response.getWriter().append("Served at: ").append(request.getContextPath());		
-//				Integer question_id = Integer.parseInt(request.getParameter("question_id"));
-				Integer question_id = 14;
+				Integer question_id = Integer.parseInt(request.getParameter("question_id"));
+//				Integer question_id = 14;
 				QuestionServiceimpl qsip = new QuestionServiceimpl();
 				UserServiceimpl usip = new UserServiceimpl();
 				AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
 				ServletContext servletContext = request.getServletContext();
 				User currentUser = (User) servletContext.getAttribute("CurrentUser");
-				System.out.println(currentUser);
+//				System.out.println(currentUser);
 				if (currentUser == null) {
 //					response.sendRedirect("index.jsp");
 					List<Answer> answers = answerServiceimpl.getAnswerslist(question_id,currentUser);//得到其answer的回答者是否在收藏域中
@@ -48,6 +48,7 @@ public class toDetailQuesServlet extends HttpServlet {
 					q.setCollect_flag(0);
 					Integer user_id = q.getUser_id();
 //					Integer haveUser = usip.haveUser(user_id, currentUser.getUser_id());//得到其user是否被关注
+//					System.out.println(user_id);
 					User u = usip.getUser(user_id);
 					u.setFollow_flag(0);
 					request.setAttribute("User", u);
