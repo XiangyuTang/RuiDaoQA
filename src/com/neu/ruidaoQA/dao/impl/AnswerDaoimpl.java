@@ -91,7 +91,7 @@ public class AnswerDaoimpl extends BaseDao implements AnswerDao{
 	public ArrayList<Answer> getAnswerLists(int user_id) {
 		Object[] params=new Object[] {user_id};
 		ArrayList<Answer> answers=new ArrayList<Answer>();
-		String sql="select * from answer where user_id=?";
+		String sql="select * from answer where user_id=? order by time desc";
 		ResultSet rs=super.executeSelect(sql, params);
 		try {
 			while(rs.next()) {
