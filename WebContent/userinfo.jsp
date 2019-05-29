@@ -81,6 +81,29 @@
                     content: "FansMessageServlet",
                 })
             })
+            $.ajax({
+                    async: false,
+                    url: "showMessage",
+                    data: { user_id: "${current_user_id}" },
+                    dataType: "json",
+                    type: "post",
+                    success: function (data) {
+                        var str = ""
+                        for (i = 0; i < data.length; i++) {
+                            console.log(data[i]);
+                            str += "<div class='layui-col-md12'>" +
+                                "<div class='layui-card' style='width: 100%;height:100px;background-color: #F2F2F2; display: inline-block; vertical-align: middle;'>"
+                                + "   <div class='layui-card-body'>" +
+                                "   <h1  >" + " <a href='toDetailQues?question_id=" + data[i][0] + "'</a>" + data[i][1] + "评论了你</h1><br>" +
+                                " <p>" + data[i][2] + "</p>" +
+                                " <div class='datetime'>" + data[i][3] + "</div>" + "</div>   </div> </div>  <hr>"
+                           
+
+                        }
+                        $("#testlist").html(str)
+                      
+                    }
+                })
             $("#3").on("click", function (e) {
                 $.ajax({
                     async: false,
@@ -251,24 +274,30 @@
                     <i class="iconfont icon-wenda"></i>欢迎使用</a>
             </div>
 
-            <div class="nav-user">
-                <a class="iconfont icon-touxiang layui-hide-xs" style="margin-top: 4px; display: inline-block;">
-                </a>
-                <div class="nav" style="font-size:14px;color: white;margin-top: -5px;margin-left: 1px; ">
-                    <a href="login.html" target="_parent">登录</a>
-                    <a href="register.html" target="_parent">注册</a>
-                </div>
-            </div>
-            <div class="nav-user" hidden="hidden">
-                <a class="avatar" href="">
-                    <img src="images/头像1.JPG">
-                    <cite>老汉</cite>
-                </a>
-                <div class="nav">
-                    <a href="index.jsp" target="_parent"><i class="iconfont icon-tuichu"
-                            style="top: 0; font-size: 22px;"></i>退出</a>
-                </div>
-            </div>
+     
+			<c:if test="${!empty  applicationScope.CurrentUser}">
+				<div class="nav-user">
+					<a class="avatar" href="CounterFollowGuanZhuServlet"> <img
+						src="${ applicationScope.CurrentUser.head_photo}"> <cite>${ applicationScope.CurrentUser.nick_name}</cite>
+					</a>
+					<div class="nav">
+						<a href="logoutServlet" target="_parent"><i
+							class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退出</a>
+					</div>
+				</div>
+			</c:if>
+
+			<c:if test="${empty  applicationScope.CurrentUser}">
+				<div class="nav-user">
+					<a class="iconfont icon-touxiang layui-hide-xs"
+						style="margin-top: 4px; display: inline-block;"> </a>
+					<div class="nav"
+						style="font-size: 14px; color: white; margin-top: -5px; margin-left: 1px;">
+						<a href="login.html" target="_parent">登录</a> <a
+							href="register.html" target="_parent">注册</a>
+					</div>
+				</div>
+			</c:if>
         </div>
     </div>
     <div clsss="layui-row" style="margin-top:65px" >
