@@ -64,6 +64,7 @@ form {
 							class="layui-textarea fly-editor" style="display: none;" lay-verify="content" >我有靠谱回答~</textarea>
 							<br>
 							
+							
 							<div class="layui-form-item">
 								<button id="ans-btn" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
 								<button id="start-record-btn" class="layui-btn" lay-filter="*" lay-submit>语音识别</button>
