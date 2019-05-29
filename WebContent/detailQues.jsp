@@ -349,7 +349,10 @@ form {
    	}
    		
 	//点击提交回答按钮触发
-	$(function(){
+	var user = "${applicationScope.CurrentUser}";
+	if(user == ""){
+	}else{
+		$(function(){
 		 //富文本编辑器自定义工具栏
 		$('#ans-btn').click(function(){
 			layedit.sync(index);//将富文本编辑器的内容同步到textarea
@@ -357,6 +360,7 @@ form {
 			
 		})
 	})
+	}
 </script>
 
 
@@ -489,7 +493,10 @@ form {
 //	}
 	
 	//收藏小星星图标变换
-	$(function(){
+	var user = "${applicationScope.CurrentUser}";
+	if(user == ""){
+	}else{
+		$(function(){
 		$('i[class="layui-icon layui-icon-star"]').click(function(){
 			var theclass=['layui-icon layui-icon-star','layui-icon layui-icon-star-fill'];
 			var flag;
@@ -527,12 +534,12 @@ form {
 			}
 		})
 	})
-	
-	$(function(){
+		$(function(){
 		var theclass=['layui-icon layui-icon-star','layui-icon layui-icon-star-fill'];
 		$("[name='question_id'][class='1']").next().attr("class",theclass[1]);
 		$("[name='question_id'][class='0']").next().attr("class",theclass[0]);
 	})
+	}
 
 	//分享链接图标
 	$(function(){
@@ -544,42 +551,6 @@ form {
 	
 	//关注按钮的特效部分
 	$(function(){				
-//		$("[class='layui-btn layui-btn-radius layui-btn-sm']").live('click',function(){//关注按钮的特效部分
-//			$(this).toggle(
-//			function(){
-//				var follow_user_id = parseInt($(this).prev().prev().val());//用于获取user_id(int类型的)
-//				$.ajax({
-//					type:"get",
-//					url:"addFollow",
-//					async:true,
-//					data:{follow_user_id:follow_user_id,fangfa:"add"},
-//					dataType:"text",
-//					success:function(e){
-//						
-//					}
-//				});
-//				$(this).addClass("layui-btn-primary");
-//				alert($(this).attr("class"));
-//				$(this).html("已关注");
-//			},
-//			function(){
-//				var follow_user_id = parseInt($(this).prev().prev().val());
-//				$.ajax({
-//					type:"get",
-//					url:"addFollow",
-//					async:true,
-//					data:{follow_user_id:follow_user_id, fangfa:"delete"},
-//					dataType:"text",
-//					success:function(e){
-//						
-//					}
-//				});
-//				$(this).removeClass("layui-btn-primary");
-//				alert($(this).attr("class"));
-//				$(this).html("关注");
-//			})
-//			$(this).trigger("click");
-//		})
 		
 		$("[class='layui-icon layui-icon-reply-fill']").live('click',function(){
 			$(this).toggle(
@@ -595,11 +566,10 @@ form {
 			$(this).trigger("click");
 		})				
 	});
-
-//	var follow_flag = 0;
-	$(function(){
+	if(user == ""){
 		
-		
+	}else{
+			$(function(){		
 		$("[class='layui-btn layui-btn-radius layui-btn-sm']").click(function(){
 			var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
 			var follow_flag = 0;
@@ -671,57 +641,22 @@ form {
 			}
 		})
 	})
+	}
 
 
 	$(function(){
-		
-//		setTimeout(function () { 
-//      var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
-//		if($("[type='hidden'][name='user_id']").attr("class") == "1"){
-////			alert(1);
-////			alert($("[type='hidden'][name='user_id']").attr("class"));
-//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[0]);
-//			$(this).html("已关注");
-//		}else{
-//			alert($("[type='hidden'][name='user_id']").attr("class"));
-//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[1]);
-//			$(this).html("关注");
-//		}
-//  	}, 500);
-    	
-//		var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
-//		if($("[type='hidden'][name='user_id']").attr("class") == "1"){
-//			alert($("[type='hidden'][name='user_id']").attr("class"));
-//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[0]);
-//			$(this).html("已关注");
-//		}else{
-//			alert($("[type='hidden'][name='user_id']").attr("class"));
-//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[1]);
-//			$(this).html("关注");
-//		}
 		var theclass=['layui-btn layui-btn-radius layui-btn-sm layui-btn-primary','layui-btn layui-btn-radius layui-btn-sm'];
 		$("[type='hidden'][name='user_id'][class='1']").next().next().attr("class",theclass[0]);
 		$("[type='hidden'][name='user_id'][class='1']").next().next().html("已关注");
 		$("[type='hidden'][name='user_id'][class='0']").next().next().attr("class",theclass[1]);
 	    $("[type='hidden'][name='user_id'][class='0']").next().next().html("关注");
-//			alert($("[type='hidden'][name='user_id']").attr("class"));
-//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[0]);
-//			$("[type='hidden'][name='user_id']").next().next().html("已关注");
-//		}
-//		else{
-//			alert($("[type='hidden'][name='user_id']").attr("class"));
-//			$("[type='hidden'][name='user_id']").next().next().attr("class",theclass[1]);
-//			$(this).html("关注");
-//		}
 		
 	})
-
-//	function addcomment(text){
-//		str_time = getTime();
-//		var $textarea = $("[id='commentcontent']");
-//		var commentcontent = $textarea.val();
-//	}
-	var comment_flag = 0;
+	
+	if(user == ""){
+		
+	}else{
+		var comment_flag = 0;
 	$('[class="layui-btn  layui-btn-sm"]').live('click',function(){
 		var str_time = getTime();
 		var ans_time = getTimeIntoDB();
@@ -793,6 +728,7 @@ form {
 		$("[class='commentcontent'][id='"+id+"']").val(setcontent);
 		comment_flag = 1;
 		})
+	}
 
 	
 		//实现提交回答post到后端数据库
