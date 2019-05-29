@@ -99,9 +99,11 @@
 
                                 " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
                                 "</div></div></div> <hr>"
-                            $("#questionlist").html(str)
+                         
 
                         }
+                        $("#questionlist").html(str)
+                      
 
                     }
                 })
@@ -126,9 +128,13 @@
                                 " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
                                 "</div></div></div> <hr>"
 
-                            $("#collectlist").html(str)
+                          
 
                         }
+                        $("#collectlist").html(str)
+                      
+
+                        
                     }
                 })
             }
@@ -161,8 +167,10 @@
                                 "  <span style='float: left;width:30%;'>" + data[i][6] + "人评论</span>" +
                                 " <span style='float:initial;width:30%'>" + data[i][7] + "人点赞</span>" +
                                 " <a class='layui-icon layui-icon-share' style='float: right;cursor: pointer'>分享</a>    </div>  </div>  </div>   <hr>"
-                            $("#answerlist").html(str)
+                          
                         }
+                        $("#answerlist").html(str)
+                      
                     }
                 })
             })
@@ -185,14 +193,11 @@
                                 "   <h1  >" + " <a href='toDetailQues?question_id=" + data[i][0] + "'</a>" + data[i][1] + "评论了你</h1><br>" +
                                 " <p>" + data[i][2] + "</p>" +
                                 " <div class='datetime'>" + data[i][3] + "</div>" + "</div>   </div> </div>  <hr>"
-                            $("#testlist").html(str)
-                            laypage.render({
-                                elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-                                , count: data.length //数据总数，从服务端得到
-                            });
+                           
 
                         }
-
+                        $("#testlist").html(str)
+                      
                     }
                 })
             }
@@ -216,6 +221,7 @@
 <body>
     <%
 	    List<Integer> list = (List<Integer>) request.getSession().getAttribute("List");
+    
 		
     %>
 
@@ -293,7 +299,7 @@
 
                             <img style="width: 100px;
                                 height: 100px;
-                                border-radius: 50px;" id="selectImg" src="${filename}"><br>
+                                border-radius: 50px;" id="selectImg" src="${CurrentUser.getHead_photo()}"><br>
                             <form action="UploadServlet" method="post" enctype="multipart/form-data">
 
                                 <input type="file"   id="pic" name="pic" style="display: none"><br>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import com.neu.ruidaoQA.entity.User;
 import com.neu.ruidaoQA.service.UserService;
 import com.neu.ruidaoQA.service.impl.UserServiceimpl;
 
@@ -71,10 +72,11 @@ public class UploadServlet extends HttpServlet {
 		
 		//2.拼接文件上传路径和文件名
 		String fileFinalPath = fileFolder+File.separator+submittedFileName;
-		UserService us = new UserServiceimpl();
+		UserServiceimpl us = new UserServiceimpl();
 		String path = "images/avatar/"+submittedFileName;
 		us.addHeadPhoto(Integer.parseInt(request.getSession().getAttribute("current_user_id").toString()),path);
-		request.getSession().setAttribute("filename", path);
+		User u=us.getUser(Integer.parseInt(request.getSession().getAttribute("current_user_id").toString()));
+		request.getSession().setAttribute("CurrentUser", u);
 		//2.1 (备份文件)
 //		String hahahaFinalPath = hahaha+File.separator+newFileName;
 		

@@ -33,7 +33,7 @@ public class FavoriteDaoimpl extends BaseDao implements FavoriteDao{
 		// TODO Auto-generated method stub
 		ArrayList<Question> questions=new ArrayList<Question>();
 		Object[] params=new Object[] {user_id};
-		String sql="select * from question where question_id in (select question_id from favorite where user_id=?)";
+		String sql="select * from question where question_id in (select question_id from favorite where user_id=?) order by time desc";
 		ResultSet rs=super.executeSelect(sql, params);
 		try {
 			while(rs.next()) {

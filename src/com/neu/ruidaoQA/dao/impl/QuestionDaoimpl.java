@@ -62,7 +62,7 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		// TODO Auto-generated method stub
 		ArrayList<Question> questions=new ArrayList<Question>();
 		Object[] params=new Object[] {user_id};
-		String sql="select * from question where user_id=?";
+		String sql="select * from question where user_id=? order by time desc";
 		ResultSet rs=super.executeSelect(sql, params);
 		try {
 			while(rs.next()) {
