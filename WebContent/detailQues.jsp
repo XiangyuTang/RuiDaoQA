@@ -481,6 +481,12 @@ form {
        		$(this).trigger("click");
 		});
 	})
+//	var a=1;
+//	if(a){
+//		alert(1);
+//	}else{
+//		alert(2);
+//	}
 	
 	//收藏小星星图标变换
 	$(function(){

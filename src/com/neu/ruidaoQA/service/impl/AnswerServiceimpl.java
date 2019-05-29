@@ -114,36 +114,62 @@ public class AnswerServiceimpl implements AnswerService {
 //		AnswerServiceimpl answerServiceimpl1 = new AnswerServiceimpl();
 //		answerServiceimpl.test1();
 		AnswerServiceimpl answerServiceimpl2 = new AnswerServiceimpl();
-		answerServiceimpl2.getAnswerslist(2,1);
+//		answerServiceimpl2.getAnswerslist(2,1);
 		
 	}
 
 	@Override//根据问题id获取最热的十条回答及其评论
-	public List<Answer> getAnswerslist(int question_id,Integer user_id) {
+	public List<Answer> getAnswerslist(int question_id,User user) {
 		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
 		CommentDaoimpl commentDaoimpl = new CommentDaoimpl();
 		UserDaoimpl userDaoimpl = new UserDaoimpl();
 		FollowDaoimpl followDaoimpl = new FollowDaoimpl();
-		ArrayList<Integer> follow_user_idlist = followDaoimpl.getFollow_user_idlist(user_id);
-		List<Answer> answers = answerDaoimpl.getAnswersList(question_id);
-//		Collections.reverse(answers);
-		for (Answer answer:answers ) {
-			User user = userDaoimpl.selectUserByAnswer_id(answer.getAnswer_id());
-			answer.setUser(user);
-			if (follow_user_idlist.contains(user.getUser_id())) {
-				user.setFollow_flag(1);
-			}else {
-				user.setFollow_flag(0);
+		if (user == null) {
+//			ArrayList<Integer> follow_user_idlist = followDaoimpl.getFollow_user_idlist(user.getUser_id());
+			List<Answer> answers = answerDaoimpl.getAnswersList(question_id);
+//			Collections.reverse(answers);
+			for (Answer answer:answers ) {
+				User user1 = userDaoimpl.selectUserByAnswer_id(answer.getAnswer_id());
+//				answer.setUser(user);
+//				if (follow_user_idlist.contains(user1.getUser_id())) {
+//					user1.setFollow_flag(1);
+//				}else {
+				user1.setFollow_flag(0);
+//				}
+				answer.setUser(user1);
+				List<Comment> comments = commentDaoimpl.getCommentsList(answer.getAnswer_id());
+//				Collections.reverse(comments);
+				for (Comment comment:comments) {
+					User user2 = userDaoimpl.selectUserByComment_id(comment.getComment_id());
+					comment.setUser(user2);
+				}
+				answer.setComments(comments);
 			}
-			List<Comment> comments = commentDaoimpl.getCommentsList(answer.getAnswer_id());
-//			Collections.reverse(comments);
-			for (Comment comment:comments) {
-				User user1 = userDaoimpl.selectUserByComment_id(comment.getComment_id());
-				comment.setUser(user1);
+			return answers;
+		}else {
+			ArrayList<Integer> follow_user_idlist = followDaoimpl.getFollow_user_idlist(user.getUser_id());
+			List<Answer> answers = answerDaoimpl.getAnswersList(question_id);
+//			Collections.reverse(answers);
+			for (Answer answer:answers ) {
+				User user1 = userDaoimpl.selectUserByAnswer_id(answer.getAnswer_id());
+//				answer.setUser(user);
+				if (follow_user_idlist.contains(user1.getUser_id())) {
+					user1.setFollow_flag(1);
+				}else {
+					user1.setFollow_flag(0);
+				}
+				answer.setUser(user1);
+				List<Comment> comments = commentDaoimpl.getCommentsList(answer.getAnswer_id());
+//				Collections.reverse(comments);
+				for (Comment comment:comments) {
+					User user2 = userDaoimpl.selectUserByComment_id(comment.getComment_id());
+					comment.setUser(user2);
+				}
+				answer.setComments(comments);
 			}
-			answer.setComments(comments);
+			return answers;
 		}
-		return answers;
+		
 	}
 
 	@Override
