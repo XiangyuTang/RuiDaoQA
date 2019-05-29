@@ -29,17 +29,13 @@ public class addAccliamforComment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("ajax进来了");
-		System.out.println("haha");
 		Integer commernt_id = Integer.parseInt(request.getParameter("comment_id"));
 		String fangfa = request.getParameter("fangfa");
 		CommentServiceimpl commentServiceimpl = new CommentServiceimpl();
 		if (fangfa.equals("add")) {
 			commentServiceimpl.addAcclaim_number(commernt_id);
-			System.out.println(commernt_id);
 		}else if(fangfa.equals("delete")) {
 			commentServiceimpl.deleteAcclaim_number(commernt_id);
-			System.out.println(commernt_id);
 		}else {
 			response.getWriter().print("参数有误");
 		}

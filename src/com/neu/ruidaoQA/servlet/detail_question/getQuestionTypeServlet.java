@@ -1,26 +1,29 @@
 package com.neu.ruidaoQA.servlet.detail_question;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.neu.ruidaoQA.entity.User;
-import com.neu.ruidaoQA.service.impl.UserServiceimpl;
+import com.google.gson.Gson;
+import com.neu.ruidaoQA.entity.QuestionType;
+import com.neu.ruidaoQA.service.impl.QuestionTypeServiceimpl;
 
 /**
- * Servlet implementation class addFollow
+ * Servlet implementation class getQuestionTypeServlet
  */
-@WebServlet("/addFollow")
-public class addFollow extends HttpServlet {
+@WebServlet("/getQuestionTypeServlet")
+public class getQuestionTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addFollow() {
+    public getQuestionTypeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,19 +32,7 @@ public class addFollow extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("ajax进来了");
-		Integer follow_user_id = Integer.parseInt(request.getParameter("follow_user_id"));
-		String fangfa = request.getParameter("fangfa");
-		User currentuser = (User)request.getServletContext().getAttribute("CurrentUser");
-		int this_user_id = currentuser.getUser_id();
-		UserServiceimpl userServiceimpl = new UserServiceimpl();
-		if (fangfa.equals("add")) {
-			userServiceimpl.addFollow(this_user_id,follow_user_id);
-		}else if (fangfa.equals("delete")) {
-			userServiceimpl.deleteFollow(this_user_id,follow_user_id);
-		}else {
-			response.getWriter().print("参数有误");
-		}
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -49,7 +40,12 @@ public class addFollow extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		QuestionTypeServiceimpl qt=new QuestionTypeServiceimpl();
+		ArrayList<QuestionType> types=qt.getQuestiontypes();
+		Gson gson=new Gson();
+		String jsonStr=gson.toJson(types);
+		response.getWriter().write(jsonStr);
+		
 	}
 
 }

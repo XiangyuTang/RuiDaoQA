@@ -121,38 +121,62 @@ public class QuestionServiceimpl implements QuestionService{
 
 	@Override
 	public List<Question> getQuestionByTypeAndnumber(Integer kinds_id, Integer min, Integer max,Integer user_id ) {
-		QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
-		AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
-		UserDaoimpl userDaoimpl = new UserDaoimpl();
-		FollowDaoimpl followDaoimpl = new FollowDaoimpl();
-		FavoriteDaoimpl favoriteDaoimpl = new FavoriteDaoimpl();
-		ArrayList<Integer> follow_user_idlist = followDaoimpl.getFollow_user_idlist(user_id);
-		ArrayList<Integer> favoriteQuestion_id = favoriteDaoimpl.getFavoriteQuestion_id(user_id);
-		List<Question> questions = questionDaoimpl.getQuestionByTypeandnumber(kinds_id, min, max);		
-		for(Question question:questions) {
-			Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
-			if (answer.getUser_id() == null) {
-				User user = userDaoimpl.selectUser(1);
-				answer.setUser(user);
-				continue;
-			}
-			User selectUser = userDaoimpl.selectUser(answer.getUser_id());
-			answer.setUser(selectUser);
-			User selectUser2 = userDaoimpl.selectUser(question.getUser_id());
-			question.setUser(selectUser2);
-			if (follow_user_idlist.contains(answer.getUser_id())) {
-				answer.getUser().setFollow_flag(1);
-			}else {
+		if(user_id == 0) {
+			QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
+			AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+			UserDaoimpl userDaoimpl = new UserDaoimpl();
+			FollowDaoimpl followDaoimpl = new FollowDaoimpl();
+			FavoriteDaoimpl favoriteDaoimpl = new FavoriteDaoimpl();
+			List<Question> questions = questionDaoimpl.getQuestionByTypeandnumber(kinds_id, min, max);
+			for(Question question:questions) {
+				Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
+				if (answer.getUser_id() == null) {
+					User user = userDaoimpl.selectUser(1);
+					answer.setUser(user);
+					continue;
+				}
+				User selectUser = userDaoimpl.selectUser(answer.getUser_id());
+				answer.setUser(selectUser);
+				User selectUser2 = userDaoimpl.selectUser(question.getUser_id());
+				question.setUser(selectUser2);
 				answer.getUser().setFollow_flag(0);
-			}
-			if (favoriteQuestion_id.contains(question.getQuestion_id())) {
-				question.setCollect_flag(1);
-				
-			}else {
 				question.setCollect_flag(0);
 			}
+			return questions;
+		}else {
+			QuestionDaoimpl questionDaoimpl = new QuestionDaoimpl();
+			AnswerDaoimpl answerDaoimpl = new AnswerDaoimpl();
+			UserDaoimpl userDaoimpl = new UserDaoimpl();
+			FollowDaoimpl followDaoimpl = new FollowDaoimpl();
+			FavoriteDaoimpl favoriteDaoimpl = new FavoriteDaoimpl();
+			ArrayList<Integer> follow_user_idlist = followDaoimpl.getFollow_user_idlist(user_id);
+			ArrayList<Integer> favoriteQuestion_id = favoriteDaoimpl.getFavoriteQuestion_id(user_id);
+			List<Question> questions = questionDaoimpl.getQuestionByTypeandnumber(kinds_id, min, max);		
+			for(Question question:questions) {
+				Answer answer = answerDaoimpl.selectAnswer(question.getQuestion_id());
+				if (answer.getUser_id() == null) {
+					User user = userDaoimpl.selectUser(1);
+					answer.setUser(user);
+					continue;
+				}
+				User selectUser = userDaoimpl.selectUser(answer.getUser_id());
+				answer.setUser(selectUser);
+				User selectUser2 = userDaoimpl.selectUser(question.getUser_id());
+				question.setUser(selectUser2);
+				if (follow_user_idlist.contains(answer.getUser_id())) {
+					answer.getUser().setFollow_flag(1);
+				}else {
+					answer.getUser().setFollow_flag(0);
+				}
+				if (favoriteQuestion_id.contains(question.getQuestion_id())) {
+					question.setCollect_flag(1);
+					
+				}else {
+					question.setCollect_flag(0);
+				}
+			}
+			return questions;
 		}
-		return null;
 	}
 //	public Integer haveQuestion(Integer question_id, Integer user_id) {
 //		FavoriteDaoimpl favoriteDaoimpl = new FavoriteDaoimpl();

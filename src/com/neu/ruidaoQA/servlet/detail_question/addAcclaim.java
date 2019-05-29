@@ -29,10 +29,8 @@ public class addAcclaim extends HttpServlet {
 		AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
 		if (fangfa.equals("add")) {
 			answerServiceimpl.addAcclaim_number(answer_id);
-			System.out.println(answer_id);
 		}else if(fangfa.equals("delete")) {
 			answerServiceimpl.deleteAcclaim_number(answer_id);
-			System.out.println(answer_id);
 		}else {
 			response.getWriter().print("参数有误");
 		}
