@@ -1,0 +1,275 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+body {
+	font-family: "Microsoft YaHei";
+}
+.userMes {
+	width:1168px;
+	height:600px;
+	margin: 0 auto;
+	position: relative;
+}
+.userMes_inside {
+	width:1128px;
+	height:574px;
+	left:20px;
+	top:26px;
+	position: absolute;
+}
+.userMes_top {
+	width:1128px;
+	height:65px;
+}
+
+.userType {
+	border:1px solid #666666;
+}
+
+.addressType {
+	border:1px solid #666666;
+}
+
+.submitType {
+	background:#37A22E;
+	color:#FFFFFF;
+	width:55px;
+	height:20px
+}
+
+.buttonType {
+	background:#37A22E;
+	color:#FFFFFF;
+	top:0px;
+	right:0px;
+	position:absolute;
+	width:55px;
+	height:20px
+}
+.userMes_table {
+	width:1128px;
+	height:519px;
+}
+
+.contentTable {
+	width: 1128px;
+	border-left: 1px solid #C6FD95;
+	border-spacing: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+.contentTable1 {
+	width: 1128px;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	background:#37A22E;
+}
+
+.contentTable1 td {
+	border-right:1px solid #FFFFFF; 
+	border-bottom:1px solid #FFFFFF; 
+	padding:5px 0;
+}
+.tb tr td {
+	font-size:14px;
+	border-right:1px solid #C6FD95; 
+	border-bottom:1px solid #C6FD95; 
+}
+.buttonMod {
+	width: 30px;
+	height: 28px;
+	font-size: 15px;
+	color:#68BDFF;
+	background:#FFFFFF;
+	float:left;
+}
+.buttonLok {
+	width: 30px;
+	height: 28px;
+	font-size: 15px;
+	color:#55AF4E;
+	background:#FFFFFF;
+	
+}
+
+.tdWidth {
+	width:120px;
+}
+.aType {
+	position:relative;
+	text-decoration:none;
+}
+.buttonType:hover,.submitType:hover,.aType:hover,.buttonLok:hover,.buttonMod:hover {
+	background:#00FFFF;
+}
+
+.overLook {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	margin: 0 auto;
+	width: 1168px;
+	height: 600px;
+	background-color: rgba(196, 194, 193, 0.5);
+	z-index: 1;
+}
+
+.overLook_child {
+	width: 390px;
+	height: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 56px;
+	background-color: #FFFFFF;
+	position: relative;
+	z-index: 50;
+}
+
+.overLook_child p {
+	text-indent: 20px;
+	font-size: 18px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	background: #555555;
+	color: #FFFFFF;
+}
+
+.overLook_child table {
+	margin-left: auto;
+	margin-right: auto;
+	border-spacing: 12px;
+}
+
+.overLook_child table tbody tr td input {
+	border: 1px solid #D6D6D6;
+}
+
+.modSubmit {
+	top: 395px;
+	left: 80px;
+	width: 100px;
+	height: 30px;
+	background-color: #37A22E;
+	color: #FFFFFF;
+	position: absolute;
+}
+
+.locationP {
+	text-align:center;
+}
+.button {
+	top: 395px;
+	left: 235px;
+	width: 100px;
+	height: 30px;
+	background-color: #37A22E;
+	color: #FFFFFF;
+	position: absolute;
+}
+.string {
+	top: 368px;
+	left: 0px;
+	position: absolute;
+	height: 2px;
+	width: 390px;
+	background: #D9D9D9;
+	z-index: 100;
+}
+
+.hideTd {
+	display:none;
+}
+
+.overLook1 {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	margin: 0 auto;
+	width: 1168px;
+	height: 600px;
+	background-color: rgba(196, 194, 193, 0.5);
+	z-index: 1;
+}
+
+.overLook_child1 {
+	width: 390px;
+	height: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 56px;
+	background-color: #FFFFFF;
+	position: relative;
+	z-index: 50;
+}
+
+.overLook_child1 p {
+	text-indent: 20px;
+	font-size: 18px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	background: #555555;
+	color: #FFFFFF;
+}
+
+.overLook_child1 table {
+	margin-left: auto;
+	margin-right: auto;
+	border-spacing: 12px;
+}
+
+.overLook_child1 table tbody tr td input {
+	border: 1px solid #D6D6D6;
+}
+
+/*新增*/
+.overLook2 {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	margin: 0 auto;
+	width: 1168px;
+	height: 600px;
+	background-color: rgba(196, 194, 193, 0.5);
+	z-index: 1;
+}
+
+.overLook_child2 {
+	width: 390px;
+	height: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 56px;
+	background-color: #FFFFFF;
+	position: relative;
+	z-index: 50;
+}
+
+.overLook_child2 p {
+	text-indent: 20px;
+	font-size: 18px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	background: #555555;
+	color: #FFFFFF;
+}
+
+.overLook_child2 table {
+	margin-left: auto;
+	margin-right: auto;
+	border-spacing: 12px;
+}
+
+.overLook_child2 table tbody tr td input {
+	border: 1px solid #D6D6D6;
+}
+
+
