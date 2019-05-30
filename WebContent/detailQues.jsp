@@ -330,6 +330,11 @@ form {
 					data:{ans_text:ans_text,user_id:user_id,question_id:question_id,ans_time:ans_time},
 					success:function(e){
 						list = e;
+						layui.use(['layer', 'form'], function(){
+				  		var layer = layui.layer
+				  			,form = layui.form;
+				  			layer.msg('回答成功！');
+						});
 					}
 				})
 				
