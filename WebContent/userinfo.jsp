@@ -52,7 +52,6 @@
                 $("#pic").click();
             })
             $("#showUserMessage").on("click", function (e) {
-                alert("nima")
                 layer.open({
                     type: 2,
                     scrollbar: false,
@@ -62,7 +61,7 @@
                 })
             })
             $("#focus").on("click", function (e) {
-                alert("nimabi")
+             
                 layer.open({
                     type: 2,
                     scrollbar: false,
@@ -72,7 +71,7 @@
                 })
             })
             $("#fans").on("click", function (e) {
-                alert("nimabi")
+              
                 layer.open({
                     type: 2,
                     scrollbar: false,
@@ -137,7 +136,7 @@
                                 "<h1><a href='toDetailQues?question_id=" + data[i].question_id + "'</a>" + data[i].ques_title + "</h1><br>" +
                                 "<p>" + data[i].answer_num + "人回答" + "·" + data[i].collect_num + "人收藏" + "</p>" +
 
-                                " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='#'>回答</a> " +
+                                " <a class='layui-icon layui-icon-edit ' style='color:#01AAED;font-size: 18' href='toDetailQues?question_id="+ data[i].question_id+"'>回答</a> " +
                                 "</div></div></div> <hr>")
 
                         }
