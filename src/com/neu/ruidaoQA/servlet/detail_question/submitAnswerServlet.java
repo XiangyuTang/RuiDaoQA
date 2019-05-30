@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.neu.ruidaoQA.entity.Answer;
+import com.neu.ruidaoQA.service.sensitiveWordService;
 import com.neu.ruidaoQA.service.impl.AnswerServiceimpl;
+import com.neu.ruidaoQA.service.impl.sensitiveWordimpl;
 
 
 /**
@@ -27,6 +29,10 @@ public class submitAnswerServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ans_text = request.getParameter("ans_text");
+		sensitiveWordimpl swip = new sensitiveWordimpl();
+		String return_text = swip.replaceBadWord(ans_text, 2, "*");//敏感词过滤，2代表最大匹配原则，将敏感词替换为*
+		request.getServletContext().setAttribute("return_text", return_text);
+		System.out.println("-----"+request.getServletContext().getAttribute("return_text"));
 		Integer user_id = Integer.parseInt(request.getParameter("user_id"));
 		Integer question_id = Integer.parseInt(request.getParameter("question_id"));
 		String ans_time = request.getParameter("ans_time");
@@ -40,9 +46,9 @@ public class submitAnswerServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		AnswerServiceimpl asip = new AnswerServiceimpl();
-		Answer ans = asip.createAnswer(null, question_id, user_id, ans_text, 0, 0, 0, submit_time);
+		Answer ans = asip.createAnswer(null, question_id, user_id, return_text, 0, 0, 0, submit_time);
 		asip.add_answer(ans);
-		
+		response.getWriter().print(return_text);
 		/*System.out.println(ans_text+"-------"+user_id+"-------"+question_id+"---"+ans_time);
 		System.out.println(ans_text+"-------"+user_id+"-------"+question_id+"---"+submit_time);*/
 		

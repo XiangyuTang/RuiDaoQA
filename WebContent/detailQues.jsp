@@ -288,7 +288,7 @@ form {
  		layedit.sync(index);
  		text = layedit.getContent(index);
 	});
-   	function addReply(text){
+   	function addReply(text,return_text){
    		str_time = getTime();
    		text = $('textarea[id="L_content"]').val();
 		//alert(text);
@@ -307,47 +307,103 @@ form {
 			async:true,
 			dataType:"text",
 			success:function(e){
+				var list = "";
 				answer_id=e;
 				var answer_id1 = parseInt(answer_id)+1;
+
+				//弹出回答成功提示窗口
+				//list = submit_ans(text);
+				
+				
+				//获取文本框中元素的value值,重新绑定一下再传
+				var ans_text = text;
+				var user_id = "${applicationScope.CurrentUser.user_id }";
+				var question_id = "${Question.question_id}";
+				var ans_time = getTimeIntoDB();
+				var return_text;
+				
+				$.ajax({
+					type:'POST',
+					url:'submitAnswer',
+					async:false,
+					dataType:'text',
+					data:{ans_text:ans_text,user_id:user_id,question_id:question_id,ans_time:ans_time},
+					success:function(e){
+						list = e;
+					}
+				})
+				
 				var $newTr=$('<li data-id="12" class="jieda-daan"><a name="item-121212121212"></a>'+
-					'<div class="detail-about detail-about-reply" > '+
-								'<input type="hidden" name="user_id" value="${applicationScope.CurrentUser.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
-								'<a class="jie-user" href=""> <img src="${applicationScope.CurrentUser.head_photo}" alt=""> <cite> <i>我</i></cite> </a> '+
-								'<div class="detail-hits"> '+
-									'<span>'+str_time+'</span>'+
+						'<div class="detail-about detail-about-reply" > '+
+									'<input type="hidden" name="user_id" value="${applicationScope.CurrentUser.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
+									'<a class="jie-user" href=""> <img src="${applicationScope.CurrentUser.head_photo}" alt=""> <cite> <i>我</i></cite> </a> '+
+									'<div class="detail-hits"> '+
+										'<span>'+str_time+'</span>'+
+									'</div>'+
 								'</div>'+
-							'</div>'+
-							'<div class="detail-body jieda-body">'+
-								'<p>'+ text +'</p>'+
-							'</div>	'+						
-							'<div class="jieda-reply">'+
-								'<input type="hidden" name="answer_id" value="'+answer_id1+'"/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->'+
-								'<span class="jieda-zan zanok" type="zan">'+
-									'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
-								'</span>'+
-								'<span class="jieda-zan zanok" type="zan"><i '+
-									'class="layui-icon layui-icon-tread" title="踩"></i><em>0</em>'+
-								'</span>'+
-								'<span class="jieda-zan zanok" type="zan"><i '+
-									'class="layui-icon layui-icon-reply-fill" title="评论"></i><em>0</em>'+
-								'</span>'+
-							'</div>'+
-				'</li>')
-			$('#jieda').prepend($newTr);
-			//清空文本框内容
-			//text = $('textarea[id="L_content"]').val("");
-			//弹出回答成功提示窗口
-			submit_ans(text);
+								'<div class="detail-body jieda-body">'+
+									'<p>'+ list +'</p>'+
+								'</div>	'+						
+								'<div class="jieda-reply">'+
+									'<input type="hidden" name="answer_id" value="'+answer_id1+'"/><!--answer_id的隐藏域，放此处供点赞，踩，评论功能获取，该位置不可变动-->'+
+									'<span class="jieda-zan zanok" type="zan">'+
+										'<i class="layui-icon layui-icon-praise" title="赞"></i><em>0</em>'+
+									'</span>'+
+									'<span class="jieda-zan zanok" type="zan"><i '+
+										'class="layui-icon layui-icon-tread" title="踩"></i><em>0</em>'+
+									'</span>'+
+									'<span class="jieda-zan zanok" type="zan"><i '+
+										'class="layui-icon layui-icon-reply-fill" title="评论"></i><em>0</em>'+
+									'</span>'+
+								'</div>'+
+					'</li>')
+				$('#jieda').prepend($newTr);
 			
 			//清空富文本框textarea
 			//document.getElementById('L_content').reset();
 			//$('textarea[id="L_content"]').html("");
+			//清空文本框内容
+			//text = $('textarea[id="L_content"]').val("");
 			}
 			
 		});
 
    	}
-   		
+   	
+   	function submit_ans(text)
+	{
+		//获取文本框中元素的value值,重新绑定一下再传
+		var ans_text = text;
+		var user_id = "${applicationScope.CurrentUser.user_id }";
+		var question_id = "${Question.question_id}";
+		var ans_time = getTimeIntoDB();
+		var return_text;
+		//1.new
+		var xhr = new XMLHttpRequest();
+		//2.open
+		//注意与get方法时对比，在第二个参数后面不能加？。应该将传递到后台的参数用send()方法传递
+		xhr.open('post','submitAnswer',false);
+		//3.send
+		//需要加一个头文件，才能用post提交
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//xhr.send(JSON.stringify(data));
+		xhr.send('ans_text='+ans_text+'&user_id='+user_id+'&question_id='+question_id+'&ans_time='+ans_time);
+		//xhr.send('question_id='+question_id);
+		//4.回调
+		xhr.onload = function()
+		{
+			//弹出回答成功提示窗口
+			layui.use(['layer', 'form'], function(){
+	  		var layer = layui.layer
+	  			,form = layui.form;
+	  			layer.msg('回答成功！');
+			});
+			console.log(xhr.responseText);
+			return xhr.responseText;
+			
+		}
+	}
+   	
 	//点击提交回答按钮触发
 	var user = "${applicationScope.CurrentUser}";
 	if(user == ""){
@@ -774,36 +830,7 @@ form {
 
 	
 		//实现提交回答post到后端数据库
-	function submit_ans(text)
-	{
-		//获取文本框中元素的value值,重新绑定一下再传
-		var ans_text = text;
-		var user_id = "${applicationScope.CurrentUser.user_id }";
-		var question_id = "${Question.question_id}";
-		var ans_time = getTimeIntoDB();
-		
-		//1.new
-		var xhr = new XMLHttpRequest();
-		//2.open
-		//注意与get方法时对比，在第二个参数后面不能加？。应该将传递到后台的参数用send()方法传递
-		xhr.open('post','submitAnswer',true);
-		//3.send
-		//需要加一个头文件，才能用post提交
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		//xhr.send(JSON.stringify(data));
-		xhr.send('ans_text='+ans_text+'&user_id='+user_id+'&question_id='+question_id+'&ans_time='+ans_time);
-		//xhr.send('question_id='+question_id);
-		//4.回调
-		xhr.onload = function()
-		{
-			//弹出回答成功提示窗口
-			layui.use(['layer', 'form'], function(){
-	  		var layer = layui.layer
-	  			,form = layui.form;
-	  			layer.msg('回答成功！');
-			});
-		}
-	}
+	
 
 	//实现收藏问题post到数据库，相应问题的收藏量+1-1用触发器实现
 	function clickfavorite(flag)
