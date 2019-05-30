@@ -4,6 +4,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<style type="text/css"> 
+		 	.red{
+				color:#F00;
+				float:left;
+				padding-left:5px;
+			}
+		 </style>
+		
 		<link rel="stylesheet" href="layui/css/layui.css">
 		<link rel="stylesheet" href="css/global.css">
 		<script src="layui/layui.js"></script>
@@ -25,12 +33,14 @@
 						<div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
 							<div class="layui-tab-item layui-show">
 								<div class="layui-form layui-form-pane">
-									<form action="LoginServlet" onsubmit="return fun01()" method="post">
+									<form action="LoginServlet" onsubmit="return fun01()" method="post" id="myForm">
 										<div class="layui-form-item"> <label for="L_email" class="layui-form-label">用户名</label>
 											<div class="layui-input-inline"> <input type="text" id="userName" name="userName" required=""  placeholder="请输入用户名" lay-verify="required" autocomplete="off" class="layui-input"> </div>
+											<div class="red" id="DivEmail"></div>
 										</div>
 										<div class="layui-form-item"> <label for="L_pass" class="layui-form-label">密码</label>
 											<div class="layui-input-inline"> <input type="password" id="L_pass" name="pass"  placeholder="请输入密码" required="" lay-verify="required" autocomplete="off" class="layui-input"> </div>
+											<div class="red" id="DivPass"></div>
 										</div>
 										
 										<div class="layui-form-item"> <button class="layui-btn" lay-filter="*" lay-submit="">立即登录</button> <span style="padding-left:20px;"> 
@@ -43,6 +53,101 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="js/admin.js"></script>
 	</body>
-
 </html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+<script>
+	$(function(){
+		$('#L_pass').blur(checkPasswordLength);
+		$('#L_pass').blur(checkPasswordTrim);
+		$('#userName').blur(checkemail);
+		$('#userName').blur(checkEmailLength);
+		$('#userName').blur(checkEmailTrim);
+		
+		
+		function checkemail(){
+			//定义一个邮箱的正则表达式  ,并用 test方法验证正则表达式
+			var regCode = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+			
+			var email = $('#userName').val();
+			var $msg = $('#DivEmail');
+			$msg.html("");//先设置为空,根据后续判断情况,填入不同的提示信息
+			if (email=='') {
+				$msg.html('邮箱地址不能为空');
+				return false;
+			}else if(regCode.test(email)==false){// test() 专门做正则验证 ,如果通过,返回true ,不通过,返回false
+				$msg.html('邮箱的格式不正确');
+				return false;
+			}
+			return true;
+		}
+		
+		function checkEmailLength(){
+			var emailLength = $('#userName').val().length;
+			console.log(emailLength);
+			var $msg = $('#DivEmail');
+			if(emailLength>50){
+				$msg.html('邮箱字符过长，请进行核对');
+				return false;
+			}
+			return true;
+		}
+		
+		function checkEmailTrim(){
+			var str = $('#userName').val();
+			var $msg = $('#DivEmail');
+			if(str.indexOf(" ")>=0){
+				$msg.html('有空格，请仔细检查');
+				return false;
+			}
+			return true;
+		}
+		
+		function checkPasswordLength(){
+			var passwordLen = $('#L_pass').val().length;
+			console.log(passwordLen);
+			var $msg = $('#DivPass');
+			if(passwordLen<6){
+				$msg.html('密码不符合长度');
+				return false;
+			}else if(passwordLen>12){
+				$msg.html('密码不符合长度');
+				return false;
+			}else{
+				$msg.html('');
+			}
+			return true;
+		}
+		
+		function checkPasswordTrim(){
+			var str = $('#L_pass').val();
+			var $msg = $('#DivPass');
+			if(str.indexOf(" ")>=0){
+				$msg.html('有空格，请仔细检查');
+				return false;
+			}
+			return true;
+		}
+		$('#myForm').submit(function(){
+			var flag = true;
+			if(checkemail()==false){
+				flag = false;
+			}
+			if(checkEmailLength()==false){
+				flag = false;
+			}
+			if(checkEmailTrim()==false){
+				flag = false;
+			}
+			if(checkPasswordLength()==false){
+				flag = false;
+			}
+			if(checkPasswordTrim()==false){
+				flag = false;
+			}
+			return  flag;
+		})
+	
+	});
+</script>

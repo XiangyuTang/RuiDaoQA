@@ -43,9 +43,11 @@ public class ModifyUserServlet extends HttpServlet {
 		String introduce = request.getParameter("introduce");
 		String password = request.getParameter("password");
 		
+		User olduser = (User) request.getServletContext().getAttribute("CurrentUser");
+		
 		ModifyUserService mus = new ModifyUserServiceimpl();
 		List<User> user = new ArrayList<User>();
-		User newUser = mus.updateUser(Integer.parseInt(user_id), nickname, sex, birthday, email, introduce, password);
+		User newUser = mus.updateUser(Integer.parseInt(user_id), nickname, sex, birthday, email, introduce, password,olduser.getPassword());
 		user.add(newUser);
 		request.setAttribute("List", user);
 		request.getRequestDispatcher("UserMessage.jsp").forward(request, response);

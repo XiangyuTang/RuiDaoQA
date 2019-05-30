@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 /**参考DFA算法demo:http://blog.csdn.net/chenssy/article/details/26961957*/
 public class BadWordUtil2 {
-	public static String filePath = "C:\\Users\\16616\\git\\RuiDaoQA\\src\\com\\neu\\ruidaoQA\\SensitiveWordFilteringUtil\\dictionary.txt";//敏感词库文件路径
+	public static String filePath = "C:\\Users\\18940\\eclipse-workspace\\RuiDaoQA\\src\\com\\neu\\ruidaoQA\\SensitiveWordFilteringUtil\\dictionary.txt";//敏感词库文件路径
 	public static Set<String> words;
 	public static Map<String,String> wordMap;
 	public static int minMatchTYpe = 1;      //最小匹配规则

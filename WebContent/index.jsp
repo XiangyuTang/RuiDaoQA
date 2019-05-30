@@ -73,7 +73,6 @@
 				</li>
 			</ul>
 		</div>
-
 		<div class="wrap">
 			<div class="content detail">
 				<!--	<ul class="flow-default" id="LAY_demo1"></ul>-->
