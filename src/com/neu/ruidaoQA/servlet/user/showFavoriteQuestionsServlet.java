@@ -47,8 +47,8 @@ public class showFavoriteQuestionsServlet extends HttpServlet {
 	   ArrayList<Question> questions=userserviceimpl.getFavoriteQuestions(user_id);
 		Gson gson=new Gson();
 		String jsonStrs=gson.toJson(questions);
-		System.out.println("得到user_id为"+user_id+"的收藏列表：");
-		System.out.println(jsonStrs);
+//		System.out.println("得到user_id为"+user_id+"的收藏列表：");
+//		System.out.println(jsonStrs);
 		response.getWriter().write(jsonStrs);
 	}
 

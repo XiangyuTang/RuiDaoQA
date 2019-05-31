@@ -45,8 +45,8 @@ public class showUsersQuestionListServlet extends HttpServlet {
 	   ArrayList<Question> questions=q.getQuestionLists(user_id);
 		Gson gson=new Gson();
 		String jsonStrs=gson.toJson(questions);
-		System.out.println("得到user_id为"+user_id+"的问题列表：");
-		System.out.println(jsonStrs);
+//		System.out.println("得到user_id为"+user_id+"的问题列表：");
+//		System.out.println(jsonStrs);
 		response.getWriter().write(jsonStrs);
 	}
 

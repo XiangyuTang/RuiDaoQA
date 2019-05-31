@@ -40,7 +40,7 @@ public class addComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer answer_id = Integer.parseInt(request.getParameter("answer_id"));
-		User currentuser = (User)request.getServletContext().getAttribute("CurrentUser");
+		User currentuser = (User)request.getSession().getAttribute("CurrentUser");
 		int user_id = currentuser.getUser_id();
 		String comment_content = request.getParameter("comment_content");
 		Integer comment_flag = Integer.parseInt(request.getParameter("comment_flag"));

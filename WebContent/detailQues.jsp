@@ -317,7 +317,7 @@ form {
 				
 				//获取文本框中元素的value值,重新绑定一下再传
 				var ans_text = text;
-				var user_id = "${applicationScope.CurrentUser.user_id }";
+				var user_id = "${sessionScope.CurrentUser.user_id }";
 				var question_id = "${Question.question_id}";
 				var ans_time = getTimeIntoDB();
 				var return_text;
@@ -340,8 +340,8 @@ form {
 				
 				var $newTr=$('<li data-id="12" class="jieda-daan"><a name="item-121212121212"></a>'+
 						'<div class="detail-about detail-about-reply" > '+
-									'<input type="hidden" name="user_id" value="${applicationScope.CurrentUser.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
-									'<a class="jie-user" href=""> <img src="${applicationScope.CurrentUser.head_photo}" alt=""> <cite> <i>我</i></cite> </a> '+
+									'<input type="hidden" name="user_id" value="${sessionScope.CurrentUser.user_id }" /><!--user_id的隐藏域，放此处供关注功能获取，该位置不可变动-->'+
+									'<a class="jie-user" href=""> <img src="${sessionScope.CurrentUser.head_photo}" alt=""> <cite> <i>我</i></cite> </a> '+
 									'<div class="detail-hits"> '+
 										'<span>'+str_time+'</span>'+
 									'</div>'+
@@ -379,7 +379,7 @@ form {
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
 		var ans_text = text;
-		var user_id = "${applicationScope.CurrentUser.user_id }";
+		var user_id = "${sessionScope.CurrentUser.user_id }";
 		var question_id = "${Question.question_id}";
 		var ans_time = getTimeIntoDB();
 		var return_text;
@@ -410,7 +410,7 @@ form {
 	}
    	
 	//点击提交回答按钮触发
-	var user = "${applicationScope.CurrentUser}";
+	var user = "${sessionScope.CurrentUser}";
 	if(user == ""){
 		$("[class='layui-icon layui-icon-star']").click(function(){
 			layui.use(['layer', 'form'], function(){
@@ -596,7 +596,7 @@ form {
 //	}
 	
 	//收藏小星星图标变换
-	var user = "${applicationScope.CurrentUser}";
+	var user = "${sessionScope.CurrentUser}";
 	if(user == ""){
 	}else{
 		$(function(){
@@ -790,9 +790,9 @@ form {
 				});
 		var $commentdiv=$(
 			'<div class="detail-about detail-about-reply"><!--从该处开始第二次循环，循环10次，结合外层，共加载出100条热评-->'+
-								'<input type="hidden" name="user_id" value="${applicationScope.CurrentUser.user_id}" /><!--评论人的user_id隐藏域，暂时未使用，后续可能使用-->'+
+								'<input type="hidden" name="user_id" value="${sessionScope.CurrentUser.user_id}" /><!--评论人的user_id隐藏域，暂时未使用，后续可能使用-->'+
 								'<a class="jie-user" href=""> <img '+
-									'src="${applicationScope.CurrentUser.head_photo}" alt=""> <cite> <i>我</i> '+
+									'src="${sessionScope.CurrentUser.head_photo}" alt=""> <cite> <i>我</i> '+
 										'<em style="color:#FF9E3F"></em> </cite> </a>'+
 								'<div class="detail-hits">'+
 									'<span>'+str_time+'</span>'+
@@ -841,7 +841,7 @@ form {
 	function clickfavorite(flag)
 	{
 		//获取文本框中元素的value值,重新绑定一下再传
-		var user_id = "${applicationScope.CurrentUser.user_id }";//登陆者id
+		var user_id = "${sessionScope.CurrentUser.user_id }";//登陆者id
 		var question_id =  $("[name='question_id']").val();//获取这个问题的id
 		var the_flag = flag;
 		//1.new

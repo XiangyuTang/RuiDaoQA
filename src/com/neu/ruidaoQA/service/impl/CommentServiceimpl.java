@@ -18,7 +18,7 @@ public class CommentServiceimpl implements CommentService{
 	public static void main(String[] args) {//测试类
 		CommentServiceimpl commentServiceimpl = new CommentServiceimpl();
 		int i =commentServiceimpl.addAcclaim_number(1);
-		System.out.println(i);
+//		System.out.println(i);
 	}
 
 	@Override

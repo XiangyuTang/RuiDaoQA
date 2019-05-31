@@ -32,13 +32,13 @@ public class askQuestionServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/javascript;charset=utf-8");
 		int question_type_id=Integer.parseInt(request.getParameter("type"));
-		System.out.println("已获取问题类型："+question_type_id);
+//		System.out.println("已获取问题类型："+question_type_id);
 		int user_id=Integer.parseInt(request.getParameter("user_id"));
-		System.out.println("已获取用户id："+user_id);
+//		System.out.println("已获取用户id："+user_id);
 		String question_content=request.getParameter("desc");
-		System.out.println("已获取问题内容："+question_content);
+//		System.out.println("已获取问题内容："+question_content);
 		String question_title=request.getParameter("title");
-		System.out.println("已获取问题标题："+question_title);
+//		System.out.println("已获取问题标题："+question_title);
 		QuestionServiceimpl q=new QuestionServiceimpl();
 		Question question=q.createQuestion(null, user_id, question_type_id, question_content, 0, 0, null, question_title);
 		int count=q.addQuestion(question);

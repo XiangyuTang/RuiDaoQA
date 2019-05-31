@@ -45,8 +45,8 @@ public class showMessageServlet extends HttpServlet {
 
 		Gson gson=new Gson();
 		String jsonStr=gson.toJson(objs);
-		System.out.println("获得user_id为"+user_id+"消息列表：");
-		System.out.println(jsonStr);
+//		System.out.println("获得user_id为"+user_id+"消息列表：");
+//		System.out.println(jsonStr);
 
 		response.getWriter().write(jsonStr);
 		

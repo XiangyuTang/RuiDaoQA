@@ -210,9 +210,9 @@ public class BadWordUtil2 {
 		Set<String> s = BadWordUtil2.words;
 		Map<String,String> map = BadWordUtil2.wordMap;
 		
-		System.out.println("敏感词的数量：" + BadWordUtil2.wordMap.size());
+//		System.out.println("敏感词的数量：" + BadWordUtil2.wordMap.size());
 		String string = "法轮功爱上个人崇拜我草泥马我他妈";
-		System.out.println("待检测语句字数：" + string.length());
+//		System.out.println("待检测语句字数：" + string.length());
 		long beginTime = System.currentTimeMillis();
 		Set<String> set = BadWordUtil2.getBadWord(string, 2);
 		/*Boolean i = BadWordUtil2.isContaintBadWord(string, 2);
@@ -229,8 +229,8 @@ public class BadWordUtil2 {
 		Boolean i7 = BadWordUtil2.isContaintBadWord("崇拜", 2);
 		Boolean i77 = BadWordUtil2.isContaintBadWord("崇拜", 1);*/
 		long endTime = System.currentTimeMillis();
-		System.out.println("语句中包含敏感词的个数为：" + set.size() + "。包含：" + set);
-		System.out.println(BadWordUtil2.replaceBadWord(string, 2, "*"));
-		System.out.println("总共消耗时间为：" + (endTime - beginTime));
+//		System.out.println("语句中包含敏感词的个数为：" + set.size() + "。包含：" + set);
+//		System.out.println(BadWordUtil2.replaceBadWord(string, 2, "*"));
+//		System.out.println("总共消耗时间为：" + (endTime - beginTime));
 	}
 }

@@ -34,8 +34,8 @@ public class toDetailQuesServlet extends HttpServlet {
 				QuestionServiceimpl qsip = new QuestionServiceimpl();
 				UserServiceimpl usip = new UserServiceimpl();
 				AnswerServiceimpl answerServiceimpl = new AnswerServiceimpl();
-				ServletContext servletContext = request.getServletContext();
-				User currentUser = (User) servletContext.getAttribute("CurrentUser");
+//				ServletContext servletContext = request.getServletContext();
+				User currentUser = (User) request.getSession().getAttribute("CurrentUser");
 //				System.out.println(currentUser);
 				if (currentUser == null) {
 //					response.sendRedirect("index.jsp");
@@ -58,9 +58,9 @@ public class toDetailQuesServlet extends HttpServlet {
 				}else {
 //				System.out.println(currentUser.getUser_id());
 				List<Answer> answers = answerServiceimpl.getAnswerslist(question_id,currentUser);//得到其answer的回答者是否在收藏域中
-				for (Answer answer: answers) {
-					System.out.println(answer.getUser().getFollow_flag());
-				}
+//				for (Answer answer: answers) {
+//					System.out.println(answer.getUser().getFollow_flag());
+//				}
 				Integer have1 = qsip.haveQuestion(question_id, currentUser.getUser_id());////得到其question是否在收藏域中
 				Question q = qsip.getQuestion(question_id);
 				q.setCollect_flag(have1);

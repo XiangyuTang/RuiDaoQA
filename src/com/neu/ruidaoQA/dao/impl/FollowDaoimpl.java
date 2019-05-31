@@ -46,7 +46,7 @@ public class FollowDaoimpl extends BaseDao implements FollowDao {
 	}
 	public List<Follow> selectFollowById(int Id) {
 		// TODO Auto-generated method stub
-		System.out.println("bbbbbbbbbbbb"+Id);
+//		System.out.println("bbbbbbbbbbbb"+Id);
 		String sql = "select * from follow where follow_user_id = "+Id;
 		ResultSet rs = super.executeSelect(sql, null);
 		

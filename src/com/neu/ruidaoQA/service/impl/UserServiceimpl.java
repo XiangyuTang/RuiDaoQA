@@ -59,14 +59,14 @@ public class UserServiceimpl implements UserService{
 	@Override
 	public List<User> findAllUser(String userName, String Password) {
 		// TODO Auto-generated method stub
-		System.out.println("wwwwwwwwwwwwwwwwwwww");
+//		System.out.println("wwwwwwwwwwwwwwwwwwww");
 		Object[] params =new Object[]{userName,Password};
 		UserDao ud = new UserDaoimpl();
 		User u = ud.selectUser(params);
-		System.out.println("wwwwwwwwwwwwwwwwwwww");
+//		System.out.println("wwwwwwwwwwwwwwwwwwww");
 		List<User> lu = new ArrayList<User>();
 		lu.add(u);
-		System.out.println(lu.size());
+//		System.out.println(lu.size());
 		return lu;
 	}
 
@@ -168,15 +168,15 @@ public class UserServiceimpl implements UserService{
 	public void test1() {
 		UserDaoimpl u1 = new UserDaoimpl();
 		User u = u1.selectUser(1);
-			System.out.print(u.getUser_id());
-			System.out.print(u.getNick_name());
-			System.out.print(u.getSex());
-			System.out.print(u.getBirthday());
-			System.out.print(u.getPassword());
-			System.out.print(u.getEmail());
-			System.out.print(u.getHead_photo());
-			System.out.print(u.getIntroduce());
-			System.out.println();
+//			System.out.print(u.getUser_id());
+//			System.out.print(u.getNick_name());
+//			System.out.print(u.getSex());
+//			System.out.print(u.getBirthday());
+//			System.out.print(u.getPassword());
+//			System.out.print(u.getEmail());
+//			System.out.print(u.getHead_photo());
+//			System.out.print(u.getIntroduce());
+//			System.out.println();
 		}
 	
 	public static void main(String[] args) {//测试类
@@ -186,7 +186,7 @@ public class UserServiceimpl implements UserService{
 //		int j = userServiceimpl.deleteFollow(1, 2);
 //		System.out.println(j);
 		int i = userServiceimpl.addFavorite(1, 1);
-		System.out.println(i);
+//		System.out.println(i);
 		
 		UserServiceimpl userServiceimpl1 = new UserServiceimpl();
 		userServiceimpl1.test1();

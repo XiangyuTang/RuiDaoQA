@@ -373,7 +373,7 @@
                 </div>
             </c:if>
 
-            <c:if test="${empty  applicationScope.CurrentUser}">
+            <c:if test="${empty  sessionScope.CurrentUser}">
                 <div class="nav-user">
                     <a class="iconfont icon-touxiang layui-hide-xs" style="margin-top: 4px; display: inline-block;">
                     </a>

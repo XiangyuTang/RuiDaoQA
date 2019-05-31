@@ -31,8 +31,8 @@ public class submitAnswerServlet extends HttpServlet {
 		String ans_text = request.getParameter("ans_text");
 		sensitiveWordimpl swip = new sensitiveWordimpl();
 		String return_text = swip.replaceBadWord(ans_text, 2, "*");//敏感词过滤，2代表最大匹配原则，将敏感词替换为*
-		request.getServletContext().setAttribute("return_text", return_text);
-		System.out.println("-----"+request.getServletContext().getAttribute("return_text"));
+		request.getSession().setAttribute("return_text", return_text);
+//		System.out.println("-----"+request.getSession().getAttribute("return_text"));
 		Integer user_id = Integer.parseInt(request.getParameter("user_id"));
 		Integer question_id = Integer.parseInt(request.getParameter("question_id"));
 		String ans_time = request.getParameter("ans_time");

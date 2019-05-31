@@ -43,9 +43,9 @@ public class FansMessageServlet extends HttpServlet {
 		FansMessageService fs = new FansMessageServiceimpl();
 		UserService us = new UserServiceimpl();
 		List<User> lu=us.findAllUser(request.getSession().getAttribute("currentUserName").toString(),request.getSession().getAttribute("currentPassword").toString());
-		System.out.println("mmmmmmmmmm"+lu.get(0).getUser_id());
+//		System.out.println("mmmmmmmmmm"+lu.get(0).getUser_id());
 		List<User> fans = fs.selectFans(lu.get(0).getUser_id());
-		System.out.println("hhhhhhhhhhhhhh"+fans.size());
+//		System.out.println("hhhhhhhhhhhhhh"+fans.size());
 		request.setAttribute("List", fans);
 		request.getRequestDispatcher("FansMessage.jsp").forward(request,response);
 	}

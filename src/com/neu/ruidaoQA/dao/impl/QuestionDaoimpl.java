@@ -154,7 +154,7 @@ public class QuestionDaoimpl extends BaseDao implements QuestionDao {
 		System.out.print(qdi.addQuestion(q));*/
 		QuestionDaoimpl qdi=new QuestionDaoimpl();
 		ArrayList<Question> list = qdi.getSearchResult("坤");
-		System.out.println(list.size());
+//		System.out.println(list.size());
 	}
 
 	@Override

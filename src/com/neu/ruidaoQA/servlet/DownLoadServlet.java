@@ -34,7 +34,7 @@ public class DownLoadServlet extends HttpServlet {
 		UserService us = new UserServiceimpl();
 		List<User> lu=us.findAllUser(request.getSession().getAttribute("currentUserName").toString(),request.getSession().getAttribute("currentPassword").toString());
 		String pathHeadPicture = lu.get(0).getHead_photo();
-		System.out.println("ddddddddddddddddddddddddd"+pathHeadPicture);
+//		System.out.println("ddddddddddddddddddddddddd"+pathHeadPicture);
 		request.setAttribute("HeadPhotoPath", pathHeadPicture);
 		
 		request.getRequestDispatcher("userInfo.jsp").forward(request,response);

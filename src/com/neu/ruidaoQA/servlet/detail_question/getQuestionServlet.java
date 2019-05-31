@@ -86,11 +86,11 @@ public class getQuestionServlet extends HttpServlet implements java.io.Serializa
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json;charset=UTF-8");
 		int id = Integer.parseInt(request.getParameter("topic"));
-		System.out.println(id);
+//		System.out.println(id);
 		//与数据库交互的方法
-		HttpSession session = request.getSession();
+//		HttpSession session = request.getSession();
 		List<Question> getQuestionByType = impl.getQuestionByType(id);
-		session.setAttribute("getQuestionByType", getQuestionByType);	
+//		session.setAttribute("getQuestionByType", getQuestionByType);	
 		//session.setAttribute("title1", getQuestionByType.get(0).getQues_title().toString());
 		String s = "";
 		int ques_size = getQuestionByType.size();//得到当前类型问题的总条数

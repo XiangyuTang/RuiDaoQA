@@ -53,7 +53,7 @@ public class RegisterServlet extends HttpServlet {
 		String newPassword = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("md5");
-			System.out.print(password);
+//			System.out.print(password);
 			byte[] mimamd5=md.digest(password.getBytes());
 			newPassword = Arrays.toString(mimamd5);
 		} catch (NoSuchAlgorithmException e) {

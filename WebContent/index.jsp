@@ -152,7 +152,7 @@
 				type: 2,
 				offset: 'auto',
 				area: ['50%', '50%'],
-				content: 'toAsk?user_id=${applicationScope.CurrentUser.user_id}',//这里content是一个普通的String,
+				content: 'toAsk?user_id=${sessionScope.CurrentUser.user_id}',//这里content是一个普通的String,
 
 
 			}

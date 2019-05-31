@@ -18,12 +18,12 @@ public class FansMessageServiceimpl implements FansMessageService{
 		// TODO Auto-generated method stub
 		FollowDao fd = new FollowDaoimpl();
 		List<Follow> lf = fd.selectFollowById(id);
-		System.out.println("ttttttttttt"+lf.size());
+//		System.out.println("ttttttttttt"+lf.size());
 		UserDao ud = new UserDaoimpl();
 		List<User> lu = new ArrayList<User>();
 		for(int i=0; i<lf.size();i++) {
 			User u = ud.selectUser(lf.get(i).getThis_user_id());
-			System.out.println(lf.get(i).getThis_user_id());
+//			System.out.println(lf.get(i).getThis_user_id());
 			lu.add(u);
 		}
 		return lu;

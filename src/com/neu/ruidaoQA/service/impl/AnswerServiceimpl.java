@@ -81,15 +81,15 @@ public class AnswerServiceimpl implements AnswerService {
 	public void test1() {
 		AnswerDaoimpl a1 = new AnswerDaoimpl();
 		Answer a = a1.selectAnswer(1);
-			System.out.print(a.getAnswer_id());
-			System.out.print(a.getQuestion_id());
-			System.out.print(a.getUser_id());
-			System.out.print(a.getContent());
-			System.out.print(a.getDianzan_num());
-			System.out.print(a.getCai_num());
-			System.out.print(a.getComment_num());
-			System.out.print(a.getPublish_time());
-			System.out.println();
+//			System.out.print(a.getAnswer_id());
+//			System.out.print(a.getQuestion_id());
+//			System.out.print(a.getUser_id());
+//			System.out.print(a.getContent());
+//			System.out.print(a.getDianzan_num());
+//			System.out.print(a.getCai_num());
+//			System.out.print(a.getComment_num());
+//			System.out.print(a.getPublish_time());
+//			System.out.println();
 		}
 	
 	public static void main(String[] args) {//测试类

@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 			request.getSession().setAttribute("currentPassword",p2);
 			UserService us = new UserServiceimpl();
 			List<User> lu=us.findAllUser(p1,p2);
-			/*System.out.println(lu.size());
+			/*f.out.println(lu.size());
 			System.out.println(lu.get(0));
 			System.out.println(lu.get(0).getUser_id());*/
 			
@@ -85,8 +85,8 @@ public class LoginServlet extends HttpServlet {
 			 //request.getSession().setAttribute("filename", lu.get(0).getHead_photo());
 			us.addHeadPhoto(Integer.parseInt(request.getSession().getAttribute("current_user_id").toString()),lu.get(0).getHead_photo());
 			 //request.getServletContext().setAttribute("CurrentUser", lu.get(0));
-			request.getServletContext().setAttribute("CurrentUser", lu.get(0));
-			
+//			request.getServletContext().setAttribute("CurrentUser", lu.get(0));
+			request.getSession().setAttribute("CurrentUser", lu.get(0));			
 			if (null!=p3 && p3.equals("1")) {
 				Cookie cookie = new Cookie("savedname",p1);
 				cookie.setMaxAge(60*5);

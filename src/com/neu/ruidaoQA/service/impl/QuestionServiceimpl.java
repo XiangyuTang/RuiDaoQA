@@ -38,15 +38,15 @@ public class QuestionServiceimpl implements QuestionService{
 		QuestionDaoimpl q1 = new QuestionDaoimpl();
 		List<Question> list = q1.getQuestionByType(1);
 		for (Question question:list) {
-			System.out.print(question.getQuestion_id());
-			System.out.print(question.getQues_type_id());
-			System.out.print(question.getUser_id());
-			System.out.print(question.getContent());
-			System.out.print(question.getCollect_num());
-			System.out.print(question.getAnswer_num());
-			System.out.print(question.getPublish_time());
-			System.out.print(question.getQues_title());
-			System.out.println();
+//			System.out.print(question.getQuestion_id());
+//			System.out.print(question.getQues_type_id());
+//			System.out.print(question.getUser_id());
+//			System.out.print(question.getContent());
+//			System.out.print(question.getCollect_num());
+//			System.out.print(question.getAnswer_num());
+//			System.out.print(question.getPublish_time());
+//			System.out.print(question.getQues_title());
+//			System.out.println();
 		}
 	}
 	public ArrayList<Question> getQuestionLists(int user_id){

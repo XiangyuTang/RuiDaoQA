@@ -48,10 +48,10 @@
 				</a>
 			</div>
 
-			<c:if test="${!empty  applicationScope.CurrentUser}">
+			<c:if test="${!empty  sessionScope.CurrentUser}">
 				<div class="nav-user">
 					<a class="avatar" href="CounterFollowGuanZhuServlet"> <img
-						src="${ applicationScope.CurrentUser.head_photo}"> <cite>${ applicationScope.CurrentUser.nick_name}</cite>
+						src="${ sessionScope.CurrentUser.head_photo}"> <cite>${ sessionScope.CurrentUser.nick_name}</cite>
 					</a>
 					<div class="nav">
 						<a href="logoutServlet" target="_parent"><i
@@ -60,7 +60,7 @@
 				</div>
 			</c:if>
 
-			<c:if test="${empty  applicationScope.CurrentUser}">
+			<c:if test="${empty  sessionScope.CurrentUser}">
 				<div class="nav-user">
 					<a class="iconfont icon-touxiang layui-hide-xs"
 						style="margin-top: 4px; display: inline-block;"> </a>

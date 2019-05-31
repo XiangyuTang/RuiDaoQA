@@ -43,7 +43,7 @@ public class ModifyUserServlet extends HttpServlet {
 		String introduce = request.getParameter("introduce");
 		String password = request.getParameter("password");
 		
-		User olduser = (User) request.getServletContext().getAttribute("CurrentUser");
+		User olduser = (User) request.getSession().getAttribute("CurrentUser");
 		
 		ModifyUserService mus = new ModifyUserServiceimpl();
 		List<User> user = new ArrayList<User>();

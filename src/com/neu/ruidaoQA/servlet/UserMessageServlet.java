@@ -38,8 +38,8 @@ public class UserMessageServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		UserService us = new UserServiceimpl();
-		System.out.println(request.getSession().getAttribute("currentUserName").toString());
-		System.out.println(request.getSession().getAttribute("currentPassword").toString());
+//		System.out.println(request.getSession().getAttribute("currentUserName").toString());
+//		System.out.println(request.getSession().getAttribute("currentPassword").toString());
 		List<User> lu=us.findAllUser(request.getSession().getAttribute("currentUserName").toString(),request.getSession().getAttribute("currentPassword").toString());
 //		request.getSession().setAttribute("current_user_id", lu.get(0).getUser_id());
 		request.setAttribute("List",lu);
