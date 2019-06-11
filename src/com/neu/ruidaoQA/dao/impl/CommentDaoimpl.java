@@ -23,7 +23,7 @@ public class CommentDaoimpl extends BaseDao implements CommentDao{
 	public static void main(String[] args) {//测试类
 		CommentDaoimpl commentDaoimpl = new CommentDaoimpl();
 		int i = commentDaoimpl.addAcclaim_number(1);
-//		System.out.println(i);
+		System.out.println(i);
 	}
 
 	@Override//增加一条评论
