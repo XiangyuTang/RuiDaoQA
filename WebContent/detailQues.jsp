@@ -325,7 +325,7 @@ form {
 				$.ajax({
 					type:'POST',
 					url:'submitAnswer',
-					async:false,
+					async:false,//内层必须为false
 					dataType:'text',
 					data:{ans_text:ans_text,user_id:user_id,question_id:question_id,ans_time:ans_time},
 					success:function(e){
